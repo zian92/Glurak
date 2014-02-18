@@ -1,0 +1,21 @@
+Szenario: Label-Manager
+
+1. Szenario
+Label-Manager Olaf loggt sich ein.
+Label-Manager Olaf erhaelt Bewerbung von Kuenstler.
+Label-Manager Olaf schaut sich die Bewerbung an und hoert sich die Lieder des Kuenstlers an.
+Laber-Manager Olaf findet den neuen Kuenstler gut und nimmt ihn in sein Label auf.
+Laber-Manager Olaf verkuendet auf der Label Seite, dass sie einen Kuenstler aufgenommen haben.
+Label-Manager Olaf aktualisiert das Label Profil und listet den neuen Kuenstler dort auf.
+Label-Manager Olaf erstellt eine neue Playlist mit den Titel des neuen Kuenstlers.
+Label-Manager Olaf hat keine neue Benachrichtigungen und loggt sich wieder aus.
+
+2. Szenario:
+Label-Manager Olaf loggt sich ein.
+Label-Manager Olaf sucht nach dem Kuenstler Mace Ventura.
+Label-Manager Olaf schaut sich das Profil von Mace Ventura an.
+Label-Manager Olaf hört sich die Songs von Mace Ventura an.
+Label-Manager Olaf findet die Songs von Mace Ventura gut.
+Label-Manager Olaf schreibt ihm eine Nachricht und wirbt ihn an sein Label beizutreten.
+Label-Manager Olaf loggt sich aus.
+
