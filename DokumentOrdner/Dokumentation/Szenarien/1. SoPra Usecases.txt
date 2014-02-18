@@ -1,0 +1,39 @@
+  Der Listener:
+ .Anwendung starten
+ .Registrierung
+ .Einloggen/Abmelden
+ .Suche Medium nach Kriterium XY
+ .Suche von Benutzern 
+ .Playlist erstellen/bearbeiten/löschen
+ .Persönliche Daten bearbeiten/...
+ .Abspielen von Titeln/Playlists/
+	in Dauerschleife/einmal/
+ .Interagieren mit anderen Benutzer/Informationen teilen
+ .Vorschläge für Titel/Playlists/Benutzer/ unterbreiten
+ .Bewertungen abgeben an Titel/Künstler/Label
+ 
+ Der Künstler:
+  Listener++ (Freischaltung vom Admin)
+  .Hochladen/Verwalten
+  .Alben
+  .Werben(Ankündigungen)
+  .bei Label Bewerben /Einladungen annehmen/ablehnen
+  .(unter)Genres anlegen
+  
+ Der Label-Manager:
+  Künstler*
+  (freischaltung vom Admin)
+ .Administrative Funktionen für sein Label
+	und dessen Künstler
+ .Künstler werben /Bewerbungen bearbeiten
+
+  Das Lable Profil:
+  Sammlung von Künstlern/Alben/Playlists
+  Werbung anbieten
+
+  Admin:
+  .Rechte vergeben an Künstler/Manager
+  .Accounts sperren (nicht den Eigenen)
+  .initial)Genres anlegen /bearbeiten 
+  .E-mails Versenden
+  
