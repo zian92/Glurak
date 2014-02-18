@@ -1,0 +1,33 @@
+Anwendungsfall Listener:
+
+ .Anwendung starten
+	User laedt die anwendung herunter, installiert und fuehrt sie aus.
+ .Registrierung
+	user registriert sich ueber das registrierungsformular ung gibt dabei seine persoenlichen Informationen (password, benutzername, etc..) an.
+ .Einloggen/Abmelden
+	User logt sich mit seinen logindaten ein
+ .Suche Medium nach Kriterium XY
+	user gibt in die suchleiste ein Kriterum (genre, band, label) ein und erhaelt eine Liste mit Ergebnissen. Aus diesen ergebnissen kann er nacheinander eins auswaehlen und naecher betrachten.
+ .Suche von Benutzern
+	user gibt einen anderen benutzernamen oder eine andere emailadresse in das suchfeld ein und erhaelt eine liste mit uebereinstimmenden benutzerprofilen.
+ .Playlist 
+	erstellen
+		Der user waehlt die funktion: neue Playlist erstellen. Diese wird inmittelbar darauf benannt. anschließend kann kann der user belibige titel der wiedergabeliste hinzufuegen. Gespeichert wird automatisch.
+	bearbeiten
+		der user fuegt einen belibige titel der wiedergabeliste hinzufuegen. Gespeichert wird automatisch.
+	loeschen
+		der user laesst sich die wiedergabeliste anzeigen und waehlt einen titel oder mehreretitel aus, die/den er gerne loeschen moechte und bestaetigt die sicherheitsabfrage. gespeichert wird automatisch
+	loeschen der Playlist
+		der user waehlt die funktion Playlist loeschen und bestaetigt die sicherheitsabfrage. nun ist die Playlist fuer niemanden mehr verfuegbar.
+ .Persoenliche Daten bearbeiten/...
+	der user waehlt die maske profilbearbeiten und veraendert den inhalt der texfelder, die sein profil beschreiben/darstellen.
+	nach dem erfolgreichen speichern durch bestaetigung wird das veraenderte Profil gespeichert und ist nun online fuer alle anderen user verfuegbar.
+ .Abspielen von Titeln/Playlists/
+	Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.	in Dauerschleife/einmal/
+ .Interagieren mit anderen Benutzer/Informationen teilen
+	user sucht nach Olaf und sieht sich sein profil an. da er ihm als sehr sympatisch erscheint moechte er ihn als freund hinzufuegen und klickt auf den entsprechenden button. nun ist er freund von Olaf.
+ .Vorschlaege fuer Titel/Playlists/Benutzer/ unterbreiten
+	user schickt Olaf eine private nachricht und verweist auf den titel/playlist/benutzer in form eines links.
+ .Bewertungen abgeben an Titel/Kuenstler/Label
+	Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+ 
