@@ -1,9 +1,0 @@
-1. Rechte vergeben
-
-Admin Olaf meldet sich geschwind im System an.
-Das System bietet ihm eine Liste der bereits verifizierten Bewerbungen an.
-Sodrauf macht sich Admin Olaf, eifreig wie er ist, dran alle Bewerber auf ihren neuen Status zu erheben. Alle Bewerber auf der Liste haben nun neue Rechte.
-
-2. Account Sperren
-
-Admin Olaf ist bereits angemeldet, hungrig auf Arbeit macht er sich daran alle Störenfriede ausfindig zu machen. Also schaut er gespannt seine Beschwerdeemails durch. Er endeckt einen User der unzüchtige Inhalte verbreitet. Er besucht das Profil des Users um die Anschuldigung zu verifizieren. Fündig geworden, entschließt er sich den Nutzer zu sperren. Das System fordert Olaf auf, dem besagten Benutzer eine Nachricht, im besten Falle eine Begründung für die Sperre zu hinterlassen. Bei Bestätigung erhällt der Benutzer eine Email mit der Benachrichtigung, dass er gesperrt wurde, dem Datum der Sperre und Olafs Begründung. Der Zugang des Users ist nun für unbestimmte Zeit gesperrt. Olaf, glücklich über die Tatsache, die Welt wieder einmal ein wenig besser gemacht zu haben, meldet sich vom System ab und geht einen Kaffee trinken.
