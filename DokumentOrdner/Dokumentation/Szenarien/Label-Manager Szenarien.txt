@@ -1,0 +1,16 @@
+Szenario: Label-Manager
+
+1. Szenario:
+Der Label-Manager Olaf geht zur Arbeit und loggt sich dort in das Programm ein. Dort erhält
+er eine Nachricht, dass sich ein Kuenstler beworben hat, um den Label beizutreten. Olaf liest sich
+doe Bewerbung durch und hört sich die Songs des Kuenstlers an. Er findet den Kuenstler gut und nimmt ihn
+in sein Label auf. Olaf verkuendet dann auf der Label Seite, dass das Label einen neuen Kuenstler 
+aufgenommen hat und aktualisiert das Label Profil und listet dort den neuen Kuenstler auf. Dann  erstellt 
+Olaf eine neue Playlist mit den Titel des Kuenstlers. Weil Olaf sonst keine Benachrichtigungen hat, loggt er 
+sich wieder aus.
+
+2. Szenario:
+Olaf geht zur Arbeit und loggt sich dort in das Programm ein. Er sucht nach einen neuen Kuenstler von dem er gehoert hat.
+Er schaut sich das Profil von Mace Ventura an und hoert sich die Songs von ihm an. Weil er sie so gut findet, schreibt Olaf 
+eine Nachricht an Mace Ventura und wirbt ihn an, um sein Label beizutreten. Weil Olaf sonst nichts anderes zu tun hat, loggt
+er sich wieder aus und macht Feierabend.
