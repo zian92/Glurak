@@ -1,0 +1,76 @@
+Name des Anwendungsfalls: 	Kuenstler werben
+
+Beteiligte Akteure: 		Label-Manager, Kuenstler
+
+Anfangsbedingungen: 		Label-Manager ist eingeloggt und hat Profilseite von Kuenstler aufgerufen
+
+Ereignisfluss: 			1. Label-Manager liest sich das Profil durch
+				2. Label-Manager hoert Musik vom Kuenstler an
+				3. Label-Manager schreibt eine Nachricht an den Kuenstler mit einer Bewerbung, die der Kuenstler an- oder ablehnen kann
+
+Abschlussbedingung: 		Der Kuenstler hat die Bewerbung erhalten
+
+Ausnahmefaelle:			-
+
+Spezielle Anforderungen:	-
+
+
+
+Name des Anwedungsfalls:	Bewerbung lesen
+
+Beteiligte Akteure:		Label-Manager, Kuenstler
+
+Anfangsbedingung:		Label-Manager ist eingeloggt und Kuenstler hat Bewerbung an Label-Manager geschickt
+
+Ereignisfluss:			1. Label-Manager sieht neue Benachrichtung
+				2. Label-Manager schaut sich das Profil des Kuenstlers an
+				3. Label-Manager hoert sich die Musik des Kuenstlers an
+				4. Falls ihm der Kuenstler gefaellt
+					4.1. Der Label-Manager nimmt den Kuenstler in das Label auf 
+					Ansonsten
+					4.2. Der Label Manager lehnt die Bewerbung ab
+				5. Label Manager schickt dem Kuenstler eine Nachricht
+
+Abschlussbedingung:		Der Label-Manager hat die Bewerbung bearbeitet
+
+Ausnahmefaelle:			-
+
+Spezielle Anforderungen:	-
+
+
+
+Name des Anwendungsfalls:	Label Profil bearbeiten
+
+Beteiligte Akteure:		Label-Manager
+
+Anfangsbedingung:		Label-Manager ist eingeloggt und das Label Profil ist veraltet
+
+Ereignisfluss:			1. Label-Manager oeffnet das Profil
+				2. Label-Manager drueckt 'bearbeite Profil' Button
+				3. Label-Manager bearbeitet das Profil
+				4. Label-Manager speichert die Aenderungen
+
+Abschlussbedingungen:		Die Aenderungen im Profil wurden erfolgreich gespeichert
+
+Ausnahmefaelle:			-
+
+Spezielle Anforderungen:	-
+
+
+
+Name des Anwendungsfalls:	Ankuendigung machen
+
+Beteiligte Akteure:		Label-Manager
+
+Anfangsbedingung:		Der Label-Manager ist eingeloggt und will eine Ankuendigung machen
+
+Ereignisfluss:			1. Label-Manager drueckt Ankuendigungs Button
+				2. Label-Manager schreibt Ankuendigung
+				3. Label-Manager macht Einstellungen (Sichtbarkeit,...)
+				4. Label-Manager sendet die Ankuendigung ab
+
+Abschlussbedingung:		Die Ankuendigung wurde veroeffentlicht
+
+Ausnahmefaelle:			-
+
+Spezielle Anforderungen:	-
