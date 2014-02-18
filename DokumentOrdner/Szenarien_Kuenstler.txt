@@ -1,0 +1,25 @@
+Kuenstler:
+1. Szenario:
+Kuenstler als angemeldet als Listener und will Kuenstler werden. 
+Kuenstler tritt durch ein Dritt-System (oder durch System selbst) in Kontakt mit den Admin. Admin prueft Anfrage und ernennt ihn zum Kuenstler, falls Pruefung angemessen.
+
+2. Szenario:
+Kuenstler will ein Titel hochladen. Kuenstler loggt sich ein und klickt auf Hochladen. Dort gibt er die Metadaten ein und waehlt die MP3-Datei und laedt sie hoch. 
+
+3. Szenario:
+Kuenstler will zum Label Olabel. Er loggt sich ein, sucht nach den Label und klickt auf Bewerben. Er wartet einige Zeit und erhaelt vom LabelManager ein Ablehnung bzw. eine Bestaetigung.
+
+4. Szenario:
+Kuenstler war zu dumm um Metadaten richtig einzugeben. Deshalb loggt er sich ein und waehlt die zu aendernde Musik aus, klickt auf bearbeiten und gibt die richtigen Daten ein und speichert diese, bzw. verwirfft falls diese wieder falsch sind.
+
+5. Szenario:
+Der Kuenstler will ein tollen Song kreieren. Um sich Druck zu machen wirbt er schonmal aus der Plattform. Dazu loggt er sich ein. Klickt unter seinen Profil auf werben und schreibt sein Text. Danach klickt er auf Speichern. Sogleich ist dieser Text fuer alle einsehbar.
+
+6. Szenario:
+Der Kuenstler loggt sich ein. Er sieht unter seinen Profil eine Nachricht vom Label. Dort wird er eingeladen in das Label einzutreten. Der Kuenstler entscheidet sich und klickt entweder auf "Annehmen" oder auf "Ablehnen".
+
+7. Szenario:
+Der Kuenstler hat ein total neues Genres (bzw. Untergenres) erfunden und will diese zu seinem Song hinzufuegen. Er geht dazu (nach dem Einloggen) auf ein noch nicht spezifierten Ort und fuegt dort ein neues Genre ein und speichert diese. Dann fuegt er das Genre den Song hinzu und speichert das. Dann freud er sich.
+
+8. Szenario:
+Der Kuenstler will neues Album anlegen. Dazu loggt er sich ein, geht auf "neues Album anlegen". Es erscheint ein neuer Dialog. Dort kann er die Songs auswaehlen und hinzufuegen. Dazu kann er ein Cover oder sonstige Daten hinzufuegen. Dann speichert er sein Album und sofort kann jeder Listener das Album suchen oder sonstiges damit anstellen.
