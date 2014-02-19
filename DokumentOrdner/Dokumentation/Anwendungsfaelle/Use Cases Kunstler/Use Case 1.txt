@@ -1,6 +1,6 @@
 Registierung des Künstlers:
 Beteiligte Akteure:
-	* Admin, Künstler(Listener)
+	* Admin, Künstler(Listener), Drittsystem
 Anfangsbedinung:
 	* Der Künstler ist noch als Listener angemeldet, will aber Musik hochladen
 	* Er ist eingeloggt
