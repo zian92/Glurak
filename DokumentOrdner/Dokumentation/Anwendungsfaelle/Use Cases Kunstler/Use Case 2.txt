@@ -1,0 +1,18 @@
+Hochladen eines Titels:
+Beteiligte Akteure:
+	* Künstler
+Anfangsbedinung:
+	* Der Künstler hat ein Musikstück, dass er hochladen möchte.
+	* Er ist eingeloggt
+Ereignisfluss:
+	1. Künstler geht auf meine Musik im Profil
+	2. Dort geht er auf hochladen
+	3. Dort kann die Metadaten eingeben und das Musikstück hochladen (er kann auch bestimmen ob es öffentlich oder privat ist)
+	4. Er Speichert sein Eingaben
+Abschlussbedingung:
+	* Der Titel und die Daten sind im System und ggf. öffentlich einsehbar
+Ausnahmen:
+	* Falls der Titel und andere eindeutige Daten (Länge, Album) vorhanden ist, wird der Künstler darauf hingewiesen und muss die Daten ändern.
+	* Bei fehlende Metadaten oder Musik wird nicht hochgeladen und der Künstler informiert.
+Spezielle Anforderungen:
+	Keine

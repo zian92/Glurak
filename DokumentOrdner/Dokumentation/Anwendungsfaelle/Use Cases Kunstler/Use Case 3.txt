@@ -1,0 +1,18 @@
+Bewerben bei einem Label.
+Beteiligte Akteure:
+	* Künstler, Label-Manager
+Anfangsbedinung:
+	* Der Künstler ist noch keinem Label zugeordnet
+	* Er ist eingeloggt
+Ereignisfluss:
+	1. Künstler sucht nach Label A und geht auf diesen
+	2. Dort klickt er auf bewerben.
+	3. Der Labelmanager liest die Nachricht und akzeptiert.
+	4. Der Künstler bekommt eine Naricht, dass er nun im Label A ist.
+Abschlussbedingung:
+	* Der Künstler ist nun im Label A
+Ausnahmen:
+	* Der Labelmanager akzeptiert die Bewerbung nicht. Der Künstler bekommt eine Ablehnung und ist nicht im Label.
+Spezielle Anforderungen:
+	* Der Labelmanager muss den Künstler unter die Lupe nehmen.
+	* Die Ablehnung/Akzeptanz muss innerhalb von 30 Tagen geschehen

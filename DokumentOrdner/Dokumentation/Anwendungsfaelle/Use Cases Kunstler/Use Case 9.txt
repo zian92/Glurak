@@ -1,0 +1,16 @@
+Vom Label entfernen:
+Beteiligte Akteure:
+	* Künstler, Label-Manager
+Anfangsbedinung:
+	* Der Künstler ist eingeloggt und bei einem Label eingetragen 
+Ereignisfluss:
+	1. Der Künstler geht auf seinen Profil
+	2. Dort geht er auf sein zugewiesenes Label
+	3. Dort klickt er auf entfernen
+	4. Er bestätigt des "sind sie sicher" Dialog
+Abschlussbedingung:
+	* Der Künstler ist nicht mehr dem Label zugewiesen und der Label-Manager hat den Künstler nicht mehr unter seinen Künstler
+Ausnahmen:
+	* Falls der Künstler den Dialog mit der Bestätigung nicht akzeptiert ändert sich nichts.
+Spezielle Anforderungen:
+	* Keine

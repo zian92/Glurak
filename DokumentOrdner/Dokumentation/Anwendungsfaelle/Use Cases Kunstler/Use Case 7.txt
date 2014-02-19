@@ -1,0 +1,17 @@
+Neues Genre anlegen
+Beteiligte Akteure:
+	* Künstler
+Anfangsbedinung:
+	* Der eingeloggte Künstler hat ein Musikstück zu einem neuen (d.h. noch nicht im System vermerkten) (unter-)Genre.
+Ereignisfluss:
+	1. Der Künstler geht auf seinen Profil
+	2. Dort geht er auf neues Genre
+	3. Er erstellt ein neues und gibt dazu noch die Musik dazu ein.
+	4. Er speichert.
+Abschlussbedingung:
+	* Das neue Genre ist für alle Benutzer des System auswählbar und die Musik gehört nun zu diesem Genre
+Ausnahmen:
+	* Das Genre ex., dann wird es nicht nochmal extra angelegt.
+	* Keine Musik ausgewählt. Der Benutzer wird darauf hingewiesen und das Genre wird nicht angelegt.
+Spezielle Anforderungen:
+	* Es muss ein sinnvolles Genre sein.

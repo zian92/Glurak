@@ -1,0 +1,17 @@
+Neues Album anlegen
+Beteiligte Akteure:
+	* Künstler
+Anfangsbedinung:
+	* Der Künstler hat mehrere Musiktitel hochgeladen, welche er zu einem Album zusammenfassen will. Er ist eingeloggt.
+Ereignisfluss:
+	1. Der Künstler geht auf seinen Profil
+	2. Dort geht er auf Album anlegen.
+	3. Dort fügt er die Titel hinzu
+	4. Er gibt nötige Metadaten ein.
+	5. Er speichert das Album
+Abschlussbedingung:
+	* Das Album ist angelegt mit den Metadaten und die ausgewählte Musik ihr zugewiesen.
+Ausnahmen:
+	* Falls keine wichtigen Metadaten eingeben wird der Nutzer informiert und kein Album hinzugefügt.
+Spezielle Anforderungen:
+	* Keine

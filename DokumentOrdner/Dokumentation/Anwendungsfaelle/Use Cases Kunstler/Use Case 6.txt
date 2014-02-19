@@ -1,0 +1,17 @@
+Annehmen/Ablehnen von Label-Einladungen
+Beteiligte Akteure:
+	* Künstler, Label-Manager
+Anfangsbedinung:
+	* Der Label-Manager hat ein Einladung an den Künstler geschickt.
+	* Der Künstler ist noch bei keinen anderen Label.
+	* Er ist eingeloggt
+Ereignisfluss:
+	1. Der Künstler geht auf sein Profil
+	2. Dort hat er die Einladung vom Label-Manager bekommen.
+	3. Er nimmt diese an
+Abschlussbedingung:
+	* Er ist nun in besagten Label eingetragen
+Ausnahmen:
+	* Falls er ablehnt geht eine Meldung zum Label-Manager und er ist nicht im Label.
+Spezielle Anforderungen:
+	* Er informiert sich über das Label.

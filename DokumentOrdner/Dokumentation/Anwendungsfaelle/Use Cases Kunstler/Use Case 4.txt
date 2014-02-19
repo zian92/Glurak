@@ -1,0 +1,17 @@
+Metadaten bearbeiten:
+Beteiligte Akteure:
+	* Künstler
+Anfangsbedinung:
+	* Der Künstler hat bereits Musik hochgeladen, welche er bearbeiten will.
+	* Er ist eingeloggt
+Ereignisfluss:
+	1. Künstler geht auf das zu bearbeitende Musikstück
+	2. Dort geht er auf "bearbeiten"
+	3. Dort kann die Musik ggf. ersetzen und die Metadaten ändern.
+	4. Er speichert diese Änderungen.
+Abschlussbedingung:
+	* Die Musik des Künstlers ist nun die angepasste.
+Ausnahmen:
+	* Bei fehlender Musik oder Metadaten wird er gewarnt und die Daten nicht akzeptiert
+Spezielle Anforderungen:
+	* Keine

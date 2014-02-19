@@ -1,0 +1,18 @@
+Registierung des Künstlers:
+Beteiligte Akteure:
+	* Admin, Künstler(Listener)
+Anfangsbedinung:
+	* Der Künstler ist noch als Listener angemeldet, will aber Musik hochladen
+	* Er ist eingeloggt
+Ereignisfluss:
+	1. Künstler geht auf sein Profil und dort auf Künstler-Werden
+	2. Es folgt eine Anfrage auf Richtigkeit der Aktion
+	3. Ist diese Positiv, wird ihn ein Formular mit instruktionen (Post-ident, etc.) angezeigt und es geht eine Meldung an den Admin
+	4. Admin überprüft die Daten und seine Post und ernennt den Listener zum Künstler
+Abschlussbedingung:
+	* Der Listener ist nun als Künstler im System registiert
+Ausnahmen:
+	* Der Admin befindet die Anfrage als nicht gerechtfertigt
+	* Bei fehlender Post wird dem Listener eine Meldung nach 1 Woche zum erneuten Verschicken zugesandt
+Spezielle Anforderungen:
+	* Der Admin muss die Post entgegennehmen
