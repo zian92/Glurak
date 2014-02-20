@@ -3,13 +3,13 @@ package de.js.adressbuch;
 public class AdressEintrag {
 
 	private String vorname = "";
-	private String nachname = "";
 	private String anrede = "";
+	private String nachname = "";
 	private String strasse = "";
-	private String telefon = "";
-	private String handy = "";
 	private String plz = "";
 	private String ort = "";
+	private String telefon = "";
+	private String handy = "";
 	private String email = "";
 	private String land = "";
 
