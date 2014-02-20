@@ -57,9 +57,17 @@ public class AdressBuch {
 	 * @return
 	 */
 	public boolean updateEintrag(int index, AdressEintrag ae) {
-		if (index < 0 && ae == null) return false;
+		if (index < 0 || ae == null) return false;
 		this.deleteEintrag(index);
 		ab.add(index, ae);
+		return true;
+	}
+
+	public boolean updateEintrag(int index, String vorname, String nachname, String anrede, String strasse, String telefon, String handy, String plz, String ort, String email, String land) {
+		if (index < 0 || vorname == null || nachname == null || anrede == null || strasse == null || telefon == null || handy == null || plz == null || ort == null || email == null || land == null) {
+			return false;
+		}
+		this.updateEintrag(index, new AdressEintrag(vorname, nachname, anrede, strasse, telefon, handy, plz, ort, email, land));
 		return true;
 	}
 

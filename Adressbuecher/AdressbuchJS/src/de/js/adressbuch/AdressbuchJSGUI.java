@@ -1,6 +1,8 @@
 package de.js.adressbuch;
 
 import java.awt.*;
+import java.io.IOException;
+
 import javax.swing.*;
 
 public class AdressbuchJSGUI {
@@ -23,7 +25,15 @@ public class AdressbuchJSGUI {
 		AdressBuch a = new AdressBuch();
 		a.addEintrag(new AdressEintrag("lkj", "lkjk", "lkjl"));
 		a.addEintrag(new AdressEintrag("lkj", "lkjk", "lkjl"));
-		String[][] s = a.toStringArray();
+		// String[][] s = a.toStringArray();
+		DatenManager d = new DatenManager();
+		d.saveToFile("lkjlK");
+		String s = "";
+		try {
+			s = d.readFromFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
 
