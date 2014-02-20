@@ -63,19 +63,22 @@ public class AdressBuch {
 		return true;
 	}
 
-	// /**
-	// * @param args
-	// */
-	// public static void main(String[] args) {
-	// AdressEintrag a = new AdressEintrag("lkj", "lkj", Anrede.getString(Anrede.DR));
-	// System.out.println(a.getAnrede());
-	// }
-
 	/**
 	 * 
 	 * @return
 	 */
 	public ArrayList<AdressEintrag> getAb() {
 		return ab;
+	}
+
+	public String[][] toStringArray() {
+		String[][] s = new String[10][ab.size()];
+		for (int i = 0; i < ab.size(); i++) {
+			String[] temp = ab.get(i).toStringArray();
+			for (int j = 0; j < 10; j++) {
+				s[j][i] = temp[j];
+			}
+		}
+		return s;
 	}
 }

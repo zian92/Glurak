@@ -5,7 +5,9 @@ import javax.swing.*;
 
 public class AdressbuchJSGUI {
 	public static void main(String args[]) {
-		Object rows[][] = {  {"","","","","","","","","",""},{"","","","","","","","","",""},{"","","","","","","","","",""},{"","","","","","","","","",""},{"","","","","","","","","",""},{"","","","","","","","","",""},{"","","","","","","","","",""},{"","","","","","","","","",""},{"","","","","","","","","",""},{"","","","","","","","","",""},};
+		test();
+
+		Object rows[][] = { { "", "", "", "", "", "", "", "", "", "" }, { "", "", "", "", "", "", "", "", "", "" }, { "", "", "", "", "", "", "", "", "", "" }, { "", "", "", "", "", "", "", "", "", "" }, { "", "", "", "", "", "", "", "", "", "" }, { "", "", "", "", "", "", "", "", "", "" }, { "", "", "", "", "", "", "", "", "", "" }, { "", "", "", "", "", "", "", "", "", "" }, { "", "", "", "", "", "", "", "", "", "" }, { "", "", "", "", "", "", "", "", "", "" }, };
 		Object headers[] = { "Vorname", "Anrede", "Nachname", "Strasse", "PLZ", "Ort", "Telefon", "Handy", "EMail", "Land" };
 		JTable table = new JTable(rows, headers);
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -15,6 +17,13 @@ public class AdressbuchJSGUI {
 		frame.setSize(600, 150);
 		frame.setTitle("Adressbuch JS");
 		frame.setVisible(true);
+	}
+
+	public static void test() {
+		AdressBuch a = new AdressBuch();
+		a.addEintrag(new AdressEintrag("lkj", "lkjk", "lkjl"));
+		a.addEintrag(new AdressEintrag("lkj", "lkjk", "lkjl"));
+		String[][] s = a.toStringArray();
 	}
 }
 

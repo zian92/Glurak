@@ -22,7 +22,7 @@ public class AdressEintrag {
 	public AdressEintrag(String vorname, String nachname, String anrede, String strasse, String telefon, String handy, String plz, String ort, String email, String land) {
 		this.vorname = vorname;
 		this.nachname = nachname;
-		this.setAnrede(anrede);
+		this.anrede = anrede;
 		this.strasse = strasse;
 		this.telefon = telefon;
 		this.handy = handy;
@@ -30,6 +30,21 @@ public class AdressEintrag {
 		this.ort = ort;
 		this.email = email;
 		this.land = land;
+	}
+
+	public String[] toStringArray(){
+		String[] s= new String[10];
+		s[0] = vorname;
+		s[1] = nachname;
+		s[2] = anrede;
+		s[3] = strasse;
+		s[4] = telefon;
+		s[5] = handy;
+		s[6] = plz;
+		s[7] = ort;
+		s[8] = email;
+		s[9] = land;
+		return s;
 	}
 
 	public String getNachname() {
