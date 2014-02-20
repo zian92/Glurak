@@ -13,6 +13,7 @@ public class AdressbuchJSGUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(scrollPane, BorderLayout.CENTER);
 		frame.setSize(600, 150);
+		frame.setTitle("Adressbuch JS");
 		frame.setVisible(true);
 	}
 }
