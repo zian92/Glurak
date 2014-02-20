@@ -1,0 +1,18 @@
+Entitätsklassen (entity es)
+================================
+User, Listener, Artist, LabelManager, Admin, TheLable,
+Medium, Playlist, Album, Genre, Message, Application, 
+
+Grenzklassen (Schnittstellenklassen, boundary es, interface es)
+================================
+LoginView, RegistrationView, StartView, EMailView, PlaylistView, AlbumView, PlayQueueView,
+ProfileView, SearchView, UploadView, LabelView, ProfileEditView, MessageView, 
+ApplicationView, NavigationView, 
+
+Steuerungsklassen (control es)
+================================
+ExceptionHandler, MediumController, LoginVController, RegistrationVController,
+StartVController, EMailVController, PlaylistVController, AlbumVController,
+PlayQueueVController, ProfileVController, SearchVController, UploadVController,
+LabelVController, ProfileEditVController, MessageVController, 
+ApplicationVController, NavigationVController, 
