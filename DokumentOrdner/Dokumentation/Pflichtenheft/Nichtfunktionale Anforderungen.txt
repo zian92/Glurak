@@ -1,0 +1,43 @@
+Was kann er?
+-Anwendungen benutzen, wenn sie einfach sind.
+Welchne Normen?
+-He?
+Welche Dokumentation?
+-Ein Einführungsvideo.
+Zuverlässigkeit?
+-Absturze vermeiden. 
+-Systemneustarte wäre Ok, wird nicht passieren!
+-Keine Daten sollte verloren gehen
+-Dialog anzeigen (automatisch speichern backup)
+-Password verschlüsseln/
+-Kein externen Zugriff (nur mit einloggen)
+Leistungsanforderungen:
+-So schnell wie möglich.
+-Nö
+-Eins höchstens
+-Petabyte
+-<=Math.Random(0,100)
+Unterstützen:
+-Keine Offizielle/Kein in Aussicht
+-Wir
+-Nicht in diesem Leben
+Implementierung:
+-Java 7. für PC
+-Loginsperre
+-Testen auf anderen PC
+Schnittstelle:
+-Nö
+-Datenbank/Dateisystem
+-MP3 / WAV / JPG
+Betrieb:
+-Admin regelt das
+Installation:
+-Angestellt
+-Eine
+-Nein
+Rechtliches:
+-Keine lizensierung erforderlich
+-Keiner
+-Nö/Ist ja privat; ..../Nutzer gibt alle Recht am Song am beim Hochladen 
+
+
