@@ -1,0 +1,16 @@
+User:
+
+Listener:
+* Listener ist die Oberklasse der registrierten Benutzer. Er wird als einzige Auswahl bei einer Registrierung erstellt. Und besitzt die Grundfunktion (Suchen/Kommunizieren/Musik zum Abspiel verwalten)
+
+Artist
+* Artist stellt ein Künstler. Im System ist er eine Rechteerweiterung des Listener in der Hinsicht, dass er Musik hochladen. Außerdem kann  er zu eine Label gehören.
+
+Label-Manager
+* Ein Label-Manager stellt ein Label-Manager da!!!! Er kann mehrer Artisten verwalten und in deren Namen Medien verwalten. Diese müssen sich zuvor bei ihm Bewerben, bzw. der Label-Manager bei den Artisten. Zudem erbt er die Rechte vom Artist.
+
+The Label
+* Dies ist kein eigenständiges Profil/Listener. Er wird von einen bzw. meheren Label-Manager verwaltet. The Label ist eine Seite die das Label/mehrere Artist repräsentiert.
+
+Admin
+* Admin ist der Verwalter des Systems. Er kann alles machen, was der Listener kann.
