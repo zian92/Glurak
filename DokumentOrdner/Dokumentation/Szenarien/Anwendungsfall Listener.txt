@@ -30,9 +30,6 @@
 	loeschen
 		der user laesst sich die wiedergabeliste anzeigen und waehlt einen titel oder mehreretitel aus, die/den er gerne loeschen moechte und bestaetigt die sicherheitsabfrage. gespeichert wird automatisch
 
-	loeschen der Playlist
-		der user waehlt die funktion Playlist loeschen und bestaetigt die sicherheitsabfrage. nun ist die Playlist fuer niemanden mehr verfuegbar.
-
  .Persoenliche Daten bearbeiten/...
 	der user waehlt die maske profilbearbeiten und veraendert den inhalt der texfelder, die sein profil beschreiben/darstellen.
 	nach dem erfolgreichen speichern durch bestaetigung wird das veraenderte Profil gespeichert und ist nun online fuer alle anderen user verfuegbar.
