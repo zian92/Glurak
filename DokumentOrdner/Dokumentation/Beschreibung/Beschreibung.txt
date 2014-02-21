@@ -1,0 +1,24 @@
+Beschreibung des Anwendungsgebietes
+
+Glurak 3000
+
+Das System speichert verschiedene Musikstücke zusammen mit Metainformationen.
+Diese bestehen aus Titel, Interpret, Genre, Länge.
+
+Jeder Benutzer hinterlegt in dem System persönliche Angaben wie Geburtsdaturm, Herkunftsland, Geschlecht, Name, Vorname, Adresse, Telefon.
+
+Jeder Benutzer hat ein Profil welches von allen Benutzern einsehbar ist.
+
+Alle Benutzer können alle nicht gesperrten Medien abrufen, abspielen, bewerten und zu Playlists zusammenfügen.
+Benutzer können das System nach allen veröffentlichten, nicht gesperrten Medien durchsuchen oder den Empfehlungen auf der Startseite folgen.
+Die Empfehlungen bekommt ein Benutzer aufgrund der bereits von ihm gehörten Medien, Empfehlungen von anderen Benutzer und Werbung von verfolgten Künstlern/Labeln.
+
+Benutzer können nach einer erfolgreichen Bewerbung zu Künstlern werden.
+Künstler können Medien hochladen, noch nicht veröffentlichte Medien können angekündigt werden, sodass alle Benutzer bereits Metainformationen zu diesen einsehen können. Künstler können Geners erstellen.
+
+Labels können sich durch ein eigenes Profil represäntieren.
+Label-Manager können Aktionen für das Label durchführen, wie Künstler einladen, Bewerbungen akzeptieren, Musik und Werbung veröffentlichen.
+
+Ein Admin des Systems, kann Genres erstellen, bearbeiten, Medien und Benutzer sperren.
+
+Alle Benutzer können sich untereinandere Nachrichten schicken und so über die Inhalte des Systems austauschen.
