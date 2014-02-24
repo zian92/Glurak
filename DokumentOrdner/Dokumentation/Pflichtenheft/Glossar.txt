@@ -23,4 +23,7 @@ Playlist:
 * Ansammlung von Musikstücken (kann leer sein)
 
 Album:
-* Erweiterung von Playlist um Metadaten. Kann nur von Artist/Label-Manager erstelt werden.
+* Erweiterung von Playlist um Metadaten. Kann nur von Artist/Label-Manager erstelt werden. 
+
+Upload
+* Eine Audio-Datei wird von einem Benutzer hochgeladen und im System hinterlegt.

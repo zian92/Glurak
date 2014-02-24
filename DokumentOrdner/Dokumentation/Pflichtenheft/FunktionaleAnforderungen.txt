@@ -1,0 +1,47 @@
+﻿2.2. Funktionale Anforderungen
+Kurze textuelle Beschreibung der funktionalen Anforderungen auf hohem Niveau
+
+Das zu erstellende System, im folgenden "Glurak" genannt, erfüllt die folgenden funktionalen Anforderungen:
+
+Es unterstützt Musikformate und mehrere Benutzertypen, die mit Hilfe von Glurak Organisiert werden können.
+
+Es fordert eine Identifikation des Benutzers, mittels Benutzernamen und Passwort.
+Anhand des Benutzertyps(Listener, Artist, Label-Manager) stellt Glurak
+dem eingellogten Benutzer unterschiedliche Funktionalitäten zur  Verfügung.
+
+Jeder Benutzertyp kann:
+-sich Profile von Labels, Artists und anderen Usern anzeigen lassen.
+-sein eigenes Profil bearbeiten.
+-nach Medien und Usern, anhand von auswählbaren Kriterien oder Namensbestandteilen suchen.
+-Playlists und damit einzelne Medien abspielen.
+-Nachrichten erhalten, lesen und versenden.
+-anderen Usern followen.
+-Medien, Profile und Label bewerten.
+
+Ein Listener hat gegenüber dem User folgende Erweiterungen: 
+Er kann Playlists erstellen und Bearbeiten.
+Er kann Eine Bewerbung an den Administrator senden, um in den Rang Artist/Label-Manager erhoben zu werden.
+Er kann Inhalte anderen Usern vorschlagen
+
+Der Artist erweitert die Funktionalität eines Listeners um die Möglichkeit:
+Medien hochzuladen und hochgeladene Medien nachträglich zu bearbeiten.
+Neue Genres für hochgeladene Medien anlegen.
+Alben als speziele Playlists zu erstellen und zu bearbeiten.
+Sich bei einenem Label zu bewerben.
+Einladungen von Labels zu akzeptieren und abzulehnen.
+Sich von einem Label zu entfernen.
+Medien oder Playlists promoten.
+
+Ein Label-Manager zeigt sich für das Label, das er managen soll, verantwortlich. Er selbst ist ein Artist, 
+der über das Label gesonderte Funktionalität erhält. Im einzelnen ist das:
+-Hochladen von Medien im Namen der labeleigenen Artists,
+-Bearbeiten von Medien labeleigener Artists,
+-Promoten von Medien/Alben/Artists an die Follower labeleigener Artists.
+
+Das System wird von einem Administrator verwaltet. Dieser erbt die Funktionalitäten eines Users,
+kann aber darüber hinaus folgende administrative Aufgaben erledigen:
+Er kann Genres anlegen, die den Nutzern dann zur struckturierung der Medieninhalte dienen können.
+Er kann Nutzer vom System sperren und die gesetzte Sperre wieder aufheben.
+Er kann E-Mails an die E-Mailadressen von Nutzern versenden.
+Er kann Medien Sperren und die gesetzte Sperre wieder aufheben.
+Er kann Listenern in den Rang eines Artists oder eines Labelmanegers erheben
