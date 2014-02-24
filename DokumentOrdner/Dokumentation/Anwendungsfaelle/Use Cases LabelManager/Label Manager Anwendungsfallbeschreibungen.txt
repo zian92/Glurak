@@ -74,3 +74,22 @@ Abschlussbedingung:		Die Ankuendigung wurde veroeffentlicht
 Ausnahmefaelle:			-
 
 Spezielle Anforderungen:	-
+
+
+
+Name des Anwendungsfalls:	Medien in Namen des Künstlers hochladen
+
+Beteiligte Akteure:		Label-Manager
+
+Anfangsbedingung:		Der Label-Manager ist eingeloggt.
+
+Ereignisfluss:			1. Label-Manager geht auf Profil des Künstles
+				2. Er geht auf "Medien hochladen"
+				3. Er gibt Metadaten ein und trägt die Sichtbarkeit ein.
+				4. Er speichert seine Eingaben.
+
+Abschlussbedingung:		Der Song ist im Namen des Künstlers im System registriert mit den entsprechenden Metadaten.
+
+Ausnahmefaelle:			Bei falscher oder ungültigen Metadaten wird nichts geändert und der Label-Manager dementsprechend informiert.
+
+Spezielle Anforderungen:	-
