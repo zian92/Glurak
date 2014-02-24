@@ -1,7 +1,13 @@
 package de.js.adressbuch;
 
-public class AdressEintrag {
+import java.io.Serializable;
 
+public class AdressEintrag implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String vorname = "";
 	private String anrede = "";
 	private String nachname = "";
@@ -14,15 +20,13 @@ public class AdressEintrag {
 	private String land = "";
 
 	public AdressEintrag(String vor, String nach, String anre) {
-		setAnrede(anre);
-		vorname = vor;
-		nachname = nach;
+		this.anrede = anre;
+		this.vorname = vor;
+		this.nachname = nach;
 	}
 
 	public AdressEintrag(String vorname, String nachname, String anrede, String strasse, String telefon, String handy, String plz, String ort, String email, String land) {
-		this.vorname = vorname;
-		this.nachname = nachname;
-		this.anrede = anrede;
+		this(vorname, nachname, anrede);
 		this.strasse = strasse;
 		this.telefon = telefon;
 		this.handy = handy;
@@ -32,8 +36,16 @@ public class AdressEintrag {
 		this.land = land;
 	}
 
-	public String[] toStringArray(){
-		String[] s= new String[10];
+	public AdressEintrag() {
+	}
+
+	/**
+	 * Gibt alle Einträge als String-Array wieder.
+	 * 
+	 * @return
+	 */
+	public String[] toStringArray() {
+		String[] s = new String[10];
 		s[0] = vorname;
 		s[1] = nachname;
 		s[2] = anrede;

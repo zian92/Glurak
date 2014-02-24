@@ -1,5 +1,6 @@
 package de.js.adressbuch;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author Jonas
  * 
  */
-public class AdressBuch {
+public class AdressBuch implements Serializable{
 
 	private ArrayList<AdressEintrag> ab;
 
