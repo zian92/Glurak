@@ -11,11 +11,21 @@ public class Message {
 	private User sender;
 	private User receiver;
 	private String ID;
-	
+
+	/**
+	 * Konstruktor
+	 */
 	public Message(){
 		
 	}
 	
+	/**
+	 * Konstruktor
+	 * @param pMessage Die Nachricht, die gesendet werden soll.
+	 * @param pSender Der Absender der Nachricht.
+	 * @param pReceiver Der Empfaenger der Nachricht.
+	 * @param pID Die ID der Nachricht.
+	 */
 	public Message(String pMessage, User pSender, User pReceiver, String pID){
 		message = pMessage;
 		sender = pSender;
