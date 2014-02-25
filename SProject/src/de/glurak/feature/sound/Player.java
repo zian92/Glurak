@@ -52,4 +52,18 @@ public interface Player {
      * @return null, falls nichts abegspielt, sonst das Medium
      */
     public Medium getCurrentMedium();
+
+
+    /**
+     * Fügt den PlayStateListener l hinzu
+     * @param l der hinzuzufügenden PlayStateListener
+     */
+    public void addPlayStateListener(PlayStateListener l);
+
+
+    /**
+     * Löscht den PlayStateListener l
+     * @param l der zu löschende PlayStateListener
+     */
+    public void removePlayStateListener(PlayStateListener l);
 }
