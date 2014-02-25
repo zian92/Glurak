@@ -12,19 +12,19 @@ public class Message {
 	}
 	
 	public void setMessage(String pMessage){
-		
+		message = pMessage;
 	}
 	
 	public void setSender(User pSender){
-		
+		sender = pSender;
 	}
 	
 	public void setReceiver(User pReceiver){
-		
+		receiver = pReceiver;
 	}
 	
 	public void setID(String pID){
-		
+		ID = pID;
 	}
 	
 	public String getID(){
