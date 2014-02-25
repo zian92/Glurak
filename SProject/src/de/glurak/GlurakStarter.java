@@ -6,8 +6,6 @@ import javax.swing.SwingUtilities;
 import de.glurak.frontend.login.LoginView;
 
 public class GlurakStarter {
-
-	
 	
 	public GlurakStarter() {
 		// TODO Auto-generated constructor stub
@@ -22,8 +20,8 @@ public class GlurakStarter {
 		SwingUtilities.invokeLater(new Runnable(){
 			public void run(){
 				//Create GUI
-				LoginView frame_Login = new LoginView();
-				frame_Login.setSize(500,500);
+				LoginView frame_Login = new LoginView(Query.APPLICATION_NAME);
+				frame_Login.setSize(1024,700);
 			}
 		});
 		

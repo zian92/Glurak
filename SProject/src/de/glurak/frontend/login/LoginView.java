@@ -4,8 +4,8 @@ import javax.swing.JFrame;
 
 public class LoginView extends JFrame{
 	
-	public LoginView(){
-		super("Login");
+	public LoginView(String Titel){
+		super(Titel);
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
