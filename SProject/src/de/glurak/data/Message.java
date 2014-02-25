@@ -1,5 +1,10 @@
 package de.glurak.data;
 
+/**
+ * Diese Klasse repraesentiert eine Nachricht, die sich User untereinander senden koennen.
+ * @author Simon
+ *
+ */
 public class Message {
 
 	private String message;
@@ -9,6 +14,13 @@ public class Message {
 	
 	public Message(){
 		
+	}
+	
+	public Message(String pMessage, User pSender, User pReceiver, String pID){
+		message = pMessage;
+		sender = pSender;
+		receiver = pReceiver;
+		ID = pID;
 	}
 	
 	public void setMessage(String pMessage){
