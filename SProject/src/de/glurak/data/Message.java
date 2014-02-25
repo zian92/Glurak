@@ -23,10 +23,6 @@ public class Message {
 		receiver = pReceiver;
 	}
 	
-	public void setID(String pID){
-		ID = pID;
-	}
-	
 	public String getID(){
 		return ID;
 	}
