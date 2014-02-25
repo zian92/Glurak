@@ -1,0 +1,35 @@
+GUI Package
+-Login
+-Registr
+-MainFramePackage
+	-Header
+	-Navigation
+	-PlayQueueView
+	-content
+		-newsContent
+		-Profile
+			-Label
+			-ProfileEdit
+		-Upload
+		-Playlist
+			-Album
+			-PlaylistEdit
+		-Message
+			-Application
+		
+		-Search
+		
+		
+dataPackage
+•Medium
+•Label
+•User
+•Listener
+•Artist
+•Admin
+•Label-Manager //obsolet
+•Message
+•SpecialFancyMessage
+•Playlist
+•Album
+•Genre
