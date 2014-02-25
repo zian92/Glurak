@@ -16,6 +16,7 @@ public class User {
 	
 	// Constructor
 	/**
+	 * Constructor
 	 * @param id
 	 * @param username
 	 * @param password
