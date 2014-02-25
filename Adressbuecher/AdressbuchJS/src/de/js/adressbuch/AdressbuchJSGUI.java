@@ -111,8 +111,8 @@ public class AdressbuchJSGUI implements Serializable {
 	public String[][] getTableData() {
 		String[][] data = new String[10][table.getRowCount()];
 		for (int i = 0; i < table.getRowCount(); i++)
-			for (int j = 0; j < table.getColumnCount(); j++)
-				data[i][j] = (String) table.getValueAt(i, j);
+			for (int j = 0; j < 10; j++)
+				data[j][i] = (String) table.getValueAt(i, j);
 		return data;
 	}
 
@@ -148,8 +148,8 @@ public class AdressbuchJSGUI implements Serializable {
 			data = (String[][]) ois.readObject();
 		} catch (FileNotFoundException e) {
 			System.out.println("Keine Adressdaten vorhanden.");
-			System.out.println("Lege neue Datei an...");
 			data = (String[][]) emptyRows;
+			this.saveFile((String[][]) emptyRows);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -163,6 +163,10 @@ public class AdressbuchJSGUI implements Serializable {
 	 */
 	public void saveAdressbuch() {
 		String[][] data = this.getTableData();
+		this.saveFile(data);
+	}
+
+	public void saveFile(String[][] data) {
 		FileOutputStream fos = null;
 		ObjectOutputStream oos;
 		try {
