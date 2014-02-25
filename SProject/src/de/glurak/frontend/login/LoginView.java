@@ -1,5 +1,15 @@
 package de.glurak.frontend.login;
 
-public class LoginView {
+import javax.swing.JFrame;
 
+public class LoginView extends JFrame{
+	
+	public LoginView(){
+		super("Login");
+		
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
+		
+	}
+	
 }
