@@ -5,6 +5,7 @@ public class Message {
 	private String message;
 	private User sender;
 	private User receiver;
+	private String ID;
 	
 	public Message(){
 		
@@ -20,6 +21,14 @@ public class Message {
 	
 	public void setReceiver(User pReceiver){
 		
+	}
+	
+	public void setID(String pID){
+		
+	}
+	
+	public String getID(){
+		return ID;
 	}
 	
 	public String getMessage(){
