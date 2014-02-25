@@ -1,7 +1,7 @@
 package de.glurak.data;
 
 /**
- * Repräsentiert die Angabe eines Genres. Der Genrename wird in einer Variable title vom Typ 
+ * Repräsentiert ein Genre. Der Genrename wird in einer Variable title vom Typ 
  * String gespeichert.
  * 
  * @author Darko Dermadi
@@ -10,39 +10,47 @@ package de.glurak.data;
 public class Genre {
 	
 	private String title;
+	private Genre parentGenre;
+	private String id;
 	
 	/**
 	 * Konstruktor mit Parameter
 	 * @param title der Titel, den das Genre erhalten soll.
 	 */
-	public Genre(String title) {
+	public Genre(String id, String title, Genre parentGenre) {
+		this.id = id;
 		this.title = title;
+		this.parentGenre = parentGenre;
 	}
-	
-	/**
-	 * Konstruktor ohne Parameter
-	 */
-	public Genre() {
-		this.title = "neues Genre";
-	}
-	
 	
 	/**
 	 * Getter
-	 * 
-	 * @return title der aktuelle Titel des Genres
 	 */
 	public String getTitle() {
 		return title;
 	}
 	
+	public Genre getParentGenre() {
+		return parentGenre;
+	}
+	
+	public String getId() {
+		return id;
+	}
+	
 	/**
 	 * Setter
-	 * 
-	 * @param title der Titel, den das Genre erhalten soll
 	 */
-	public void setGenre(String title) {
+	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public void setParentGenre(Genre genre) {
+		this.parentGenre = genre;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 }
