@@ -104,7 +104,7 @@ public class RegistrationView extends JPanel{
 	}
 	
 	/**
-	 * Erzeugt und zeigt die Registrierungsview an.
+	 * Erzeugt die Registrierungsview und zeigt sie an.
 	 */
 	private static void createAndShowView(){
 		JFrame register = new JFrame("Registrierung");
