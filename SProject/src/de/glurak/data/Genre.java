@@ -23,9 +23,7 @@ public class Genre {
 		this.parentGenre = parentGenre;
 	}
 	
-	/**
-	 * Getter
-	 */
+	
 	public String getTitle() {
 		return title;
 	}
@@ -38,9 +36,7 @@ public class Genre {
 		return id;
 	}
 	
-	/**
-	 * Setter
-	 */
+	
 	public void setTitle(String title) {
 		this.title = title;
 	}
