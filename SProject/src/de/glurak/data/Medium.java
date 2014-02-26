@@ -6,14 +6,15 @@ import javax.persistence.*;
 
 @Entity
 public class Medium implements Serializable {
-	
-	@Id
-	@GeneratedValue
+
 	private String titel;
 	private String fileName;
 	private User owner;
 	//Diskutabel
 	//private boolean blocked;
+    @Id
+    @GeneratedValue
+    @Column(name="ID")
 	private long id;
 	
 	/**

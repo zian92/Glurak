@@ -1,16 +1,25 @@
 package de.glurak.data;
+import de.glurak.data.User.User;
 
+import java.io.Serializable;
+import javax.persistence.*;
 /**
  * Diese Klasse repraesentiert eine Nachricht, die sich User untereinander senden koennen.
  * @author Simon
  *
  */
-public class Message {
+@Entity
+public class Message implements Serializable{
 
 	private String message;
+    @ManyToOne
 	private User sender;
+    @ManyToOne
 	private User receiver;
-	private String ID;
+    @Id
+    @GeneratedValue
+    @Column(name="ID")
+	private long id;
 
 	/**
 	 * Konstruktor
@@ -26,11 +35,11 @@ public class Message {
 	 * @param pReceiver Der Empfaenger der Nachricht.
 	 * @param pID Die ID der Nachricht.
 	 */
-	public Message(String pMessage, User pSender, User pReceiver, String pID){
+	public Message(String pMessage, User pSender, User pReceiver, long pID){
 		message = pMessage;
 		sender = pSender;
 		receiver = pReceiver;
-		ID = pID;
+		id = pID;
 	}
 	
 	public void setMessage(String pMessage){
@@ -45,8 +54,8 @@ public class Message {
 		receiver = pReceiver;
 	}
 	
-	public String getID(){
-		return ID;
+	public long getID(){
+		return id;
 	}
 	
 	public String getMessage(){
