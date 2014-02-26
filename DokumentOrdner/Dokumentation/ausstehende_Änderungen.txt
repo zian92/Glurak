@@ -1,0 +1,32 @@
+in AF-Diagramm:
+
+
+Listener:
+
+Playlist abspielen direkt assozieren
+
+Album anlegen includes Playlist erstellen
+
+Label anzeigen direkt assozieren
+
+
+
+Label-Manager:
+
+Bewerbung bearbeiten -> Entscheiden
+
+
+
+
+Klassendiagramm - Entitätsklassen:
+
+ggf Kardinalitäten & Rollen setzen
+
+Inheritance bei Label-Manager: Label-Manager kennt(!) Artist, steht aber nicht in is-a-Beziehung
+
+oder: Label-Manager über Assoziationen modellieren
+
+
+
+
+
