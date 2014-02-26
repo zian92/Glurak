@@ -1,7 +1,8 @@
 package de.glurak.frontend.mainFrame.header;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.*;
+import java.awt.*;
+
 
 /**
  * Die HeaderView ist dazu da die das oberste Panel anzuzeigen.
