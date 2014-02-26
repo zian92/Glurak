@@ -13,13 +13,14 @@ import javax.persistence.*;
 @Entity
 public class Label implements Serializable {
 	
-	@Id
-	@GeneratedValue
+	
     private String logoFileName;
     private String name;
     private String description;
     private String address;
     private String mail;
+    @Id
+	@GeneratedValue
     private long id;
 
     @Override
