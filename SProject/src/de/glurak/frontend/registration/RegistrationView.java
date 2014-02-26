@@ -3,7 +3,8 @@ package de.glurak.frontend.registration;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
-import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -107,12 +108,22 @@ public class RegistrationView extends JPanel{
 	 * Erzeugt die Registrierungsview und zeigt sie an.
 	 */
 	private static void createAndShowView(){
+		//Erzeugen des Frames
 		JFrame register = new JFrame("Registrierung");
 		register.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		//Registrationview in das Frame laden
 		JComponent newContentPane = new RegistrationView();
-        newContentPane.setOpaque(true); //content panes must be opaque
+        newContentPane.setOpaque(true);
         register.setContentPane(newContentPane);
+        
+        //Groesse des Frames festlegen
+        register.setPreferredSize(new Dimension(600,300));
+        //Groesse des Frames soll nicht veraenderbar sein
+        register.setResizable(false);
+        //Registrationview wird in der Mitte des Bildschirms geladen
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        register.setLocation(dim.width/2-register.getSize().width/2-300, dim.height/2-register.getSize().height/2-150);
 		
 		//Frame anpassen und sichtbar machen
 		register.pack();
