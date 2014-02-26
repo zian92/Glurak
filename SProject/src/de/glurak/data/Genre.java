@@ -1,5 +1,7 @@
 package de.glurak.data;
 
+import java.io.Serializable;
+import javax.persistence.*;
 /**
  * Repräsentiert ein Genre. Der Genrename wird in einer Variable title vom Typ 
  * String gespeichert.
@@ -7,22 +9,30 @@ package de.glurak.data;
  * @author Darko Dermadi
  *
  */
-public class Genre {
+
+@Entity
+public class Genre implements Serializable {
 	
+	@Id
+	@GeneratedValue
+	private long id;
+	@ManyToOne
+	private Genre parentGenre;	
 	private String title;
-	private Genre parentGenre;
-	private String id;
+	
 	
 	/**
 	 * Konstruktor mit Parameter
 	 * @param title der Titel, den das Genre erhalten soll.
 	 */
-	public Genre(String id, String title, Genre parentGenre) {
+	public Genre(long id, String title, Genre parentGenre) {
 		this.id = id;
 		this.title = title;
 		this.parentGenre = parentGenre;
 	}
 	
+	// Hibernate benoetigt leeren Konstruktor
+	public Genre() { }
 	
 	public String getTitle() {
 		return title;
@@ -32,7 +42,7 @@ public class Genre {
 		return parentGenre;
 	}
 	
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 	
@@ -45,7 +55,7 @@ public class Genre {
 		this.parentGenre = genre;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	
