@@ -1,6 +1,6 @@
 package de.glurak.data;
 
-import de.glurak.data.User;
+import de.glurak.data.User.User;
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -9,6 +9,7 @@ public class Medium implements Serializable {
 
 	private String titel;
 	private String fileName;
+	@ManyToOne
 	private User owner;
 	//Diskutabel
 	//private boolean blocked;
