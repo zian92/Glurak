@@ -6,8 +6,13 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     
     <!-- Die Klassen "Entities" die in der Datenbank gehalten werden sollen -->
-    <class>de.wwu.sev.sopra.hibernatetest.model.Kontakt</class>
-    <class>de.wwu.sev.sopra.hibernatetest.model.Adresse</class>
+    <class>de.glurak.data.Playlist</class>
+    <class>de.glurak.data.Artist</class>
+	<class>de.glurak.data.Genre</class>
+	<class>de.glurak.data.Label</class>
+	<class>de.glurak.data.Listener</class>
+	<class>de.glurak.data.Medium</class>
+	<class>de.glurak.data.Message</class>
     
     <!-- Einrichten der Datenbankverbindung --> 
     
