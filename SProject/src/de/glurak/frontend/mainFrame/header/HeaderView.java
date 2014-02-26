@@ -38,18 +38,18 @@ public class HeaderView extends JFrame{
 		c.gridy = 5;
 		t_search = new JTextField();
 		t_search.setText("Sucheingabe");
-		pan_header.add(t_search);
+		pan_header.add(t_search, c);
 		
 		// Initialisierung des Suchbuttons
 		c.gridx = 0;
 		c.gridy = 6;
 		b_search = new JButton("Suchen");
-		pan_header.add(b_search);
+		pan_header.add(b_search, c);
 		
-		// Beschaffen der ContenPane
+		// Beschaffen der ContentPane
 		java.awt.Container content = getContentPane();
 		
-		// Hinzufügen des Panels zur ContenPane
+		// Hinzufügen des Panels zur ContentPane
 		content.add(pan_header);		
 		setVisible(true);
 		
