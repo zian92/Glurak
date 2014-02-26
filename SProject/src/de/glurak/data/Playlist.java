@@ -1,16 +1,26 @@
 package de.glurak.data;
 
 import java.util.LinkedList;
-
+import java.io.Serializable;
+import javax.persistence.*;
 /**
  * @author Zengo
  *
  */
-public class Playlist {
+@Entity
+public class Playlist implements Serializable{
 
+    @ManyToMany
+    @JoinTable(
+            name="PLAYLIST_SONGS",
+            joinColumns={@JoinColumn(name="PLAYLIST_ID", referencedColumnName="ID")},
+            inverseJoinColumns={@JoinColumn(name="MEDIUM_ID", referencedColumnName="ID")})
 	private LinkedList<Medium> mediumList;
 	private String name;
-	private String ID;
+    @Id
+    @GeneratedValue
+    @Column(name="ID")
+	private long ID;
 	
 
 	/**
@@ -19,19 +29,25 @@ public class Playlist {
 	 * @param name
 	 * @param playlist  to copy
 	 */
-	public Playlist (String id,String name, Playlist playlist) {
+	public Playlist (long id,String name, Playlist playlist) {
+        this.ID=id;
 		this.setName(name);
 		if (playlist != null) {
 			this.setMediumList(playlist.getMediumList());
 		}
 	}
-	
+
+    /**
+     * Leerer Konstrktor
+     */
+    public Playlist(){}
+
 	/**
 	 * Konstruktor
 	 * @param id
 	 * @param name
 	 */
-	public Playlist (String id,String name) {
+	public Playlist (long id,String name) {
 		this(id, name, null);
 	}
 
@@ -51,7 +67,7 @@ public class Playlist {
 		this.name = name;
 	}
 	
-	public String getID() {
+	public long getID() {
 		return ID;
 	}
 

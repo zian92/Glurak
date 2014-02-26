@@ -1,26 +1,36 @@
 package de.glurak.data;
 
-import de.glurak.data.User;
+import de.glurak.data.User.User;
+import java.io.Serializable;
+import javax.persistence.*;
 
-public class Medium {
-	
+@Entity
+public class Medium implements Serializable {
+
 	private String titel;
 	private String fileName;
+	@ManyToOne
 	private User owner;
 	//Diskutabel
 	//private boolean blocked;
-	private String id;
+    @Id
+    @GeneratedValue
+    @Column(name="ID")
+	private long id;
 	
 	/**
 	 * Diese Klasse repr"asentiert ein Medium
 	 * @author MxBox
 	 */
-	public Medium(String Id , String Titel, String File, User Owner){
+	public Medium(long Id , String Titel, String File, User Owner){
 		this.id = Id;
 		setTitel(Titel);
 		setFileName(File);
 		
 	}
+	
+	// Hibernate benoetigt leeren Konstruktor
+	public Medium() { }
 
 	public String getTitel() {
 		return titel;
@@ -38,7 +48,7 @@ public class Medium {
 		this.fileName = fileName;
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
