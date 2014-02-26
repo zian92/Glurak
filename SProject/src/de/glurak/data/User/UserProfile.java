@@ -6,6 +6,7 @@ import javax.persistence.*;
  * Oberklasse aller Profile eines Benutzers
  * @author Entscheider
  */
+@Entity
 public abstract class UserProfile extends Profile implements Serializable {
     public abstract String[] myRights();
     @Id
