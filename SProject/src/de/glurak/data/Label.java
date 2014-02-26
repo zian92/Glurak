@@ -27,7 +27,7 @@ public class Label {
     private List<Artist> myartists;
 
     public Label(){
-        myartist= new ArrayList<Artist>();
+        myartists= new ArrayList<Artist>();
     }
 
     public Label(String id){
