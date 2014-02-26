@@ -1,0 +1,36 @@
+TODO Für Hibernate
+1. import java.io.Serializable & javax.persistence.*;
+
+2. Klasse die Gespeichert werden mit @Entity ausstatten und implementiert Serializable:
+z.B: 
+@Entity
+public class User implements Serializable{
+	//...
+}
+
+3. die Id ist vom Typ Long und erhält und mit @Id und @GeneratedValue annotiert:
+z.B. 
+class ....{
+	@Id
+	@GeneratedValue
+	private Long id;
+}
+
+4. Zu anderen serialisierte Klasse sollte @ManyToOne verwendet werden falls mehrer Verwended:
+Z.B. Genre hat viele Song, aber ein Song nur ein Genre
+Bei Song also:
+@...
+public class Song implements Serializable{
+	//..
+	@ManyToOne
+	private Genre mygenre;
+}
+Falls jede Genre alle seine Song wissen soll (bei unseren Projekt hier nicht), sehe dies so aus:
+@...
+public class Genre implements Serializable{
+	//..
+	@OneToMany(mappedBy="mygenre")
+	private List<Song> mysongs
+}
+
+mappedBy ist die Variable von Genre bei Song
