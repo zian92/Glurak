@@ -1,8 +1,10 @@
 package de.glurak.data;
 
-// Diese Klasse implementiert den User.
-// Author: Christopher Distelkämper
-// Date: 25.01.2014
+/**
+ * Diese Klasse implementiert den User.
+ * @author: Christopher Distelkämper
+ * Date: 25.01.2014
+ */
 
 public class User {
 	
@@ -13,6 +15,9 @@ public class User {
 	private String firstname;
 	private String lastname;
 	private String emailadr;
+	private String birthdate;
+	private String homecountry;
+	private String gender;
 	
 	// Constructor
 	/**
@@ -23,15 +28,21 @@ public class User {
 	 * @param firstname
 	 * @param lastname
 	 * @param emailadr
+	 * @param birthdate
+	 * @param homecountry
+	 * @param gender
 	 */
-	public User(String id, String username, String password, String firstname, String lastname, String emailadr){
+	public User(String id, String username, String password, String firstname, String lastname, 
+			    String emailadr, String birthdate, String homecountry, String gender){
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.emailadr = emailadr;
-		
+		this.birthdate = birthdate;
+		this.homecountry = homecountry;
+		this.gender = gender;
 	}
 	
 	// Getter- und Setter- Methoden
@@ -112,4 +123,46 @@ public class User {
 		return this.emailadr;
 	}
 
+	/**
+	 * @param birthdate
+	 */
+	public void setBirthdate(String birthdate){
+		this.birthdate = birthdate;
+	}
+	
+	/**
+	 * @return
+	 */
+	public String getBirthdate(){
+		return this.birthdate;
+	}
+	
+	/**
+	 * @param homecountry
+	 */
+	public void setHomecountry(String homecountry){
+		this.homecountry = homecountry;
+	}
+	
+	/**
+	 * @return
+	 */
+	public String getHomecountry(){
+		return this.homecountry;
+	}
+	
+	/**
+	 * @param gender
+	 */
+	public void setGender(String gender){
+		this.gender = gender;
+	}
+	
+	/**
+	 * @return
+	 */
+	public String getGender(){
+		return this.gender;
+	}
+	
 }
