@@ -5,7 +5,9 @@ package de.glurak.data.User;
  * @author Entscheider
  */
 public class Rights {
+    //TODO: Noch die Einzelnen Rechte verfeinern und verteilen
     public static final String[] LISTENER_RIGHTS ={};
     public static final String[] ARTIST_RIGHTS = {};
     public static String[] ADMIN_RIGHTS={};
+    public static String[] LABELMANAGER_RIGHTS={};
 }

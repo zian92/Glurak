@@ -25,4 +25,14 @@ public class LabelManagerProfile extends ListenerProfile implements Serializable
     public void setMyLabel(LabelProfil myLabel) {
         this.myLabel = myLabel;
     }
+
+    @Override
+    public String[] myRights() {
+        return Rights.LABELMANAGER_RIGHTS;
+    }
+
+    @Override
+    public String roleName() {
+        return "LabelManager";
+    }
 }
