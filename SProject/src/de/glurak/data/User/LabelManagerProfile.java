@@ -1,6 +1,5 @@
 package de.glurak.data.User;
 
-import de.glurak.data.Label;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,15 +14,15 @@ public class LabelManagerProfile extends ListenerProfile implements Serializable
     private long id;
 
     @ManyToOne
-    private Label myLabel;
+    private LabelProfil myLabel;
 
     public long getId(){return id;}
 
-    public Label getMyLabel() {
+    public LabelProfil getMyLabel() {
         return myLabel;
     }
 
-    public void setMyLabel(Label myLabel) {
+    public void setMyLabel(LabelProfil myLabel) {
         this.myLabel = myLabel;
     }
 }
