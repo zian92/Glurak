@@ -3,23 +3,30 @@ package de.glurak.data;
 import java.beans.Beans;
 import java.util.List;
 import java.util.ArrayList;
+import java.io.Serializable;
+import javax.persistence.*;
 /**
  * Diese Klasse repräsentiert ein Label
  * @author Entscheider
  */
-public class Label {
+
+@Entity
+public class Label implements Serializable {
+	
+	@Id
+	@GeneratedValue
     private String logoFileName;
     private String name;
     private String description;
     private String address;
     private String mail;
-    private String id;
+    private long id;
 
     @Override
     public boolean equals(Object other){
         if (other==this) return true;
         if (other instanceof Label ){
-            return ((Label) other).id.equals(id);
+            return ((Label) other).id == (id);
         }
         return false;
     }
@@ -30,7 +37,7 @@ public class Label {
         myartists= new ArrayList<Artist>();
     }
 
-    public Label(String id){
+    public Label(long id){
         this.id=id;
         myartists=new ArrayList<Artist>();
     }
@@ -92,7 +99,7 @@ public class Label {
     }
 
 
-    public String getId(){
+    public long getId(){
         return id;
     }
 }
