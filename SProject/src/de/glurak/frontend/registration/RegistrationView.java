@@ -74,7 +74,7 @@ public class RegistrationView extends JPanel{
 		JLabel l_password = new JLabel("Passwort: ");
 		JLabel l_birthdate = new JLabel("Geburtsdatum: ");
 		JLabel l_homecountry = new JLabel("Herkunftsland: ");
-		JLabel l_gender = new JLabel("Geschlecht");
+		JLabel l_gender = new JLabel("Geschlecht: ");
 		
 		//Layout der Panels festlegen
 		pan_input.setLayout(new GridLayout(5, 0));
