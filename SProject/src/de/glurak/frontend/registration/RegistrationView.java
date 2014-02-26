@@ -26,7 +26,9 @@ public class RegistrationView extends JPanel{
 	//Textfelder fuer die Registrierung
 	private JTextField t_username = new JTextField();
 	private JTextField t_password = new JTextField();
-	private JTextField t_birthdate = new JTextField();
+	private JTextField t_birthdate_day = new JTextField();
+	private JTextField t_birthdate_month = new JTextField();
+	private JTextField t_birthdate_year = new JTextField();
 	//Dropdown Menue um das Herkunftsland auszuwählen
 	private JComboBox<String> d_homecountry;
 	//Radiobuttons um das Geschlecht auszuwählen
@@ -86,13 +88,26 @@ public class RegistrationView extends JPanel{
 		String[] countries = new String[] {"Deutschland", "nicht Deutschland"};
 		d_homecountry = new JComboBox(countries);
 		
+		//Geburtstagspanel erzeugen
+		JPanel birthday = new JPanel();
+		birthday.setLayout(new GridLayout(1,0));
+		JLabel dd = new JLabel(" (dd) . ");
+		birthday.add(t_birthdate_day);
+		birthday.add(dd);
+		JLabel mm = new JLabel(" (mm) . ");
+		birthday.add(t_birthdate_month);
+		birthday.add(mm);
+		birthday.add(t_birthdate_year);
+		JLabel yyyy = new JLabel(" (yyyy)");
+		birthday.add(yyyy);
+		
 		//Labels, Textfelder, Dropdownmenue und Radiobuttons in das Input Panel einfuegen
 		pan_input.add(l_username);
 		pan_input.add(t_username);
 		pan_input.add(l_password);
 		pan_input.add(t_password);
 		pan_input.add(l_birthdate);
-		pan_input.add(t_birthdate);
+		pan_input.add(birthday);
 		pan_input.add(l_homecountry);
 		pan_input.add(d_homecountry);
 		pan_input.add(l_gender);
