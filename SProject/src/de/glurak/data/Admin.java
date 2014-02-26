@@ -1,5 +1,9 @@
 package de.glurak.data;
 
+/**
+ * @author Simon
+ *
+ */
 public class Admin {
 	
 	public Admin(){
