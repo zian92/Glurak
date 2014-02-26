@@ -3,7 +3,7 @@
   <groupId>Glurak_4B</groupId>
   <artifactId>4B_Glurak</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Glurak_4B</name>
+  <name>Glurak</name>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
