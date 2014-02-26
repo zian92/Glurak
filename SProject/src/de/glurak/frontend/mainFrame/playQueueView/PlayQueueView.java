@@ -6,25 +6,30 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
+import de.glurak.data.Medium;
+import de.glurak.data.Playlist;
+
 public class PlayQueueView extends JPanel{
-	private JButton playButton;
-	private JButton nextButton;
-	private JButton previousButton;
-	private JButton increaseVolumeButton;
-	private JButton decreaseVolumeButton;
-	private JSlider positionBar;
-	private JPanel	controllPanel;
-	private JPanel	playQueuePanel;
+	private JButton 	playButton;
+	private JButton 	nextButton;
+	private JButton 	previousButton;
+	private JButton 	increaseVolumeButton;
+	private JButton 	decreaseVolumeButton;
+	private JSlider 	positionBar;
+	private JPanel		controllPanel;
+	private QueueView	playQueuePanel;
 	
 	public PlayQueueView (){
-		super();
-		initComponents();	
+			
 	}
-	
+	public PlayQueueView (Playlist playlist,Medium current){
+		super();
+		initComponents(playlist,current);	
+	}
 	/**
 	 * 
 	 */
-	public void initComponents(){
+	public void initComponents(Playlist playlist,Medium current){
 		
 		this.setLayout(new BorderLayout());
 		
@@ -35,7 +40,7 @@ public class PlayQueueView extends JPanel{
 		setDecreaseVolumeButton(new JButton("-"));
 		setPositionBar(new JSlider(JSlider.HORIZONTAL,0,50,0));	
 		setControllPanel(new JPanel());
-		setPlayQueuePanel(new JPanel());
+		setPlayQueuePanel(new QueueView(playlist,current));
 		getControllPanel().setLayout(new BorderLayout());
 		
 		getControllPanel().add(getPlayButton(),BorderLayout.CENTER);
@@ -110,7 +115,7 @@ public class PlayQueueView extends JPanel{
 		return playQueuePanel;
 	}
 
-	public void setPlayQueuePanel(JPanel playQueuePanel) {
+	public void setPlayQueuePanel(QueueView playQueuePanel) {
 		this.playQueuePanel = playQueuePanel;
 	}
 
