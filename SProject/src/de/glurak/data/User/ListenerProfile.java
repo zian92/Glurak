@@ -1,5 +1,7 @@
 package de.glurak.data.User;
 
+import de.glurak.data.Playlist;
+import java.util.List;
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -15,6 +17,17 @@ public class ListenerProfile extends UserProfile implements Serializable{
     protected String birthdate;
     protected String homecountry;
     protected String gender;
+
+    public List<Playlist> getMyPlaylists() {
+        return myPlaylists;
+    }
+
+    public void setMyPlaylists(List<Playlist> myPlaylists) {
+        this.myPlaylists = myPlaylists;
+    }
+
+    @OneToMany(mappedBy = "owner")
+    protected List<Playlist> myPlaylists;
     @Override
     public String[] myRights() {
         return Rights.LISTENER_RIGHTS;

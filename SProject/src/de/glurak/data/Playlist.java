@@ -1,5 +1,7 @@
 package de.glurak.data;
 
+import de.glurak.data.User.ListenerProfile;
+
 import java.util.LinkedList;
 import java.io.Serializable;
 import javax.persistence.*;
@@ -16,6 +18,9 @@ public class Playlist implements Serializable{
             joinColumns={@JoinColumn(name="PLAYLIST_ID", referencedColumnName="ID")},
             inverseJoinColumns={@JoinColumn(name="MEDIUM_ID", referencedColumnName="ID")})
 	private LinkedList<Medium> mediumList;
+
+    @ManyToOne
+    private ListenerProfile owner;
 	private String name;
     @Id
     @GeneratedValue
@@ -70,5 +75,13 @@ public class Playlist implements Serializable{
 	public long getID() {
 		return ID;
 	}
+
+    public ListenerProfile getOwner() {
+        return owner;
+    }
+
+    public void setOwner(ListenerProfile owner) {
+        this.owner = owner;
+    }
 
 }
