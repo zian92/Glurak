@@ -1,7 +1,6 @@
 package de.glurak.frontend.mainFrame.content.profile;
 
 import javax.swing.*;
-
 import java.awt.*;
 
 /**
@@ -10,7 +9,7 @@ import java.awt.*;
  * Date: 26.02.2014
  */
 
-public class ProfileView {
+public class ProfileView extends JFrame{
 
 	// Panels
 	private JPanel pan_profileview;
@@ -73,10 +72,13 @@ public class ProfileView {
 		c.gridy = 1;
 		pan_profileview.add(pan_profiledata);
 		
-		 
-		
-		
-		
+		// Beschaffen der ContentPane
+		java.awt.Container content = getContentPane();
+				
+		// Hinzufügen des Panels zur ContentPane
+		content.add(pan_profileview);		
+		setVisible(true);
 		
 	}
+		
 }
