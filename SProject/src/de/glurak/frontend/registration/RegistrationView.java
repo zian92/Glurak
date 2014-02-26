@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
 /**
  * In der RegistrationView kann ein Benutzer des System sich einen neuen Account anlegen.
@@ -42,6 +43,11 @@ public class RegistrationView extends JFrame{
 		//Initialisierung der Radionbuttons
 		r_gender_m = new JRadioButton("männlich");
 		r_gender_f = new JRadioButton("weiblich");
+		
+		//Die Radiobuttons gruppieren
+		ButtonGroup r_group = new ButtonGroup();
+		r_group.add(r_gender_m);
+		r_group.add(r_gender_f);
 		
 		//Initialisierung der Labels
 		JLabel l_username = new JLabel("Username: ");
