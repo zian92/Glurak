@@ -17,6 +17,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 /**
  * @author Entscheider
+ * @author dadomadi
  */
 public class PlaylistTest {
     private HibernateDB db;

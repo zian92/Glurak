@@ -13,6 +13,7 @@ import javax.persistence.EntityTransaction;
 import static org.junit.Assert.*;
 /**
  * @author Entscheider
+ * @author dadomadi
  */
 public class ProfileTest {
     private HibernateDB db;
