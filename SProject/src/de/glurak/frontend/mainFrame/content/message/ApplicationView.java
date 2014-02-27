@@ -76,6 +76,9 @@ public class ApplicationView extends JPanel{
 		add(pan_buttons, BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * Erzeugt die Applicationview und zeigt sie an.
+	 */
 	private static void createAndShowView(){
 		//Erzeugen des Frames
 		JFrame f_application = new JFrame("Nachricht schreiben");
