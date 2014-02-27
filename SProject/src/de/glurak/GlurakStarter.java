@@ -24,15 +24,15 @@ public class GlurakStarter {
 				LoginView frame_Login = new LoginView(Query.APPLICATION_NAME);
 				frame_Login.setSize(1024, 700);
 
-				// GlurakStarter glumanda = new GlurakStarter();
-				// glumanda.test(frame_Login.getContentPane());
+				GlurakStarter glumanda = new GlurakStarter();
+				glumanda.test(frame_Login.getContentPane());
 			}
 		});
 
 	}
 
 	public void test(Component comp) {
-		Uploader u = new Uploader();
+		Uploader u = Uploader.getInstance();
 		System.out.println(u.uploadSinglePicture(comp));
 	}
 }

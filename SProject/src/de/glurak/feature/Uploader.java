@@ -16,9 +16,16 @@ import de.glurak.Query;
  * 
  */
 public class Uploader {
+	private static Uploader instance = null;
 
-	public Uploader() {
-		// TODO singleton
+	public static Uploader getInstance() {
+		if (instance == null) {
+			instance = new Uploader();
+		}
+		return instance;
+	}
+
+	private Uploader() {
 		// TODO check if dirs exist
 	}
 
@@ -41,6 +48,10 @@ public class Uploader {
 
 	public boolean saveAlbumCover(File pic) {
 		return this.savePic(pic, Query.FOLDER_PICTURE_COVER);
+	}
+
+	public boolean saveSlider(File pic) {
+		return this.savePic(pic, Query.FOLDER_PICTURE_SLIDER);
 	}
 
 	private boolean savePic(File pic, String picPath) {

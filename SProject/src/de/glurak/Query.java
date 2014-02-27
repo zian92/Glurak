@@ -12,4 +12,5 @@ public class Query {
 	public final static String FOLDER_PICTURE = DATAPATH + "pictures/";
 	public final static String FOLDER_PICTURE_PROFILE = FOLDER_PICTURE + "profile/";
 	public final static String FOLDER_PICTURE_COVER = FOLDER_PICTURE + "cover/";
+	public final static String FOLDER_PICTURE_SLIDER = FOLDER_PICTURE + "slider/";
 }
