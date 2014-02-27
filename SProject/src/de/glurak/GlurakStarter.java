@@ -33,11 +33,6 @@ public class GlurakStarter {
 
 	public void test(Component comp) {
 		Uploader u = new Uploader();
-		try {
-			System.out.println(u.uploadSinglePicture(comp));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println(u.uploadSinglePicture(comp));
 	}
 }
