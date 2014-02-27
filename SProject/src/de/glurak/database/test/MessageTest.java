@@ -13,7 +13,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 /**
- *
+ * @author Entscheider
+ * @author dadomadi
  */
 public class MessageTest {
     private HibernateDB db;

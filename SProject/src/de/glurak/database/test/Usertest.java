@@ -13,6 +13,10 @@ import static org.junit.Assert.*;
 
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @author Entscheider
+ * @author dadomadi
+ */
 public class Usertest {
     private HibernateDB db;
 

@@ -8,9 +8,7 @@ public class User implements Serializable{
 	//...
 }
 
-3. Es muss ein Konstruktor ex, welcher keine Argumente braucht.
-
-4. die Id ist vom Typ Long und erhält und mit @Id und @GeneratedValue annotiert:
+3. die Id ist vom Typ Long und erhält und mit @Id und @GeneratedValue annotiert:
 z.B. 
 class ....{
 	@Id
@@ -18,7 +16,7 @@ class ....{
 	private Long id;
 }
 
-5. Zu anderen serialisierte Klasse sollte @ManyToOne verwendet werden falls mehrer Verwended:
+4. Zu anderen serialisierte Klasse sollte @ManyToOne verwendet werden falls mehrer Verwended:
 Z.B. Genre hat viele Song, aber ein Song nur ein Genre
 Bei Song also:
 @...
@@ -36,6 +34,3 @@ public class Genre implements Serializable{
 }
 
 mappedBy ist die Variable von Genre bei Song
-
-Anmerkungen:
-Mit @transient markierte Variablen werden nicht in der Datenbank gespeichert
