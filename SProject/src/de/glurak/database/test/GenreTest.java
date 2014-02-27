@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * @author Eintscheider
  */
 public class GenreTest {
     private HibernateDB db;

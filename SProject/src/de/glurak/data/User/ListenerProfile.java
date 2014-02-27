@@ -20,16 +20,6 @@ public class ListenerProfile extends UserProfile implements Serializable{
     protected String homecountry;
     protected String gender;
 
-    public List<Playlist> getMyPlaylists() {
-        return myPlaylists;
-    }
-
-    public void setMyPlaylists(List<Playlist> myPlaylists) {
-        this.myPlaylists = myPlaylists;
-    }
-
-    @OneToMany(mappedBy = "owner")
-    protected List<Playlist> myPlaylists;
     @Override
     public String[] myRights() {
         return Rights.LISTENER_RIGHTS;
