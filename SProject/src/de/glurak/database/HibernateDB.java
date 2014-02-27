@@ -226,7 +226,7 @@ public class HibernateDB {
             em.getTransaction().commit();
         return m;
     }
-   
+
     /**
      * Speichert die Daten ins Dateisystem
      * Unbedingt aufrufen, falls beendet wird!!!
@@ -286,5 +286,4 @@ public class HibernateDB {
         if (tr==null)
             em.getTransaction().commit();
     }
-
 }

@@ -1,6 +1,7 @@
 package de.glurak;
 
 import java.awt.Component;
+import java.io.FileNotFoundException;
 
 import javax.swing.SwingUtilities;
 
@@ -32,6 +33,6 @@ public class GlurakStarter {
 
 	public void test(Component comp) {
 		Uploader u = Uploader.getInstance();
-		u.saveProfilePicture(u.selectSinglePicture(comp));
+		System.out.println(u.uploadSinglePicture(comp));
 	}
 }
