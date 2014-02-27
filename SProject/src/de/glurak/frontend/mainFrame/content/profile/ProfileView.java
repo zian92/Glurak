@@ -21,6 +21,7 @@ public class ProfileView extends JFrame{
 	// Buttons
 	private JButton b_message;
 	private JButton b_follow;
+	private JButton b_edit;
 	private JButton b_moreplaylists;
 	
 	/**
@@ -41,13 +42,28 @@ public class ProfileView extends JFrame{
 		pan_likes = new JPanel();
 		
 		// Initialisieren Panel pan_profilepic
-		pan_profilepic = new JPanel();
+		pan_profilepic = new JPanel(new GridBagLayout());
 		
-		   // Initialisieren der Buttons b_message und b_follow
-		   b_message = new JButton("Nachricht");
-		   pan_profilepic.add(b_message);
-		   b_follow = new JButton("Follow");
-		   pan_profilepic.add(b_follow);
+			// Layout-Restriktionen festlegen.
+			GridBagConstraints d = new GridBagConstraints();
+			d.fill = GridBagConstraints.BOTH;
+			d.insets = new Insets(1,1,2,2);	
+				
+		    // Initialisieren der Buttons b_message, b_follow, b_edit
+			d.gridx = 0;
+			d.gridy = 1;
+		    b_message = new JButton("Nachricht");
+		    pan_profilepic.add(b_message, d);
+		    
+		    d.gridx = 1;
+		    d.gridy = 1;
+		    b_follow = new JButton("Follow");
+		    pan_profilepic.add(b_follow, d);
+		    
+		    d.gridx = 2;
+		    d.gridy = 1;
+		    b_edit = new JButton("Bearbeiten");
+		    pan_profilepic.add(b_edit, d);
 		
 		// Initialisieren Panel pan_topplaylists
 		pan_topplaylists = new JPanel();	
@@ -60,12 +76,12 @@ public class ProfileView extends JFrame{
 		c.gridy = 0;
 		pan_profileview.add(pan_likes, c);
 		
-		c.gridx = 0;
-		c.gridy = 1;
-		pan_profileview.add(pan_profilepic, c);
-		
 		c.gridx = 1;
 		c.gridy = 0;
+		pan_profileview.add(pan_profilepic, c);
+		
+		c.gridx = 0;
+		c.gridy = 1;
 		pan_profileview.add(pan_topplaylists);
 		
 		c.gridx = 1;
