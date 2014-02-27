@@ -26,10 +26,10 @@ public class Fenster extends JFrame{
 	public Fenster(){
 		this.setTitle("MegaView");
 		this.setSize(200, 300);
-		this.setResizable(false);
+		this.setResizable(true);
 		mediumList= new LinkedList<Medium>();
-		m= new Medium[20];
-		for(int i=0;i<20;i++){
+		m= new Medium[5];
+		for(int i=0;i<5;i++){
 		m[i]= new Medium(i,"Titel"+i+"","File"+i+"",null);
 		mediumList.add(m[i]);
 		}
@@ -37,7 +37,8 @@ public class Fenster extends JFrame{
 		pl= new Playlist();
 		pl.setMediumList(mediumList);
 		
-		PlayQueueView pq = new PlayQueueView(pl,m[5]);
+		PlayQueueView pq = new PlayQueueView();
+		pq.initComponents(pl, m[1]);
 		this.add(pq);
 		
 		this.pack();
