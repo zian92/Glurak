@@ -20,6 +20,18 @@ public interface Player {
     public void play();
 
     /**
+     * Gibt die aktuell gespielte Zeit an
+     * @return
+     */
+    public long position();
+
+    /**
+     * Ändert die aktuel gespielte Zeit
+     * @param pos
+     */
+    public void setPosition(long pos);
+
+    /**
      * Gibt zurück ob Player gerade abspielt
      * @return true, falls abspielt, false sont
      */

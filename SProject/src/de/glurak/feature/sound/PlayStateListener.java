@@ -11,4 +11,11 @@ public interface PlayStateListener {
      * oder falls dort zu Ende gespielt.
      */
     public void stopped();
+
+    /**
+     * Wird aufgerufen falls sich in Player die position des Musikstücks ändert.
+     * Egal ob automatisch oder durch setPosition
+     * @param pos
+     */
+    public void seek(long pos);
 }
