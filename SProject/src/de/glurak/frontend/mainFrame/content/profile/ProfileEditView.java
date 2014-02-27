@@ -182,7 +182,7 @@ public class ProfileEditView extends JPanel{
 		 */
 		private static void createAndShowView(){
 			//Erzeugen des Frames
-			JFrame profileedit = new JFrame("Profile");
+			JFrame profileedit = new JFrame("ProfileEdit");
 			profileedit.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
 			//Registrationview in das Frame laden
