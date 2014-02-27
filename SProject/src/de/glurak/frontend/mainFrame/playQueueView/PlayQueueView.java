@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 
 import de.glurak.data.Medium;
@@ -18,6 +19,7 @@ public class PlayQueueView extends JPanel{
 	private JSlider 	positionBar;
 	private JPanel		controllPanel;
 	private QueueView	playQueuePanel;
+	private JScrollPane scrollbar;
 	
 	public PlayQueueView (){
 			
@@ -48,6 +50,10 @@ public class PlayQueueView extends JPanel{
 		getControllPanel().add(getPreviousButton(),BorderLayout.WEST);
 		getControllPanel().add(getIncreaseVolumeButton(),BorderLayout.NORTH);
 		getControllPanel().add(getDecreaseVolumeButton(),BorderLayout.SOUTH);
+		scrollbar = new JScrollPane(getPlayQueuePanel());
+		scrollbar.setVisible(true);
+		scrollbar.setViewportView(getPlayQueuePanel());
+		
 		
 		this.add(getControllPanel(),BorderLayout.WEST);
 		this.add(getPlayQueuePanel(),BorderLayout.CENTER);
