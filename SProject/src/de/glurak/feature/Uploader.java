@@ -2,7 +2,9 @@ package de.glurak.feature;
 
 import java.awt.Component;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -16,50 +18,64 @@ import de.glurak.Query;
 public class Uploader {
 
 	public Uploader() {
-
+		// TODO singleton
+		// TODO check if dirs exist
 	}
 
-	private boolean[] saveFiles(boolean[] isAccepted, File[] files) {
-		if (this.checkBooleans(isAccepted) == false) return isAccepted;
+	public boolean saveMusic(File[] files) {
+		for (File f : files) {
+			try {
 
-		return isAccepted;
-	}
-
-	private boolean checkBooleans(boolean[] isAccepted) {
-		for (boolean b : isAccepted)
-			if (b == false) return false;
+				Files.copy(f.toPath(), new File(Query.FOLDER_MUSIC + f.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return true;
 	}
 
-	public boolean[] uploadSinglePicture(Component comp) throws FileNotFoundException {
-		return this.uploadFiles(comp, Query.SUPPORTED_PICTURE_TYPES);
+	public boolean saveProfilePicture(File pic) {
+		return this.savePic(pic, Query.FOLDER_PICTURE_PROFILE);
 	}
 
-	private boolean[] uploadFiles(Component comp, String[] fileExtensions) throws FileNotFoundException {
+	public boolean saveAlbumCover(File pic) {
+		return this.savePic(pic, Query.FOLDER_PICTURE_COVER);
+	}
+
+	private boolean savePic(File pic, String picPath) {
+		try {
+			Files.copy(pic.toPath(), new File(picPath + pic.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
+	}
+
+	public File uploadSinglePicture(Component comp) {
+		return this.selectFiles(comp, Query.SUPPORTED_PICTURE_TYPES, JFileChooser.FILES_ONLY)[0];
+	}
+
+	public File[] selectMusic(Component comp) {
+		return this.selectFiles(comp, Query.SUPPORTED_MUSIC_TYPES, JFileChooser.FILES_AND_DIRECTORIES);
+	}
+
+	private File[] selectFiles(Component comp, String[] fileExtensions, int selectionMode) {
 		JFileChooser chooser = new JFileChooser(System.getProperty("user.home"));
-		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		boolean[] isAccepted = null;
+		chooser.setFileSelectionMode(selectionMode);
+		chooser.setFileFilter(new FileNameExtensionFilter(null, fileExtensions));
+		File[] files = null;
 		int result = chooser.showSaveDialog(comp);
 		if (result == JFileChooser.APPROVE_OPTION) {
-			File files = chooser.getSelectedFile();
-			isAccepted = this.checkFileTypes(new File[] { files, }, fileExtensions);
+			files = chooser.getSelectedFiles();
 		} else
 			if (result == JFileChooser.CANCEL_OPTION) {
-				throw new FileNotFoundException();
+				return null;
 			}
-		return isAccepted;
+		return files;
 	}
-
-	private boolean[] checkFileTypes(File[] files, String[] fileExtensions) {
-		FileNameExtensionFilter fileFilter = new FileNameExtensionFilter(null, fileExtensions);
-		boolean[] isAccepted = new boolean[files.length];
-		for (int i = 0; i < files.length; i++) {
-			if (fileFilter.accept(files[i])) {
-				isAccepted[i] = true;
-			} else {
-				isAccepted[i] = false;
-			}
-		}
-		return isAccepted;
-	}
+	/*
+	 * private File[] selectAllowedFiletypes(File[] files, String[] fileExtensions) { FileNameExtensionFilter fileFilter = new FileNameExtensionFilter(null, fileExtensions); ArrayList<File> acceptFiles = new ArrayList<File>(); for (int i = 0; i < files.length; i++) { if (fileFilter.accept(files[i])) { acceptFiles.add(files[i]); } } return (File[]) acceptFiles.toArray(); }
+	 */
 }
