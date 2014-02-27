@@ -43,8 +43,12 @@ public class SearchView extends JPanel{
 		searchtable.getColumnModel().getColumn(2).setPreferredWidth(250);
 		searchtable.getColumnModel().getColumn(3).setPreferredWidth(400);
 		
+		//Initialisierung von Labels
+		JLabel l_results = new JLabel("Ergebnisse: ");
+		
 		//Einfuegen der ScrollTabelle in das Frame
-		add(scroll_searchtable, BorderLayout.NORTH);
+		add(l_results, BorderLayout.NORTH);
+		add(scroll_searchtable, BorderLayout.CENTER);
 	}
 	
 	/**
