@@ -18,6 +18,11 @@ import de.glurak.Query;
 public class Uploader {
 	private static Uploader instance = null;
 
+	/**
+	 * Singleton funktion zum erhalten des Objektes
+	 * 
+	 * @return
+	 */
 	public static Uploader getInstance() {
 		if (instance == null) {
 			instance = new Uploader();
@@ -25,8 +30,15 @@ public class Uploader {
 		return instance;
 	}
 
+	/**
+	 * Fuehrt alle noetigen operationen aus. - Legt vorhandene Ordner an.
+	 */
 	private Uploader() {
-		// TODO check if dirs exist
+		// lege nicht vorhandene, aber benoetigte Ordner an
+		for (String s : Query.FOLDERS) {
+			File dir = new File(s);
+			if (!dir.exists()) dir.mkdirs();
+		}
 	}
 
 	public boolean saveMusic(File[] files) {
@@ -64,7 +76,7 @@ public class Uploader {
 		return true;
 	}
 
-	public File uploadSinglePicture(Component comp) {
+	public File selectSinglePicture(Component comp) {
 		return this.selectFiles(comp, Query.SUPPORTED_PICTURE_TYPES, JFileChooser.FILES_ONLY)[0];
 	}
 
@@ -75,7 +87,8 @@ public class Uploader {
 	private File[] selectFiles(Component comp, String[] fileExtensions, int selectionMode) {
 		JFileChooser chooser = new JFileChooser(System.getProperty("user.home"));
 		chooser.setFileSelectionMode(selectionMode);
-		chooser.setFileFilter(new FileNameExtensionFilter(null, fileExtensions));
+		chooser.setMultiSelectionEnabled(true);
+		chooser.setFileFilter(new FileNameExtensionFilter(this.makeFileExtensionString(fileExtensions), fileExtensions));
 		File[] files = null;
 		int result = chooser.showSaveDialog(comp);
 		if (result == JFileChooser.APPROVE_OPTION) {
@@ -85,6 +98,14 @@ public class Uploader {
 				return null;
 			}
 		return files;
+	}
+
+	private String makeFileExtensionString(String[] fileExtensions) {
+		String s = "." + fileExtensions[0];
+		for (int i = 1; i < fileExtensions.length; i++) {
+			s = s + ", ." + fileExtensions[i];
+		}
+		return s;
 	}
 	/*
 	 * private File[] selectAllowedFiletypes(File[] files, String[] fileExtensions) { FileNameExtensionFilter fileFilter = new FileNameExtensionFilter(null, fileExtensions); ArrayList<File> acceptFiles = new ArrayList<File>(); for (int i = 0; i < files.length; i++) { if (fileFilter.accept(files[i])) { acceptFiles.add(files[i]); } } return (File[]) acceptFiles.toArray(); }
