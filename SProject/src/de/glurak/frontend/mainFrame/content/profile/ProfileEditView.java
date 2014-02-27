@@ -37,7 +37,6 @@ public class ProfileEditView extends JPanel{
 		
 		/**
 		 * Constructor
-		 * @param own
 		 */
 		public ProfileEditView(){
 			
@@ -159,7 +158,7 @@ public class ProfileEditView extends JPanel{
 		}
 			
 		/**
-		 * Erzeugt die ProfileView und zeigt sie an.
+		 * Erzeugt die ProfileEditView und zeigt sie an.
 		 */
 		private static void createAndShowView(){
 			//Erzeugen des Frames
