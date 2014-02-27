@@ -24,10 +24,26 @@ public class ProfileView extends JFrame{
 	private JButton b_edit;
 	private JButton b_moreplaylists;
 	
+	// TextFields profile_data
+	private JTextField t_username;
+	private JTextField t_firstname;
+	private JTextField t_lastname;
+	private JTextField t_birthdate;
+	private JTextField t_homecountry;
+	
+	// Labels profile_data
+	private JLabel l_username;
+	private JLabel l_firstname;
+	private JLabel l_lastname;
+	private JLabel l_birthdate;
+	private JLabel l_homecountry;
+	
+	
 	/**
 	 * Constructor
+	 * @param own
 	 */
-	public ProfileView(){
+	public ProfileView(boolean own){
 		
 		// Initialisieren Panel pan_profileview
 		pan_profileview = new JPanel(new GridBagLayout());
@@ -50,27 +66,105 @@ public class ProfileView extends JFrame{
 			d.insets = new Insets(1,1,2,2);	
 				
 		    // Initialisieren der Buttons b_message, b_follow, b_edit
-			d.gridx = 0;
-			d.gridy = 1;
-		    b_message = new JButton("Nachricht");
-		    pan_profilepic.add(b_message, d);
-		    
-		    d.gridx = 1;
-		    d.gridy = 1;
-		    b_follow = new JButton("Follow");
-		    pan_profilepic.add(b_follow, d);
-		    
-		    d.gridx = 2;
-		    d.gridy = 1;
-		    b_edit = new JButton("Bearbeiten");
-		    pan_profilepic.add(b_edit, d);
-		
+			
+			if (own){  // Falls das eigene Profil angezeigt werden soll, nur b_edit anzeigen
+			
+		    	d.gridx = 1;
+				d.gridy = 1;
+				b_edit = new JButton("Bearbeiten");
+				pan_profilepic.add(b_edit, d);
+				
+			}
+			else{      // Falls ein anderes Profil angezeigt werden soll, b_message und b_follow anzeigen
+				
+				d.gridx = 0;
+				d.gridy = 1;
+			    b_message = new JButton("Nachricht");
+			    pan_profilepic.add(b_message, d);
+			    
+			    d.gridx = 2;
+			    d.gridy = 1;
+			    b_follow = new JButton("Follow");
+			    pan_profilepic.add(b_follow, d);
+			    
+			}
 		// Initialisieren Panel pan_topplaylists
 		pan_topplaylists = new JPanel();	
 		
+			// Initialisieren des Buttons b_moreplaylists
+			b_moreplaylists = new JButton("mehr");
+			pan_topplaylists.add(b_moreplaylists);
+					
 		// Initialisieren Panel pan_profiledata
-		pan_profiledata = new JPanel();			
+		pan_profiledata = new JPanel();		
 		
+			// Layout-Restriktionen festlegen.
+			GridBagConstraints e = new GridBagConstraints();
+			e.fill = GridBagConstraints.BOTH;
+			e.insets = new Insets(1,1,2,2);	
+
+			// Label und Textfelder hinzufügen
+			// Username
+			e.gridx = 0;
+			e.gridy = 0;
+			l_username = new JLabel("Username:");
+			pan_profiledata.add(l_username, e);
+			
+			e.gridx = 1;
+			e.gridy = 0;
+			t_username = new JTextField();
+			t_username.setEditable(false);
+			pan_profiledata.add(t_username, e);
+			
+			// Vorname
+			e.gridx = 0;
+			e.gridy = 1;
+			l_firstname = new JLabel("Vorname:");
+			pan_profiledata.add(l_firstname, e);
+			
+			e.gridx = 1;
+			e.gridy = 1;
+			t_firstname = new JTextField();
+			t_firstname.setEditable(false);
+			pan_profiledata.add(t_firstname, e);
+			
+			// Nachname
+			e.gridx = 0;
+			e.gridy = 2;
+			l_lastname = new JLabel("Nachname:");
+			pan_profiledata.add(l_lastname, e);
+			
+			e.gridx = 1;
+			e.gridy = 2;
+			t_lastname = new JTextField();
+			t_lastname.setEditable(false);
+			pan_profiledata.add(t_lastname, e);
+			
+			// Geburtstag
+			e.gridx = 0;
+			e.gridy = 3;
+			l_birthdate = new JLabel("Geburtstag:");
+			pan_profiledata.add(l_birthdate, e);
+			
+			e.gridx = 1;
+			e.gridy = 3;
+			t_birthdate = new JTextField();
+			t_birthdate.setEditable(false);
+			pan_profiledata.add(t_birthdate, e);
+			
+			// Heimatland
+			e.gridx = 0;
+			e.gridy = 4;
+			l_homecountry = new JLabel("Heimatland:");
+			pan_profiledata.add(l_homecountry, e);
+			
+			e.gridx = 1;
+			e.gridy = 4;
+			t_homecountry = new JTextField();
+			t_homecountry.setEditable(false);
+			pan_profiledata.add(t_homecountry, e);
+			
+			
 		// Hinzufügen der Panels zum Panel pan_profileview
 		c.gridx = 0;
 		c.gridy = 0;
