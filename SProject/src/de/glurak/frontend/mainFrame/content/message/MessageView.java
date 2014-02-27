@@ -43,7 +43,7 @@ public class MessageView extends JPanel{
 		b_cancel = new JButton("Abbrechen");
 		
 		//Initialisierung der Labels
-		JLabel l_receiver = new JLabel("Empf�nger: ");
+		JLabel l_receiver = new JLabel("Empfänger: ");
 		JLabel l_message = new JLabel("Nachricht: ");
 		
 		//Initialisierung der Panels
