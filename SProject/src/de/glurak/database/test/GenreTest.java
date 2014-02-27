@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * @author Eintscheider
+ * @author dadomadi
  */
 public class GenreTest {
     private HibernateDB db;
