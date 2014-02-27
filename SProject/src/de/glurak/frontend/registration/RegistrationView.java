@@ -118,10 +118,8 @@ public class RegistrationView extends JPanel{
 		add(pan_buttons, BorderLayout.SOUTH);
 		add(l_note, BorderLayout.NORTH);
 	}
+	/*
 	
-	/**
-	 * Erzeugt die Registrierungsview und zeigt sie an.
-	 */
 	private static void createAndShowView(){
 		//Erzeugen des Frames
 		JFrame register = new JFrame("Registrierung");
@@ -152,5 +150,5 @@ public class RegistrationView extends JPanel{
             }
         });
 	}
-	
+	*/
 }
