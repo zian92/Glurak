@@ -47,7 +47,7 @@ public class ProfileView extends JPanel{
 		
 		// Initialisieren Panel pan_profileview
 		pan_profileview = new JPanel(new GridBagLayout());
-		pan_profileview.setSize(800,500);
+		pan_profileview.setSize(1000,500);
 		
 		// Layout-Restriktionen festlegen.
 		GridBagConstraints c = new GridBagConstraints();
@@ -223,7 +223,7 @@ public class ProfileView extends JPanel{
 		profile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//Registrationview in das Frame laden
-		JComponent newContentPane = new ProfileView(true);
+		JComponent newContentPane = new ProfileView(false);
         newContentPane.setOpaque(true);
         profile.setContentPane(newContentPane);
         
