@@ -197,7 +197,7 @@ public class ProfileView extends JPanel{
 		profile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//Registrationview in das Frame laden
-		JComponent newContentPane = new ProfileView(false);
+		JComponent newContentPane = new ProfileView(true);
         newContentPane.setOpaque(true);
         profile.setContentPane(newContentPane);
         
