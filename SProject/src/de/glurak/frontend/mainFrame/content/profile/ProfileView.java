@@ -9,7 +9,7 @@ import java.awt.*;
  * Date: 26.02.2014
  */
 
-public class ProfileView extends JFrame{
+public class ProfileView extends JPanel{
 
 	// Panels
 	private JPanel pan_profileview;
@@ -182,13 +182,43 @@ public class ProfileView extends JFrame{
 		c.gridy = 1;
 		pan_profileview.add(pan_profiledata);
 		
-		// Beschaffen der ContentPane
-		java.awt.Container content = getContentPane();
-				
 		// Hinzufügen des Panels zur ContentPane
-		content.add(pan_profileview);		
+		add(pan_profileview);		
 		setVisible(true);
 		
 	}
 		
+	/**
+	 * Erzeugt die ProfileView und zeigt sie an.
+	 */
+	private static void createAndShowView(){
+		//Erzeugen des Frames
+		JFrame profile = new JFrame("Profile");
+		profile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//Registrationview in das Frame laden
+		JComponent newContentPane = new ProfileView(false);
+        newContentPane.setOpaque(true);
+        profile.setContentPane(newContentPane);
+        
+        //Groesse des Frames festlegen
+        profile.setPreferredSize(new Dimension(1000, 500));
+        //Groesse des Frames soll nicht veraenderbar sein
+        profile.setResizable(false);
+        //Registrationview wird in der Mitte des Bildschirms geladen
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        profile.setLocation(dim.width/2-profile.getSize().width/2-300, dim.height/2-profile.getSize().height/2-150);
+		
+		//Frame anpassen und sichtbar machen
+		profile.pack();
+		profile.setVisible(true);
+	}
+	
+	public static void main(String[] args){
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                createAndShowView();
+            }
+        });
+	}
 }
