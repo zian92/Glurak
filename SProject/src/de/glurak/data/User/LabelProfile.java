@@ -19,11 +19,28 @@ public class LabelProfile extends Profile implements Serializable{
     private List<ArtistProfile> myartists;
     //Noch mehr Attribute ?
 
+    public String getName() {
+        return name;
+    }
+
+
+    public void addArtist(ArtistProfile pro){
+        myartists.add(pro);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private String name;
+
     public long getId(){return id;}
     @Override
     public String roleName() {
         return "TheLabel";
     }
+
+
 
     public List<ArtistProfile> getMyartists() {
         return myartists;
