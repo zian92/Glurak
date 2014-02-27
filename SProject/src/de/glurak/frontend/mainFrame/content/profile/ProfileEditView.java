@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Die ProfileEditView bietet dem Benutzer die Möglichkeit zum Bearbeiten seines Profils.
- * @author Christopher Distelkämper
+ * Die ProfileEditView bietet dem Benutzer die MÃ¶glichkeit zum Bearbeiten seines Profils.
+ * @author Christopher DistelkÃ¤mper
  * Date: 27.02.2014
  */
 public class ProfileEditView extends JPanel{
@@ -46,43 +46,48 @@ public class ProfileEditView extends JPanel{
 			
 			// Layout-Restriktionen festlegen.
 			GridBagConstraints c = new GridBagConstraints();
-			c.fill = GridBagConstraints.BOTH;
-			c.insets = new Insets(1,1,2,2);	
+			c.fill = GridBagConstraints.HORIZONTAL;
+			c.insets = new Insets(2,2,2,2);	
 			
 			// Initialisieren Panel pan_likes
 			pan_likes = new JPanel();
+			pan_likes.setBorder(BorderFactory.createLineBorder(Color.black));
 			
 			// Initialisieren Panel pan_profilepic
 			pan_profilepic = new JPanel(new GridBagLayout());
+			pan_profilepic.setBorder(BorderFactory.createLineBorder(Color.black));
 			
 				// Layout-Restriktionen festlegen.
 				GridBagConstraints d = new GridBagConstraints();
-				d.fill = GridBagConstraints.BOTH;
-				d.insets = new Insets(1,1,2,2);	
+				d.fill = GridBagConstraints.HORIZONTAL;
+				d.insets = new Insets(2,2,2,2);	
 					
 			    // Initialisieren des Buttons b_uploadpic
 				d.gridx = 0;
 				d.gridy = 1;
 				b_uploadpic = new JButton("Bild hochladen");
-				pan_profilepic.add(b_uploadpic);
+				pan_profilepic.add(b_uploadpic, d);
 							
 			// Initialisieren Panel pan_profiledata
-			pan_profiledata = new JPanel();		
+			pan_profiledata = new JPanel(new GridBagLayout());
+			pan_profiledata.setBorder(BorderFactory.createLineBorder(Color.black));
 			
 				// Layout-Restriktionen festlegen.
 				GridBagConstraints e = new GridBagConstraints();
-				e.fill = GridBagConstraints.BOTH;
-				e.insets = new Insets(1,1,2,2);	
+				e.fill = GridBagConstraints.HORIZONTAL;
+				e.insets = new Insets(2,2,2,2);	
 
-				// Label und Textfelder hinzufügen
+				// Label und Textfelder hinzufÃ¼gen
 				// Username
 				e.gridx = 0;
 				e.gridy = 0;
+				e.weightx = 0.0;
 				l_username = new JLabel("Username:");
 				pan_profiledata.add(l_username, e);
 				
 				e.gridx = 1;
 				e.gridy = 0;
+				e.weightx = 1.0;
 				t_username = new JTextField();
 				t_username.setEditable(false);
 				pan_profiledata.add(t_username, e);
@@ -90,68 +95,83 @@ public class ProfileEditView extends JPanel{
 				// Vorname
 				e.gridx = 0;
 				e.gridy = 1;
+				e.weightx = 0.0;
 				l_firstname = new JLabel("Vorname:");
 				pan_profiledata.add(l_firstname, e);
 				
 				e.gridx = 1;
 				e.gridy = 1;
+				e.weightx = 1.0;
 				t_firstname = new JTextField();
 				pan_profiledata.add(t_firstname, e);
 				
 				// Nachname
 				e.gridx = 0;
 				e.gridy = 2;
+				e.weightx = 0.0;
 				l_lastname = new JLabel("Nachname:");
 				pan_profiledata.add(l_lastname, e);
 				
 				e.gridx = 1;
 				e.gridy = 2;
+				e.weightx = 1.0;
 				t_lastname = new JTextField();
 				pan_profiledata.add(t_lastname, e);
 				
 				// Geburtstag
 				e.gridx = 0;
 				e.gridy = 3;
+				e.weightx = 0.0;
 				l_birthdate = new JLabel("Geburtstag:");
 				pan_profiledata.add(l_birthdate, e);
 				
 				e.gridx = 1;
 				e.gridy = 3;
+				e.weightx = 1.0;
 				t_birthdate = new JTextField();
 				pan_profiledata.add(t_birthdate, e);
 				
 				// Heimatland
 				e.gridx = 0;
 				e.gridy = 4;
+				e.weightx = 0.0;
 				l_homecountry = new JLabel("Heimatland:");
 				pan_profiledata.add(l_homecountry, e);
 				
 				e.gridx = 1;
 				e.gridy = 4;
+				e.weightx = 1.0;
 				t_homecountry = new JTextField();
 				pan_profiledata.add(t_homecountry, e);
 				
-				// Einfügen des Buttons b_save
+				// EinfÃ¼gen des Buttons b_save
 				e.gridx = 0;
 				e.gridy = 5;
+				e.gridwidth = 2;
 				b_save = new JButton("Speichern");
-				pan_profiledata.add(b_save);
+				pan_profiledata.add(b_save, e);
 				
 				
-			// Hinzufügen der Panels zum Panel pan_profileview
+			// HinzufÃ¼gen der Panels zum Panel pan_profileview
 			c.gridx = 0;
 			c.gridy = 0;
+			c.weightx = 0.5;
+			c.weighty = 0.5;
 			pan_profileeditview.add(pan_likes, c);
 			
 			c.gridx = 1;
 			c.gridy = 0;
+			c.weightx = 0.5;
+			c.weighty = 0.5;
 			pan_profileeditview.add(pan_profilepic, c);
 						
 			c.gridx = 1;
 			c.gridy = 1;
-			pan_profileeditview.add(pan_profiledata);
+			c.weightx = 0.5;
+			c.weighty = 0.5;
+			pan_profileeditview.add(pan_profiledata, c);
 			
-			// Hinzufügen des Panels zur ContentPane
+			// HinzufÃ¼gen des Panels zur ContentPane
 			add(pan_profileeditview);		
 			setVisible(true);
 			
