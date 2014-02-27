@@ -37,12 +37,43 @@ public class ApplicationView extends JPanel{
 		setLayout(new BorderLayout());
 		
 		//Initialisierung der Buttons
+		b_send = new JButton("Senden");
+		b_cancel = new JButton("Abbrechen");
+		
+		//Initialisierung der Labels
+		JLabel l_receiver = new JLabel("Empfänger: ");
+		JLabel l_application = new JLabel("Bewerbung: ");
 		
 		//Initialisierung der Panels
 		JPanel pan_receiver = new JPanel();
 		JPanel pan_message = new JPanel();
 		JPanel pan_buttons = new JPanel();
 		
+		//Layouts der Panels festlegen
+		pan_receiver.setLayout(new GridLayout(1,0));
+		pan_message.setLayout(new BorderLayout());
+		pan_buttons.setLayout(new FlowLayout());
+		
+		//Textfeld anpassen
+		t_application.setLineWrap(true);
+		t_application.setWrapStyleWord(true);
+		
+		//Label und Textfeld dem Epmfaengerpanel hinzufuegen
+		pan_receiver.add(l_receiver);
+		pan_receiver.add(t_receiver);
+		
+		//Label und Textfeld dem Bewerbungspanel hinzufuegen
+		pan_message.add(l_application, BorderLayout.NORTH);
+		pan_message.add(s_application);
+		
+		//Buttons dem Buttonpanel hinzufuegen
+		pan_buttons.add(b_send);
+		pan_buttons.add(b_cancel);
+		
+		//Panels in das Frame einfuegen
+		add(pan_receiver, BorderLayout.NORTH);
+		add(pan_message, BorderLayout.CENTER);
+		add(pan_buttons, BorderLayout.SOUTH);
 	}
 	
 	private static void createAndShowView(){
