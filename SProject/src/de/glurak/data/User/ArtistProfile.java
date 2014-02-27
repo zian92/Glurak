@@ -6,19 +6,20 @@ import java.io.Serializable;
  * @author Entscheider
  */
 @Entity
-public class ArtistProfil extends ListenerProfile implements Serializable{
-    @Id
-    @GeneratedValue
+public class ArtistProfile extends ListenerProfile implements Serializable{
+    //@Id
+    //@GeneratedValue
+    @Transient
     private long id;
 
     @ManyToOne
-    private LabelProfil myLabel;
+    private LabelProfile myLabel;
 
-    public LabelProfil getMyLabel() {
+    public LabelProfile getMyLabel() {
         return myLabel;
     }
 
-    public void setMyLabel(LabelProfil myLabel) {
+    public void setMyLabel(LabelProfile myLabel) {
         this.myLabel = myLabel;
     }
 

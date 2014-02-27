@@ -9,13 +9,14 @@ import java.util.List;
  * @author Entscheider
  */
 @Entity
-public class LabelProfil extends Profile implements Serializable{
-    @Id
-    @GeneratedValue
+public class LabelProfile extends Profile implements Serializable{
+    //@Id
+    //@GeneratedValue
+    @Transient
     private long id;
 
     @OneToMany(mappedBy = "myLabel")
-    private List<ArtistProfil> myartists;
+    private List<ArtistProfile> myartists;
     //Noch mehr Attribute ?
 
     public long getId(){return id;}
@@ -24,11 +25,11 @@ public class LabelProfil extends Profile implements Serializable{
         return "TheLabel";
     }
 
-    public List<ArtistProfil> getMyartists() {
+    public List<ArtistProfile> getMyartists() {
         return myartists;
     }
 
-    public void setMyartists(List<ArtistProfil> myartists) {
+    public void setMyartists(List<ArtistProfile> myartists) {
         this.myartists = myartists;
     }
 }

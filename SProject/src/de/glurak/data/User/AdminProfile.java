@@ -8,9 +8,10 @@ import java.io.Serializable;
  * @author Entscheider
  */
 @Entity
-public class AdminProfil extends UserProfile implements Serializable {
-    @Id
-    @GeneratedValue
+public class AdminProfile extends UserProfile implements Serializable {
+    //@Id
+    //@GeneratedValue
+    @Transient
     private long id;
 
     @Override

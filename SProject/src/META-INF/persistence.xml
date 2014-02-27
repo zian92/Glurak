@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+  
+  <!-- Der Name der PersistenceUnit spaeter Argument fuer Persistence.createEntityManagerFactory() -->
+  <persistence-unit name="GlurakPersistanceUnit" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    
+    <!-- Die Klassen "Entities" die in der Datenbank gehalten werden sollen -->
+    <class>de.glurak.data.Playlist</class>
+	<class>de.glurak.data.Genre</class>
+	<class>de.glurak.data.Medium</class>
+	<class>de.glurak.data.Message</class>
+    <class>de.glurak.data.User.AdminProfile</class>
+    <class>de.glurak.data.User.ArtistProfile</class>
+    <class>de.glurak.data.User.LabelManagerProfile</class>
+    <class>de.glurak.data.User.LabelProfile</class>
+    <class>de.glurak.data.User.ListenerProfile</class>
+    <class>de.glurak.data.User.Profile</class>
+    <class>de.glurak.data.User.User</class>
+    <class>de.glurak.data.User.UserProfile</class>
+    
+    <!-- Einrichten der Datenbankverbindung --> 
+    
+    <properties>
+      <property name="hibernate.connection.username" value="testuser"/>
+      <property name="hibernate.connection.password" value="secure"/>
+      
+      <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
+      <property name="hibernate.connection.url" value="jdbc:hsqldb:file:database/Glurak;shutdown=true"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+      
+      <property name="hibernate.hbm2ddl.auto" value="update"/> 
+      <!-- when set to "create-drop" the old database is deleted at startup -->
+      
+      <property name="hibernate.show_sql" value="false"/>
+      
+      </properties>
+    </persistence-unit>
+  </persistence>

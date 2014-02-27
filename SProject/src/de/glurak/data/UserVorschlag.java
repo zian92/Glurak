@@ -25,21 +25,21 @@
 //    public String[] myRights(){return Rights.ListenerRights;}
 //}
 //
-//public class ArtistProfil extends ListenerProfil{
+//public class ArtistProfile extends ListenerProfil{
 //    //...
 //    public String roleName(){return "Artist";}
 //    public String[] myRights(){return Rights.ArtistRights;}
-//    private LabelProfil myLabel; // = null, falls kein Label
-//    public static ArtistProfil upgradeListener(ListenerProfil prof){/*...*/}
+//    private LabelProfile myLabel; // = null, falls kein Label
+//    public static ArtistProfile upgradeListener(ListenerProfil prof){/*...*/}
 //}
 //
-//public class LabelProfil extends Profil{ //Profil des Labels
+//public class LabelProfile extends Profil{ //Profil des Labels
 //    //...
 //}
 //
-//public class LabelManagerProfil extends ListenerProfil{
+//public class LabelManagerProfile extends ListenerProfil{
 //    //...
-//    private LabelProfil myLabel;
+//    private LabelProfile myLabel;
 //    public String[] myRights(){return Rights.LabelManagerRights;}
 //}
 //
@@ -54,12 +54,12 @@
 //
 ///*
 //Vorteile:
-//- Listener zum Artist, einfach Profil kopieren ins ArtistProfil und rechte ändern. (Theoretisch auch einfach Rückgängigmachen)
+//- Listener zum Artist, einfach Profil kopieren ins ArtistProfile und rechte ändern. (Theoretisch auch einfach Rückgängigmachen)
 //  die ID zum User bleibt gleich. Das ist notwendig für Following, Messaging, ....
 //- Rechte einfach abfragen durch userX.myRights.contains("genre_add").
 //  Nicht notwendig userX instanceof LabelManager || userX instanceOf Admin || ...
 //  -> Naträgliche Änderung sehr einfach.
 //- Password wird nicht in Klartext gespeichert.
 //- TheLabel wird auch gleich in ein Profil gespeichert und den LabelManager zugewiesen
-//  => Keine doppelte Methoden bei User und LabelProfil
+//  => Keine doppelte Methoden bei User und LabelProfile
 // */

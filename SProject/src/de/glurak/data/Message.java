@@ -21,6 +21,26 @@ public class Message implements Serializable{
     @Column(name="ID")
 	private long id;
 
+    boolean isApplication;
+
+    public boolean isAlreadyRead() {
+        return isAlreadyRead;
+    }
+
+    public void setAlreadyRead(boolean isAlreadyRead) {
+        this.isAlreadyRead = isAlreadyRead;
+    }
+
+    public boolean isApplication() {
+        return isApplication;
+    }
+
+    public void setApplication(boolean isApplication) {
+        this.isApplication = isApplication;
+    }
+
+    boolean isAlreadyRead;
+
 	/**
 	 * Konstruktor
 	 */

@@ -9,9 +9,11 @@ import javax.persistence.*;
  * Das Profil eines Listener
  * @author Entscheider
  */
+@Entity
 public class ListenerProfile extends UserProfile implements Serializable{
-    @Id
-    @GeneratedValue
+    //@Id
+    //@GeneratedValue
+    @Transient
     private long id;
 
     protected String birthdate;
