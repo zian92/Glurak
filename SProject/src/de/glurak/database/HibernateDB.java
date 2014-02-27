@@ -3,6 +3,8 @@ import de.glurak.data.Genre;
 import de.glurak.data.Medium;
 import de.glurak.data.Message;
 import de.glurak.data.Playlist;
+import de.glurak.data.User.LabelProfile;
+import de.glurak.data.User.ListenerProfile;
 import de.glurak.data.User.Profile;
 import de.glurak.data.User.User;
 
@@ -10,7 +12,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- *
+ * @author Entscheider
  */
 public class HibernateDB {
     private EntityManagerFactory emf = Persistence
@@ -52,7 +54,36 @@ public class HibernateDB {
     }
 
     /**
-     * Registiert ein neuen User. Das Profil wird automatisch mit gespeichert
+     * Gibt das Labelprofil mit den Namen name zurück
+     * @param name der Name des Profils
+     * @return das LabelProfil
+     */
+    public LabelProfile labelProfileByName(String name){
+        TypedQuery<LabelProfile> q1 = em.createQuery(
+                "SELECT k FROM LabelProfile k WHERE k.name = :n", LabelProfile.class);
+        q1.setParameter("n",name);
+        try{
+            LabelProfile res = q1.getSingleResult();
+            return res;
+        }catch(NoResultException ex){
+            return null;
+        }
+    }
+
+    /**
+     * Sieht nach ob das LabelProfile mit den Namen name gibt
+     * @param name der Name des Profils
+     * @return true falls ex. sonst false
+     */
+    public boolean hasLabelProfileWithName(String name){
+        TypedQuery<LabelProfile> q1 = em.createQuery(
+                "SELECT k FROM LabelProfile k WHERE k.name = :n", LabelProfile.class);
+        q1.setParameter("n",name);
+        return q1.getResultList().size()>0;
+    }
+
+    /**
+     * Registiert ein neuen User
      * @param newUser der neue Benutzer
      * @param ac die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht
      */
@@ -240,6 +271,57 @@ public class HibernateDB {
     public void save(){
         em.close();
         emf.close();
+    }
+
+    /**
+     * Gibt alle Medien von dem Benutzer u aus
+     * @param u der Benutzer
+     * @return alle seine Medien
+     */
+    public List<Medium> getMedienFromUser(User u){
+        TypedQuery<Medium> q1 = em.createQuery(
+                "SELECT k FROM Medium k WHERE k.owner.id = :n", Medium.class);
+        q1.setParameter("n", u.getId());
+        return q1.getResultList();
+    }
+
+    /**
+     * Fügt eine neue Playlist hinzu
+     * ACHTUNG! Jedes Medium in der Playlist (und der Nutzer natürlich) muss registriert sein in der Datenbank
+     * @param list die Playlist
+     * @param ac die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht
+     */
+    public void addPlaylist(Playlist list,EntityTransaction ac){
+        if (ac==null)
+            em.getTransaction().begin();
+        em.persist(list);
+        if (ac==null)
+            em.getTransaction().commit();
+    }
+
+    /**
+     * Gibt alle Playlist von den Benutzer u zurück.
+     * @param u der Benutzer
+     * @return Liste aller seiner Playlists
+     */
+    public List<Playlist> getPlaylistFromListener(User u){
+        TypedQuery<Playlist> q1 = em.createQuery(
+                "SELECT k FROM Playlist k WHERE k.owner.id = :n", Playlist.class);
+        q1.setParameter("n", u.getId());
+        return q1.getResultList();
+    }
+
+    /**
+     * Fügt das Medium in die Datenbank ein
+     * @param m das Medium
+     * @param tr die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht.
+     */
+    public void registrateMedium(Medium m,EntityTransaction tr){
+        if (tr==null)
+            em.getTransaction().begin();
+        em.persist(m);
+        if (tr==null)
+            em.getTransaction().commit();
     }
 
 
