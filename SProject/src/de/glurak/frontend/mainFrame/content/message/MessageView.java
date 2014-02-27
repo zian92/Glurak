@@ -24,7 +24,7 @@ public class MessageView extends JPanel{
 	//Textfelder
 	private JTextField t_receiver = new JTextField();
 	private JTextArea t_message = new JTextArea();
-	//Scrolltabelle für das Nachrichtenfeld
+	//Scrolltabelle fuer das Nachrichtenfeld
 	private JScrollPane s_message = new JScrollPane(t_message);
 	//Buttons
 	private JButton b_send;
@@ -43,7 +43,7 @@ public class MessageView extends JPanel{
 		b_cancel = new JButton("Abbrechen");
 		
 		//Initialisierung der Labels
-		JLabel l_receiver = new JLabel("Empfänger: ");
+		JLabel l_receiver = new JLabel("Empfï¿½nger: ");
 		JLabel l_message = new JLabel("Nachricht: ");
 		
 		//Initialisierung der Panels

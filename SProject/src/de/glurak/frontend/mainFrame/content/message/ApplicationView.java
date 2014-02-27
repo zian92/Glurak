@@ -25,13 +25,23 @@ public class ApplicationView extends JPanel{
 	//Textfelder
 	private JTextField t_receiver = new JTextField();
 	private JTextArea t_application = new JTextArea();
-	//Scrolltabelle für das Nachrichtenfeld
+	//Scrolltabelle fuer das Nachrichtenfeld
 	private JScrollPane s_application = new JScrollPane(t_application);
 	//Buttons
 	private JButton b_send;
 	private JButton b_cancel;
 	
 	public ApplicationView(){
+		
+		//Layout des Frames setzen
+		setLayout(new BorderLayout());
+		
+		//Initialisierung der Buttons
+		
+		//Initialisierung der Panels
+		JPanel pan_receiver = new JPanel();
+		JPanel pan_message = new JPanel();
+		JPanel pan_buttons = new JPanel();
 		
 	}
 	
