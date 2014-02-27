@@ -2,13 +2,15 @@ package de.glurak.data;
 
 import de.glurak.data.User.ListenerProfile;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 import java.io.Serializable;
 import javax.persistence.*;
 /**
  * @author Zengo
  *
  */
+
 @Entity
 public class Playlist implements Serializable{
 
@@ -17,7 +19,7 @@ public class Playlist implements Serializable{
             name="PLAYLIST_SONGS",
             joinColumns={@JoinColumn(name="PLAYLIST_ID", referencedColumnName="ID")},
             inverseJoinColumns={@JoinColumn(name="MEDIUM_ID", referencedColumnName="ID")})
-	private LinkedList<Medium> mediumList;
+	private List<Medium> mediumList;
 
     @ManyToOne
     private ListenerProfile owner;
@@ -45,7 +47,7 @@ public class Playlist implements Serializable{
     /**
      * Leerer Konstrktor
      */
-    public Playlist(){}
+    public Playlist(){mediumList=new ArrayList<Medium>();}
 
 	/**
 	 * Konstruktor
@@ -56,11 +58,11 @@ public class Playlist implements Serializable{
 		this(id, name, null);
 	}
 
-	public LinkedList<Medium> getMediumList() {
+	public List<Medium> getMediumList() {
 		return mediumList;
 	}
 
-	public void setMediumList(LinkedList<Medium> mediumList) {
+	public void setMediumList(List<Medium> mediumList) {
 		this.mediumList = mediumList;
 	}
 
@@ -82,6 +84,10 @@ public class Playlist implements Serializable{
 
     public void setOwner(ListenerProfile owner) {
         this.owner = owner;
+    }
+
+    public void addMedium(Medium m){
+        mediumList.add(m);
     }
 
 }

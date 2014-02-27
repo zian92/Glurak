@@ -3,7 +3,7 @@ package de.glurak.data;
 import java.io.Serializable;
 import javax.persistence.*;
 /**
- * Repräsentiert ein Genre. Der Genrename wird in einer Variable title vom Typ 
+ * Reprï¿½sentiert ein Genre. Der Genrename wird in einer Variable title vom Typ 
  * String gespeichert.
  * 
  * @author Darko Dermadi

@@ -22,8 +22,9 @@ public abstract class UserProfile extends Profile implements Serializable {
         return false;
     }
 
-    @Id
-    @GeneratedValue
+    //@Id
+    //@GeneratedValue
+    @Transient
     private long id;
     protected String email;
     protected String firstname;

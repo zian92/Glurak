@@ -25,6 +25,10 @@ public class User implements Serializable{
     @OneToOne
     private UserProfile profile;
 
+    public User(){
+        isLocked=false;
+    }
+
 	public long getId(){
 		return this.id;
 	}
@@ -56,5 +60,15 @@ public class User implements Serializable{
 
     public void setLocked(boolean isLocked) {
         this.isLocked = isLocked;
+    }
+
+    public String getPasswordHash(){return passwordHash;}
+
+    public UserProfile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(UserProfile profile) {
+        this.profile = profile;
     }
 }

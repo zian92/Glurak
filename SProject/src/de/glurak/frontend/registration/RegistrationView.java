@@ -69,7 +69,7 @@ public class RegistrationView extends JPanel{
 		pan_radio.add(r_gender_f);
 		
 		//Initialisierung der Labels
-		JLabel l_note = new JLabel("Füllen sie folgendes Formular aus, um sich zu registrieren: ");
+		JLabel l_note = new JLabel("<HTML><BODY>Füllen sie folgendes Formular<BR> aus, um sich zu registrieren: </BODY></HTML>");
 		JLabel l_username = new JLabel("Username: ");
 		JLabel l_password = new JLabel("Passwort: ");
 		JLabel l_birthdate = new JLabel("Geburtsdatum: ");
@@ -77,7 +77,7 @@ public class RegistrationView extends JPanel{
 		JLabel l_gender = new JLabel("Geschlecht: ");
 		
 		//Layout der Panels festlegen
-		pan_input.setLayout(new GridLayout(5, 0));
+		pan_input.setLayout(new GridLayout(5, 1, 10, 15));
 		pan_buttons.setLayout(new FlowLayout());
 		
 		//Buttons in Buttonpanel einfuegen
@@ -135,8 +135,8 @@ public class RegistrationView extends JPanel{
         //Groesse des Frames soll nicht veraenderbar sein
         register.setResizable(false);
         //Registrationview wird in der Mitte des Bildschirms geladen
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        register.setLocation(dim.width/2-register.getSize().width/2-300, dim.height/2-register.getSize().height/2-150);
+        /** Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        register.setLocation(dim.width/2-register.getSize().width/2-300, dim.height/2-register.getSize().height/2-150);**/
 		
 		//Frame anpassen und sichtbar machen
 		register.pack();
