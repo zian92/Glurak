@@ -20,17 +20,17 @@ public class ProfileView extends JPanel{
 	private JPanel pan_likes;
 	
 	// Buttons
-	private JButton b_message;
-	private JButton b_follow;
-	private JButton b_edit;
-	private JButton b_moreplaylists;
+	protected JButton b_message;
+	protected JButton b_follow;
+	protected JButton b_edit;
+	protected JButton b_moreplaylists;
 	
 	// TextFields profile_data
-	private JTextField t_username;
-	private JTextField t_firstname;
-	private JTextField t_lastname;
-	private JTextField t_birthdate;
-	private JTextField t_homecountry;
+	protected JTextField t_username;
+	protected JTextField t_firstname;
+	protected JTextField t_lastname;
+	protected JTextField t_birthdate;
+	protected JTextField t_homecountry;
 	
 	// Labels profile_data
 	private JLabel l_username;
