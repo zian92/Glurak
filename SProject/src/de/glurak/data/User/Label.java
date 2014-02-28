@@ -7,7 +7,9 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by rnr on 28.02.14.
+ * Repräsentiert das Label. Somit können Narichten und ähnliches
+ * an das Label geschrieben werden
+ * @author Entscheider
  */
 @Entity
 public class Label extends Reachable implements Serializable {

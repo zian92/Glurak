@@ -7,7 +7,9 @@ import javax.persistence.OneToOne;
 import java.io.Serializable;
 
 /**
- * Created by rnr on 28.02.14.
+ * Oberklasse für alles im Programm,
+ * was Narichten empfangen kann.
+ * @author Entscheider
  */
 @Entity
 abstract public class Reachable  implements Serializable{
