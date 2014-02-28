@@ -47,6 +47,6 @@ public interface Hateable {
 	 * Gibt die Liste aller liker zurück
 	 * @return Liste aller liker
 	 */
-	public List<User> getliker();
+	public List<User> getLiker();
 
 }
