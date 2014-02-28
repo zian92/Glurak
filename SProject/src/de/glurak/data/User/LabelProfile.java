@@ -10,14 +10,13 @@ import java.util.List;
  */
 @Entity
 public class LabelProfile extends Profile implements Serializable{
-    //@Id
-    //@GeneratedValue
-    @Transient
-    private long id;
 
     @OneToMany(mappedBy = "myLabel")
     private List<ArtistProfile> myartists;
     //Noch mehr Attribute ?
+
+    @OneToOne(mappedBy = "profile")
+    private Label myLabel;
 
     public String getName() {
         return name;
@@ -34,7 +33,15 @@ public class LabelProfile extends Profile implements Serializable{
 
     private String name;
 
-    public long getId(){return id;}
+    @Override
+    public Reachable belongTo() {
+        return myLabel;
+    }
+
+    public void setLabel(Label l){
+        myLabel=l;
+    }
+
     @Override
     public String roleName() {
         return "TheLabel";

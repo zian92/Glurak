@@ -3,10 +3,7 @@ import de.glurak.data.Genre;
 import de.glurak.data.Medium;
 import de.glurak.data.Message;
 import de.glurak.data.Playlist;
-import de.glurak.data.User.LabelProfile;
-import de.glurak.data.User.ListenerProfile;
-import de.glurak.data.User.Profile;
-import de.glurak.data.User.User;
+import de.glurak.data.User.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -83,12 +80,16 @@ public class HibernateDB {
         return q1.getResultList().size()>0;
     }
 
+    public void registrateUser(User newUser, EntityTransaction ac){
+        registrateReachable(newUser,ac);
+    }
+
     /**
-     * Registiert ein neuen User
-     * @param newUser der neue Benutzer
+     * Registiert ein neuen Reachable, also Label oder Benutzer
+     * @param newUser der neue Reachable
      * @param ac die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht
      */
-    public void registrateUser(User newUser, EntityTransaction ac){
+    public void registrateReachable(Reachable newUser, EntityTransaction ac){
         if (ac==null)
             em.getTransaction().begin();
         if (newUser.getProfile() != null){
@@ -177,14 +178,14 @@ public class HibernateDB {
      * @param u der User
      * @return Liste aller Narichten
      */
-    public List<Message> messageByReceiver(User u){
+    public List<Message> messageByReceiver(Reachable u){
         TypedQuery<Message> q1 = em.createQuery(
                 "SELECT k FROM Message k WHERE k.receiver.id = :n", Message.class);
         q1.setParameter("n",u.getId());
         return q1.getResultList();
     }
 
-    public List<Message> getUnreadMessageFromReceiver(User rec){
+    public List<Message> getUnreadMessageFromReceiver(Reachable rec){
         TypedQuery<Message> q1 = em.createQuery(
                 "SELECT k FROM Message k WHERE k.receiver.id = :n AND k.isAlreadyRead = 0", Message.class);
         q1.setParameter("n",rec.getId());
@@ -212,7 +213,7 @@ public class HibernateDB {
      * @param ac die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht
      * @return die Naricht die erstellt und der Datenbank hinzugefügt worden ist
      */
-    public Message createMessage(User sender, User receiver, String message, boolean isApplication,EntityTransaction ac){
+    public Message createMessage(User sender, Reachable receiver, String message, boolean isApplication,EntityTransaction ac){
         if (ac==null)
             em.getTransaction().begin();
         Message m = new Message();

@@ -1,8 +1,6 @@
 package de.glurak.database.test;
-import de.glurak.data.User.LabelManagerProfile;
-import de.glurak.data.User.LabelProfile;
-import de.glurak.data.User.Profile;
-import de.glurak.data.User.User;
+
+import de.glurak.data.User.*;
 import de.glurak.database.HibernateDB;
 import org.junit.After;
 import org.junit.Before;
@@ -10,7 +8,7 @@ import org.junit.Test;
 
 import javax.persistence.EntityTransaction;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 /**
  * @author Entscheider
  * @author dadomadi
@@ -26,15 +24,18 @@ public class ProfileTest {
 
         user1 = new User();
         user1.setUsername("Olaf der Schneemann");
-        db.registrateUser(user1,tr);
+        db.registrateUser(user1, tr);
 
         LabelProfile lb = new LabelProfile();
         lb.setName("Shelden");
         LabelManagerProfile pr = new LabelManagerProfile();
-        pr.setMyLabel(lb);
+        Label l = new Label();
+        db.registrateReachable(l,tr);
+        pr.setMyLabel(l);
         pr.setFirstname("Schnee");
         pr.setLastname("Mann");
         db.registrateProfile(lb,tr);
+        l.setProfile(lb);
         db.registrateProfile(pr, tr);
 
         user1.setProfile(pr);
@@ -54,13 +55,13 @@ public class ProfileTest {
         LabelManagerProfile pp = (LabelManagerProfile)  p;
 
         LabelProfile lp = db.labelProfileByName("Shelden") ;
-        assertTrue(lp.getId()==pp.getMyLabel().getId());
+        assertTrue(lp.getId() == pp.getMyLabel().getProfile().getId());
         assertTrue(lp.getName().equals("Shelden"));
 
         lp.setName("Sh");
         lp = db.labelProfileByName("Sh");
         assertTrue(lp.getName().equals("Sh"));
-        assertTrue(pp.getMyLabel().getName().equals("Sh"));
+        assertTrue(pp.getMyLabel().getProfile().getName().equals("Sh"));
     }
 
     @Test

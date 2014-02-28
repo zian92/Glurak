@@ -14,12 +14,9 @@ import java.util.List;
  * Date: 25.01.2014
  */
 @Entity
-public class User implements Serializable{
+public class User extends Reachable implements Serializable{
 	
-	// Attribute
-    @Id
-    @GeneratedValue
-	private long id;
+
 
     private String username;
     private String passwordHash;
@@ -46,9 +43,6 @@ public class User implements Serializable{
         myPlaylists=new ArrayList<Playlist>();
     }
 
-	public long getId(){
-		return this.id;
-	}
 	public void setUsername(String username){
 		this.username = username;
 	}

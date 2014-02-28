@@ -15,4 +15,6 @@ public class Query {
 	public final static String FOLDER_PICTURE_SLIDER = FOLDER_PICTURE + "slider/";
 	public final static String[] FOLDERS = { DATAPATH, FOLDER_MUSIC, FOLDER_PICTURE, FOLDER_PICTURE_PROFILE, FOLDER_PICTURE_COVER, FOLDER_PICTURE_SLIDER };
 
+	
+	
 }

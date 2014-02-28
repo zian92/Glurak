@@ -3,6 +3,7 @@ package de.glurak.database.test;
 
 import de.glurak.data.Genre;
 import de.glurak.data.Medium;
+import de.glurak.data.User.ArtistProfile;
 import de.glurak.data.User.User;
 import de.glurak.database.HibernateDB;
 import org.junit.After;
@@ -31,23 +32,28 @@ public class MediumTest {
         registrateGenre(tr);
         dUser = new User();
         dUser.setUsername("Peter");
+        ArtistProfile p = new ArtistProfile();
+        db.registrateProfile(p,tr);
+        dUser.setProfile(p);
         db.registrateUser(dUser,tr);
         Medium m = new Medium();
         m.setTitel("Rocktitle");
         m.setLocked(false);
         m.setOwner(dUser);
         m.setMyGenre(rock);
-        db.registrateMedium(m,tr);
+        db.registrateMedium(m, tr);
         m=new Medium();
         m.setTitel("TollerTitle");
         m.setLocked(true);
         m.setOwner(dUser);
         m.setMyGenre(tpop);
-        db.registrateMedium(m,tr);
+        m.like(dUser);
+        db.registrateMedium(m, tr);
         m=new Medium();
         m.setTitel("PopTitle");
         m.setOwner(dUser);
         m.setMyGenre(pop);
+        m.hate(dUser);
         db.registrateMedium(m,tr);
     }
 
@@ -82,19 +88,25 @@ public class MediumTest {
 
         a=findInList(medien,"TollerTitle");
         assertTrue(a!=null);
+        assertTrue(a.hateCount()==0);
+        assertTrue(a.likeCount()==1);
+        assertTrue(a.getLiker().get(0).equals(dUser));
         assertTrue(a.isLocked());
         assertTrue(a.getOwner().getId()==dUser.getId());
         assertTrue(a.getMyGenre().getId()==tpop.getId());
 
         a=findInList(medien,"PopTitle");
         assertTrue(a!=null);
+        assertTrue(a.hateCount()==1);
+        assertTrue(a.getHater().get(0).equals(dUser));
+        assertTrue(a.likeCount()==0);
         assertTrue(!a.isLocked());
         assertTrue(a.getOwner().getId()==dUser.getId());
         assertTrue(a.getMyGenre().getId()==pop.getId());
     }
 
     @Test
-    public void dUserChaneTest(){
+    public void dUserChangeTest(){
 
         List<Medium> medien = db.getMedienFromUser(dUser);
         assertTrue(medien.size()==3);

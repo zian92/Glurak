@@ -1,6 +1,7 @@
 package de.glurak.frontend.mainFrame.header;
 
 import javax.swing.*;
+
 import java.awt.*;
 
 /**
@@ -24,7 +25,7 @@ public class HeaderView extends JPanel{
 	public HeaderView(){
 		
 		// Initialisierung des Panels
-		pan_header = new JPanel(new GridBagLayout());
+		pan_header = new JPanel(new BorderLayout());
 		pan_header.setSize(1024,50);
 		
 		// Layout-Restriktionen festlegen.
@@ -33,18 +34,17 @@ public class HeaderView extends JPanel{
 		c.insets = new Insets(1,1,2,2);				
 				
 		// Initialisierung des Textfeldes
-		c.weightx = 1.0;
-		c.gridx = 0;
-		c.gridy = 0;
 		t_search = new JTextField();
 		t_search.setText("Sucheingabe");
-		pan_header.add(t_search, c);
+		t_search.setBackground(Color.LIGHT_GRAY);
+		t_search.setForeground(Color.blue);
+		pan_header.add(t_search);
 		
 		// Initialisierung des Suchbuttons
-		c.gridx = 1;
-		c.gridy = 0;
 		b_search = new JButton("Suchen");
-		pan_header.add(b_search, c);
+		b_search.setBackground(Color.black);
+		b_search.setForeground(Color.white);
+		pan_header.add(b_search, BorderLayout.EAST);
 		
 		// Hinzufügen des Panels zur ContentPane
 		add(pan_header);		

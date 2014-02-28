@@ -10,7 +10,7 @@ import javax.persistence.*;
  *
  */
 @Entity
-public class Playlist implements Serializable{
+public class Playlist implements Serializable,Hateable{
 
     @ManyToMany
     @JoinTable(
@@ -19,6 +19,20 @@ public class Playlist implements Serializable{
             inverseJoinColumns={@JoinColumn(name="MEDIUM_ID", referencedColumnName="ID")})
 	private List<Medium> mediumList;
     private int index;
+
+    @ManyToMany
+    @JoinTable(
+            name="PLAYLIST_HATER",
+            joinColumns={@JoinColumn(name="REACHABLE_ID")},
+            inverseJoinColumns={@JoinColumn(name="USER_ID")})
+    private List<User> hater;
+    @ManyToMany
+    @JoinTable(
+            name="PLAYLIST_LIKER",
+            joinColumns={@JoinColumn(name="REACHABLE_ID")},
+            inverseJoinColumns={@JoinColumn(name="USER_ID")})
+    private List<User> liker;
+
     @ManyToOne
     private User owner;
 
@@ -37,6 +51,7 @@ public class Playlist implements Serializable{
 	 * @param playlist  to copy
 	 */
 	public Playlist (long id,String name, Playlist playlist) {
+        this();
         this.id=id;
 		this.setName(name);
 		this.index = 0;
@@ -48,7 +63,11 @@ public class Playlist implements Serializable{
     /**
      * Leerer Konstrktor
      */
-    public Playlist(){mediumList=new ArrayList<Medium>();}
+    public Playlist(){
+        mediumList=new ArrayList<Medium>();
+        hater=new ArrayList<User>();
+        liker=new ArrayList<User>();
+    }
 
 	/**
 	 * Konstruktor
@@ -134,4 +153,33 @@ public class Playlist implements Serializable{
     }
 
 
+    
+    public void hate(User hater) {
+        this.hater.add(hater);
+    }
+
+    
+    public void like(User liker) {
+        this.liker.add(liker);
+    }
+
+    
+    public int hateCount() {
+        return hater.size();
+    }
+
+    
+    public int likeCount() {
+        return liker.size();
+    }
+
+    
+    public List<User> getHater() {
+        return hater;
+    }
+
+    
+    public List<User> getLiker() {
+        return liker;
+    }
 }

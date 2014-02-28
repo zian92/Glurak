@@ -1,6 +1,7 @@
 package de.glurak.database.test;
 
 import de.glurak.data.Message;
+import de.glurak.data.User.ListenerProfile;
 import de.glurak.data.User.User;
 import de.glurak.database.HibernateDB;
 import org.junit.After;
@@ -20,19 +21,27 @@ public class MessageTest {
     private HibernateDB db;
     private User rec, sender;
 
-    private User getOlaf() throws NoSuchAlgorithmException {
+    private User getOlaf(EntityTransaction tr) throws NoSuchAlgorithmException {
         User res = new User();
+        ListenerProfile p = new ListenerProfile();
+        db.registrateProfile(p,tr);
         res.setUsername("Olaf");
         res.setPassword("Oli");
         res.setLocked(false);
+        res.setProfile(p);
+        db.registrateUser(res,tr);
         return res;
     }
 
-    private User getOlm() throws NoSuchAlgorithmException {
+    private User getOlm(EntityTransaction tr) throws NoSuchAlgorithmException {
         User res = new User();
         res.setUsername("Olm");
         res.setPassword("Oli");
         res.setLocked(false);
+        ListenerProfile p = new ListenerProfile();
+        res.setProfile(p);
+        db.registrateProfile(p,tr);
+        db.registrateUser(res,tr);
         return res;
     }
 
@@ -41,10 +50,8 @@ public class MessageTest {
         db=new HibernateDB();
         EntityTransaction tr = db.getEnityManager().getTransaction();
         tr.begin();
-        rec= getOlaf();
-        sender = getOlm();
-        db.registrateUser(rec,tr);
-        db.registrateUser(sender,tr);
+        rec= getOlaf(tr);
+        sender = getOlm(tr);
         db.createMessage(rec,sender,"Hey alter!",false,tr);
         db.createMessage(rec,sender,"Antworte!",true,tr);
         db.createMessage(sender,rec,"Lass mich. Sonst hol ich Brüder!",false,tr);

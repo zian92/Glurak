@@ -9,21 +9,14 @@ import java.io.Serializable;
  */
 @Entity
 public class LabelManagerProfile extends ListenerProfile implements Serializable {
-    //@Id
-    //@GeneratedValue
-    @Transient
-    private long id;
-
     @ManyToOne
-    private LabelProfile myLabel;
+    private Label myLabel;
 
-    public long getId(){return id;}
-
-    public LabelProfile getMyLabel() {
+    public Label getMyLabel() {
         return myLabel;
     }
 
-    public void setMyLabel(LabelProfile myLabel) {
+    public void setMyLabel(Label myLabel) {
         this.myLabel = myLabel;
     }
 

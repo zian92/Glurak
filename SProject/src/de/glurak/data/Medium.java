@@ -2,14 +2,29 @@ package de.glurak.data;
 
 import de.glurak.data.User.User;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
 @Entity
-public class Medium implements Serializable {
+public class Medium implements Serializable,Hateable {
 
 	private String titel;
 	private String fileName;
+
+    @ManyToMany
+    @JoinTable(
+            name="MEDIUM_HATER",
+            joinColumns={@JoinColumn(name="REACHABLE_ID")},
+            inverseJoinColumns={@JoinColumn(name="USER_ID")})
+    private List<User> hater;
+    @ManyToMany
+    @JoinTable(
+            name="MEDIUM_LIKER",
+            joinColumns={@JoinColumn(name="REACHABLE_ID")},
+            inverseJoinColumns={@JoinColumn(name="USER_ID")})
+    private List<User> liker;
+
 
     @ManyToOne
     private Genre myGenre;
@@ -39,7 +54,11 @@ public class Medium implements Serializable {
 	}
 	
 	// Hibernate benoetigt leeren Konstruktor
-	public Medium() { isLocked=false;}
+	public Medium() {
+        isLocked=false;
+        hater=new ArrayList<User>();
+        liker=new ArrayList<User>();
+    }
 
 	public String getTitel() {
 		return titel;
@@ -83,5 +102,35 @@ public class Medium implements Serializable {
 
     public void setMyGenre(Genre myGenre) {
         this.myGenre = myGenre;
+    }
+
+    
+    public void hate(User hater) {
+        this.hater.add(hater);
+    }
+
+    
+    public void like(User liker) {
+        this.liker.add(liker);
+    }
+
+    
+    public int hateCount() {
+        return hater.size();
+    }
+
+    
+    public int likeCount() {
+        return liker.size();
+    }
+
+    
+    public List<User> getHater() {
+        return hater;
+    }
+
+    
+    public List<User> getLiker() {
+        return liker;
     }
 }

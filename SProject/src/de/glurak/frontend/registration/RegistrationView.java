@@ -24,7 +24,7 @@ import javax.swing.JComponent;
 public class RegistrationView extends JPanel{
 
 	//Textfelder fuer die Registrierung
-	private JTextField t_username = new JTextField();
+	protected JTextField t_username = new JTextField();
 	private JTextField t_password = new JTextField();
 	private JTextField t_birthdate_day = new JTextField();
 	private JTextField t_birthdate_month = new JTextField();
@@ -35,8 +35,8 @@ public class RegistrationView extends JPanel{
 	private JRadioButton r_gender_m;
 	private JRadioButton r_gender_f;
 	//Buttons zum bestaetigen oder abbrechen
-	private JButton b_register;
-	private JButton b_cancel;
+	protected JButton b_register;
+	protected JButton b_cancel;
 	
 	/**
 	 * Konstruktor
@@ -113,7 +113,7 @@ public class RegistrationView extends JPanel{
 		pan_input.add(l_gender);
 		pan_input.add(pan_radio);
 		
-		//Panel in das Frame einf�gen
+		//Panel in das Frame einfuegen
 		add(pan_input, BorderLayout.CENTER);
 		add(pan_buttons, BorderLayout.SOUTH);
 		add(l_note, BorderLayout.NORTH);

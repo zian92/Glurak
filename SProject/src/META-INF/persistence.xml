@@ -17,7 +17,11 @@
     <class>de.glurak.data.User.ListenerProfile</class>
     <class>de.glurak.data.User.Profile</class>
     <class>de.glurak.data.User.User</class>
+    <class>de.glurak.data.User.Label</class>
+    <class>de.glurak.data.Album</class>
+    <class>de.glurak.data.User.Reachable</class>
     <class>de.glurak.data.User.UserProfile</class>
+
     
     <!-- Einrichten der Datenbankverbindung --> 
     

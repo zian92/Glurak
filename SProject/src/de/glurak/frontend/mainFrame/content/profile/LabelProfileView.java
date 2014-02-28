@@ -18,13 +18,13 @@ public class LabelProfileView extends JPanel{
 		private JPanel pan_playlists;
 		
 		// Buttons
-		private JButton b_apply;
-		private JButton b_follow;
-		private JButton b_edit;
-		private JButton b_moreplaylists;
+		protected JButton b_apply;
+		protected JButton b_follow;
+		protected JButton b_edit;
+		protected JButton b_moreplaylists;
 		
 		// TextFields profile_data
-		private JTextField t_labelname;
+		protected JTextField t_labelname;
 		
 		// Labels profile_data
 		private JLabel l_labelname;		
@@ -40,6 +40,7 @@ public class LabelProfileView extends JPanel{
 			// Initialisieren Panel pan_profileview
 			pan_labelprofileview = new JPanel(new GridBagLayout());
 			pan_labelprofileview.setSize(1000,500);
+			pan_labelprofileview.setBackground(Color.black);
 			
 			// Layout-Restriktionen festlegen.
 			GridBagConstraints c = new GridBagConstraints();
@@ -50,6 +51,7 @@ public class LabelProfileView extends JPanel{
 			pan_profilepic = new JPanel(new GridBagLayout());
 			pan_profilepic.setSize(350, 200);
 			pan_profilepic.setBorder(BorderFactory.createLineBorder(Color.black));
+			pan_profilepic.setBackground(Color.black);
 			
 				// Layout-Restriktionen festlegen.
 				GridBagConstraints d = new GridBagConstraints();
@@ -62,6 +64,9 @@ public class LabelProfileView extends JPanel{
 			    	d.gridx = 0;
 					d.gridy = 1;
 					b_edit = new JButton("Bearbeiten");
+					b_edit.setBorder(BorderFactory.createLineBorder(Color.white));
+					b_edit.setBackground(Color.black);
+					b_edit.setForeground(Color.white);
 					pan_profilepic.add(b_edit, d);
 					
 				}
@@ -71,17 +76,26 @@ public class LabelProfileView extends JPanel{
 						d.gridx = 0;
 						d.gridy = 1;
 						b_apply = new JButton("Bewerben");
+						b_apply.setBorder(BorderFactory.createLineBorder(Color.white));
+						b_apply.setBackground(Color.black);
+						b_apply.setForeground(Color.white);
 						pan_profilepic.add(b_apply, d);    
 				    
 						d.gridx = 1;
 						d.gridy = 1;
 						b_follow = new JButton("Follow");
+						b_follow.setBorder(BorderFactory.createLineBorder(Color.white));
+						b_follow.setBackground(Color.black);
+						b_follow.setForeground(Color.white);
 						pan_profilepic.add(b_follow, d);	
 					}
 					else{		 // Falls weder der LabelManager noch der Künstler auf das Profil zugreifen.
 						d.gridx = 0;
 						d.gridy = 1;
 						b_follow = new JButton("Follow");
+						b_follow.setBorder(BorderFactory.createLineBorder(Color.white));
+						b_follow.setBackground(Color.black);
+						b_follow.setForeground(Color.white);
 						pan_profilepic.add(b_follow, d);
 					}
 				}
@@ -89,15 +103,20 @@ public class LabelProfileView extends JPanel{
 			pan_playlists = new JPanel(new GridBagLayout());	
 			pan_playlists.setSize(350, 200);
 			pan_playlists.setBorder(BorderFactory.createLineBorder(Color.black));
+			pan_playlists.setBackground(Color.black);
 			
 				// Initialisieren des Buttons b_moreplaylists
 				b_moreplaylists = new JButton("mehr");
+				b_moreplaylists.setBorder(BorderFactory.createLineBorder(Color.white));
+				b_moreplaylists.setBackground(Color.black);
+				b_moreplaylists.setForeground(Color.white);
 				pan_playlists.add(b_moreplaylists);
 						
 			// Initialisieren Panel pan_profiledata
 			pan_profiledata = new JPanel(new GridBagLayout());	
 			pan_profiledata.setSize(350, 200);
 			pan_profiledata.setBorder(BorderFactory.createLineBorder(Color.black));
+			pan_profiledata.setBackground(Color.black);
 			
 				// Layout-Restriktionen festlegen.
 				GridBagConstraints e = new GridBagConstraints();
@@ -110,6 +129,7 @@ public class LabelProfileView extends JPanel{
 				e.gridy = 0;
 				e.weightx = 0.0;
 				l_labelname = new JLabel("Labelname:");
+				l_labelname.setForeground(Color.white);
 				pan_profiledata.add(l_labelname, e);
 				
 				e.gridx = 1;
@@ -117,6 +137,8 @@ public class LabelProfileView extends JPanel{
 				e.weightx = 1.0;
 				t_labelname = new JTextField();
 				t_labelname.setEditable(false);
+				t_labelname.setBackground(Color.black);
+				t_labelname.setForeground(Color.white);
 				pan_profiledata.add(t_labelname, e);
 				
 				for (int i = 1; i == anzArtists; i++){

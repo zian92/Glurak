@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -14,16 +15,26 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import de.glurak.feature.SliderPanel;
+
 public class LoginView extends JFrame{
 	
 	private JTextField t_name;
 	private JTextField t_passwort;
+	
+	private JButton bt_login;
+	private JButton bt_register;
+
+	private Color  panColor = new Color(7354141);
+	
+	private JPanel pan_slider;
 	
 	public LoginView(String Titel){
 		super(Titel);
@@ -41,12 +52,16 @@ public class LoginView extends JFrame{
 		JPanel pan_logframe	= new JPanel(new GridBagLayout());
 		JPanel pan_bt		= new JPanel(new FlowLayout());
 		JPanel pan_login	= new JPanel(new GridLayout(4,1,10,10));
+		pan_slider = new JPanel(new BorderLayout());
 		
-		JButton bt_login = new JButton("Einloggen");
-		JButton bt_cancel = new JButton("Abbrechen");
+		
+		bt_login = new JButton("Einloggen");
+		bt_register = new JButton("Abbrechen");
 		
 		JLabel l_name 		= new JLabel("Name", JLabel.LEFT);
 		JLabel l_passwort 	= new JLabel("Passwort", JLabel.LEFT);
+		l_name.setForeground(Color.WHITE);
+		l_passwort.setForeground(Color.WHITE);
 
 		t_name 				= new JTextField("", 20);
 		t_passwort 			= new JTextField("", 20);
@@ -54,7 +69,8 @@ public class LoginView extends JFrame{
 		//create Backgroundimage
 		try {
 			BufferedImage loginBGImage = ImageIO.read(new File("loginscreen.jpg"));
-			JLabel picLabel = new JLabel(new ImageIcon(loginBGImage));
+			Image img =  loginBGImage.getScaledInstance(1024, 700, Image.SCALE_SMOOTH);
+			JLabel picLabel = new JLabel(new ImageIcon(img));
 			pan_bg.add(picLabel);
 			
 		} catch (IOException e) {
@@ -64,16 +80,20 @@ public class LoginView extends JFrame{
 		
 		// create layout constrains
 		pan_logframe.setBounds(700,150,280,320);
-		pan_logframe.setBackground(Color.lightGray);
+		//pan_logframe.setBackground(Color.lightGray);
+		pan_logframe.setBackground(panColor);
 		pan_logframe.setOpaque(true);
+		
+		pan_slider.setBounds(80, 80, 480, 527);
+		pan_slider.setVisible(true);
 		
 		pan_login.setPreferredSize(new Dimension(150, 130));
 		pan_login.setOpaque(true);
-		pan_login.setBackground(Color.lightGray);
-		pan_bt.setBackground(Color.lightGray);
+		pan_login.setBackground( panColor);
+		pan_bt.setBackground( panColor);
 	
-		pan_bg.setBounds(0, 0, 1024, 650);
-		pan_bg.setOpaque(true);
+		pan_bg.setBounds(0, -10, 1024, 700);
+		//pan_bg.setOpaque(true);
 		
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -93,18 +113,27 @@ public class LoginView extends JFrame{
 		pan_login.add(t_passwort);
 		
 		pan_bt.add(bt_login);
-		pan_bt.add(bt_cancel);
+		pan_bt.add(bt_register);
 			
         pan_content.add(pan_bg, JLayeredPane.DEFAULT_LAYER, 0);
         pan_content.add(pan_logframe, JLayeredPane.PALETTE_LAYER, 0);
+        pan_content.add(pan_slider, JLayeredPane.PALETTE_LAYER, 0);
 		
+        
 		content.add(pan_content, BorderLayout.CENTER);
 			
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
 		setVisible(true);
-		
+
 	}
 	
-	
+	public JPanel getSliderPanel(){ return this.pan_slider; }
+	public JButton getBt_login() {
+		return bt_login;
+	}
+
+	public JButton getBt_register() {
+		return bt_register;
+	}
 }
