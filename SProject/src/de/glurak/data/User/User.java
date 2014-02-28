@@ -1,8 +1,12 @@
 package de.glurak.data.User;
+import de.glurak.data.Playlist;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Diese Klasse implementiert den User.
@@ -25,8 +29,21 @@ public class User implements Serializable{
     @OneToOne
     private UserProfile profile;
 
+
+    public List<Playlist> getMyPlaylists() {
+        return myPlaylists;
+    }
+
+    public void setMyPlaylists(List<Playlist> myPlaylists) {
+        this.myPlaylists = myPlaylists;
+    }
+
+    @OneToMany(mappedBy = "owner")
+    protected List<Playlist> myPlaylists;
+
     public User(){
         isLocked=false;
+        myPlaylists=new ArrayList<Playlist>();
     }
 
 	public long getId(){

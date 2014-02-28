@@ -1,12 +1,17 @@
 package de.glurak.data;
 
 import de.glurak.data.User.ListenerProfile;
+import de.glurak.data.User.User;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.io.Serializable;
+<<<<<<< HEAD
 
+=======
+import java.util.Set;
+>>>>>>> 5f0f10673de43813910862133ba3cc2a1ad8b752
 import javax.persistence.*;
 /**
  * @author Zengo
@@ -18,18 +23,24 @@ public class Playlist implements Serializable{
     @ManyToMany
     @JoinTable(
             name="PLAYLIST_SONGS",
+<<<<<<< HEAD
             joinColumns={@JoinColumn(name="PLAYLIST_ID", referencedColumnName="ID")},
             inverseJoinColumns={@JoinColumn(name="MEDIUM_ID", referencedColumnName="ID")})
     
+=======
+            joinColumns={@JoinColumn(name="PLAYLIST_ID", referencedColumnName="id")},
+            inverseJoinColumns={@JoinColumn(name="MEDIUM_ID", referencedColumnName="id")})
+>>>>>>> 5f0f10673de43813910862133ba3cc2a1ad8b752
 	private List<Medium> mediumList;
     private int index;
     @ManyToOne
-    private ListenerProfile owner;
+    private User owner;
+
+
 	private String name;
     @Id
     @GeneratedValue
-    @Column(name="ID")
-	private long ID;
+	private long id;
 	
 
 	/**
@@ -40,7 +51,7 @@ public class Playlist implements Serializable{
 	 * @param playlist  to copy
 	 */
 	public Playlist (long id,String name, Playlist playlist) {
-        this.ID=id;
+        this.id=id;
 		this.setName(name);
 		this.index = 0;
 		if (playlist != null) {
@@ -112,14 +123,14 @@ public class Playlist implements Serializable{
 	}
 	
 	public long getID() {
-		return ID;
+		return id;
 	}
 
-    public ListenerProfile getOwner() {
+    public User getOwner() {
         return owner;
     }
 
-    public void setOwner(ListenerProfile owner) {
+    public void setOwner(User owner) {
         this.owner = owner;
     }
 
