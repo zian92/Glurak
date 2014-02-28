@@ -29,8 +29,9 @@ public class LoginView extends JFrame{
 	private JTextField t_name;
 	private JTextField t_passwort;
 	
-	public JButton bt_login;
-	public JButton bt_register;
+	private JButton bt_login;
+	private JButton bt_register;
+
 	private Color  panColor = new Color(7354141);
 	
 	private JPanel pan_slider;
@@ -83,7 +84,7 @@ public class LoginView extends JFrame{
 		pan_logframe.setBackground(panColor);
 		pan_logframe.setOpaque(true);
 		
-		pan_slider.setBounds(80, 80, 480, 500);
+		pan_slider.setBounds(80, 80, 480, 527);
 		pan_slider.setVisible(true);
 		
 		pan_login.setPreferredSize(new Dimension(150, 130));
@@ -128,5 +129,11 @@ public class LoginView extends JFrame{
 	}
 	
 	public JPanel getSliderPanel(){ return this.pan_slider; }
+	public JButton getBt_login() {
+		return bt_login;
+	}
 
+	public JButton getBt_register() {
+		return bt_register;
+	}
 }

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 import de.glurak.feature.SliderPanelController;
+import de.glurak.frontend.mainFrame.MainFrameVController;
 
 public class LoginVController implements ActionListener {
 
@@ -18,6 +19,7 @@ public class LoginVController implements ActionListener {
 		startLoginScreen.setSize(1024, 700);
 		SliderPanelController con_slider = new SliderPanelController();
 		startLoginScreen.getSliderPanel().add(con_slider.getView(), BorderLayout.CENTER);
+		startLoginScreen.getBt_login().addActionListener(this);
 		//startLoginScreen.add(con_slider.getView());
 		//startLoginScreen.setSliderPanel(con_slider.getView());
 	
@@ -46,7 +48,7 @@ public class LoginVController implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		MainFrameVController mainController = new MainFrameVController();
 		
 	}
 

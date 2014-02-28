@@ -43,12 +43,11 @@ public class SliderPanelController implements ActionListener{
 	 * and initialize the array of items, that will be shown by the promotionpanel.
 	 * @post Panel with sliderpanels is created and ready 
 	 * 		 to be filled with further elements.
-	 * @author MxB
 	 */
 	public SliderPanelController(){
-		promPan = new PromotionPanel();
+		promPan = new PromotionPanel(4);
 		promPan.bt_start.addActionListener(this);
-		//promPan.bt_add.addActionListener(this);
+		promPan.bt_add.addActionListener(this);
 		
 		initPromPanel();
 		//loadArrayList();
@@ -132,9 +131,7 @@ public class SliderPanelController implements ActionListener{
 		
 		return layered_pan;
 	}
-	
-	
-	
+
 	/**
 	 * Loads images and attacht them to picturelabels.
 	 * Stores that picturelabels in the item-array.
