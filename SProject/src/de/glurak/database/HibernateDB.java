@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * @author Entscheider
+ * @author dadomadi
  */
 public class HibernateDB {
     private EntityManagerFactory emf = Persistence
@@ -225,44 +226,6 @@ public class HibernateDB {
             em.getTransaction().commit();
         return m;
     }
-    /*
-    public void setMessageRead(Message m){
-        //TODO: Ist automatisch gesetzt?
-    } */
-
-
-    public void createTestData(){
-        Medium m = new Medium();
-        m.setOwner(null);
-        m.setFileName("olaf.mp3");
-        m.setTitel("Der OlagSong von Olaf.");
-
-        Playlist p = new Playlist();
-        p.addMedium(m);
-
-        Medium m2= new Medium();
-        m2.setOwner(null);
-        m2.setFileName("olaf2.mp3");
-        m2.setTitel("Olaf kommt zurück");
-        p.addMedium(m2);
-
-        em.getTransaction().begin();
-        em.persist(m);em.persist(m2);
-        em.persist(p);
-        em.getTransaction().commit();
-    }
-
-    public void checkTestData(){
-        TypedQuery<Playlist> q1 = em.createQuery(
-                "SELECT k FROM Playlist k ", Playlist.class);
-        List<Playlist> contacts = q1.getResultList();
-        if (contacts.isEmpty()){System.out.println("??");}
-        for (Playlist p: contacts){
-            for (Medium m: p.getMediumList()){
-                System.out.println(m.getFileName());
-            }
-        }
-    }
 
     /**
      * Speichert die Daten ins Dateisystem
@@ -322,13 +285,5 @@ public class HibernateDB {
         em.persist(m);
         if (tr==null)
             em.getTransaction().commit();
-    }
-
-
-    public static void main(String[] args){
-        HibernateDB db = new HibernateDB();
-        db.createTestData();
-        db.checkTestData();
-        db.save();
     }
 }

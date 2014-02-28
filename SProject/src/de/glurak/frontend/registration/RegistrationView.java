@@ -29,9 +29,9 @@ public class RegistrationView extends JPanel{
 	private JTextField t_birthdate_day = new JTextField();
 	private JTextField t_birthdate_month = new JTextField();
 	private JTextField t_birthdate_year = new JTextField();
-	//Dropdown Menue um das Herkunftsland auszuwählen
+	//Dropdown Menue um das Herkunftsland auszuwï¿½hlen
 	private JComboBox<String> d_homecountry;
-	//Radiobuttons um das Geschlecht auszuwählen
+	//Radiobuttons um das Geschlecht auszuwï¿½hlen
 	private JRadioButton r_gender_m;
 	private JRadioButton r_gender_f;
 	//Buttons zum bestaetigen oder abbrechen
@@ -55,7 +55,7 @@ public class RegistrationView extends JPanel{
 		b_cancel = new JButton("Abbrechen");
 		
 		//Initialisierung der Radionbuttons
-		r_gender_m = new JRadioButton("männlich");
+		r_gender_m = new JRadioButton("mÃ¤nnlich");
 		r_gender_f = new JRadioButton("weiblich");
 		
 		//Die Radiobuttons gruppieren
@@ -69,7 +69,7 @@ public class RegistrationView extends JPanel{
 		pan_radio.add(r_gender_f);
 		
 		//Initialisierung der Labels
-		JLabel l_note = new JLabel("<HTML><BODY>Füllen sie folgendes Formular<BR> aus, um sich zu registrieren: </BODY></HTML>");
+		JLabel l_note = new JLabel("<HTML><BODY>FÃ¼llen sie folgendes Formular<BR> aus, um sich zu registrieren: </BODY></HTML>");
 		JLabel l_username = new JLabel("Username: ");
 		JLabel l_password = new JLabel("Passwort: ");
 		JLabel l_birthdate = new JLabel("Geburtsdatum: ");
@@ -113,13 +113,16 @@ public class RegistrationView extends JPanel{
 		pan_input.add(l_gender);
 		pan_input.add(pan_radio);
 		
-		//Panel in das Frame einfügen
+		//Panel in das Frame einfï¿½gen
 		add(pan_input, BorderLayout.CENTER);
 		add(pan_buttons, BorderLayout.SOUTH);
 		add(l_note, BorderLayout.NORTH);
 	}
-	/*
 	
+	
+	/**
+	 * Erzeugt die Registrationview und zeigt sie an.
+	 */
 	private static void createAndShowView(){
 		//Erzeugen des Frames
 		JFrame register = new JFrame("Registrierung");
@@ -131,9 +134,9 @@ public class RegistrationView extends JPanel{
         register.setContentPane(newContentPane);
         
         //Groesse des Frames festlegen
-        register.setPreferredSize(new Dimension(600,300));
+        //register.setPreferredSize(new Dimension(600,300));
         //Groesse des Frames soll nicht veraenderbar sein
-        register.setResizable(false);
+        //register.setResizable(false);
         //Registrationview wird in der Mitte des Bildschirms geladen
         /** Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         register.setLocation(dim.width/2-register.getSize().width/2-300, dim.height/2-register.getSize().height/2-150);**/
@@ -150,5 +153,5 @@ public class RegistrationView extends JPanel{
             }
         });
 	}
-	*/
+	
 }
