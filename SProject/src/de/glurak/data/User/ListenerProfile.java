@@ -11,10 +11,6 @@ import javax.persistence.*;
  */
 @Entity
 public class ListenerProfile extends UserProfile implements Serializable{
-    //@Id
-    //@GeneratedValue
-    @Transient
-    private long id;
 
     protected String birthdate;
     protected String homecountry;
@@ -52,9 +48,5 @@ public class ListenerProfile extends UserProfile implements Serializable{
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public long getId(){
-        return id;
     }
 }

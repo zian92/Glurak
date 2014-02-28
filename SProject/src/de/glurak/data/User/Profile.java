@@ -10,9 +10,11 @@ public abstract class Profile implements Serializable {
 
     @Id
     @GeneratedValue
-    private long id;
+    protected long id;
     protected String address;
     protected String pictureFileName;
+
+    abstract public Reachable belongTo();
 
     public abstract String roleName();
 

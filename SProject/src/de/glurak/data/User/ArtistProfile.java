@@ -7,10 +7,6 @@ import java.io.Serializable;
  */
 @Entity
 public class ArtistProfile extends ListenerProfile implements Serializable{
-    //@Id
-    //@GeneratedValue
-    @Transient
-    private long id;
 
     @ManyToOne
     private LabelProfile myLabel;
@@ -22,8 +18,6 @@ public class ArtistProfile extends ListenerProfile implements Serializable{
     public void setMyLabel(LabelProfile myLabel) {
         this.myLabel = myLabel;
     }
-
-    public long getId(){return id;}
 
     @Override
     public String roleName() {

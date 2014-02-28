@@ -1,5 +1,6 @@
 package de.glurak.database.test;
 
+import de.glurak.data.User.ArtistProfile;
 import de.glurak.data.User.User;
 import de.glurak.database.HibernateDB;
 import org.junit.After;
@@ -7,11 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.persistence.EntityTransaction;
-import javax.swing.text.html.parser.Entity;
-
-import static org.junit.Assert.*;
-
 import java.security.NoSuchAlgorithmException;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Entscheider
@@ -23,16 +22,22 @@ public class Usertest {
     @Before
     public void beforeAll() throws NoSuchAlgorithmException {
         db = new HibernateDB();
+        EntityTransaction ac = db.getEnityManager().getTransaction();
+        ac.begin();
         User user1 = new User();
+        ArtistProfile a = new ArtistProfile();
         user1.setLocked(false);
         user1.setUsername("Olaf");
         user1.setPassword("MyOlaf");
+        db.registrateProfile(a,ac);
+        user1.setProfile(a);
         User user2 = new User();
+        a = new ArtistProfile();
+        db.registrateProfile(a,ac);
+        user2.setProfile(a);
         user2.setLocked(true);
         user2.setUsername("Olm");
         user2.setPassword("123");
-        EntityTransaction ac = db.getEnityManager().getTransaction();
-        ac.begin();
         db.registrateUser(user1,ac);
         db.registrateUser(user2,ac);
     }

@@ -3,6 +3,7 @@ package de.glurak.database.test;
 
 import de.glurak.data.Genre;
 import de.glurak.data.Medium;
+import de.glurak.data.User.ArtistProfile;
 import de.glurak.data.User.User;
 import de.glurak.database.HibernateDB;
 import org.junit.After;
@@ -31,6 +32,9 @@ public class MediumTest {
         registrateGenre(tr);
         dUser = new User();
         dUser.setUsername("Peter");
+        ArtistProfile p = new ArtistProfile();
+        db.registrateProfile(p,tr);
+        dUser.setProfile(p);
         db.registrateUser(dUser,tr);
         Medium m = new Medium();
         m.setTitel("Rocktitle");

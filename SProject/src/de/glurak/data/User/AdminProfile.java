@@ -9,10 +9,6 @@ import java.io.Serializable;
  */
 @Entity
 public class AdminProfile extends UserProfile implements Serializable {
-    //@Id
-    //@GeneratedValue
-    @Transient
-    private long id;
 
     @Override
     public String[] myRights() {
@@ -23,6 +19,4 @@ public class AdminProfile extends UserProfile implements Serializable {
     public String roleName() {
         return "Admin";
     }
-
-    public long getId(){return id;}
 }

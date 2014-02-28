@@ -2,6 +2,7 @@ package de.glurak.database.test;
 
 import de.glurak.data.Medium;
 import de.glurak.data.Playlist;
+import de.glurak.data.User.ArtistProfile;
 import de.glurak.data.User.User;
 import org.junit.Before;
 import de.glurak.database.HibernateDB;
@@ -31,10 +32,16 @@ public class PlaylistTest {
         t.begin();
         u1 = new User();
         u1.setUsername("falO");
+        ArtistProfile p = new ArtistProfile();
+        db.registrateProfile(p,t);
+        u1.setProfile(p);
         db.registrateUser(u1,t);
 
         u2 = new User();
         u2.setUsername("mlO");
+        p = new ArtistProfile();
+        db.registrateProfile(p,t);
+        u2.setProfile(p);
         db.registrateUser(u2,t);
 
         Medium m1=new Medium();

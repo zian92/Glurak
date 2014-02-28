@@ -10,6 +10,9 @@ import javax.persistence.*;
 public abstract class UserProfile extends Profile implements Serializable {
     public abstract String[] myRights();
 
+    @OneToOne(mappedBy = "profile")
+    private User myUser;
+
     /**
      * Prüft ob der Benutzer das Recht besitzt
      * @param right das zu überprüfende Recht
@@ -21,11 +24,6 @@ public abstract class UserProfile extends Profile implements Serializable {
         }
         return false;
     }
-
-    //@Id
-    //@GeneratedValue
-    @Transient
-    private long id;
     protected String email;
     protected String firstname;
     protected String lastname;
@@ -63,8 +61,13 @@ public abstract class UserProfile extends Profile implements Serializable {
         this.emailadr = emailadr;
     }
 
-    public long getId(){
-        return id;
+
+    @Override
+    public User belongTo() {
+         return myUser;
     }
 
+    public void setUser(User u){
+        myUser=u;
+    }
 }

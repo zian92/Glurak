@@ -1,4 +1,5 @@
 package de.glurak.data;
+import de.glurak.data.User.Reachable;
 import de.glurak.data.User.User;
 
 import java.io.Serializable;
@@ -15,7 +16,7 @@ public class Message implements Serializable{
     @ManyToOne
 	private User sender;
     @ManyToOne
-	private User receiver;
+	private Reachable receiver;
     @Id
     @GeneratedValue
     @Column(name="ID")
@@ -70,7 +71,7 @@ public class Message implements Serializable{
 		sender = pSender;
 	}
 	
-	public void setReceiver(User pReceiver){
+	public void setReceiver(Reachable pReceiver){
 		receiver = pReceiver;
 	}
 	
@@ -86,7 +87,7 @@ public class Message implements Serializable{
 		return sender;
 	}
 	
-	public User getReceiver(){
+	public Reachable  getReceiver(){
 		return receiver;
 	}
 	
