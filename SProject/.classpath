@@ -29,7 +29,5 @@
 	<classpathentry kind="lib" path="lib/jboss-transaction-api_1.1_spec-1.0.0.Final.jar"/>
 	<classpathentry kind="lib" path="lib/junit-4.11.jar"/>
 	<classpathentry kind="lib" path="lib/javazoom.jar"/>
-	<classpathentry kind="lib" path="lib/tritonus_share-0.3.6(1).jar"/>
-	<classpathentry kind="lib" path="lib/mp3plugin.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
