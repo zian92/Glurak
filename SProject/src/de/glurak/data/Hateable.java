@@ -23,7 +23,7 @@ public interface Hateable {
 	 * Gibt einen Positivpunkt im Like-Count.
 	 * @param Liker der User, der positiv bewertet hat.
 	 */
-	public void like(User Liker);
+	public void like(User liker);
 	
 	/**
 	 * Inkrementiert den Hate-Count.
