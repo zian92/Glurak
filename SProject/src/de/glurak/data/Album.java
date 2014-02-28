@@ -4,7 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * 
+ * Die Klasse Album erweitert die Klasse Playlist um die Möglichkeit,
+ * ein Erscheinungsjahr und ein Album-Cover anzugeben
  * @author dadomadi
  *
  */
