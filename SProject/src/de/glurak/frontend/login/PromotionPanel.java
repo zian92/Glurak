@@ -31,10 +31,10 @@ public class PromotionPanel extends JPanel {
 		/*
 		for (int i = 0; i < maxSliders; i++){
 			sliderArray[i] =  new SliderPanel();
-			c.gridx = i;
+		}
+					c.gridx = i;
 			c.gridy = 0;
 			add(sliderArray[i] ,c);
-		}
 		*/
 		mySlider_0 = new SliderPanel();
 		mySlider_1 = new SliderPanel();
