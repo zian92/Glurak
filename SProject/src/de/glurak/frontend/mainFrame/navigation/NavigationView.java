@@ -1,14 +1,8 @@
 package de.glurak.frontend.mainFrame.navigation;
 
 import java.awt.GridLayout;
-
-import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import javax.swing.JLabel;
-
-import de.glurak.frontend.registration.RegistrationView;
 
 /**
  * In der Navigationview werden das Profilbild des Users und seine Funktionen,
@@ -18,46 +12,80 @@ import de.glurak.frontend.registration.RegistrationView;
  */
 public class NavigationView extends JPanel{
 
+	private JPanel profilePicture;
+	private JButton editProfile, showPlaylists, showNews, showMessages, upload;
+	
 	/**
 	 * Konstruktor
 	 */
 	public NavigationView(){
 		
-		//Layout des Frames festlegen
-		setLayout(new GridLayout());
+		editProfile = new JButton("Profil");
+		showPlaylists = new JButton("Playlist");
+		showNews = new JButton("News");
+		showMessages = new JButton("Nachrichten");
+		upload  = new JButton("Upload");
+		profilePicture = new JPanel();
 		
+		//Layout des Panels
+		this.setLayout(new GridLayout(10,1));
 		
+		this.add(editProfile);
+		this.add(showPlaylists);
+		this.add(showNews);
+		this.add(showMessages);
+		this.add(upload);
+		this.add(profilePicture);
+		
+	}
+
+	public JPanel getProfilePicture() {
+		return profilePicture;
+	}
+
+	public void setProfilePicture(JPanel profilPicture) {
+		this.profilePicture = profilPicture;
+	}
+
+	public JButton getEditProfile() {
+		return editProfile;
+	}
+
+	public void setEditProfile(JButton editProfile) {
+		this.editProfile = editProfile;
+	}
+
+	public JButton getShowPlaylists() {
+		return showPlaylists;
+	}
+
+	public void setShowPlaylists(JButton showPlaylists) {
+		this.showPlaylists = showPlaylists;
+	}
+
+	public JButton getShowNews() {
+		return showNews;
+	}
+
+	public void setShowNews(JButton showNews) {
+		this.showNews = showNews;
+	}
+
+	public JButton getShowMessages() {
+		return showMessages;
+	}
+
+	public void setShowMessages(JButton showMessages) {
+		this.showMessages = showMessages;
+	}
+
+	public JButton getUpload() {
+		return upload;
+	}
+
+	public void setUpload(JButton upload) {
+		this.upload = upload;
 	}
 	
-	/**
-	 * Erzeugt die Navigationview und zeigt sie an.
-	 */
-	private static void createAndShowView(){
-		//Erzeugen des Frames
-		JFrame navigation = new JFrame("Navigation");
-		navigation.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		//Navigationview in das Frame laden
-		JComponent newContentPane = new RegistrationView();
-		newContentPane.setOpaque(true);
-		navigation.setContentPane(newContentPane);
-		        
-		//Groesse des Frames festlegen
-        //navigation.setPreferredSize(new Dimension(600,300));
-        //Groesse des Frames soll nicht veraenderbar sein
-        //navigation.setResizable(false);
-				
-		//Frame anpassen und sichtbar machen
-		navigation.pack();
-		navigation.setVisible(true);
-	}
-	
-	public static void main(String[] args){
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowView();
-            }
-        });
-	}
 	
 }
