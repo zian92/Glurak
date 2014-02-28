@@ -1,17 +1,9 @@
 package de.glurak.data;
 
-import de.glurak.data.User.ListenerProfile;
 import de.glurak.data.User.User;
-
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.io.Serializable;
-<<<<<<< HEAD
-
-=======
-import java.util.Set;
->>>>>>> 5f0f10673de43813910862133ba3cc2a1ad8b752
 import javax.persistence.*;
 /**
  * @author Zengo
@@ -23,14 +15,8 @@ public class Playlist implements Serializable{
     @ManyToMany
     @JoinTable(
             name="PLAYLIST_SONGS",
-<<<<<<< HEAD
             joinColumns={@JoinColumn(name="PLAYLIST_ID", referencedColumnName="ID")},
             inverseJoinColumns={@JoinColumn(name="MEDIUM_ID", referencedColumnName="ID")})
-    
-=======
-            joinColumns={@JoinColumn(name="PLAYLIST_ID", referencedColumnName="id")},
-            inverseJoinColumns={@JoinColumn(name="MEDIUM_ID", referencedColumnName="id")})
->>>>>>> 5f0f10673de43813910862133ba3cc2a1ad8b752
 	private List<Medium> mediumList;
     private int index;
     @ManyToOne
