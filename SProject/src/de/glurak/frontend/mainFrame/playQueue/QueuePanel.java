@@ -80,6 +80,7 @@ public class QueuePanel extends JPanel{
 			mediumButtonArray[i] = new JButton(getPlaylist().getMediumList().get(i).getTitel()); 
 			mediumPanelArray[i]	= new JPanel();
 			mediumPanelArray[i].add(mediumButtonArray[i]);
+			mediumPanelArray[i].setBackground(Color.LIGHT_GRAY);
 			if(getPlaylist().getMediumList().get(i).equals(current)){
 				mediumPanelArray[i].setBackground(Color.BLUE);
 				
@@ -89,7 +90,15 @@ public class QueuePanel extends JPanel{
 			
 		}
 	}
-
+	public void resetButton(){
+		for(int i=0;i<getPlaylist().getMediumList().size();i++){
+			mediumPanelArray[i].setBackground(Color.LIGHT_GRAY);
+			if(getPlaylist().getMediumList().get(i).equals(getPlaylist().getCurrent())){
+				mediumPanelArray[i].setBackground(Color.BLUE);				
+			}
+		}
+		this.validate();
+	}
 	public JScrollPane getScrollbar() {
 		return scrollbar;
 	}

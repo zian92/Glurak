@@ -97,7 +97,9 @@ public class PlayQueueView extends JPanel{
 	public JButton getNextButton() {
 		return nextButton;
 	}
-
+	public JButton[] getPlaylistButton(){
+		return getQueuePanel().getMediumButtonArray();
+	}
 	public void setNextButton(JButton nextButton) {
 		this.nextButton = nextButton;
 	}

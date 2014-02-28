@@ -33,8 +33,10 @@ public class Fenster extends JFrame{
 		pl.setMediumList(mediumList);
 		Medium m1 = new Medium(1,"PinkFluffyUniconrs","test2.mp3", null);
 		Medium m2 = new Medium(2,"Blah","test.mp3", null);
+		Medium m3 = new Medium(3,"Kurz","test3.mp3",null);
 		pl.getMediumList().add(m1);
 		pl.getMediumList().add(m2);
+		pl.getMediumList().add(m3);
 		
 		
 		PlayQueueViewController c = new PlayQueueViewController(pl);

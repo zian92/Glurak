@@ -4,6 +4,8 @@ import java.io.InputStream;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.AudioDevice;
 import javazoom.jl.player.advanced.AdvancedPlayer;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 public class PausablePlayer {
 
@@ -11,10 +13,13 @@ public class PausablePlayer {
     private final static int PLAYING = 1;
     private final static int PAUSED = 2;
     private final static int FINISHED = 3;
+    
 
     // the player actually doing all the work
     private final AdvancedPlayer player;
-
+    
+    private PropertyChangeSupport changes = new PropertyChangeSupport( this );
+    
     // locking object used to communicate with player thread
     private final Object playerLock = new Object();
 
@@ -28,6 +33,7 @@ public class PausablePlayer {
     public PausablePlayer(final InputStream inputStream, final AudioDevice audioDevice) throws JavaLayerException {
         this.player = new AdvancedPlayer(inputStream, audioDevice);
     }
+    
 
     /**
      * Starts playback (resumes if paused)
@@ -44,7 +50,7 @@ public class PausablePlayer {
                     final Thread t = new Thread(r);
                     t.setDaemon(true);
                     t.setPriority(Thread.MAX_PRIORITY);
-                    playerStatus = PLAYING;
+                    setPlayerStatus(PLAYING);
                     t.start();
                     break;
                 case PAUSED:
@@ -62,7 +68,7 @@ public class PausablePlayer {
     public boolean pause() {
         synchronized (playerLock) {
             if (playerStatus == PLAYING) {
-                playerStatus = PAUSED;
+                setPlayerStatus(PAUSED);
             }
             return playerStatus == PAUSED;
         }
@@ -74,7 +80,7 @@ public class PausablePlayer {
     public boolean resume() {
         synchronized (playerLock) {
             if (playerStatus == PAUSED) {
-                playerStatus = PLAYING;
+            	setPlayerStatus(PLAYING);
                 playerLock.notifyAll();
             }
             return playerStatus == PLAYING;
@@ -86,16 +92,22 @@ public class PausablePlayer {
      */
     public void stop() {
         synchronized (playerLock) {
-            playerStatus = FINISHED;
+        	setPlayerStatus(FINISHED);
             playerLock.notifyAll();
         }
     }
-
+    
+    public void setPlayerStatus(int playerStatus){
+    	 int oldPlayerStatus = this.playerStatus;
+    	 this.playerStatus = playerStatus;
+    	 changes.firePropertyChange( "playerStatus", oldPlayerStatus, playerStatus );
+  	
+    }
+    
     private void playInternal() {
         while (playerStatus != FINISHED) {
             try {
                 if (!player.play(1)) {
-                	
                     break;
                 }
             } catch (final JavaLayerException e) {
@@ -121,7 +133,7 @@ public class PausablePlayer {
      */
     public void close() {
         synchronized (playerLock) {
-            playerStatus = FINISHED;
+        	setPlayerStatus(FINISHED);
         }
         try {
             player.close();
@@ -129,5 +141,18 @@ public class PausablePlayer {
             // ignore, we are terminating anyway
         }
     }
+    
+     public int getPlayerStatus(){
+		return this.playerStatus;
+       	 
+     }
+    public void addPropertyChangeListener( PropertyChangeListener l )
+    {
+      changes.addPropertyChangeListener( l );
+    }
 
+    public void removePropertyChangeListener( PropertyChangeListener l )
+    {
+      changes.removePropertyChangeListener( l );
+    }
 }

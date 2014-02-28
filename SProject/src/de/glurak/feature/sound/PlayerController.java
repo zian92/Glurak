@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Map;
 
-import org.tritonus.share.sampled.file.TAudioFileFormat;
+//import org.tritonus.share.sampled.file.TAudioFileFormat;
 
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioFormat;
@@ -37,7 +37,7 @@ public class PlayerController {
 		try {
             FileInputStream input = new FileInputStream(location); 
             File file = new File(location);
-            System.out.println(file.getAbsolutePath());
+           
             
 //            AudioFileFormat fileFormat = AudioSystem.getAudioFileFormat(file);
 //            System.out.println(getDuration(file));
@@ -98,6 +98,9 @@ public class PlayerController {
 
 	public void setPlaying(boolean isPlaying) {
 		this.isPlaying = isPlaying;
+	}
+	public PausablePlayer getPlayer(){
+		return player;
 	}
 
 }
