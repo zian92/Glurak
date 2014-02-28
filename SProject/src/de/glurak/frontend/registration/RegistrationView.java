@@ -113,7 +113,7 @@ public class RegistrationView extends JPanel{
 		pan_input.add(l_gender);
 		pan_input.add(pan_radio);
 		
-		//Panel in das Frame einf�gen
+		//Panel in das Frame einfuegen
 		add(pan_input, BorderLayout.CENTER);
 		add(pan_buttons, BorderLayout.SOUTH);
 		add(l_note, BorderLayout.NORTH);
