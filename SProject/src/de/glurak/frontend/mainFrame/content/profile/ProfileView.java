@@ -1,6 +1,7 @@
 package de.glurak.frontend.mainFrame.content.profile;
 
 import javax.swing.*;
+
 import java.awt.*;
 
 /**
@@ -76,6 +77,8 @@ public class ProfileView extends JPanel{
 		    	d.gridx = 1;
 				d.gridy = 1;
 				b_edit = new JButton("Bearbeiten");
+				b_edit.setBackground(Color.black);
+				b_edit.setForeground(Color.white);
 				pan_profilepic.add(b_edit, d);
 				
 			}
@@ -84,11 +87,15 @@ public class ProfileView extends JPanel{
 				d.gridx = 0;
 				d.gridy = 1;
 			    b_message = new JButton("Nachricht");
+			    b_message.setBackground(Color.black);
+			    b_message.setForeground(Color.white);
 			    pan_profilepic.add(b_message, d);
 			    
 			    d.gridx = 2;
 			    d.gridy = 1;
 			    b_follow = new JButton("Follow");
+			    b_follow.setBackground(Color.black);
+			    b_follow.setForeground(Color.white);
 			    pan_profilepic.add(b_follow, d);
 			    
 			}
@@ -99,11 +106,14 @@ public class ProfileView extends JPanel{
 		
 			// Initialisieren des Buttons b_moreplaylists
 			b_moreplaylists = new JButton("mehr");
+			b_moreplaylists.setBackground(Color.black);
+			b_moreplaylists.setForeground(Color.white);
 			pan_topplaylists.add(b_moreplaylists);
 					
 		// Initialisieren Panel pan_profiledata
 		pan_profiledata = new JPanel(new GridBagLayout());	
 		pan_profiledata.setSize(350, 200);
+		pan_profiledata.setBackground(Color.black);
 		pan_profiledata.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 			// Layout-Restriktionen festlegen.
@@ -111,12 +121,13 @@ public class ProfileView extends JPanel{
 			e.fill = GridBagConstraints.HORIZONTAL;
 			e.insets = new Insets(2,2,2,2);	
 
-			// Label und Textfelder hinzuf�gen
+			// Label und Textfelder hinzufügen
 			// Username
 			e.gridx = 0;
 			e.gridy = 0;
 			e.weightx = 0.0;
 			l_username = new JLabel("Username:");
+			l_username.setForeground(Color.white);
 			pan_profiledata.add(l_username, e);
 			
 			e.gridx = 1;
@@ -124,6 +135,8 @@ public class ProfileView extends JPanel{
 			e.weightx = 1.0;
 			t_username = new JTextField();
 			t_username.setEditable(false);
+			t_username.setBackground(Color.black);
+			t_username.setForeground(Color.white);
 			pan_profiledata.add(t_username, e);
 			
 			// Vorname
@@ -131,6 +144,7 @@ public class ProfileView extends JPanel{
 			e.gridy = 1;
 			e.weightx = 0.0;
 			l_firstname = new JLabel("Vorname:");
+			l_firstname.setForeground(Color.white);
 			pan_profiledata.add(l_firstname, e);
 			
 			e.gridx = 1;
@@ -138,6 +152,8 @@ public class ProfileView extends JPanel{
 			e.weightx = 1.0;
 			t_firstname = new JTextField();
 			t_firstname.setEditable(false);
+			t_firstname.setBackground(Color.black);
+			t_firstname.setForeground(Color.white);
 			pan_profiledata.add(t_firstname, e);
 			
 			// Nachname
@@ -145,6 +161,7 @@ public class ProfileView extends JPanel{
 			e.gridy = 2;
 			e.weightx = 0.0;
 			l_lastname = new JLabel("Nachname:");
+			l_lastname.setForeground(Color.white);
 			pan_profiledata.add(l_lastname, e);
 			
 			e.gridx = 1;
@@ -152,6 +169,8 @@ public class ProfileView extends JPanel{
 			e.weightx = 1.0;
 			t_lastname = new JTextField();
 			t_lastname.setEditable(false);
+			t_lastname.setBackground(Color.black);
+			t_lastname.setForeground(Color.white);
 			pan_profiledata.add(t_lastname, e);
 			
 			// Geburtstag
@@ -159,6 +178,7 @@ public class ProfileView extends JPanel{
 			e.gridy = 3;
 			e.weightx = 0.0;
 			l_birthdate = new JLabel("Geburtstag:");
+			l_birthdate.setForeground(Color.white);
 			pan_profiledata.add(l_birthdate, e);
 			
 			e.gridx = 1;
@@ -166,6 +186,8 @@ public class ProfileView extends JPanel{
 			e.weightx = 1.0;
 			t_birthdate = new JTextField();
 			t_birthdate.setEditable(false);
+			t_birthdate.setBackground(Color.black);
+			t_birthdate.setForeground(Color.white);
 			pan_profiledata.add(t_birthdate, e);
 			
 			// Heimatland
@@ -173,6 +195,7 @@ public class ProfileView extends JPanel{
 			e.gridy = 4;
 			e.weightx = 0.0;
 			l_homecountry = new JLabel("Heimatland:");
+			l_homecountry.setForeground(Color.white);
 			pan_profiledata.add(l_homecountry, e);
 			
 			e.gridx = 1;
@@ -180,6 +203,8 @@ public class ProfileView extends JPanel{
 			e.weightx = 1.0;
 			t_homecountry = new JTextField();
 			t_homecountry.setEditable(false);
+			t_homecountry.setBackground(Color.black);
+			t_homecountry.setForeground(Color.white);
 			pan_profiledata.add(t_homecountry, e);
 			
 			

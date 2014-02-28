@@ -1,4 +1,4 @@
-package de.glurak.frontend.mainFrame.playQueueView;
+package de.glurak.frontend.mainFrame.playQueue;
 
 import java.awt.BorderLayout;
 import java.awt.ScrollPane;
@@ -21,7 +21,7 @@ public class PlayQueueView extends JPanel{
 	private JSlider 	positionBar;
 	private JPanel		controllPanel;
 	private JPanel		t;
-	private QueueView	playQueuePanel;
+	private QueuePanel	queuePanel;
 	private JScrollPane scrollbar;
 	
 	public PlayQueueView (){
@@ -35,8 +35,8 @@ public class PlayQueueView extends JPanel{
 	 */
 	public PlayQueueView (Playlist playlist,Medium current){
 		super();
-		if(playlist!=null){
-		initComponents(playlist,current);}
+		initComponents(playlist,current);
+	
 	}
 	/**
 	 * initialisiert View f�r die angegebene Playlist
@@ -48,8 +48,8 @@ public class PlayQueueView extends JPanel{
 		setPlayButton(new JButton("Play"));
 		setNextButton(new JButton("=>"));
 		setPreviousButton(new JButton("<="));
-		setIncreaseVolumeButton(new JButton("+"));
-		setDecreaseVolumeButton(new JButton("-"));
+//		setIncreaseVolumeButton(new JButton("+"));
+//		setDecreaseVolumeButton(new JButton("-"));
 		setPositionBar(new JSlider(JSlider.HORIZONTAL,0,50,0));	
 		setControllPanel(new JPanel());
 		getControllPanel().setLayout(new BorderLayout());
@@ -57,8 +57,8 @@ public class PlayQueueView extends JPanel{
 		getControllPanel().add(getPlayButton(),BorderLayout.CENTER);
 		getControllPanel().add(getNextButton(),BorderLayout.EAST);
 		getControllPanel().add(getPreviousButton(),BorderLayout.WEST);
-		getControllPanel().add(getIncreaseVolumeButton(),BorderLayout.NORTH);
-		getControllPanel().add(getDecreaseVolumeButton(),BorderLayout.SOUTH);
+//		getControllPanel().add(getIncreaseVolumeButton(),BorderLayout.NORTH);
+//		getControllPanel().add(getDecreaseVolumeButton(),BorderLayout.SOUTH);
 		
 		if(playlist!=null){
 			initQueueView(playlist,current);}
@@ -77,14 +77,15 @@ public class PlayQueueView extends JPanel{
 	 */
 	public void initQueueView(Playlist playlist,Medium current){
 		
-		setPlayQueuePanel(new QueueView(playlist,current));
-		this.add(getPlayQueuePanel());
-		scrollbar = new JScrollPane(getPlayQueuePanel().getFirstPanel(),JScrollPane.VERTICAL_SCROLLBAR_NEVER,   
+		setQueuePanel(new QueuePanel(playlist,current));
+		this.add(getQueuePanel());
+		scrollbar = new JScrollPane(getQueuePanel().getFirstPanel(),JScrollPane.VERTICAL_SCROLLBAR_NEVER,   
 	        	JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollbar.setLayout(new ScrollPaneLayout());
-		getPlayQueuePanel().add(scrollbar);
-	
+		getQueuePanel().add(scrollbar);
+		this.validate();
 	}
+	
 	public JButton getPlayButton() {
 		return playButton;
 	}
@@ -141,12 +142,11 @@ public class PlayQueueView extends JPanel{
 		this.previousButton = previousButton;
 	}
 
-	public QueueView getPlayQueuePanel() {
-		return playQueuePanel;
+	public QueuePanel getQueuePanel() {
+		return queuePanel;
 	}
-
-	public void setPlayQueuePanel(QueueView playQueuePanel) {
-		this.playQueuePanel = playQueuePanel;
+	public void setQueuePanel(QueuePanel queuePanel) {
+		this.queuePanel = queuePanel;
 	}
 
 	

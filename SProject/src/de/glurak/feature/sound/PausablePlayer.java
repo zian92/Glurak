@@ -95,6 +95,7 @@ public class PausablePlayer {
         while (playerStatus != FINISHED) {
             try {
                 if (!player.play(1)) {
+                	
                     break;
                 }
             } catch (final JavaLayerException e) {

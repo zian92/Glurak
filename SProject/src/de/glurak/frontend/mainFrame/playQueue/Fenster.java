@@ -1,4 +1,4 @@
-package de.glurak.frontend.mainFrame.playQueueView;
+package de.glurak.frontend.mainFrame.playQueue;
 
 import java.util.LinkedList;
 
@@ -28,18 +28,17 @@ public class Fenster extends JFrame{
 		this.setSize(200, 300);
 		this.setResizable(true);
 		mediumList= new LinkedList<Medium>();
-		m= new Medium[5];
-		for(int i=0;i<5;i++){
-		m[i]= new Medium(i,"Titel"+i+"","File"+i+"",null);
-		mediumList.add(m[i]);
-		}
-		
+
 		pl= new Playlist();
 		pl.setMediumList(mediumList);
+		Medium m1 = new Medium(1,"PinkFluffyUniconrs","test2.mp3", null);
+		Medium m2 = new Medium(2,"Blah","test.mp3", null);
+		pl.getMediumList().add(m1);
+		pl.getMediumList().add(m2);
 		
-		PlayQueueView pq = new PlayQueueView();
-		pq.initComponents(pl, m[1]);
-		this.add(pq);
+		
+		PlayQueueViewController c = new PlayQueueViewController(pl);
+		this.add(c.getView());
 		
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
