@@ -1,6 +1,8 @@
 package de.glurak.frontend.mainFrame.content.profile;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 
 /**
@@ -52,10 +54,12 @@ public class ProfileEditView extends JPanel{
 			// Initialisieren Panel pan_likes
 			pan_likes = new JPanel();
 			pan_likes.setBorder(BorderFactory.createLineBorder(Color.black));
+			pan_likes.setBackground(Color.black);
 			
 			// Initialisieren Panel pan_profilepic
 			pan_profilepic = new JPanel(new GridBagLayout());
 			pan_profilepic.setBorder(BorderFactory.createLineBorder(Color.black));
+			pan_profilepic.setBackground(Color.black);
 			
 				// Layout-Restriktionen festlegen.
 				GridBagConstraints d = new GridBagConstraints();
@@ -66,10 +70,14 @@ public class ProfileEditView extends JPanel{
 				d.gridx = 0;
 				d.gridy = 1;
 				b_uploadpic = new JButton("Bild hochladen");
+				b_uploadpic.setBackground(Color.black);
+				b_uploadpic.setForeground(Color.white);
+				b_uploadpic.setBorder(BorderFactory.createLineBorder(Color.white));
 				pan_profilepic.add(b_uploadpic, d);
 							
 			// Initialisieren Panel pan_profiledata
 			pan_profiledata = new JPanel(new GridBagLayout());
+			pan_profiledata.setBackground(Color.black);
 			pan_profiledata.setBorder(BorderFactory.createLineBorder(Color.black));
 			
 				// Layout-Restriktionen festlegen.
@@ -83,6 +91,7 @@ public class ProfileEditView extends JPanel{
 				e.gridy = 0;
 				e.weightx = 0.0;
 				l_username = new JLabel("Username:");
+				l_username.setForeground(Color.white);
 				pan_profiledata.add(l_username, e);
 				
 				e.gridx = 1;
@@ -90,6 +99,8 @@ public class ProfileEditView extends JPanel{
 				e.weightx = 1.0;
 				t_username = new JTextField();
 				t_username.setEditable(false);
+				t_username.setBackground(Color.black);
+				t_username.setForeground(Color.white);
 				pan_profiledata.add(t_username, e);
 				
 				// Vorname
@@ -97,12 +108,15 @@ public class ProfileEditView extends JPanel{
 				e.gridy = 1;
 				e.weightx = 0.0;
 				l_firstname = new JLabel("Vorname:");
+				l_firstname.setForeground(Color.white);
 				pan_profiledata.add(l_firstname, e);
 				
 				e.gridx = 1;
 				e.gridy = 1;
 				e.weightx = 1.0;
 				t_firstname = new JTextField();
+				t_firstname.setBackground(Color.black);
+				t_firstname.setForeground(Color.white);
 				pan_profiledata.add(t_firstname, e);
 				
 				// Nachname
@@ -110,12 +124,15 @@ public class ProfileEditView extends JPanel{
 				e.gridy = 2;
 				e.weightx = 0.0;
 				l_lastname = new JLabel("Nachname:");
+				l_lastname.setForeground(Color.white);
 				pan_profiledata.add(l_lastname, e);
 				
 				e.gridx = 1;
 				e.gridy = 2;
 				e.weightx = 1.0;
 				t_lastname = new JTextField();
+				t_lastname.setBackground(Color.black);
+				t_lastname.setForeground(Color.white);
 				pan_profiledata.add(t_lastname, e);
 				
 				// Geburtstag
@@ -123,12 +140,15 @@ public class ProfileEditView extends JPanel{
 				e.gridy = 3;
 				e.weightx = 0.0;
 				l_birthdate = new JLabel("Geburtstag:");
+				l_birthdate.setForeground(Color.white);
 				pan_profiledata.add(l_birthdate, e);
 				
 				e.gridx = 1;
 				e.gridy = 3;
 				e.weightx = 1.0;
 				t_birthdate = new JTextField();
+				t_birthdate.setBackground(Color.black);
+				t_birthdate.setForeground(Color.white);
 				pan_profiledata.add(t_birthdate, e);
 				
 				// Heimatland
@@ -136,12 +156,15 @@ public class ProfileEditView extends JPanel{
 				e.gridy = 4;
 				e.weightx = 0.0;
 				l_homecountry = new JLabel("Heimatland:");
+				l_homecountry.setForeground(Color.white);
 				pan_profiledata.add(l_homecountry, e);
 				
 				e.gridx = 1;
 				e.gridy = 4;
 				e.weightx = 1.0;
 				t_homecountry = new JTextField();
+				t_homecountry.setBackground(Color.black);
+				t_homecountry.setForeground(Color.white);
 				pan_profiledata.add(t_homecountry, e);
 				
 				// Einfügen des Buttons b_save
@@ -149,6 +172,9 @@ public class ProfileEditView extends JPanel{
 				e.gridy = 5;
 				e.gridwidth = 2;
 				b_save = new JButton("Speichern");
+				b_save.setBorder(BorderFactory.createLineBorder(Color.white));
+				b_save.setBackground(Color.black);
+				b_save.setForeground(Color.white);
 				pan_profiledata.add(b_save, e);
 				
 				
@@ -157,6 +183,7 @@ public class ProfileEditView extends JPanel{
 			c.gridy = 0;
 			c.weightx = 0.5;
 			c.weighty = 0.5;
+			c.gridheight = 2;
 			pan_profileeditview.add(pan_likes, c);
 			
 			c.gridx = 1;
