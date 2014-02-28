@@ -19,15 +19,15 @@ public class ProfileEditView extends JPanel{
 		private JPanel pan_likes;
 		
 		// Buttons
-		private JButton b_save;
-		private JButton b_uploadpic;
+		protected JButton b_save;
+		protected JButton b_uploadpic;
 		
 		// TextFields profile_data
-		private JTextField t_username;
-		private JTextField t_firstname;
-		private JTextField t_lastname;
-		private JTextField t_birthdate;
-		private JTextField t_homecountry;
+		protected JTextField t_username;
+		protected JTextField t_firstname;
+		protected JTextField t_lastname;
+		protected JTextField t_birthdate;
+		protected JTextField t_homecountry;
 		
 		// Labels profile_data
 		private JLabel l_username;
