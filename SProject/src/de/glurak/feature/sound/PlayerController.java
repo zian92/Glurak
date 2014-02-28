@@ -1,4 +1,5 @@
 package de.glurak.feature.sound;
+import java.awt.Container;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -35,16 +36,9 @@ public class PlayerController {
 		try {
             FileInputStream input = new FileInputStream(location); 
             File file = new File(location);
-            System.out.println(file.getAbsolutePath());
-            
-//            AudioFileFormat fileFormat = AudioSystem.getAudioFileFormat(file);
-//            System.out.println(getDuration(file));
-            
-//            System.out.println(fileFormat.getFrameLength());
-            
+                     
             player = new PausablePlayer(input);
             
-            // start playing
             player.play();
         } catch (final Exception e) {
             throw new RuntimeException(e);
@@ -96,6 +90,10 @@ public class PlayerController {
 
 	public void setPlaying(boolean isPlaying) {
 		this.isPlaying = isPlaying;
+	}
+	public PausablePlayer getPlayer() {
+		
+		return player;
 	}
 
 }
