@@ -9,6 +9,8 @@ import org.junit.Test;
 
 import javax.persistence.EntityTransaction;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
@@ -40,6 +42,9 @@ public class Usertest {
         user2.setPassword("123");
         db.registrateUser(user1,ac);
         db.registrateUser(user2,ac);
+
+        user1.hate(user2);
+        user2.like(user1);
     }
 
     @After
@@ -53,6 +58,9 @@ public class Usertest {
         assertTrue(u.getUsername().equals("Olaf"));
         assertTrue(u.checkPassword("MyOlaf"));
         assertTrue(!u.isLocked());
+        assertTrue(u.getHater().size() == 1);
+        assertTrue(u.getHater().get(0).getUsername().equals("Olm"));
+        assertTrue(u.likeCount()==0);
     }
 
     @Test
@@ -68,6 +76,11 @@ public class Usertest {
         assertTrue(u.getUsername().equals("Olm"));
         assertTrue(u.checkPassword("123"));
         assertTrue(u.isLocked());
+        assertTrue(u.getLiker().size()==1) ;
+        assertTrue(u.likeCount()==1);
+        assertTrue(u.hateCount()==0);
+        assertTrue(u.getHater().size()==0);
+        assertTrue(u.getLiker().get(0).getUsername().equals("Olaf"));
     }
 
     @Test

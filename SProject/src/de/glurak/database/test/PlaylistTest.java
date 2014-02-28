@@ -62,6 +62,7 @@ public class PlaylistTest {
         l.addMedium(m2);
         l.setOwner(u1);
         l.setName("Die falO Kollektion");
+        l.hate(u2);
         db.addPlaylist(l,t);
         //u1.getMyPlaylists().add(l);
 
@@ -69,6 +70,7 @@ public class PlaylistTest {
         l2.setName("The Hate List");
         l2.addMedium(m3);
         l2.setOwner(u2);
+        l2.like(u1);
         db.addPlaylist(l2,t);
         //u2.getMyPlaylists().add(l2);
 
@@ -92,6 +94,10 @@ public class PlaylistTest {
         assertTrue(a.getTitel().equals("Schmusesongs von falO"));
         assertTrue(a.getOwner().equals(u1));
 
+        assertTrue(l.hateCount()==1);
+        assertTrue(l.getHater().get(0).equals(u2));
+        assertTrue(l.likeCount()==0);
+
         a= s.get(1);
         assertTrue(a.getTitel().equals("Duett von falO und mlO"));
         assertTrue(a.getOwner().equals(u1));
@@ -110,6 +116,11 @@ public class PlaylistTest {
         assertTrue(l.getName().equals("The Hate List"));
         assertTrue(l.getOwner().equals(u2));
         assertTrue(s.size()==1);
+
+        assertTrue(l.likeCount()==1);
+        assertTrue(l.getLiker().get(0).equals(u1));
+        assertTrue(l.hateCount()==0);
+
         Medium a = s.get(0);
         assertTrue(a.getTitel().equals("Just Hatify"));
         assertTrue(a.getOwner().equals(u2));
