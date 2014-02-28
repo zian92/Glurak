@@ -13,7 +13,6 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 
-
 /**
  * ApplicationView zeigt das Fenster an, wenn man als Kuenstler
  * eine Bewerbung an ein Label senden moechte.
@@ -28,8 +27,8 @@ public class ApplicationView extends JPanel{
 	//Scrolltabelle fuer das Nachrichtenfeld
 	private JScrollPane s_application = new JScrollPane(t_application);
 	//Buttons
-	private JButton b_send;
-	private JButton b_cancel;
+	protected JButton b_send;
+	protected JButton b_cancel;
 	
 	public ApplicationView(){
 		

@@ -27,8 +27,8 @@ public class MessageView extends JPanel{
 	//Scrolltabelle fuer das Nachrichtenfeld
 	private JScrollPane s_message = new JScrollPane(t_message);
 	//Buttons
-	private JButton b_send;
-	private JButton b_cancel;
+	protected JButton b_send;
+	protected JButton b_cancel;
 	
 	/**
 	 * Konstruktor
