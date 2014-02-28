@@ -18,11 +18,13 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import de.glurak.Query;
 import de.glurak.frontend.login.PromotionPanel;
 
 
 /**
- * Creates The PromotionPanel
+ * Creates The PromotionPanel with a list of items
+ * which can be scrolled throughout the panels components.
  * Manages the slidingbehaviour of the PromotionPanels
  * 
  * @author MxB
@@ -34,23 +36,46 @@ public class SliderPanelController implements ActionListener{
 	private PromotionPanel promPan;
 	private Dimension slidePaneDim = new Dimension(240, 240);
 	private int picDim = slidePaneDim.width;
-	
+
+	/**
+	 * Constructor
+	 * creates the PromotionPanel, attaches this as Actionlistener
+	 * and initialize the array of items, that will be shown by the promotionpanel.
+	 * @post Panel with sliderpanels is created and ready 
+	 * 		 to be filled with further elements.
+	 * @author MxB
+	 */
 	public SliderPanelController(){
 		promPan = new PromotionPanel();
 		promPan.bt_start.addActionListener(this);
 		//promPan.bt_add.addActionListener(this);
 		
-		loadArrayList();
-		fillSliderPanel();
+		initPromPanel();
+		//loadArrayList();
+		//fillSliderPanel();
 	}
 	
-	public JComponent getView(){
-		return promPan;
+	public JComponent getView(){ return promPan; }
+		
+	/**
+	 * Initialize the item array with the first, initial hardcorded elements.
+	 * Adds the first items to the Promotionpanel components 
+	 */
+	private void initPromPanel(){
+		
+		initImageLabelList();
+		// fill the sliders
+		for (int sliderPos = 0 ; sliderPos < promPan.getSliderCount(); sliderPos++){
+			promPan.getSLiderAtPos(sliderPos).setPreferredSize(slidePaneDim);
+			// the initial panels have no abilities
+			
+			promPan.getSLiderAtPos(sliderPos).addSliderComponent(imageLabelList.get(sliderPos));
+		}
 	}
 	
 	public void fillSliderPanel(){
 		
-		for (int sliderPos = 0 ; sliderPos < promPan.sliderCount; sliderPos++){
+		for (int sliderPos = 0 ; sliderPos < promPan.getSliderCount(); sliderPos++){
 			promPan.getSLiderAtPos(sliderPos).setPreferredSize(slidePaneDim);
 			
 			JLayeredPane layered_pan = new JLayeredPane();
@@ -62,8 +87,8 @@ public class SliderPanelController implements ActionListener{
 			bt_hate.setBounds(240,240,50,50);
 			
 			// Add -1 for adding the last 4 pictures later with the addContentTo function
-			for (int i = 0; i < (imageLabelList.size()/promPan.sliderCount ); i++){
-				promPan.getSLiderAtPos(sliderPos).addSliderComponent(imageLabelList.get( sliderPos + (i*promPan.sliderCount)));
+			for (int i = 1; i < (imageLabelList.size()/promPan.getSliderCount() ); i++){
+				promPan.getSLiderAtPos(sliderPos).addSliderComponent(imageLabelList.get( sliderPos + (i*promPan.getSliderCount())));
 			}
 		promPan.getSLiderAtPos(sliderPos).refresh();
 		}
@@ -76,7 +101,7 @@ public class SliderPanelController implements ActionListener{
 		try {
 			
 			BufferedImage BGImage = ImageIO.read(new File( filename));
-			Image img =  BGImage.getScaledInstance(240, 240, Image.SCALE_SMOOTH);
+			Image img =  BGImage.getScaledInstance(picDim, picDim, Image.SCALE_SMOOTH);
 			JLabel picLabel = new JLabel(new ImageIcon(img));
 			picLabel.setPreferredSize(slidePaneDim);
 			imageLabelList.add(picLabel);				
@@ -109,14 +134,38 @@ public class SliderPanelController implements ActionListener{
 	}
 	
 	
+	
+	/**
+	 * Loads images and attacht them to picturelabels.
+	 * Stores that picturelabels in the item-array.
+	 * @post A Number of illustrated picturelabels is stored in the item-array.
+	 * 		 The number depends on the amount of sliders on the PromotionPanel.
+	 */
+	private void initImageLabelList(){
+		String filename = new String("pic");
+		
+		try {
+			for (int sliderNr = 0 ; sliderNr < promPan.getSliderCount(); sliderNr++){
+				BufferedImage labelImage = ImageIO.read(new File(Query.FOLDER_PICTURE_SLIDER + filename + sliderNr + ".jpg"));
+				Image img =  labelImage.getScaledInstance(picDim,picDim, Image.SCALE_SMOOTH);
+				JLabel picLabel = new JLabel(new ImageIcon(img));
+				picLabel.setPreferredSize(slidePaneDim);
+				imageLabelList.add(picLabel);
+			}
+		}catch (IOException e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+		
 	private void loadArrayList(){
 		String filename = new String("pic");
 		
 		try {
-			for (int j = 0; j < 4; j++){	
+			for (int j = 1; j < 4; j++){	
 				for (int i = 1; i< 5; i++){
-					BufferedImage BGImage = ImageIO.read(new File(filename + i + j + ".jpg"));
-					Image img =  BGImage.getScaledInstance(240, 240, Image.SCALE_SMOOTH);
+					BufferedImage BGImage = ImageIO.read(new File(Query.FOLDER_PICTURE_SLIDER + filename  + i + j + ".jpg"));
+					Image img =  BGImage.getScaledInstance(picDim,picDim, Image.SCALE_SMOOTH);
 					JLabel picLabel = new JLabel(new ImageIcon(img));
 					picLabel.setPreferredSize(slidePaneDim);
 					imageLabelList.add(picLabel);
@@ -131,6 +180,7 @@ public class SliderPanelController implements ActionListener{
 		
 	}
 	
+	
 	public void actionPerformed(ActionEvent e) {
 		// TODO distinguish the SOurce of the Event and handle it
 				if (e.getSource() == promPan.bt_start){
@@ -141,21 +191,18 @@ public class SliderPanelController implements ActionListener{
 						@Override
 						public void run() {
 					
-							if ((Math.random()*100) < 30){
-								promPan.getSLiderAtPos(0).next();
-								promPan.getSLiderAtPos(1).next();
-								promPan.getSLiderAtPos(2).next();
-								promPan.getSLiderAtPos(3).next();
-							//	promPan.getSLiderAtPos(4).next();
-							//	promPan.getSLiderAtPos(5).next();
-						
+							if ((Math.random()*100) < 50){
+								for (int j = 0; j < promPan.getSliderCount(); j++){
+									if (promPan.getSLiderAtPos(j).getItemCount() > 0){
+											promPan.getSLiderAtPos(j).next();
+									}
+								}
 							}else{
-								promPan.getSLiderAtPos(0).previous();
-								promPan.getSLiderAtPos(1).previous();
-								promPan.getSLiderAtPos(2).previous();
-								promPan.getSLiderAtPos(3).previous();
-							//	promPan.getSLiderAtPos(4).previous();
-							//	promPan.getSLiderAtPos(5).previous();
+								for (int j = 0; j < promPan.getSliderCount(); j++){
+									if (promPan.getSLiderAtPos(j).getItemCount() > 0){
+											promPan.getSLiderAtPos(j).previous();
+									}
+								}
 							}
 							
 						}
@@ -163,32 +210,8 @@ public class SliderPanelController implements ActionListener{
 					
 					java.util.Timer ankurbler = new java.util.Timer();
 					ankurbler.schedule(action,  1000, 5000);
-					
-					/*
-					 * TESTING
-					 
-					promview.getSLiderAtPos(0).next();
-					promview.getSLiderAtPos(1).next();
-					promview.getSLiderAtPos(2).next();
-					promview.getSLiderAtPos(3).next();
-					*/
-					
 				}else{
-					/*
-					 * TESING
-					
-					promview.getSLiderAtPos(0).previous();
-					promview.getSLiderAtPos(1).previous();
-					promview.getSLiderAtPos(2).previous();
-					promview.getSLiderAtPos(3).previous();
-					 */
-				
 					 addContentTo(0,"mj.jpg");
-					 addContentTo(1,"abba.jpg");
-					 addContentTo(2,"o1.jpg");
-					 addContentTo(3,"o2.jpg");
-					 
-					
 				}
 				
 		

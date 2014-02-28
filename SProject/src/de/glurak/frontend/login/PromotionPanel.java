@@ -14,7 +14,7 @@ public class PromotionPanel extends JPanel {
 	private SliderPanel mySlider_2;
 	private SliderPanel mySlider_3;
 	
-	public int sliderCount = 4;
+	private int sliderCount = 4;
 	
 	public JButton bt_start;
 	/*
@@ -72,6 +72,8 @@ public class PromotionPanel extends JPanel {
 		add(bt_add, c); */
 		setVisible(true);
 	}
+	
+	public int getSliderCount(){ return this.sliderCount; }
 	
 	public SliderPanel getSLiderAtPos(int pos){
 		

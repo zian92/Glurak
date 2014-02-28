@@ -4,12 +4,10 @@ import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import de.glurak.feature.Uploader;
 import de.glurak.frontend.login.LoginVController;
-import de.glurak.frontend.login.LoginView;
 
 public class GlurakStarter {
 

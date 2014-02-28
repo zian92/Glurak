@@ -14,11 +14,15 @@ import javax.swing.Timer;
 
 public class SliderPanel extends JPanel {
 	JPanel pan_main = new JPanel(new SliderCardLayout());
+	private int itemCount;
 	
 	public SliderPanel(){
 		setLayout(new BorderLayout());
 		add(pan_main, BorderLayout.CENTER);
+		this.itemCount = -1;
 	}
+	
+	public int getItemCount(){ return this.itemCount; }
 	
 	public void previous(){
 		SliderCardLayout cl=(SliderCardLayout) pan_main.getLayout();
@@ -47,6 +51,7 @@ public class SliderPanel extends JPanel {
 	
 	public void addSliderComponent(JComponent c){
 		pan_main.add(c);
+		itemCount = itemCount + 1;
 	}
 	
 	public void refresh(){
