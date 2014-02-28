@@ -17,13 +17,25 @@ public class PromotionPanel extends JPanel {
 	private int sliderCount = 4;
 	
 	public JButton bt_start;
-	/*
-	public JButton bt_add;
-	*/
 	
-	public PromotionPanel(){
+	public JButton bt_add;
+	
+	private SliderPanel[] sliderArray;
+	
+	public PromotionPanel(int maxSliders){
 		super();
 		
+		this.sliderCount = maxSliders;
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		/*
+		for (int i = 0; i < maxSliders; i++){
+			sliderArray[i] =  new SliderPanel();
+			c.gridx = i;
+			c.gridy = 0;
+			add(sliderArray[i] ,c);
+		}
+		*/
 		mySlider_0 = new SliderPanel();
 		mySlider_1 = new SliderPanel();
 		mySlider_2 = new SliderPanel();
@@ -32,12 +44,13 @@ public class PromotionPanel extends JPanel {
 		mySlider_5 = new JSLSlider();
 		mySlider_6 = new JSLSlider();
 		*/
-		this.setLayout(new GridBagLayout());
 		
-		GridBagConstraints c = new GridBagConstraints();
+		
+		
 		c.gridx = 0;
 		c.gridy = 0;
 		add(mySlider_0,c);
+		
 		c.gridx = 1;
 		c.gridy = 0;
 		add(mySlider_1,c);
@@ -62,14 +75,14 @@ public class PromotionPanel extends JPanel {
 		
 		bt_start = new JButton("Start");
 		add(bt_start, c);
-		/*
+		
 		c.fill = GridBagConstraints.HORIZONTAL;
 	  	c.gridx = 0;
 		c.gridy = 3;
-		c.gridwidth = 3;
+		c.gridwidth = 2;
 		
 		bt_add = new JButton("add Bieber");
-		add(bt_add, c); */
+		add(bt_add, c); 
 		setVisible(true);
 	}
 	

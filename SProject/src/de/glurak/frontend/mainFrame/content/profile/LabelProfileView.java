@@ -18,13 +18,13 @@ public class LabelProfileView extends JPanel{
 		private JPanel pan_playlists;
 		
 		// Buttons
-		private JButton b_apply;
-		private JButton b_follow;
-		private JButton b_edit;
-		private JButton b_moreplaylists;
+		protected JButton b_apply;
+		protected JButton b_follow;
+		protected JButton b_edit;
+		protected JButton b_moreplaylists;
 		
 		// TextFields profile_data
-		private JTextField t_labelname;
+		protected JTextField t_labelname;
 		
 		// Labels profile_data
 		private JLabel l_labelname;		
