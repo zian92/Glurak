@@ -1,3 +1,3 @@
 ﻿SoPra
 =====
-Olaf ist im Stress
+Olaf ist krank
