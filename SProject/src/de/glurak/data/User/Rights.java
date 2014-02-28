@@ -1,6 +1,6 @@
 package de.glurak.data.User;
 
-//TODO: Bewertungen implementieren
+//TODO: Bewertungen implementieren nach Schema Like - Dislike (Songs, Playlists, Nutzer)
 //TODO: Werben für Songs
 /**
  * Hier sind alle Rechte gesammelt die es gibt...
@@ -26,7 +26,7 @@ public class Rights {
 
 
 
-    //TODO: Noch die Einzelnen Rechte verfeinern und verteilen
+    
     public static final String[] LISTENER_RIGHTS ={LISTEN_RIGHT,APPLICATION_TO_ADMIN,MANAGE_PLAYLIST,FOLLOW_USER,DO_MESSAGE};
     public static final String[] ARTIST_RIGHTS = {LISTEN_RIGHT,MANAGE_OWN_MEDIEN,APPLICATION_TO_LABEL,MANAGE_PLAYLIST,MANAGE_ALBUM,
                                     LOCK_OTHER_MEDIEN,LOCK_OTHER_USER,UNLOCK_OTHER_MEDIEN,UNLOCK_OTHER_USER,
