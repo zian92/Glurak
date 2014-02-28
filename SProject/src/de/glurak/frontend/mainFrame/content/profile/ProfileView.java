@@ -49,6 +49,7 @@ public class ProfileView extends JPanel{
 		// Initialisieren Panel pan_profileview
 		pan_profileview = new JPanel(new GridBagLayout());
 		pan_profileview.setSize(1000,500);
+		pan_profileview.setBackground(Color.black);
 		
 		// Layout-Restriktionen festlegen.
 		GridBagConstraints c = new GridBagConstraints();
