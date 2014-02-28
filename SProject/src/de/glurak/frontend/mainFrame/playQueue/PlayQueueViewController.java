@@ -23,6 +23,7 @@ public class PlayQueueViewController {
     private final static int PLAYING = 1;
     private final static int PAUSED = 2;
     private final static int FINISHED = 3;
+    private final static int FINISHED_BY_END = 4;
 	
 	
 	public PlayQueueViewController (Playlist playlist) {
@@ -38,46 +39,39 @@ public class PlayQueueViewController {
 				Object src = e.getSource();
 				if (src == view.getPlayButton()) {
 					if (player.isPaused()) {
-						System.out.println("resume");
 						player.resume();
 					}  else if (player.isPlaying()) {
-						System.out.println("pause");
-						player.pause();
+								player.pause();
 					} else {
-						System.out.println("Play");
+						
 						player.play(getCurrentMedium().getFileName());
 						addPlayerListener();
 					}
 				} else if (src == view.getNextButton()) {
-					System.out.println("next");
-					
-					
-					
 					setCurrentMedium(getPlaylist().getNext());
 					if (player.isPaused() || player.isPlaying())
 						player.stop();
 					player.play(getCurrentMedium().getFileName());
-					view.initQueueView(getPlaylist(), getCurrentMedium());
+					view.getQueuePanel().resetButton();
 					
 				} else if (src == view.getPreviousButton()) {
-					System.out.println("prev");
 					setCurrentMedium(getPlaylist().getPrevious());
 					if (player.isPaused() || player.isPlaying())
 						player.stop();
 					player.play(getCurrentMedium().getFileName());
 					addPlayerListener();
-					view.initQueueView(getPlaylist(), getCurrentMedium());
+					view.getQueuePanel().resetButton();
 				}
 				else { 
 					for(int i = 0;i<getPlaylist().getMediumList().size();i++){
 						if(src== view.getQueuePanel().getMediumButtonArray()[i]){
-							System.out.println("yolo2");
+							
 							getPlaylist().setCurrent(i);
 							setCurrentMedium(getPlaylist().getCurrent());
-							
-							if (player.isPaused() || player.isPlaying()){
-								player.stop();}
-							
+								
+								if (player.isPaused()||player.isPlaying()){
+									player.stop();}
+
 								player.play(getCurrentMedium().getFileName());
 								addPlayerListener();
 								view.getQueuePanel().resetButton();
@@ -108,12 +102,13 @@ public class PlayQueueViewController {
 	private void addPlayerListener() {
 		player.getPlayer().addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
-				// TODO Auto-generated method stub
-				if(player.getPlayer().getPlayerStatus()==FINISHED&&player.isPlaying()){
+				
+				if(player.getPlayer().getPlayerStatus()==FINISHED_BY_END){
+					
 					setCurrentMedium(getPlaylist().getNext());
 						player.stop();
 					player.play(getCurrentMedium().getFileName());
-					view.initQueueView(getPlaylist(), getCurrentMedium());
+					view.getQueuePanel().resetButton();
 				}
 			}
             });
@@ -154,6 +149,7 @@ public class PlayQueueViewController {
 
 	public void setCurrentMedium(Medium currentMedium) {
 		this.currentMedium = currentMedium;
+		System.out.println(currentMedium);
 	}
 
 

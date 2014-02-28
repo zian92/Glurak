@@ -13,6 +13,7 @@ public class PausablePlayer {
     private final static int PLAYING = 1;
     private final static int PAUSED = 2;
     private final static int FINISHED = 3;
+    private final static int FINISHED_BY_END = 4;
     
 
     // the player actually doing all the work
@@ -108,6 +109,7 @@ public class PausablePlayer {
         while (playerStatus != FINISHED) {
             try {
                 if (!player.play(1)) {
+                	setPlayerStatus(FINISHED_BY_END);
                     break;
                 }
             } catch (final JavaLayerException e) {

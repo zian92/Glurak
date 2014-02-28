@@ -69,14 +69,22 @@ public class Playlist implements Serializable{
 		return this.getMediumList().get(this.index);
 	}
 	
+	/** Setzt aktuelles Medium
+	 * @param index des neuen aktuellen Mediums
+	 */
+	public void setCurrent(int index){
+		this.index = index%this.getMediumList().size();
+		System.out.println("Current :" +index+"");
+		
+	}
 	/**
 	 * Setzt index++
 	 * Gibt nächstes Medium zurück
 	 * @return medium an der Stelle index+1
 	 */
 	public Medium getNext() {
-		this.index++;
-		return this.getMediumList().get(index%this.getMediumList().size());
+		this.index= (index+1)%this.getMediumList().size();
+		return this.getMediumList().get(index);
 	}
 	
 	/**
@@ -85,7 +93,8 @@ public class Playlist implements Serializable{
 	 */
 	public Medium getPrevious() {
 		this.index--;
-		return this.getMediumList().get(index%this.getMediumList().size());
+		if(index<0){index=this.getMediumList().size()-1;}
+		return this.getMediumList().get(index);
 	}
 	
 	public void add(int index, Medium medium) {
