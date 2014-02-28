@@ -21,9 +21,9 @@ public interface Hateable {
 	
 	/**
 	 * Gibt einen Positivpunkt im Like-Count.
-	 * @param Liker der User, der positiv bewertet hat.
+	 * @param liker der User, der positiv bewertet hat.
 	 */
-	public void like(User Liker);
+	public void like(User liker);
 	
 	/**
 	 * Inkrementiert den Hate-Count.
@@ -44,9 +44,9 @@ public interface Hateable {
 	public List<User> getHater();
 	
 	/**
-	 * Gibt die Liste aller Liker zurück
-	 * @return Liste aller Liker
+	 * Gibt die Liste aller liker zurück
+	 * @return Liste aller liker
 	 */
-	public List<User> getLiker();
+	public List<User> getliker();
 
 }
