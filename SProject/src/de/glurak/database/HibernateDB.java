@@ -251,7 +251,7 @@ public class HibernateDB {
 
     /**
      * Fügt eine neue Playlist hinzu
-     * ACHTUNG! Jedes Medium in der Playlist (und der Nutzer natürlich) muss registriert sein in der Datenbank
+     * ACHTUNG! Jedes Medium in der Playlist (und der Nutzer natürlich) muss in der Datenbank registriert sein 
      * @param list die Playlist
      * @param ac die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht
      */

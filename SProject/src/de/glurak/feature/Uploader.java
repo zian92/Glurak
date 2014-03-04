@@ -10,6 +10,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import de.glurak.Query;
+import de.glurak.data.Medium;
 
 /**
  * Uploader stellt Funktionen zum hochladen von Bild- und Musikdateien bereit. Die erlaubten Datentypen sind genauer in de.glurak.Qery spezifiziert.
@@ -51,7 +52,8 @@ public class Uploader {
 	 * @return
 	 * @throws IOException
 	 */
-	public boolean saveMusic(File[] files) throws IOException {
+	public boolean saveMusic(Medium[] medien) throws IOException {
+		File[] files = this.getFileArrayFromMedium(medien);
 		for (File f : files) {
 			Files.copy(f.toPath(), new File(Query.FOLDER_MUSIC + f.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
 		}
@@ -65,8 +67,8 @@ public class Uploader {
 	 * @return
 	 * @throws IOException
 	 */
-	public boolean saveProfilePicture(File pic) throws IOException {
-		return this.savePic(pic, Query.FOLDER_PICTURE_PROFILE);
+	public boolean saveProfilePicture(Medium pic) throws IOException {
+		return this.savePic(this.getFileFromMedium(pic), Query.FOLDER_PICTURE_PROFILE);
 	}
 
 	/**
@@ -76,8 +78,8 @@ public class Uploader {
 	 * @return
 	 * @throws IOException
 	 */
-	public boolean saveAlbumCover(File pic) throws IOException {
-		return this.savePic(pic, Query.FOLDER_PICTURE_COVER);
+	public boolean saveAlbumCover(Medium picture) throws IOException {
+		return this.savePic(this.getFileFromMedium(picture), Query.FOLDER_PICTURE_COVER);
 	}
 
 	/**
@@ -87,8 +89,8 @@ public class Uploader {
 	 * @return
 	 * @throws IOException
 	 */
-	public boolean saveSlider(File pic) throws IOException {
-		return this.savePic(pic, Query.FOLDER_PICTURE_SLIDER);
+	public boolean saveSlider(Medium picture) throws IOException {
+		return this.savePic(this.getFileFromMedium(picture), Query.FOLDER_PICTURE_SLIDER);
 	}
 
 	/**
@@ -111,7 +113,7 @@ public class Uploader {
 	 * @return
 	 */
 	public File selectSinglePicture(Component comp) {
-		return this.selectFiles(comp, Query.SUPPORTED_PICTURE_TYPES, JFileChooser.FILES_ONLY)[0];
+		return this.selectFiles(comp, Query.SUPPORTED_PICTURE_TYPES, JFileChooser.FILES_ONLY, false)[0];
 	}
 
 	/**
@@ -121,7 +123,7 @@ public class Uploader {
 	 * @return
 	 */
 	public File[] selectMusic(Component comp) {
-		return this.selectFiles(comp, Query.SUPPORTED_MUSIC_TYPES, JFileChooser.FILES_AND_DIRECTORIES);
+		return this.selectFiles(comp, Query.SUPPORTED_MUSIC_TYPES, JFileChooser.FILES_AND_DIRECTORIES, true);
 	}
 
 	/**
@@ -132,9 +134,9 @@ public class Uploader {
 	 * @param selectionMode
 	 * @return
 	 */
-	private File[] selectFiles(Component comp, String[] fileExtensions, int selectionMode) {
+	private File[] selectFiles(Component comp, String[] fileExtensions, int selectionMode, boolean multiSelection) {
 		JFileChooser chooser = new JFileChooser(System.getProperty("user.home"));
-		chooser.setMultiSelectionEnabled(true);
+		chooser.setMultiSelectionEnabled(multiSelection);
 		chooser.setFileSelectionMode(selectionMode);
 		chooser.setFileFilter(new FileNameExtensionFilter(this.makeFileExtensionString(fileExtensions), fileExtensions));
 		chooser.setFileFilter(new FileNameExtensionFilter(null, fileExtensions));
@@ -161,5 +163,29 @@ public class Uploader {
 			s += ", ." + fileExtensions[i];
 		}
 		return s;
+	}
+
+	/**
+	 * Gibt ein FileArray zurueck.
+	 * 
+	 * @param med
+	 * @return
+	 */
+	private File[] getFileArrayFromMedium(Medium[] med) {
+		File[] temp = new File[med.length];
+		for (int i = 0; i < med.length; i++) {
+			temp[i] = new File(med[i].getFileName());
+		}
+		return temp;
+	}
+
+	/**
+	 * gibt eine neue File von Medium zurueck
+	 * 
+	 * @param med
+	 * @return
+	 */
+	private File getFileFromMedium(Medium med) {
+		return new File(med.getFileName());
 	}
 }
