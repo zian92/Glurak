@@ -25,7 +25,7 @@ public class MainFrameView extends JFrame {
 		player = new JPanel(new BorderLayout());
 		player.setPreferredSize(new Dimension(1024, 120));
 		player.setBackground(Color.BLACK);
-		content = new JPanel();
+		content = new JPanel(new BorderLayout());
 		content.setPreferredSize(new Dimension(724, 545));
 		content.setBackground(Color.BLUE);
 			
