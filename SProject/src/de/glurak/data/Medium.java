@@ -1,5 +1,6 @@
 package de.glurak.data;
 
+import de.glurak.data.User.Rights;
 import de.glurak.data.User.User;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -85,6 +86,7 @@ public class Medium implements Serializable,Hateable {
 	}
 
 	public void setOwner(User owner) {
+        NotEnoughRightException.throwIfNot(owner, Rights.MANAGE_OWN_MEDIEN);
 		this.owner = owner;
 	}
 

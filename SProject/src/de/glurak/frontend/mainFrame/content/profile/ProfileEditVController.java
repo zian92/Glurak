@@ -16,9 +16,18 @@ public class ProfileEditVController implements ActionListener{
 		
 		profileEditView = new ProfileEditView();
 		
+		// Setzen der ActionListener
 		profileEditView.b_save.addActionListener(this);
 		profileEditView.b_uploadpic.addActionListener(this);
 		
+		// Daten in die Textfelder schreiben.
+		/*
+		 profileEditView.t_username.setText("");
+		 profileEditView.t_firstname.setText("");
+		 profileEditView.t_lastname.setText("");
+		 profileEditView.t_birthdate.setText("");
+		 profileEditView.t_homecountry.setText("");
+		*/
 	}
 	
 	public void actionPerformed(ActionEvent e){

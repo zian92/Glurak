@@ -1,5 +1,6 @@
 package de.glurak.data;
 import de.glurak.data.User.Reachable;
+import de.glurak.data.User.Rights;
 import de.glurak.data.User.User;
 
 import java.io.Serializable;
@@ -49,25 +50,12 @@ public class Message implements Serializable{
 		
 	}
 	
-	/**
-	 * Konstruktor
-	 * @param pMessage Die Nachricht, die gesendet werden soll.
-	 * @param pSender Der Absender der Nachricht.
-	 * @param pReceiver Der Empfaenger der Nachricht.
-	 * @param pID Die ID der Nachricht.
-	 */
-	public Message(String pMessage, User pSender, User pReceiver, long pID){
-		message = pMessage;
-		sender = pSender;
-		receiver = pReceiver;
-		id = pID;
-	}
-	
 	public void setMessage(String pMessage){
 		message = pMessage;
 	}
 	
 	public void setSender(User pSender){
+        NotEnoughRightException.throwIfNot(pSender, Rights.DO_MESSAGE);
 		sender = pSender;
 	}
 	

@@ -25,15 +25,15 @@ public class RegistrationView extends JPanel{
 
 	//Textfelder fuer die Registrierung
 	protected JTextField t_username = new JTextField();
-	private JTextField t_password = new JTextField();
-	private JTextField t_birthdate_day = new JTextField();
-	private JTextField t_birthdate_month = new JTextField();
-	private JTextField t_birthdate_year = new JTextField();
-	//Dropdown Menue um das Herkunftsland auszuw�hlen
-	private JComboBox<String> d_homecountry;
-	//Radiobuttons um das Geschlecht auszuw�hlen
-	private JRadioButton r_gender_m;
-	private JRadioButton r_gender_f;
+	protected JTextField t_password = new JTextField();
+	protected JTextField t_birthdate_day = new JTextField();
+	protected JTextField t_birthdate_month = new JTextField();
+	protected JTextField t_birthdate_year = new JTextField();
+	//Dropdown Menue um das Herkunftsland auszuwaehlen
+	protected JComboBox<String> d_homecountry;
+	//Radiobuttons um das Geschlecht auszuwaehlen
+	protected JRadioButton r_gender_m;
+	protected JRadioButton r_gender_f;
 	//Buttons zum bestaetigen oder abbrechen
 	protected JButton b_register;
 	protected JButton b_cancel;
@@ -85,7 +85,10 @@ public class RegistrationView extends JPanel{
 		pan_buttons.add(b_cancel);
 		
 		//Dropdownmenue fuer das Herkunftsland anlegen
-		String[] countries = new String[] {"Deutschland", "nicht Deutschland"};
+		String[] countries = new String[] {"", "Belgium", "China", "Dänemark", "Deutschland", "England", "Finnland", 
+				"Frankreich", "Irland", "Italien", "Japan", "Luxemburg", "Niederlande", "Norwegen", "Österreich", 
+				"Polen", "Portugal", "Russland", "Schweden", "Schweiz", "Spanien", "Tschechien", "Vereinigte Staaten", 
+				"anderes Land"};
 		d_homecountry = new JComboBox(countries);
 		
 		//Geburtstagspanel erzeugen

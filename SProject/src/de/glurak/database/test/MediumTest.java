@@ -106,7 +106,7 @@ public class MediumTest {
     }
 
     @Test
-    public void dUserChangeTest(){
+    public void dUserChaneTest(){
 
         List<Medium> medien = db.getMedienFromUser(dUser);
         assertTrue(medien.size()==3);

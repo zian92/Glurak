@@ -1,14 +1,19 @@
 package de.glurak.database.test;
 
-import de.glurak.data.User.*;
-import de.glurak.database.HibernateDB;
+import static org.junit.Assert.assertTrue;
+
+import javax.persistence.EntityTransaction;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.persistence.EntityTransaction;
-
-import static org.junit.Assert.assertTrue;
+import de.glurak.data.User.Label;
+import de.glurak.data.User.LabelManagerProfile;
+import de.glurak.data.User.LabelProfile;
+import de.glurak.data.User.Profile;
+import de.glurak.data.User.User;
+import de.glurak.database.HibernateDB;
 /**
  * @author Entscheider
  * @author dadomadi

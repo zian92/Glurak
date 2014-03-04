@@ -1,5 +1,8 @@
 package de.glurak.data.User;
 
+import de.glurak.data.Announcement;
+import de.glurak.data.NotEnoughRightException;
+
 import java.io.Serializable;
 import javax.persistence.*;
 /**
@@ -68,6 +71,14 @@ public abstract class UserProfile extends Profile implements Serializable {
     }
 
     public void setUser(User u){
+        if (u==myUser) return;
         myUser=u;
+        u.setProfile(this);
+    }
+
+    @Override
+    public void addAnnouncement(Announcement a) {
+        NotEnoughRightException.throwIfNot(this,Rights.ANOUNCEMENTS_RIGHTS);
+        super.addAnnouncement(a);
     }
 }
