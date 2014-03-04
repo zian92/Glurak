@@ -50,7 +50,7 @@ public class PlayQueueView extends JPanel{
 		setPreviousButton(new JButton("<="));
 //		setIncreaseVolumeButton(new JButton("+"));
 //		setDecreaseVolumeButton(new JButton("-"));
-		setPositionBar(new JSlider(JSlider.HORIZONTAL,0,50,0));	
+		positionBar = new JSlider(JSlider.HORIZONTAL,0,50,0);	
 		setControllPanel(new JPanel());
 		getControllPanel().setLayout(new BorderLayout());
 		
@@ -125,7 +125,8 @@ public class PlayQueueView extends JPanel{
 	}
 
 	public void setPositionBar(JSlider positionBar) {
-		this.positionBar = positionBar;
+		this.positionBar.setMaximum(positionBar.getMaximum());
+		this.positionBar.setValue(positionBar.getValue());
 	}
 
 	public JPanel getControllPanel() {
@@ -151,8 +152,12 @@ public class PlayQueueView extends JPanel{
 		this.queuePanel = queuePanel;
 	}
 
-	
-	
+	public JScrollPane getScrollbar(){
+		return scrollbar;
+	}
+	public void setScrollbar(JScrollPane scrollbar){
+		this.scrollbar = scrollbar;
+	}
 	
 	
 }

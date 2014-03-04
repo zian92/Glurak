@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 
 /**
  * Der Kontroller für die Registrationview.
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
 public class RegistrationVController implements ActionListener{
 
 	private RegistrationView regview;
+	//private JFrame regframe = new JFrame("Registrierung");
 	
 	/**
 	 * Konstruktor
@@ -21,6 +23,9 @@ public class RegistrationVController implements ActionListener{
 		regview = new RegistrationView();
 		regview.b_cancel.addActionListener(this);
 		regview.b_register.addActionListener(this);
+		//regframe.add(regview);
+		//regframe.setVisible(true);
+		//regframe.pack();
 	}
 	
 	public void actionPerformed(ActionEvent e){
@@ -69,10 +74,7 @@ public class RegistrationVController implements ActionListener{
 		}
 		else{
 			if(e.getSource() == regview.b_cancel){
-				//TODO Das Panel schliessen, in dem Mainframe zerstoeren
-				/**
-				 * Was soll passieren wenn man den abbrechen button drueckt
-				 */
+				//regframe.dispose();
 			}
 		}
 	}

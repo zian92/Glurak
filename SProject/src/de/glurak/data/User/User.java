@@ -1,4 +1,5 @@
 package de.glurak.data.User;
+import de.glurak.data.NotEnoughRightException;
 import de.glurak.data.Playlist;
 
 import java.io.Serializable;
@@ -10,7 +11,7 @@ import java.util.List;
 
 /**
  * Diese Klasse implementiert den User.
- * @author: Christopher Distelk�mper
+ * @author Christopher Distelk�mper
  * Date: 25.01.2014
  */
 @Entity
@@ -29,7 +30,15 @@ public class User extends Reachable implements Serializable{
     @OneToMany(mappedBy = "owner")
     protected List<Playlist> myPlaylists;
 
+    @ManyToMany
+    @JoinTable(
+            name="FOLLOWING_RELATION",
+            joinColumns={@JoinColumn(name="FOLLOWER_ID")},
+            inverseJoinColumns={@JoinColumn(name="FOLLOWS_ID")})
+    private List<User> following;
+
     public User(){
+        following=new ArrayList<User>();
         isLocked=false;
         myPlaylists=new ArrayList<Playlist>();
     }
@@ -89,4 +98,26 @@ public class User extends Reachable implements Serializable{
         myPlaylists.add(pl);
         pl.setOwner(this);
     }
+
+    /**
+     * Gibt die Liste aller Benutzer an, die dieser hier favorisiert
+     * @return die Liste aller favorisierter Benutzer
+     */
+    public List<User> getFollowing() {
+        return following;
+    }
+
+    /**
+     * Setzt die Liste aller Benutzer an, die dieser hier favorisiert
+     * @param following die Liste favorisierte Benutzer
+     */
+    public void setFollowing(List<User> following) {
+        this.following = following;
+    }
+
+    public void follow(User who){
+        NotEnoughRightException.throwIfNot(this,Rights.FOLLOW_USER);
+        this.following.add(who);
+    }
+
 }

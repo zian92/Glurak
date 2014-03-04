@@ -11,6 +11,11 @@ import javax.persistence.*;
  */
 @Entity
 public abstract class UserProfile extends Profile implements Serializable {
+    /**
+     * Soll in den Unterklassen implementiert werden.
+     * Gibt die Rechte zurück die ein Nutzer mit diesem Profil besitzt
+     * @return die Rechte des Nutzer des Profils
+     */
     public abstract String[] myRights();
 
     @OneToOne(mappedBy = "profile")

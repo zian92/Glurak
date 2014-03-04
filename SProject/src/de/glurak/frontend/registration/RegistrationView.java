@@ -3,6 +3,7 @@ package de.glurak.frontend.registration;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
@@ -14,6 +15,7 @@ import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JComponent;
+import javax.swing.JPasswordField;
 
 /**
  * In der RegistrationView kann ein Benutzer des System sich einen neuen Account anlegen.
@@ -25,7 +27,7 @@ public class RegistrationView extends JPanel{
 
 	//Textfelder fuer die Registrierung
 	protected JTextField t_username = new JTextField();
-	protected JTextField t_password = new JTextField();
+	protected JPasswordField t_password = new JPasswordField();
 	protected JTextField t_birthdate_day = new JTextField();
 	protected JTextField t_birthdate_month = new JTextField();
 	protected JTextField t_birthdate_year = new JTextField();
@@ -37,6 +39,8 @@ public class RegistrationView extends JPanel{
 	//Buttons zum bestaetigen oder abbrechen
 	protected JButton b_register;
 	protected JButton b_cancel;
+	//Farbe fuer das Panel
+	private Color  panColor = new Color(7354141);
 	
 	/**
 	 * Konstruktor
@@ -65,6 +69,11 @@ public class RegistrationView extends JPanel{
 		
 		//Die Radiobuttons in ein Panel zusammenfuegen
 		JPanel pan_radio = new JPanel();
+		pan_radio.setBackground(panColor);
+		r_gender_m.setBackground(panColor);
+		r_gender_f.setBackground(panColor);
+		r_gender_m.setForeground(Color.WHITE);
+		r_gender_f.setForeground(Color.WHITE);
 		pan_radio.add(r_gender_m);
 		pan_radio.add(r_gender_f);
 		
@@ -75,6 +84,14 @@ public class RegistrationView extends JPanel{
 		JLabel l_birthdate = new JLabel("Geburtsdatum: ");
 		JLabel l_homecountry = new JLabel("Herkunftsland: ");
 		JLabel l_gender = new JLabel("Geschlecht: ");
+		
+		//Labels in weisser Schrift
+		l_note.setForeground(Color.WHITE);
+		l_username.setForeground(Color.WHITE);
+		l_password.setForeground(Color.WHITE);
+		l_birthdate.setForeground(Color.WHITE);
+		l_homecountry.setForeground(Color.WHITE);
+		l_gender.setForeground(Color.WHITE);
 		
 		//Layout der Panels festlegen
 		pan_input.setLayout(new GridLayout(5, 1, 10, 15));
@@ -93,15 +110,19 @@ public class RegistrationView extends JPanel{
 		
 		//Geburtstagspanel erzeugen
 		JPanel birthday = new JPanel();
+		birthday.setBackground(panColor);
 		birthday.setLayout(new GridLayout(1,0));
 		JLabel dd = new JLabel(" (dd) . ");
+		dd.setForeground(Color.WHITE);
 		birthday.add(t_birthdate_day);
 		birthday.add(dd);
 		JLabel mm = new JLabel(" (mm) . ");
+		mm.setForeground(Color.WHITE);
 		birthday.add(t_birthdate_month);
 		birthday.add(mm);
 		birthday.add(t_birthdate_year);
 		JLabel yyyy = new JLabel(" (yyyy)");
+		yyyy.setForeground(Color.WHITE);
 		birthday.add(yyyy);
 		
 		//Labels, Textfelder, Dropdownmenue und Radiobuttons in das Input Panel einfuegen
@@ -115,6 +136,11 @@ public class RegistrationView extends JPanel{
 		pan_input.add(d_homecountry);
 		pan_input.add(l_gender);
 		pan_input.add(pan_radio);
+		
+		//Panels Hintergrundfarbe hinzufuegen
+		pan_buttons.setBackground(panColor);
+		pan_input.setBackground(panColor);
+		setBackground(panColor);
 		
 		//Panel in das Frame einfuegen
 		add(pan_input, BorderLayout.CENTER);

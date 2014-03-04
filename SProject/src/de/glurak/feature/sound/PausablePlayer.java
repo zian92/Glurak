@@ -7,6 +7,7 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+
 public class PausablePlayer {
 
     private final static int NOTSTARTED = 0;
@@ -18,7 +19,7 @@ public class PausablePlayer {
 
     // the player actually doing all the work
     private final AdvancedPlayer player;
-    
+        
     private PropertyChangeSupport changes = new PropertyChangeSupport( this );
     
     // locking object used to communicate with player thread
@@ -29,10 +30,12 @@ public class PausablePlayer {
 
     public PausablePlayer(final InputStream inputStream) throws JavaLayerException {
         this.player = new AdvancedPlayer(inputStream);
+      
     }
 
     public PausablePlayer(final InputStream inputStream, final AudioDevice audioDevice) throws JavaLayerException {
         this.player = new AdvancedPlayer(inputStream, audioDevice);
+       
     }
     
 
@@ -144,7 +147,7 @@ public class PausablePlayer {
         }
     }
     
-     public int getPlayerStatus(){
+    public int getPlayerStatus(){
 		return this.playerStatus;
        	 
      }
@@ -157,4 +160,6 @@ public class PausablePlayer {
     {
       changes.removePropertyChangeListener( l );
     }
+    
+    
 }
