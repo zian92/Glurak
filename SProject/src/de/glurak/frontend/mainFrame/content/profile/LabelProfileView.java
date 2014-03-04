@@ -151,13 +151,13 @@ public class LabelProfileView extends JPanel{
 
 					// Label und Textfelder hinzufügen
 					e.gridx = 0;
-					e.gridy = i;
+					e.gridy = i+1;
 					e.weightx = 0.0;
 					l_kuenstler[i] = new JLabel("Künstler " + i + ":");
 					pan_profiledata.add(l_kuenstler[i], e);
 					
 					e.gridx = 1;
-					e.gridy = i;
+					e.gridy = i+1;
 					e.weightx = 1.0;
 					t_kuenstler[i] = new JTextField();
 					t_labelname.setEditable(false);
