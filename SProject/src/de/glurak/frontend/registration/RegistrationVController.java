@@ -49,10 +49,12 @@ public class RegistrationVController implements ActionListener{
 					}
 					else{
 						//Abfrage, ob es den Usernamen bereits gibt
+						//TODO Usernamen mit Datenbankeintraegen vergleichen
 						if(regview.t_username.getText() == "!!!Platzhalter!!!"){
 							JOptionPane.showMessageDialog(null, "Dieser Username ist bereits belegt. Bitte suchen sie sich einen annderen Usernamen aus!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);	
 						}
 						else{
+							//TODO User in der Datenbank registrieren
 							/**
 							 * Was soll passieren wenn man den register Button drueckt
 							 */
@@ -67,6 +69,7 @@ public class RegistrationVController implements ActionListener{
 		}
 		else{
 			if(e.getSource() == regview.b_cancel){
+				//TODO Das Panel schliessen, in dem Mainframe zerstoeren
 				/**
 				 * Was soll passieren wenn man den abbrechen button drueckt
 				 */

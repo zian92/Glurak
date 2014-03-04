@@ -22,8 +22,8 @@ import javax.swing.JScrollPane;
 public class MessageView extends JPanel{
 
 	//Textfelder
-	private JTextField t_receiver = new JTextField();
-	private JTextArea t_message = new JTextArea();
+	protected JTextField t_receiver = new JTextField();
+	protected JTextArea t_message = new JTextArea();
 	//Scrolltabelle fuer das Nachrichtenfeld
 	private JScrollPane s_message = new JScrollPane(t_message);
 	//Buttons
