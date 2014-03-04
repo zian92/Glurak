@@ -25,9 +25,11 @@ public class LabelProfileView extends JPanel{
 		
 		// TextFields profile_data
 		protected JTextField t_labelname;
+		protected JTextField[] t_kuenstler;
 		
 		// Labels profile_data
 		private JLabel l_labelname;		
+		private JLabel[] l_kuenstler;
 		
 		/**
 		 * Constructor
@@ -141,23 +143,26 @@ public class LabelProfileView extends JPanel{
 				t_labelname.setForeground(Color.white);
 				pan_profiledata.add(t_labelname, e);
 				
+				
+				t_kuenstler = new JTextField[10];
+				l_kuenstler = new JLabel[10];
+				
 				for (int i = 1; i == anzArtists; i++){
-					/*
-					 * ToDo: Erzueugen mehrerer JLabels und JTextFields für jeden Künstler eins.
+
 					// Label und Textfelder hinzufügen
 					e.gridx = 0;
 					e.gridy = i-1;
 					e.weightx = 0.0;
-					JLabel i = new JLabel("Künstler " + i + ":");
-					pan_profiledata.add(l_labelname, e);
+					l_kuenstler[i] = new JLabel("Künstler " + i + ":");
+					pan_profiledata.add(l_kuenstler[i], e);
 					
 					e.gridx = 1;
 					e.gridy = i-1;
 					e.weightx = 1.0;
-					JTextField i = new JTextField();
+					t_kuenstler[i] = new JTextField();
 					t_labelname.setEditable(false);
-					pan_profiledata.add(t_labelname, e);
-					*/
+					pan_profiledata.add(t_kuenstler[i], e);
+
 				}
 			
 				
