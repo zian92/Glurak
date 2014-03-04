@@ -41,7 +41,7 @@ public class LabelProfileView extends JPanel{
 			
 			// Initialisieren Panel pan_profileview
 			pan_labelprofileview = new JPanel(new GridBagLayout());
-			pan_labelprofileview.setSize(1000,500);
+			pan_labelprofileview.setPreferredSize(new Dimension(724, 545));
 			pan_labelprofileview.setBackground(Color.black);
 			
 			// Layout-Restriktionen festlegen.
@@ -51,7 +51,7 @@ public class LabelProfileView extends JPanel{
 						
 			// Initialisieren Panel pan_profilepic
 			pan_profilepic = new JPanel(new GridBagLayout());
-			pan_profilepic.setSize(350, 200);
+			pan_profilepic.setPreferredSize(new Dimension(350, 200));
 			pan_profilepic.setBorder(BorderFactory.createLineBorder(Color.black));
 			pan_profilepic.setBackground(Color.black);
 			
@@ -101,9 +101,9 @@ public class LabelProfileView extends JPanel{
 						pan_profilepic.add(b_follow, d);
 					}
 				}
-			// Initialisieren Panel pan_topplaylists
+			// Initialisieren Panel pan_playlists
 			pan_playlists = new JPanel(new GridBagLayout());	
-			pan_playlists.setSize(350, 200);
+			pan_playlists.setPreferredSize(new Dimension(350, 400));
 			pan_playlists.setBorder(BorderFactory.createLineBorder(Color.black));
 			pan_playlists.setBackground(Color.black);
 			
@@ -116,7 +116,7 @@ public class LabelProfileView extends JPanel{
 						
 			// Initialisieren Panel pan_profiledata
 			pan_profiledata = new JPanel(new GridBagLayout());	
-			pan_profiledata.setSize(350, 200);
+			pan_profiledata.setPreferredSize(new Dimension(350, 200));
 			pan_profiledata.setBorder(BorderFactory.createLineBorder(Color.black));
 			pan_profiledata.setBackground(Color.black);
 			

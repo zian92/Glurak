@@ -100,7 +100,7 @@ public class HibernateDB {
     /**
      * Gibt zurück, ob es schon einen User mit den Namen gibt.
      * @param username
-     * @return
+     * @return true falls schon einer existiert, sonst false
      */
     public boolean hasUser(String username){
         TypedQuery<User> q1 = em.createQuery(

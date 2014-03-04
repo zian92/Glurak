@@ -43,6 +43,8 @@ public class Usertest {
         db.registrateUser(user1,ac);
         db.registrateUser(user2,ac);
 
+        user2.follow(user1);
+
         user1.hate(user2);
         user2.like(user1);
     }
@@ -58,9 +60,12 @@ public class Usertest {
         assertTrue(u.getUsername().equals("Olaf"));
         assertTrue(u.checkPassword("MyOlaf"));
         assertTrue(!u.isLocked());
+
         assertTrue(u.getHater().size() == 1);
         assertTrue(u.getHater().get(0).getUsername().equals("Olm"));
         assertTrue(u.likeCount()==0);
+
+        assertTrue(u.getFollowing().size()==0);
     }
 
     @Test
@@ -77,11 +82,15 @@ public class Usertest {
         assertTrue(u.checkPassword("123"));
         assertTrue(!u.checkPassword("231"));
         assertTrue(u.isLocked());
+
         assertTrue(u.getLiker().size()==1) ;
         assertTrue(u.likeCount()==1);
         assertTrue(u.hateCount()==0);
         assertTrue(u.getHater().size()==0);
         assertTrue(u.getLiker().get(0).getUsername().equals("Olaf"));
+
+        assertTrue(u.getFollowing().size() == 1);
+        assertTrue(u.getFollowing().get(0).getUsername().equals("Olaf"));
     }
 
     @Test

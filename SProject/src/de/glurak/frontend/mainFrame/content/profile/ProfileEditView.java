@@ -44,7 +44,7 @@ public class ProfileEditView extends JPanel{
 			
 			// Initialisieren Panel pan_profileview
 			pan_profileeditview = new JPanel(new GridBagLayout());
-			pan_profileeditview.setSize(800,500);
+			pan_profileeditview.setPreferredSize(new Dimension(724, 545));
 			pan_profileeditview.setBackground(Color.black);
 			
 			// Layout-Restriktionen festlegen.
@@ -54,13 +54,13 @@ public class ProfileEditView extends JPanel{
 			
 			// Initialisieren Panel pan_likes
 			pan_likes = new JPanel();
-			pan_likes.setSize(350,200);
+			pan_likes.setPreferredSize(new Dimension(350,200));
 			pan_likes.setBorder(BorderFactory.createLineBorder(Color.black));
 			pan_likes.setBackground(Color.black);
 			
 			// Initialisieren Panel pan_profilepic
 			pan_profilepic = new JPanel(new GridBagLayout());
-			pan_profilepic.setSize(350,200);
+			pan_profilepic.setPreferredSize(new Dimension(350,200));
 			pan_profilepic.setBorder(BorderFactory.createLineBorder(Color.black));
 			pan_profilepic.setBackground(Color.black);
 			
@@ -80,7 +80,7 @@ public class ProfileEditView extends JPanel{
 							
 			// Initialisieren Panel pan_profiledata
 			pan_profiledata = new JPanel(new GridBagLayout());
-			pan_profiledata.setSize(350,200);
+			pan_profiledata.setPreferredSize(new Dimension(350,200));
 			pan_profiledata.setBackground(Color.black);
 			pan_profiledata.setBorder(BorderFactory.createLineBorder(Color.black));
 			

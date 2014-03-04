@@ -4,13 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.swing.JScrollPane;
+import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import de.glurak.data.Medium;
 import de.glurak.data.Playlist;
 import de.glurak.feature.sound.PlayerController;
+import de.vdheide.mp3.MP3Properties;
+import de.vdheide.mp3.NoMP3FrameException;
 
 public class PlayQueueViewController {
 	
@@ -18,12 +24,13 @@ public class PlayQueueViewController {
 	private Playlist playlist;
 	private Medium currentMedium;
 	private PlayQueueView view;
-	
+	private long duration;
 	private final static int NOTSTARTED = 0;
     private final static int PLAYING = 1;
     private final static int PAUSED = 2;
     private final static int FINISHED = 3;
     private final static int FINISHED_BY_END = 4;
+    private JScrollPane srollbar;
 	
 	
 	public PlayQueueViewController (Playlist playlist) {
@@ -44,22 +51,20 @@ public class PlayQueueViewController {
 								player.pause();
 					} else {
 						
-						player.play(getCurrentMedium().getFileName());
-						addPlayerListener();
+						playNew();
 					}
 				} else if (src == view.getNextButton()) {
 					setCurrentMedium(getPlaylist().getNext());
 					if (player.isPaused() || player.isPlaying())
 						player.stop();
-					player.play(getCurrentMedium().getFileName());
+					playNew();
 					view.getQueuePanel().resetButton();
 					
 				} else if (src == view.getPreviousButton()) {
 					setCurrentMedium(getPlaylist().getPrevious());
 					if (player.isPaused() || player.isPlaying())
 						player.stop();
-					player.play(getCurrentMedium().getFileName());
-					addPlayerListener();
+					playNew();
 					view.getQueuePanel().resetButton();
 				}
 				else { 
@@ -72,8 +77,7 @@ public class PlayQueueViewController {
 								if (player.isPaused()||player.isPlaying()){
 									player.stop();}
 
-								player.play(getCurrentMedium().getFileName());
-								addPlayerListener();
+								playNew();
 								view.getQueuePanel().resetButton();
 								
 								
@@ -107,7 +111,7 @@ public class PlayQueueViewController {
 					
 					setCurrentMedium(getPlaylist().getNext());
 						player.stop();
-					player.play(getCurrentMedium().getFileName());
+						playNew();
 					view.getQueuePanel().resetButton();
 				}
 			}
@@ -149,9 +153,28 @@ public class PlayQueueViewController {
 
 	public void setCurrentMedium(Medium currentMedium) {
 		this.currentMedium = currentMedium;
-		System.out.println(currentMedium);
+	
 	}
 
-
+	public void playNew(){
+		
+		player.play(getCurrentMedium().getFileName());
+		File file = new File(getCurrentMedium().getFileName());
+		MP3Properties properties = null;
+		try {
+			properties = new MP3Properties(file);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (NoMP3FrameException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		duration= properties.getLength();
+		view.setPositionBar(new JSlider(0,(int)duration,((int)duration/2)));
+		addPlayerListener();
+		
+		
+	}
 
 }
