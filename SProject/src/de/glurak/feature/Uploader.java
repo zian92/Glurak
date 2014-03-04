@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 import javax.swing.JFileChooser;
@@ -52,12 +53,13 @@ public class Uploader {
 	 * @return
 	 * @throws IOException
 	 */
-	public boolean saveMusic(Medium[] medien) throws IOException {
+	public void saveMusic(Medium[] medien) throws IOException {
 		File[] files = this.getFileArrayFromMedium(medien);
-		for (File f : files) {
-			Files.copy(f.toPath(), new File(Query.FOLDER_MUSIC + f.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
+		for (int i = 0; i < files.length; i++) {
+			File path = new File(Query.FOLDER_MUSIC + files[i].getName());
+			Files.copy(files[i].toPath(), path.toPath(), StandardCopyOption.REPLACE_EXISTING);
+			medien[i].setFileName(path.toPath().toString());
 		}
-		return true;
 	}
 
 	/**
@@ -67,8 +69,8 @@ public class Uploader {
 	 * @return
 	 * @throws IOException
 	 */
-	public boolean saveProfilePicture(Medium pic) throws IOException {
-		return this.savePic(this.getFileFromMedium(pic), Query.FOLDER_PICTURE_PROFILE);
+	public void saveProfilePicture(Medium pic) throws IOException {
+		this.savePic(pic, Query.FOLDER_PICTURE_PROFILE);
 	}
 
 	/**
@@ -78,8 +80,8 @@ public class Uploader {
 	 * @return
 	 * @throws IOException
 	 */
-	public boolean saveAlbumCover(Medium picture) throws IOException {
-		return this.savePic(this.getFileFromMedium(picture), Query.FOLDER_PICTURE_COVER);
+	public void saveAlbumCover(Medium picture) throws IOException {
+		this.savePic(picture, Query.FOLDER_PICTURE_COVER);
 	}
 
 	/**
@@ -89,8 +91,8 @@ public class Uploader {
 	 * @return
 	 * @throws IOException
 	 */
-	public boolean saveSlider(Medium picture) throws IOException {
-		return this.savePic(this.getFileFromMedium(picture), Query.FOLDER_PICTURE_SLIDER);
+	public void saveSlider(Medium picture) throws IOException {
+		this.savePic(picture, Query.FOLDER_PICTURE_SLIDER);
 	}
 
 	/**
@@ -101,9 +103,9 @@ public class Uploader {
 	 * @return
 	 * @throws IOException
 	 */
-	private boolean savePic(File pic, String picPath) throws IOException {
-		Files.copy(pic.toPath(), new File(picPath + pic.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
-		return true;
+	private void savePic(Medium pic, String picPath) throws IOException {
+		Files.copy(this.getFileFromMedium(pic).toPath(), Paths.get(picPath), StandardCopyOption.REPLACE_EXISTING);
+		pic.setFileName(picPath);
 	}
 
 	/**
@@ -188,4 +190,5 @@ public class Uploader {
 	private File getFileFromMedium(Medium med) {
 		return new File(med.getFileName());
 	}
+
 }
