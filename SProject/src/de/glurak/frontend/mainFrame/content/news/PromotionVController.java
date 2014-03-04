@@ -16,22 +16,29 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 import de.glurak.Query;
+import de.glurak.data.Album;
+import de.glurak.data.Medium;
 import de.glurak.frontend.mainFrame.ContentController;
 
 
 /**
  * Creates The PromotionPanel with a list of items
- * which can be scrolled throughout the panels components.
+ * that can be scrolled throughout the panels components.
  * Manages the slidingbehaviour of the PromotionPanels
  * 
  * @author MxB
  *
  */
-public class SliderPanelController  implements ActionListener,ContentController{
+public class PromotionVController  implements ActionListener,ContentController{
 
 	private List<JLabel> imageLabelList = new ArrayList<JLabel>();
-	private PromotionPanel promPan;
-	private Dimension slidePaneDim = new Dimension(265, 180);
+	
+	private List<NewsEntry>newsList = new ArrayList<NewsEntry>();
+	
+	private PromotionView promPan;
+	private Dimension slidePaneDim = new Dimension(400, 200);
+	private Dimension promPanelDim = new Dimension(800, 600);
+	
 	//private int picDim = slidePaneDim.width;
 
 	/**
@@ -41,13 +48,14 @@ public class SliderPanelController  implements ActionListener,ContentController{
 	 * @post Panel with sliderpanels is created, initialized and ready 
 	 * 		 to be filled with further elements.
 	 */
-	public SliderPanelController(){
-		promPan = new PromotionPanel(new Dimension(800,545), slidePaneDim);
+	public PromotionVController(){
+		promPan = new PromotionView(promPanelDim, slidePaneDim);
 
 		promPan.bt_start.addActionListener(this);
 		promPan.bt_add.addActionListener(this);
 		
-		initPromPanel();
+		initNewsEntries();
+		//initPromPanel();
 		//loadArrayList();
 		//fillSliderPanel();
 	}
@@ -140,6 +148,8 @@ public class SliderPanelController  implements ActionListener,ContentController{
 	private void initImageLabelList(){
 		String filename = new String("pic");
 		
+		
+		
 		try {
 			for (int sliderNr = 0 ; sliderNr < promPan.getSliderCount(); sliderNr++){
 				BufferedImage labelImage = ImageIO.read(new File(Query.FOLDER_PICTURE_SLIDER + filename + sliderNr + ".jpg"));
@@ -153,6 +163,59 @@ public class SliderPanelController  implements ActionListener,ContentController{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * 
+	 * 
+	 */
+	private void initNewsEntries(){
+		Album a1 = new Album();
+		Album a2 = new Album();
+		
+		a1.setName("This is It");
+		a2.setName("Good Olaf gone bad");
+		a1.setFilename(Query.FOLDER_PICTURE_SLIDER + "pic3.jpg");
+		a2.setFilename(Query.FOLDER_PICTURE_SLIDER + "mj.jpg");
+		NewsEntry n1 = new NewsEntry(a1);
+		NewsEntry n2 = new NewsEntry(a2);
+		
+		newsList.add(n1);
+		newsList.add(n2);
+		newsList.add(new NewsEntry(a1));
+		newsList.add(new NewsEntry(a1));
+		newsList.add(new NewsEntry(a2));
+		newsList.add(new NewsEntry(a2));
+		//newsList.add(new NewsEntry(a1));
+
+
+		
+		
+		//fill slider
+		/*
+		for (int pos = 0 ; pos < promPan.getSliderCount(); pos++){
+			System.out.println(pos);
+			if (newsList.size() <= pos) break;
+			promPan.getSLiderAtPos(pos).addSliderComponent(newsList.get(pos));	
+		}
+		
+		*/
+		
+		int sMax = promPan.getSliderCount();
+		//int q = (int) Math.ceil(1.0*newsList.size()/sMax);
+		int q = newsList.size()/sMax;
+		if (sMax*q<newsList.size()){
+			q=q+1;
+		}
+		for (int pos = 0; pos < sMax; pos++){
+				for (int j = 0; j < q; j++){
+					if (newsList.size() <= (pos+(j*sMax))) break;
+					promPan.getSLiderAtPos(pos).addSliderComponent(newsList.get(pos+(j*sMax)));
+			}
+		} 
+		
+		
+		
 	}
 	/*	
 	private void loadArrayList(){
@@ -185,8 +248,11 @@ public class SliderPanelController  implements ActionListener,ContentController{
 					java.util.TimerTask action = new java.util.TimerTask() {
 						@Override
 						public void run() {
-							if ((Math.random()*100) < 50){
+						
+							if ((Math.random()*100) < 99){
+								
 								for (int j = 0; j < promPan.getSliderCount(); j++){
+								
 									if (promPan.getSLiderAtPos(j).getItemCount() > 0){
 										promPan.getSLiderAtPos(j).next();
 									}
@@ -205,8 +271,6 @@ public class SliderPanelController  implements ActionListener,ContentController{
 				ankurbler.schedule(action,  1000, 5000);	
 		}else{
 			 addContentTo(5,"pic17.jpg");
-			 addContentTo(13,"pic18.jpg");
-			 addContentTo(11,"pic32.jpg");
 		}
 				
 		

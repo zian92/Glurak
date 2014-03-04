@@ -17,6 +17,7 @@ public class LabelProfile extends Profile implements Serializable{
 
     @OneToOne(mappedBy = "profile")
     private Label myLabel;
+    private String labelImageFilename;
 
     public String getName() {
         return name;
@@ -60,4 +61,14 @@ public class LabelProfile extends Profile implements Serializable{
     public void setMyartists(List<ArtistProfile> myartists) {
         this.myartists = myartists;
     }
+
+
+	public String getLabelImageFilename() {
+		return labelImageFilename;
+	}
+
+
+	public void setLabelImageFilename(String labelImageFilename) {
+		this.labelImageFilename = labelImageFilename;
+	}
 }

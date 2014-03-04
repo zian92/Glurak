@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 import de.glurak.feature.SliderPanel;
 
-public class PromotionPanel extends JPanel {
+public class PromotionView extends JPanel {
 	
 	private int sliderCount = 0;
 	private Dimension panelDim;
@@ -34,7 +34,7 @@ public class PromotionPanel extends JPanel {
 	 * @param preferedSliderSize
 	 * @author MxB
 	 */
-	public PromotionPanel(Dimension preferedSize, Dimension preferedSliderSize){
+	public PromotionView(Dimension preferedSize, Dimension preferedSliderSize){
 		super();
 		// set the size of the panel itself and calculate the maximum amount of sliders fitting in
 		setPreferredSize(preferedSize);

@@ -3,8 +3,6 @@ package de.glurak.frontend.mainFrame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -14,6 +12,7 @@ public class MainFrameView extends JFrame {
 	private JPanel navigation;
 	private JPanel player;
 	private JPanel content;
+	
 	
 	public MainFrameView(){
 		header = new JPanel(new BorderLayout());

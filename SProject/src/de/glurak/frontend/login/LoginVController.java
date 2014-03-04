@@ -9,7 +9,7 @@ import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 
 import de.glurak.frontend.mainFrame.MainFrameVController;
-import de.glurak.frontend.mainFrame.content.news.SliderPanelController;
+import de.glurak.frontend.mainFrame.content.news.PromotionVController;
 
 public class LoginVController implements ActionListener, WindowListener{
 
