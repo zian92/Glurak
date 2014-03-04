@@ -85,7 +85,10 @@ public class RegistrationView extends JPanel{
 		pan_buttons.add(b_cancel);
 		
 		//Dropdownmenue fuer das Herkunftsland anlegen
-		String[] countries = new String[] {"Deutschland", "nicht Deutschland"};
+		String[] countries = new String[] {"", "Belgium", "China", "Dänemark", "Deutschland", "England", "Finnland", 
+				"Frankreich", "Irland", "Italien", "Japan", "Luxemburg", "Niederlande", "Norwegen", "Österreich", 
+				"Polen", "Portugal", "Russland", "Schweden", "Schweiz", "Spanien", "Tschechien", "Vereinigte Staaten", 
+				"anderes Land"};
 		d_homecountry = new JComboBox(countries);
 		
 		//Geburtstagspanel erzeugen
