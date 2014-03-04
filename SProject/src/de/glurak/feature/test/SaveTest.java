@@ -27,7 +27,6 @@ public class SaveTest {
         try {
             up.saveAlbumCover(picture);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             System.out.println("Fehlgeschlagen");
         }
     }
@@ -40,7 +39,6 @@ public class SaveTest {
         try {
             up.saveMusic(songs);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             System.out.println("Fehlgeschlagen");
         }
     }
