@@ -16,7 +16,9 @@ public class ArtistProfile extends ListenerProfile implements Serializable{
     }
 
     public void setMyLabel(LabelProfile myLabel) {
+        if (myLabel==this.myLabel) return;
         this.myLabel = myLabel;
+        myLabel.addArtist(this);
     }
 
     @Override

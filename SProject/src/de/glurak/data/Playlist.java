@@ -145,7 +145,9 @@ public class Playlist implements Serializable,Hateable{
     }
 
     public void setOwner(User owner) {
+        if (this.owner==owner) return;
         this.owner = owner;
+        owner.addPlaylist(this);
     }
 
     public void addMedium(Medium m){

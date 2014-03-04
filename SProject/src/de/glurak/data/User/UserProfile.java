@@ -68,6 +68,8 @@ public abstract class UserProfile extends Profile implements Serializable {
     }
 
     public void setUser(User u){
+        if (u==myUser) return;
         myUser=u;
+        u.setProfile(this);
     }
 }
