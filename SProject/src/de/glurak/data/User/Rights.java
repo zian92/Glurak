@@ -1,7 +1,5 @@
 package de.glurak.data.User;
 
-//TODO: Bewertungen implementieren nach Schema Like - Dislike (Songs, Playlists, Nutzer)
-//TODO: Werben für Songs
 /**
  * Hier sind alle Rechte gesammelt die es gibt...
  * @author Entscheider
