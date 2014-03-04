@@ -15,6 +15,7 @@ public class ProfileVController implements ActionListener{
 	public ProfileVController(boolean own){
 		profileview = new ProfileView(own);
 		
+		// Hinzufügen der ActionListener
 		profileview.b_moreplaylists.addActionListener(this);
 		if (own){
 			profileview.b_edit.addActionListener(this);
@@ -23,6 +24,16 @@ public class ProfileVController implements ActionListener{
 			profileview.b_follow.addActionListener(this);
 			profileview.b_message.addActionListener(this);
 		}
+		
+		// Daten in die Textfelder schreiben
+		/*
+		profileview.t_username.setText("");
+		profileview.t_firstname.setText("");
+		profileview.t_lastname.setText("");
+		profileview.t_birthdate.setText("");
+		profileview.t_homecountry.setText("");
+		*/
+		
 	}
 	
 	public void actionPerformed(ActionEvent e){

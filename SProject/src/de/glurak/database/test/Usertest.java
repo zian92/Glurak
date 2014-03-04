@@ -75,6 +75,7 @@ public class Usertest {
         User u =db.getUserByUsername("Olm");
         assertTrue(u.getUsername().equals("Olm"));
         assertTrue(u.checkPassword("123"));
+        assertTrue(!u.checkPassword("231"));
         assertTrue(u.isLocked());
         assertTrue(u.getLiker().size()==1) ;
         assertTrue(u.likeCount()==1);

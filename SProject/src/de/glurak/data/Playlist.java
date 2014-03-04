@@ -1,5 +1,6 @@
 package de.glurak.data;
 
+import de.glurak.data.User.Rights;
 import de.glurak.data.User.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -145,7 +146,10 @@ public class Playlist implements Serializable,Hateable{
     }
 
     public void setOwner(User owner) {
+        NotEnoughRightException.throwIfNot(owner, Rights.MANAGE_PLAYLIST);
+        if (this.owner==owner) return;
         this.owner = owner;
+        owner.addPlaylist(this);
     }
 
     public void addMedium(Medium m){

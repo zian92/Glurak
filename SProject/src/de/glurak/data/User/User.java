@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * Diese Klasse implementiert den User.
- * @author: Christopher Distelk�mper
+ * @author Christopher Distelk�mper
  * Date: 25.01.2014
  */
 @Entity
@@ -25,15 +25,6 @@ public class User extends Reachable implements Serializable{
 
     @OneToOne
     private UserProfile profile;
-
-
-    public List<Playlist> getMyPlaylists() {
-        return myPlaylists;
-    }
-
-    public void setMyPlaylists(List<Playlist> myPlaylists) {
-        this.myPlaylists = myPlaylists;
-    }
 
     @OneToMany(mappedBy = "owner")
     protected List<Playlist> myPlaylists;
@@ -80,6 +71,22 @@ public class User extends Reachable implements Serializable{
     }
 
     public void setProfile(UserProfile profile) {
+        if (this.profile==profile) return;
         this.profile = profile;
+        profile.setUser(this);
+    }
+
+    public List<Playlist> getMyPlaylists() {
+        return myPlaylists;
+    }
+
+    public void setMyPlaylists(List<Playlist> myPlaylists) {
+        this.myPlaylists = myPlaylists;
+    }
+
+    public void addPlaylist(Playlist pl){
+        if (myPlaylists.contains(pl)) return;
+        myPlaylists.add(pl);
+        pl.setOwner(this);
     }
 }

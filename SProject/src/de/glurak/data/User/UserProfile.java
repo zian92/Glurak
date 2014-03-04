@@ -1,5 +1,8 @@
 package de.glurak.data.User;
 
+import de.glurak.data.Announcement;
+import de.glurak.data.NotEnoughRightException;
+
 import java.io.Serializable;
 import javax.persistence.*;
 /**
@@ -8,6 +11,11 @@ import javax.persistence.*;
  */
 @Entity
 public abstract class UserProfile extends Profile implements Serializable {
+    /**
+     * Soll in den Unterklassen implementiert werden.
+     * Gibt die Rechte zurück die ein Nutzer mit diesem Profil besitzt
+     * @return die Rechte des Nutzer des Profils
+     */
     public abstract String[] myRights();
 
     @OneToOne(mappedBy = "profile")
@@ -68,6 +76,14 @@ public abstract class UserProfile extends Profile implements Serializable {
     }
 
     public void setUser(User u){
+        if (u==myUser) return;
         myUser=u;
+        u.setProfile(this);
+    }
+
+    @Override
+    public void addAnnouncement(Announcement a) {
+        NotEnoughRightException.throwIfNot(this,Rights.ANOUNCEMENTS_RIGHTS);
+        super.addAnnouncement(a);
     }
 }

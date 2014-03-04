@@ -24,7 +24,9 @@ public class LabelProfile extends Profile implements Serializable{
 
 
     public void addArtist(ArtistProfile pro){
+        if (myartists.contains(pro)) return;
         myartists.add(pro);
+        pro.setMyLabel(this);
     }
 
     public void setName(String name) {
@@ -39,7 +41,9 @@ public class LabelProfile extends Profile implements Serializable{
     }
 
     public void setLabel(Label l){
+        if (l==myLabel) return;
         myLabel=l;
+        l.setProfile(this);
     }
 
     @Override

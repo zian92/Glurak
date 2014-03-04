@@ -25,21 +25,23 @@ public class LabelProfileView extends JPanel{
 		
 		// TextFields profile_data
 		protected JTextField t_labelname;
+		protected JTextField[] t_kuenstler;
 		
 		// Labels profile_data
 		private JLabel l_labelname;		
+		private JLabel[] l_kuenstler;
 		
 		/**
 		 * Constructor
 		 * @param artist Greift ein Artist auf das Profil zu?
 		 * @param labelManager Greift ein Labelmanager auf das Profil zu?
-		 * @param anzArtists
+		 * @param anzArtists <= 10
 		 */
 		public LabelProfileView(boolean artist, boolean labelManager, int anzArtists){
 			
 			// Initialisieren Panel pan_profileview
 			pan_labelprofileview = new JPanel(new GridBagLayout());
-			pan_labelprofileview.setSize(1000,500);
+			pan_labelprofileview.setPreferredSize(new Dimension(1000,500));
 			pan_labelprofileview.setBackground(Color.black);
 			
 			// Layout-Restriktionen festlegen.
@@ -49,7 +51,7 @@ public class LabelProfileView extends JPanel{
 						
 			// Initialisieren Panel pan_profilepic
 			pan_profilepic = new JPanel(new GridBagLayout());
-			pan_profilepic.setSize(350, 200);
+			pan_profilepic.setPreferredSize(new Dimension(350, 200));
 			pan_profilepic.setBorder(BorderFactory.createLineBorder(Color.black));
 			pan_profilepic.setBackground(Color.black);
 			
@@ -99,9 +101,9 @@ public class LabelProfileView extends JPanel{
 						pan_profilepic.add(b_follow, d);
 					}
 				}
-			// Initialisieren Panel pan_topplaylists
+			// Initialisieren Panel pan_playlists
 			pan_playlists = new JPanel(new GridBagLayout());	
-			pan_playlists.setSize(350, 200);
+			pan_playlists.setPreferredSize(new Dimension(350, 400));
 			pan_playlists.setBorder(BorderFactory.createLineBorder(Color.black));
 			pan_playlists.setBackground(Color.black);
 			
@@ -114,7 +116,7 @@ public class LabelProfileView extends JPanel{
 						
 			// Initialisieren Panel pan_profiledata
 			pan_profiledata = new JPanel(new GridBagLayout());	
-			pan_profiledata.setSize(350, 200);
+			pan_profiledata.setPreferredSize(new Dimension(350, 200));
 			pan_profiledata.setBorder(BorderFactory.createLineBorder(Color.black));
 			pan_profiledata.setBackground(Color.black);
 			
@@ -141,23 +143,26 @@ public class LabelProfileView extends JPanel{
 				t_labelname.setForeground(Color.white);
 				pan_profiledata.add(t_labelname, e);
 				
+				
+				t_kuenstler = new JTextField[10];
+				l_kuenstler = new JLabel[10];
+				
 				for (int i = 1; i == anzArtists; i++){
-					/*
-					 * ToDo: Erzueugen mehrerer JLabels und JTextFields für jeden Künstler eins.
+
 					// Label und Textfelder hinzufügen
 					e.gridx = 0;
-					e.gridy = i-1;
+					e.gridy = i+1;
 					e.weightx = 0.0;
-					JLabel i = new JLabel("Künstler " + i + ":");
-					pan_profiledata.add(l_labelname, e);
+					l_kuenstler[i] = new JLabel("Künstler " + i + ":");
+					pan_profiledata.add(l_kuenstler[i], e);
 					
 					e.gridx = 1;
-					e.gridy = i-1;
+					e.gridy = i+1;
 					e.weightx = 1.0;
-					JTextField i = new JTextField();
+					t_kuenstler[i] = new JTextField();
 					t_labelname.setEditable(false);
-					pan_profiledata.add(t_labelname, e);
-					*/
+					pan_profiledata.add(t_kuenstler[i], e);
+
 				}
 			
 				

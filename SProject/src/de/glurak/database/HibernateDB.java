@@ -1,8 +1,5 @@
 package de.glurak.database;
-import de.glurak.data.Genre;
-import de.glurak.data.Medium;
-import de.glurak.data.Message;
-import de.glurak.data.Playlist;
+import de.glurak.data.*;
 import de.glurak.data.User.*;
 
 import javax.persistence.*;
@@ -103,7 +100,7 @@ public class HibernateDB {
     /**
      * Gibt zurück, ob es schon einen User mit den Namen gibt.
      * @param username
-     * @return
+     * @return true falls schon einer existiert, sonst false
      */
     public boolean hasUser(String username){
         TypedQuery<User> q1 = em.createQuery(
@@ -284,6 +281,21 @@ public class HibernateDB {
         if (tr==null)
             em.getTransaction().begin();
         em.persist(m);
+        if (tr==null)
+            em.getTransaction().commit();
+    }
+
+    /**
+     * Fügt eine Ankündigung den Profil u hinzu
+     * @param an die Ankündigung
+     * @param p das schon registrierte Profil
+     * @param tr die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht.
+     */
+    public void addAnnouncement(Announcement an, Profile p, EntityTransaction tr){
+       if (tr==null)
+           em.getTransaction().begin();
+        em.persist(an);
+        p.addAnnouncement(an);
         if (tr==null)
             em.getTransaction().commit();
     }
