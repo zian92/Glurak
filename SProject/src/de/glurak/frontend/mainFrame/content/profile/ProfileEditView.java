@@ -44,7 +44,7 @@ public class ProfileEditView extends JPanel{
 			
 			// Initialisieren Panel pan_profileview
 			pan_profileeditview = new JPanel(new GridBagLayout());
-			pan_profileeditview.setPreferredSize(new Dimension(1000,500));
+			pan_profileeditview.setPreferredSize(new Dimension(724, 545));
 			pan_profileeditview.setBackground(Color.black);
 			
 			// Layout-Restriktionen festlegen.

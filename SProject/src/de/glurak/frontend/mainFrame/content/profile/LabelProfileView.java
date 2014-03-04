@@ -41,7 +41,7 @@ public class LabelProfileView extends JPanel{
 			
 			// Initialisieren Panel pan_profileview
 			pan_labelprofileview = new JPanel(new GridBagLayout());
-			pan_labelprofileview.setPreferredSize(new Dimension(1000,500));
+			pan_labelprofileview.setPreferredSize(new Dimension(724, 545));
 			pan_labelprofileview.setBackground(Color.black);
 			
 			// Layout-Restriktionen festlegen.
