@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 @Entity
 public class LabelManagerProfile extends ListenerProfile implements Serializable {
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     private Label myLabel;
 
     public Label getMyLabel() {
@@ -17,7 +17,10 @@ public class LabelManagerProfile extends ListenerProfile implements Serializable
     }
 
     public void setMyLabel(Label myLabel) {
+        if (this.myLabel== myLabel) return;
         this.myLabel = myLabel;
+        //if (!myLabel.getManager().contains(this))
+        myLabel.addLabelManager(this);
     }
 
     @Override

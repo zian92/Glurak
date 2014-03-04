@@ -16,42 +16,42 @@ import de.glurak.feature.Uploader;
  * 
  */
 public class SaveTest {
-	private Uploader up = Uploader.getInstance();
-	Medium picture;
-	Medium[] songs;
+    private Uploader up = Uploader.getInstance();
+    Medium picture;
+    Medium[] songs;
 
-	@Test
-	public void savePicture() {
-		picture = new Medium();
-		picture.setFileName(Query.DATAPATH + "test.jpg");
-		try {
-			up.saveAlbumCover(picture);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Fehlgeschlagen");
-		}
-	}
+    @Test
+    public void savePicture() {
+        picture = new Medium();
+        picture.setFileName(Query.DATAPATH + "test.jpg");
+        try {
+            up.saveAlbumCover(picture);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            System.out.println("Fehlgeschlagen");
+        }
+    }
 
-	@Test
-	public void saveMusic() {
-		songs = new Medium[2];
-		songs[0].setFileName(Query.ROOTPATH + "test.mp3");
-		songs[1].setFileName(Query.ROOTPATH + "test2.mp3");
-		try {
-			up.saveMusic(songs);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Fehlgeschlagen");
-		}
-	}
+    @Test
+    public void saveMusic() {
+        songs = new Medium[2];
+        songs[0].setFileName(Query.ROOTPATH + "test.mp3");
+        songs[1].setFileName(Query.ROOTPATH + "test2.mp3");
+        try {
+            up.saveMusic(songs);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            System.out.println("Fehlgeschlagen");
+        }
+    }
 
-	@After
-	public void after() {
-		File f = new File(picture.getFileName());
-		f.delete();
-		f = new File(songs[0].getFileName());
-		f.delete();
-		f = new File(songs[0].getFileName());
-		f.delete();
-	}
+    @After
+    public void after() {
+        File f = new File(picture.getFileName());
+        f.delete();
+        f = new File(songs[0].getFileName());
+        f.delete();
+        f = new File(songs[0].getFileName());
+        f.delete();
+    }
 }
