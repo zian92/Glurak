@@ -36,6 +36,7 @@ public class LoginView extends JFrame{
 	private Color  panColor = new Color(7354141);
 	
 	private JPanel pan_slider;
+	private JPanel pan_logframe;
 	
 	public LoginView(String Titel){
 		super(Titel);
@@ -50,14 +51,14 @@ public class LoginView extends JFrame{
 		
 		JPanel pan_bg 		= new JPanel();
 		
-		JPanel pan_logframe	= new JPanel(new GridBagLayout());
+		pan_logframe	= new JPanel(new GridBagLayout());
 		JPanel pan_bt		= new JPanel(new FlowLayout());
 		JPanel pan_login	= new JPanel(new GridLayout(4,1,10,10));
 		pan_slider = new JPanel(new BorderLayout());
 		
 		
 		bt_login = new JButton("Einloggen");
-		bt_register = new JButton("Abbrechen");
+		bt_register = new JButton("Registrieren");
 		
 		JLabel l_name 		= new JLabel("Name", JLabel.LEFT);
 		JLabel l_passwort 	= new JLabel("Passwort", JLabel.LEFT);
@@ -137,5 +138,13 @@ public class LoginView extends JFrame{
 
 	public JButton getBt_register() {
 		return bt_register;
+	}
+	
+	public void setPanLogFrame(JPanel lPanel){
+		pan_logframe = lPanel;
+	}
+	
+	public JPanel getPanLogFrame(){
+		return pan_logframe;
 	}
 }

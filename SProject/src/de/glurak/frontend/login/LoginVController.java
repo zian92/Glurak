@@ -1,15 +1,18 @@
 package de.glurak.frontend.login;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 
 import de.glurak.frontend.mainFrame.MainFrameVController;
 import de.glurak.frontend.mainFrame.content.news.SliderPanelController;
+import de.glurak.frontend.registration.RegistrationVController;
 
 public class LoginVController implements ActionListener, WindowListener{
 
@@ -23,6 +26,7 @@ public class LoginVController implements ActionListener, WindowListener{
 		startLoginScreen.getSliderPanel().add(con_slider.getView(), BorderLayout.CENTER);
 		startLoginScreen.getBt_login().addActionListener(this);
 		startLoginScreen.addWindowListener(this);
+		startLoginScreen.getBt_register().addActionListener(this);
 		//startLoginScreen.add(con_slider.getView());
 		//startLoginScreen.setSliderPanel(con_slider.getView());
 	
@@ -51,8 +55,15 @@ public class LoginVController implements ActionListener, WindowListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		startLoginScreen.dispose();
-		MainFrameVController mainController = new MainFrameVController();
+		if(e.getSource() == startLoginScreen.getBt_login()){
+			startLoginScreen.dispose();
+			MainFrameVController mainController = new MainFrameVController();
+		}
+		else if(e.getSource() == startLoginScreen.getBt_register()){
+			RegistrationVController regvcon = new RegistrationVController();
+			startLoginScreen.getPanLogFrame().setBounds(800, 200, 200, 400);
+			startLoginScreen.getPanLogFrame().add(regvcon.getView());
+		}
 		
 	}
 
