@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="2041,2279" id="de.glurak.data" metadata="uml2-1.0" initialized="true" scrolledX="992" tag="10" key="32303037303533312D313020476C7572616B">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@sourceConnections.0" name="Profile" location="1664,1545" size="152,225" id="de.glurak.data.User/Profile">
+    <children xsi:type="editmodel:CompartmentEditModel" size="129,54">
+      <children xsi:type="editmodel:AttributeEditModel" name="address" id="de.glurak.data.User/Profile#address"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="id" id="de.glurak.data.User/Profile#id"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="pictureFileName" id="de.glurak.data.User/Profile#pictureFileName"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="124,108">
+      <children xsi:type="editmodel:MethodEditModel" name="Profile" id="de.glurak.data.User/Profile#Profile()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addAnnouncement" id="de.glurak.data.User/Profile#addAnnouncement(Lde.glurak.data.Announcement;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="belongTo" id="de.glurak.data.User/Profile#belongTo()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAnnouncements" id="de.glurak.data.User/Profile#getAnnouncements()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="roleName" id="de.glurak.data.User/Profile#roleName()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setAnnouncements" id="de.glurak.data.User/Profile#setAnnouncements(Ljava.util.List;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="de.glurak.data.User/Profile@profile+de.glurak.data.User/Reachable@" source="//@children.0" target="//@children.9" targetEnd="//@children.0/@sourceConnections.0/@children.2" label="//@children.0/@sourceConnections.0/@children.0" sourceEnd="//@children.0/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="profile" location="0,10" id="de.glurak.data.User/Profile@profile+de.glurak.data.User/Reachable@|de.glurak.data.User/Profile#profile" attachSource="true" multiplicityLabel="//@children.0/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.0/@sourceConnections.0/@children.1/@children.0" navigable="true" changeability="2">
+        <children xsi:type="editmodel:LabelEditModel" name=" + profile" location="1615,1562" size="42,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1639,1534" size="18,14" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="100,207" id="de.glurak.data.User/Profile@profile+de.glurak.data.User/Reachable@|de.glurak.data.User/Reachable#"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.9/@sourceConnections.1 //@children.5/@sourceConnections.1" name="Message" location="1410,75" size="157,193" id="de.glurak.data/Message">
+    <children xsi:type="editmodel:CompartmentEditModel" size="134,54">
+      <children xsi:type="editmodel:AttributeEditModel" name="isAlreadyRead" id="de.glurak.data/Message#isAlreadyRead"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="isApplication" id="de.glurak.data/Message#isApplication"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="message" id="de.glurak.data/Message#message"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="108,90">
+      <children xsi:type="editmodel:MethodEditModel" name="Message" id="de.glurak.data/Message#Message()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Message" id="de.glurak.data/Message#Message(Ljava.lang.String;Lde.glurak.data.User.User;Lde.glurak.data.User.User;J)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getID" id="de.glurak.data/Message#getID()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setAlreadyRead" id="de.glurak.data/Message#setAlreadyRead(Z)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setApplication" id="de.glurak.data/Message#setApplication(Z)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Announcement" location="1815,1860" size="138,111" id="de.glurak.data/Announcement">
+    <children xsi:type="editmodel:CompartmentEditModel" size="95,72">
+      <children xsi:type="editmodel:AttributeEditModel" name="content" id="de.glurak.data/Announcement#content"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="id" id="de.glurak.data/Announcement#id"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="time" id="de.glurak.data/Announcement#time"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="title" id="de.glurak.data/Announcement#title"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="de.glurak.data/Announcement@announcements+de.glurak.data.User/Profile@belongsTo" source="//@children.2" target="//@children.0" targetEnd="//@children.2/@sourceConnections.0/@children.2" label="//@children.2/@sourceConnections.0/@children.0" sourceEnd="//@children.2/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="announcements" location="0,10" id="de.glurak.data/Announcement@announcements+de.glurak.data.User/Profile@belongsTo|de.glurak.data/Announcement#announcements" attachSource="true" multiplicityLabel="//@children.2/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.2/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" # announcements" location="1719,1877" size="89,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="1804,1849" size="4,14" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="belongsTo" location="142,225" id="de.glurak.data/Announcement@announcements+de.glurak.data.User/Profile@belongsTo|de.glurak.data.User/Profile#belongsTo" multiplicityLabel="//@children.2/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.2/@sourceConnections.0/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" + belongsTo" location="1738,1777" size="61,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1813,1777" size="18,14" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@sourceConnections.1" name="Genre" location="728,975" size="83,103" id="de.glurak.data/Genre">
+    <children xsi:type="editmodel:CompartmentEditModel" size="69,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="id" id="de.glurak.data/Genre#id"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="60,36">
+      <children xsi:type="editmodel:MethodEditModel" name="Genre" id="de.glurak.data/Genre#Genre()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Genre" id="de.glurak.data/Genre#Genre(JLjava.lang.String;Lde.glurak.data.Genre;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="de.glurak.data/Genre@myGenre+de.glurak.data/Medium@" source="//@children.3" target="//@children.6" targetEnd="//@children.3/@sourceConnections.0/@children.2" label="//@children.3/@sourceConnections.0/@children.0" sourceEnd="//@children.3/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="myGenre" location="73,103" id="de.glurak.data/Genre@myGenre+de.glurak.data/Medium@|de.glurak.data/Genre#myGenre" attachSource="true" multiplicityLabel="//@children.3/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.3/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - myGenre" location="740,1085" size="54,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="808,1085" size="18,14" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,10" id="de.glurak.data/Genre@myGenre+de.glurak.data/Medium@|de.glurak.data/Medium#"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="de.glurak.data/Genre@parentGenre+de.glurak.data/Genre@" source="//@children.3" target="//@children.3" targetEnd="//@children.3/@sourceConnections.1/@children.2" label="//@children.3/@sourceConnections.1/@children.0" sourceEnd="//@children.3/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="parentGenre" location="0,15" id="de.glurak.data/Genre@parentGenre+de.glurak.data/Genre@|de.glurak.data/Genre#parentGenre" anchorKind="FixedAtEdge" attachSource="true" multiplicityLabel="//@children.3/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.3/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - parentGenre" location="650,997" size="71,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="703,969" size="18,14" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="17,0" id="de.glurak.data/Genre@parentGenre+de.glurak.data/Genre@|de.glurak.data/Genre#" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.8/@sourceConnections.0" name="Hateable" location="1057,846" size="102,171" id="de.glurak.data/Hateable">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="79,108">
+      <children xsi:type="editmodel:MethodEditModel" name="getHater" id="de.glurak.data/Hateable#getHater()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getLiker" id="de.glurak.data/Hateable#getLiker()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hate" id="de.glurak.data/Hateable#hate(Lde.glurak.data.User.User;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hateCount" id="de.glurak.data/Hateable#hateCount()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="like" id="de.glurak.data/Hateable#like(Lde.glurak.data.User.User;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="likeCount" id="de.glurak.data/Hateable#likeCount()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.8/@sourceConnections.1 //@children.8/@sourceConnections.2 //@children.8/@sourceConnections.4 //@children.6/@sourceConnections.1 //@children.6/@sourceConnections.2 //@children.6/@sourceConnections.3 //@children.9/@sourceConnections.2 //@children.9/@sourceConnections.3" name="User" location="1440,1860" size="163,261" id="de.glurak.data.User/User">
+    <children xsi:type="editmodel:CompartmentEditModel" size="140,72">
+      <children xsi:type="editmodel:AttributeEditModel" name="isLocked" id="de.glurak.data.User/User#isLocked"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="myPlaylists" id="de.glurak.data.User/User#myPlaylists"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="passwordHash" id="de.glurak.data.User/User#passwordHash"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="username" id="de.glurak.data.User/User#username"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="109,126">
+      <children xsi:type="editmodel:MethodEditModel" name="User" id="de.glurak.data.User/User#User()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addPlaylist" id="de.glurak.data.User/User#addPlaylist(Lde.glurak.data.Playlist;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="checkPassword" id="de.glurak.data.User/User#checkPassword(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getMyPlaylists" id="de.glurak.data.User/User#getMyPlaylists()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setLocked" id="de.glurak.data.User/User#setLocked(Z)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setMyPlaylists" id="de.glurak.data.User/User#setMyPlaylists(Ljava.util.List;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setPassword" id="de.glurak.data.User/User#setPassword(Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="de.glurak.data.User/Reachable&lt;-de.glurak.data.User/User" source="//@children.5" target="//@children.9" targetEnd="//@children.5/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="133,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="28,207"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="de.glurak.data.User/User@sender+de.glurak.data/Message@" source="//@children.5" target="//@children.1" targetEnd="//@children.5/@sourceConnections.1/@children.2" label="//@children.5/@sourceConnections.1/@children.0" sourceEnd="//@children.5/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="sender" location="63,0" id="de.glurak.data.User/User@sender+de.glurak.data/Message@|de.glurak.data.User/User#sender" attachSource="true" multiplicityLabel="//@children.5/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.5/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - sender" location="1510,1839" size="44,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1478,1839" size="18,14" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="93,193" id="de.glurak.data.User/User@sender+de.glurak.data/Message@|de.glurak.data/Message#"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.8/@sourceConnections.3 //@children.3/@sourceConnections.0" name="Medium" location="1198,1096" size="129,283" id="de.glurak.data/Medium">
+    <children xsi:type="editmodel:CompartmentEditModel" size="106,72">
+      <children xsi:type="editmodel:AttributeEditModel" name="fileName" id="de.glurak.data/Medium#fileName"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="id" id="de.glurak.data/Medium#id"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="isLocked" id="de.glurak.data/Medium#isLocked"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="titel" id="de.glurak.data/Medium#titel"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="80,162">
+      <children xsi:type="editmodel:MethodEditModel" name="Medium" id="de.glurak.data/Medium#Medium()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Medium" id="de.glurak.data/Medium#Medium(JLjava.lang.String;Ljava.lang.String;Lde.glurak.data.User.User;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getHater" id="de.glurak.data/Medium#getHater()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getLiker" id="de.glurak.data/Medium#getLiker()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hate" id="de.glurak.data/Medium#hate(Lde.glurak.data.User.User;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hateCount" id="de.glurak.data/Medium#hateCount()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="like" id="de.glurak.data/Medium#like(Lde.glurak.data.User.User;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="likeCount" id="de.glurak.data/Medium#likeCount()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setLocked" id="de.glurak.data/Medium#setLocked(Z)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="de.glurak.data/Hateable&lt;-de.glurak.data/Medium" source="//@children.6" target="//@children.8/@sourceConnections.0" targetEnd="//@children.6/@sourceConnections.0/@children.1" sourceEnd="//@children.6/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="64,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="de.glurak.data.User/User@liker+de.glurak.data/Medium@" source="//@children.6" target="//@children.5" targetEnd="//@children.6/@sourceConnections.1/@children.2" label="//@children.6/@sourceConnections.1/@children.0" sourceEnd="//@children.6/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="129,273" id="de.glurak.data.User/User@liker+de.glurak.data/Medium@|de.glurak.data/Medium#" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="liker" location="10,0" id="de.glurak.data.User/User@liker+de.glurak.data/Medium@|de.glurak.data.User/User#liker" multiplicityLabel="//@children.6/@sourceConnections.1/@children.2/@children.1" roleLabel="//@children.6/@sourceConnections.1/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - liker" location="1457,1839" size="29,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="1439,1839" size="4,14" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="de.glurak.data.User/User@owner+de.glurak.data/Medium@" source="//@children.6" target="//@children.5" targetEnd="//@children.6/@sourceConnections.2/@children.2" label="//@children.6/@sourceConnections.2/@children.0" sourceEnd="//@children.6/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="124,283" id="de.glurak.data.User/User@owner+de.glurak.data/Medium@|de.glurak.data/Medium#" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="owner" location="0,26" id="de.glurak.data.User/User@owner+de.glurak.data/Medium@|de.glurak.data.User/User#owner" multiplicityLabel="//@children.6/@sourceConnections.2/@children.2/@children.1" roleLabel="//@children.6/@sourceConnections.2/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - owner" location="1391,1893" size="42,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1415,1865" size="18,14" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="de.glurak.data.User/User@hater+de.glurak.data/Medium@" source="//@children.6" target="//@children.5" targetEnd="//@children.6/@sourceConnections.3/@children.2" label="//@children.6/@sourceConnections.3/@children.0" sourceEnd="//@children.6/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="129,253" id="de.glurak.data.User/User@hater+de.glurak.data/Medium@|de.glurak.data/Medium#" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="hater" location="163,26" id="de.glurak.data.User/User@hater+de.glurak.data/Medium@|de.glurak.data.User/User#hater" multiplicityLabel="//@children.6/@sourceConnections.3/@children.2/@children.1" roleLabel="//@children.6/@sourceConnections.3/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - hater" location="1610,1893" size="35,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="1610,1865" size="4,14" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Album" location="895,1508" size="161,103" id="de.glurak.data/Album">
+    <children xsi:type="editmodel:CompartmentEditModel" size="138,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="filename" id="de.glurak.data/Album#filename"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="yearOfPublication" id="de.glurak.data/Album#yearOfPublication"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="59,18">
+      <children xsi:type="editmodel:MethodEditModel" name="Album" id="de.glurak.data/Album#Album()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="de.glurak.data/Playlist&lt;-de.glurak.data/Album" source="//@children.7" target="//@children.8" targetEnd="//@children.7/@sourceConnections.0/@children.1" sourceEnd="//@children.7/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="161,11" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,224"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.7/@sourceConnections.0" name="Playlist" location="1770,945" size="121,391" id="de.glurak.data/Playlist">
+    <children xsi:type="editmodel:CompartmentEditModel" size="79,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="name" id="de.glurak.data/Playlist#name"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="98,324">
+      <children xsi:type="editmodel:MethodEditModel" name="Playlist" id="de.glurak.data/Playlist#Playlist(JLjava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Playlist" id="de.glurak.data/Playlist#Playlist()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Playlist" id="de.glurak.data/Playlist#Playlist(JLjava.lang.String;Lde.glurak.data.Playlist;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="add" id="de.glurak.data/Playlist#add(ILde.glurak.data.Medium;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addMedium" id="de.glurak.data/Playlist#addMedium(Lde.glurak.data.Medium;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getCurrent" id="de.glurak.data/Playlist#getCurrent()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getHater" id="de.glurak.data/Playlist#getHater()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getID" id="de.glurak.data/Playlist#getID()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getLiker" id="de.glurak.data/Playlist#getLiker()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getMediumList" id="de.glurak.data/Playlist#getMediumList()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNext" id="de.glurak.data/Playlist#getNext()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPrevious" id="de.glurak.data/Playlist#getPrevious()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hate" id="de.glurak.data/Playlist#hate(Lde.glurak.data.User.User;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hateCount" id="de.glurak.data/Playlist#hateCount()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="like" id="de.glurak.data/Playlist#like(Lde.glurak.data.User.User;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="likeCount" id="de.glurak.data/Playlist#likeCount()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setCurrent" id="de.glurak.data/Playlist#setCurrent(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setMediumList" id="de.glurak.data/Playlist#setMediumList(Ljava.util.List;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.6/@sourceConnections.0 //@children.9/@sourceConnections.0" autoLocated="true" id="de.glurak.data/Hateable&lt;-de.glurak.data/Playlist" source="//@children.8" target="//@children.4" targetEnd="//@children.8/@sourceConnections.0/@children.1" sourceEnd="//@children.8/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="60,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="51,171" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="de.glurak.data.User/User@liker+de.glurak.data/Playlist@" source="//@children.8" target="//@children.5" targetEnd="//@children.8/@sourceConnections.1/@children.2" label="//@children.8/@sourceConnections.1/@children.0" sourceEnd="//@children.8/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,381" id="de.glurak.data.User/User@liker+de.glurak.data/Playlist@|de.glurak.data/Playlist#" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="liker" location="153,0" id="de.glurak.data.User/User@liker+de.glurak.data/Playlist@|de.glurak.data.User/User#liker" multiplicityLabel="//@children.8/@sourceConnections.1/@children.2/@children.1" roleLabel="//@children.8/@sourceConnections.1/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - liker" location="1557,1839" size="29,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="1600,1839" size="4,14" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="de.glurak.data.User/User@owner+de.glurak.data/Playlist@" source="//@children.8" target="//@children.5" targetEnd="//@children.8/@sourceConnections.2/@children.2" label="//@children.8/@sourceConnections.2/@children.0" sourceEnd="//@children.8/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,385" id="de.glurak.data.User/User@owner+de.glurak.data/Playlist@|de.glurak.data/Playlist#" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="owner" location="163,26" id="de.glurak.data.User/User@owner+de.glurak.data/Playlist@|de.glurak.data.User/User#owner" multiplicityLabel="//@children.8/@sourceConnections.2/@children.2/@children.1" roleLabel="//@children.8/@sourceConnections.2/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - owner" location="1610,1893" size="42,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1610,1865" size="18,14" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="de.glurak.data/Medium@mediumList+de.glurak.data/Playlist@" source="//@children.8" target="//@children.6" targetEnd="//@children.8/@sourceConnections.3/@children.2" label="//@children.8/@sourceConnections.3/@children.0" sourceEnd="//@children.8/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,270" id="de.glurak.data/Medium@mediumList+de.glurak.data/Playlist@|de.glurak.data/Playlist#" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="mediumList" location="129,119" id="de.glurak.data/Medium@mediumList+de.glurak.data/Playlist@|de.glurak.data/Medium#mediumList" multiplicityLabel="//@children.8/@sourceConnections.3/@children.2/@children.1" roleLabel="//@children.8/@sourceConnections.3/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - mediumList" location="1334,1194" size="63,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="1334,1222" size="4,14" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="de.glurak.data.User/User@hater+de.glurak.data/Playlist@" source="//@children.8" target="//@children.5" targetEnd="//@children.8/@sourceConnections.4/@children.2" label="//@children.8/@sourceConnections.4/@children.0" sourceEnd="//@children.8/@sourceConnections.4/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,361" id="de.glurak.data.User/User@hater+de.glurak.data/Playlist@|de.glurak.data/Playlist#" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="hater" location="75,0" id="de.glurak.data.User/User@hater+de.glurak.data/Playlist@|de.glurak.data.User/User#hater" multiplicityLabel="//@children.8/@sourceConnections.4/@children.2/@children.1" roleLabel="//@children.8/@sourceConnections.4/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - hater" location="1473,1839" size="35,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="1522,1839" size="4,14" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.0 //@children.5/@sourceConnections.0" name="Reachable" location="1545,1050" size="110,207" id="de.glurak.data.User/Reachable">
+    <children xsi:type="editmodel:CompartmentEditModel" size="53,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="id" id="de.glurak.data.User/Reachable#id"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="81,126">
+      <children xsi:type="editmodel:MethodEditModel" name="Reachable" id="de.glurak.data.User/Reachable#Reachable()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getHater" id="de.glurak.data.User/Reachable#getHater()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getLiker" id="de.glurak.data.User/Reachable#getLiker()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hate" id="de.glurak.data.User/Reachable#hate(Lde.glurak.data.User.User;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hateCount" id="de.glurak.data.User/Reachable#hateCount()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="like" id="de.glurak.data.User/Reachable#like(Lde.glurak.data.User.User;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="likeCount" id="de.glurak.data.User/Reachable#likeCount()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="de.glurak.data/Hateable&lt;-de.glurak.data.User/Reachable" source="//@children.9" target="//@children.8/@sourceConnections.0" targetEnd="//@children.9/@sourceConnections.0/@children.1" sourceEnd="//@children.9/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="55,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="de.glurak.data.User/Reachable@receiver+de.glurak.data/Message@" source="//@children.9" target="//@children.1" targetEnd="//@children.9/@sourceConnections.1/@children.2" label="//@children.9/@sourceConnections.1/@children.0" sourceEnd="//@children.9/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="receiver" location="10,0" id="de.glurak.data.User/Reachable@receiver+de.glurak.data/Message@|de.glurak.data.User/Reachable#receiver" attachSource="true" multiplicityLabel="//@children.9/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.9/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - receiver" location="1562,1029" size="50,14" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1530,1029" size="18,14" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="145,193" id="de.glurak.data.User/Reachable@receiver+de.glurak.data/Message@|de.glurak.data/Message#"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="de.glurak.data.User/User@liker+de.glurak.data.User/Reachable@" source="//@children.9" target="//@children.5" targetEnd="//@children.9/@sourceConnections.2/@children.2" label="//@children.9/@sourceConnections.2/@children.0" sourceEnd="//@children.9/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="8,207" id="de.glurak.data.User/User@liker+de.glurak.data.User/Reachable@|de.glurak.data.User/Reachable#" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="liker" location="87,0" id="de.glurak.data.User/User@liker+de.glurak.data.User/Reachable@|de.glurak.data.User/User#liker" multiplicityLabel="//@children.9/@sourceConnections.2/@children.2/@children.1" roleLabel="//@children.9/@sourceConnections.2/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - liker" location="1491,1839" size="29,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="1534,1839" size="4,14" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="de.glurak.data.User/User@hater+de.glurak.data.User/Reachable@" source="//@children.9" target="//@children.5" targetEnd="//@children.9/@sourceConnections.3/@children.2" label="//@children.9/@sourceConnections.3/@children.0" sourceEnd="//@children.9/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="48,207" id="de.glurak.data.User/User@hater+de.glurak.data.User/Reachable@|de.glurak.data.User/Reachable#" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="hater" location="163,26" id="de.glurak.data.User/User@hater+de.glurak.data.User/Reachable@|de.glurak.data.User/User#hater" multiplicityLabel="//@children.9/@sourceConnections.3/@children.2/@children.1" roleLabel="//@children.9/@sourceConnections.3/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - hater" location="1610,1893" size="35,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="1610,1865" size="4,14" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="String" location="810,1096" size="279,1665" id="java.lang/String" runTimeClassModel="copyValueOf([C),startsWith(Ljava.lang.String;),String([C),String([CII),valueOf(D),replaceAll(Ljava.lang.String;Ljava.lang.String;),String([BIILjava.lang.String;),String(Ljava.lang.StringBuilder;),intern(),String([BIII),equalsIgnoreCase(Ljava.lang.String;),indexOf(Ljava.lang.String;),indexOf(II),subSequence(II),valueOf(Z),valueOf([C),contains(Ljava.lang.CharSequence;),compareToIgnoreCase(Ljava.lang.String;),offsetByCodePoints(II),codePointAt(I),String([B),indexOf(I),valueOf(C),startsWith(Ljava.lang.String;I),regionMatches(ZILjava.lang.String;II),valueOf([CII),getBytes(Ljava.lang.String;),trim(),getBytes(II[BI),split(Ljava.lang.String;I),isEmpty(),indexOf([CII[CIII),replace(Ljava.lang.CharSequence;Ljava.lang.CharSequence;),regionMatches(ILjava.lang.String;II),endsWith(Ljava.lang.String;),toLowerCase(),replaceFirst(Ljava.lang.String;Ljava.lang.String;),String([BLjava.lang.String;),concat(Ljava.lang.String;),length(),format(Ljava.lang.String;[Ljava.lang.Object;),valueOf(Ljava.lang.Object;),toCharArray(),lastIndexOf(Ljava.lang.String;I),lastIndexOf([CII[CIII),cASE_INSENSITIVE_ORDER,valueOf(F),String([CZ),hash32(),split(Ljava.lang.String;),&lt;clinit>(),format(Ljava.util.Locale;Ljava.lang.String;[Ljava.lang.Object;),toString(),contentEquals(Ljava.lang.StringBuffer;),String([BLjava.nio.charset.Charset;),substring(I),codePointCount(II),charAt(I),codePointBefore(I),getChars(II[CI),String([BI),String([III),compareTo(Ljava.lang.String;),equals(Ljava.lang.Object;),lastIndexOf(Ljava.lang.String;),copyValueOf([CII),String(Ljava.lang.StringBuffer;),lastIndexOf(II),String([BII),String(),valueOf(J),substring(II),toLowerCase(Ljava.util.Locale;),getBytes(),lastIndexOf(I),String(Ljava.lang.String;),getBytes(Ljava.nio.charset.Charset;),toUpperCase(),contentEquals(Ljava.lang.CharSequence;),getChars([CI),matches(Ljava.lang.String;),compareTo(Ljava.lang.Object;),hashCode(),indexOf(Ljava.lang.String;I),valueOf(I),replace(CC),toUpperCase(Ljava.util.Locale;),String([BIILjava.nio.charset.Charset;),String(II[C)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="256,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="cASE_INSENSITIVE_ORDER" id="java.lang/String#cASE_INSENSITIVE_ORDER"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="138,1584">
+      <children xsi:type="editmodel:MethodEditModel" name="&lt;clinit>" id="java.lang/String#&lt;clinit>()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="String" id="java.lang/String#String(II[C)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="String" id="java.lang/String#String([BI)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="String" id="java.lang/String#String([B)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="String" id="java.lang/String#String(Ljava.lang.StringBuilder;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="String" id="java.lang/String#String([BIILjava.nio.charset.Charset;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="String" id="java.lang/String#String([CII)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="String" id="java.lang/String#String()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="String" id="java.lang/String#String([BIII)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="String" id="java.lang/String#String([III)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="String" id="java.lang/String#String([BLjava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="String" id="java.lang/String#String([C)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="String" id="java.lang/String#String(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="String" id="java.lang/String#String([CZ)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="String" id="java.lang/String#String([BLjava.nio.charset.Charset;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="String" id="java.lang/String#String([BIILjava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="String" id="java.lang/String#String([BII)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="String" id="java.lang/String#String(Ljava.lang.StringBuffer;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="charAt" id="java.lang/String#charAt(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="codePointAt" id="java.lang/String#codePointAt(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="codePointBefore" id="java.lang/String#codePointBefore(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="codePointCount" id="java.lang/String#codePointCount(II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="compareTo" id="java.lang/String#compareTo(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="compareTo" id="java.lang/String#compareTo(Ljava.lang.Object;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="compareToIgnoreCase" id="java.lang/String#compareToIgnoreCase(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="concat" id="java.lang/String#concat(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="contains" id="java.lang/String#contains(Ljava.lang.CharSequence;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="contentEquals" id="java.lang/String#contentEquals(Ljava.lang.CharSequence;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="contentEquals" id="java.lang/String#contentEquals(Ljava.lang.StringBuffer;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="copyValueOf" id="java.lang/String#copyValueOf([C)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="copyValueOf" id="java.lang/String#copyValueOf([CII)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="endsWith" id="java.lang/String#endsWith(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="equals" id="java.lang/String#equals(Ljava.lang.Object;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="equalsIgnoreCase" id="java.lang/String#equalsIgnoreCase(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="format" id="java.lang/String#format(Ljava.util.Locale;Ljava.lang.String;[Ljava.lang.Object;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="format" id="java.lang/String#format(Ljava.lang.String;[Ljava.lang.Object;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getBytes" id="java.lang/String#getBytes()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getBytes" id="java.lang/String#getBytes(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getBytes" id="java.lang/String#getBytes(Ljava.nio.charset.Charset;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getBytes" id="java.lang/String#getBytes(II[BI)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getChars" id="java.lang/String#getChars(II[CI)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getChars" id="java.lang/String#getChars([CI)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hash32" id="java.lang/String#hash32()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hashCode" id="java.lang/String#hashCode()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="indexOf" id="java.lang/String#indexOf([CII[CIII)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="indexOf" id="java.lang/String#indexOf(II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="indexOf" id="java.lang/String#indexOf(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="indexOf" id="java.lang/String#indexOf(Ljava.lang.String;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="indexOf" id="java.lang/String#indexOf(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="intern" id="java.lang/String#intern()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isEmpty" id="java.lang/String#isEmpty()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="lastIndexOf" id="java.lang/String#lastIndexOf([CII[CIII)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="lastIndexOf" id="java.lang/String#lastIndexOf(Ljava.lang.String;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="lastIndexOf" id="java.lang/String#lastIndexOf(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="lastIndexOf" id="java.lang/String#lastIndexOf(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="lastIndexOf" id="java.lang/String#lastIndexOf(II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="length" id="java.lang/String#length()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="matches" id="java.lang/String#matches(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="offsetByCodePoints" id="java.lang/String#offsetByCodePoints(II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="regionMatches" id="java.lang/String#regionMatches(ILjava.lang.String;II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="regionMatches" id="java.lang/String#regionMatches(ZILjava.lang.String;II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="replace" id="java.lang/String#replace(Ljava.lang.CharSequence;Ljava.lang.CharSequence;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="replace" id="java.lang/String#replace(CC)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="replaceAll" id="java.lang/String#replaceAll(Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="replaceFirst" id="java.lang/String#replaceFirst(Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="split" id="java.lang/String#split(Ljava.lang.String;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="split" id="java.lang/String#split(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="startsWith" id="java.lang/String#startsWith(Ljava.lang.String;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="startsWith" id="java.lang/String#startsWith(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="subSequence" id="java.lang/String#subSequence(II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="substring" id="java.lang/String#substring(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="substring" id="java.lang/String#substring(II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toCharArray" id="java.lang/String#toCharArray()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toLowerCase" id="java.lang/String#toLowerCase()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toLowerCase" id="java.lang/String#toLowerCase(Ljava.util.Locale;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toString" id="java.lang/String#toString()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toUpperCase" id="java.lang/String#toUpperCase(Ljava.util.Locale;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toUpperCase" id="java.lang/String#toUpperCase()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="trim" id="java.lang/String#trim()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="valueOf" id="java.lang/String#valueOf(C)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="valueOf" id="java.lang/String#valueOf(Ljava.lang.Object;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="valueOf" id="java.lang/String#valueOf(J)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="valueOf" id="java.lang/String#valueOf(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="valueOf" id="java.lang/String#valueOf(Z)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="valueOf" id="java.lang/String#valueOf(F)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="valueOf" id="java.lang/String#valueOf(D)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="valueOf" id="java.lang/String#valueOf([CII)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="valueOf" id="java.lang/String#valueOf([C)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=3;Product=eUML2" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>
