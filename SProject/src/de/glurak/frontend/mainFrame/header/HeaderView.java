@@ -28,17 +28,14 @@ public class HeaderView extends JPanel{
 		pan_header = new JPanel(new BorderLayout());
 		pan_header.setSize(1024,50);
 		
-		// Layout-Restriktionen festlegen.
-		GridBagConstraints c = new GridBagConstraints();
-		c.fill = GridBagConstraints.BOTH;
-		c.insets = new Insets(1,1,2,2);				
-				
 		// Initialisierung des Textfeldes
 		t_search = new JTextField();
-		t_search.setText("Sucheingabe");
+		t_search.setText(" Sucheingabe ");
+		t_search.setPreferredSize(new Dimension(85,20));
 		t_search.setBackground(Color.LIGHT_GRAY);
 		t_search.setForeground(Color.blue);
-		pan_header.add(t_search);
+		
+		pan_header.add(t_search, BorderLayout.CENTER);
 		
 		// Initialisierung des Suchbuttons
 		b_search = new JButton("Suchen");

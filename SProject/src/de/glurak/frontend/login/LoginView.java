@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import de.glurak.feature.SliderPanel;
@@ -27,7 +28,7 @@ import de.glurak.feature.SliderPanel;
 public class LoginView extends JFrame{
 	
 	private JTextField t_name;
-	private JTextField t_passwort;
+	private JPasswordField t_passwort;
 	
 	private JButton bt_login;
 	private JButton bt_register;
@@ -64,7 +65,8 @@ public class LoginView extends JFrame{
 		l_passwort.setForeground(Color.WHITE);
 
 		t_name 				= new JTextField("", 20);
-		t_passwort 			= new JTextField("", 20);
+		t_passwort			= new JPasswordField(8);
+		//t_passwort 			= new JTextField("", 20);
 				
 		//create Backgroundimage
 		try {
@@ -84,7 +86,7 @@ public class LoginView extends JFrame{
 		pan_logframe.setBackground(panColor);
 		pan_logframe.setOpaque(true);
 		
-		pan_slider.setBounds(80, 80, 480, 527);
+		pan_slider.setBounds(76, 80, 480, 480);
 		pan_slider.setVisible(true);
 		
 		pan_login.setPreferredSize(new Dimension(150, 130));
