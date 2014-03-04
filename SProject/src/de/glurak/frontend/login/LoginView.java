@@ -38,6 +38,8 @@ public class LoginView extends JFrame{
 	private JPanel pan_slider;
 	private JPanel pan_logframe;
 	
+	private JLayeredPane pan_content;
+	
 	public LoginView(String Titel){
 		super(Titel);
 		
@@ -47,7 +49,7 @@ public class LoginView extends JFrame{
 		// create swing components
 		java.awt.Container content = getContentPane();
 		
-		JLayeredPane pan_content = new JLayeredPane();
+		pan_content = new JLayeredPane();
 		
 		JPanel pan_bg 		= new JPanel();
 		
@@ -82,7 +84,7 @@ public class LoginView extends JFrame{
 		}
 		
 		// create layout constrains
-		pan_logframe.setBounds(700,150,280,320);
+		pan_logframe.setBounds(600,150,400,320);
 		//pan_logframe.setBackground(Color.lightGray);
 		pan_logframe.setBackground(panColor);
 		pan_logframe.setOpaque(true);
@@ -146,5 +148,9 @@ public class LoginView extends JFrame{
 	
 	public JPanel getPanLogFrame(){
 		return pan_logframe;
+	}
+	
+	public JLayeredPane getPanContent(){
+		return pan_content;
 	}
 }
