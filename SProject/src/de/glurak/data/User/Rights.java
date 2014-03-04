@@ -6,7 +6,7 @@ package de.glurak.data.User;
  */
 public class Rights {
     public static final String MANAGE_OWN_MEDIEN="own_medien_manage";
-    public static final String LISTEN_RIGHT="listen";
+    public static final String LISTEN_RIGHT="listen_right";
     public static final String APPLICATION_TO_LABEL="applicaton_label";
     public static final String APPLICATION_TO_ADMIN="application_admin";
     public static final String MANAGE_PLAYLIST="playlist_manage";

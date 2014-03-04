@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * Diese Klasse implementiert den User.
- * @author: Christopher Distelk�mper
+ * @author Christopher Distelk�mper
  * Date: 25.01.2014
  */
 @Entity
