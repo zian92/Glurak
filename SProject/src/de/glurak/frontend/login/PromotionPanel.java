@@ -20,7 +20,7 @@ public class PromotionPanel extends JPanel {
 	
 	public JButton bt_add;
 	
-	private SliderPanel[] sliderArray;
+	//private List<SliderPanel> sliderArray;
 	
 	public PromotionPanel(int maxSliders){
 		super();
@@ -32,18 +32,25 @@ public class PromotionPanel extends JPanel {
 		for (int i = 0; i < maxSliders; i++){
 			sliderArray[i] =  new SliderPanel();
 		}
-					c.gridx = i;
-			c.gridy = 0;
-			add(sliderArray[i] ,c);
-		*/
+		int count = 0;
+		for (int gx = 0; gx < Math.sqrt(maxSliders); gx++){
+			for(int gy = 0; gy < Math.sqrt(maxSliders);gy++){
+				c.gridx = gx;
+				c.gridy = gy;
+				add(sliderArray[count] ,c);
+				count++;
+			}
+			
+		}
+		/**/
 		mySlider_0 = new SliderPanel();
 		mySlider_1 = new SliderPanel();
 		mySlider_2 = new SliderPanel();
 		mySlider_3 = new SliderPanel();
-		/*
-		mySlider_5 = new JSLSlider();
-		mySlider_6 = new JSLSlider();
-		*/
+		
+		//mySlider_5 = new JSLSlider();
+		//mySlider_6 = new JSLSlider();
+		
 		
 		
 		

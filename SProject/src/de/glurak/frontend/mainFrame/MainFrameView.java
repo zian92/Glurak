@@ -3,6 +3,7 @@ package de.glurak.frontend.mainFrame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,13 +16,13 @@ public class MainFrameView extends JFrame {
 	private JPanel content;
 	
 	public MainFrameView(){
-		header = new JPanel();
+		header = new JPanel(new BorderLayout());
 		header.setPreferredSize(new Dimension(1024, 35));
 		header.setBackground(Color.GREEN);
-		navigation = new JPanel();
+		navigation = new JPanel(new BorderLayout());
 		navigation.setPreferredSize(new Dimension(220, 545));
 		navigation.setBackground(Color.GRAY);
-		player = new JPanel();
+		player = new JPanel(new BorderLayout());
 		player.setPreferredSize(new Dimension(1024, 120));
 		player.setBackground(Color.BLACK);
 		content = new JPanel();
