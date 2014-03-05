@@ -25,14 +25,12 @@ public class PlayQueueViewController {
 	private Medium currentMedium;
 	private PlayQueueView view;
 	private long duration;
-	private final static int NOTSTARTED = 0;
-    private final static int PLAYING = 1;
-    private final static int PAUSED = 2;
-    private final static int FINISHED = 3;
     private final static int FINISHED_BY_END = 4;
-    private JScrollPane srollbar;
 	
 	
+	/**Konstrukter mit Initialisierung der Listener
+	 * @param playlist abzuspielende Playlist
+	 */
 	public PlayQueueViewController (Playlist playlist) {
 		view = new PlayQueueView(playlist, playlist.getCurrent());
 		player = new PlayerController();
@@ -51,20 +49,20 @@ public class PlayQueueViewController {
 								player.pause();
 					} else {
 						
-						playNew();
+						playNew(view.getPositionBar().getValue());
 					}
 				} else if (src == view.getNextButton()) {
 					setCurrentMedium(getPlaylist().getNext());
 					if (player.isPaused() || player.isPlaying())
 						player.stop();
-					playNew();
+					playNew(0);
 					view.getQueuePanel().resetButton();
 					
 				} else if (src == view.getPreviousButton()) {
 					setCurrentMedium(getPlaylist().getPrevious());
 					if (player.isPaused() || player.isPlaying())
 						player.stop();
-					playNew();
+					playNew(0);
 					view.getQueuePanel().resetButton();
 				}
 				else { 
@@ -76,8 +74,8 @@ public class PlayQueueViewController {
 								
 								if (player.isPaused()||player.isPlaying()){
 									player.stop();}
-
-								playNew();
+								
+								playNew(0);
 								view.getQueuePanel().resetButton();
 								
 								
@@ -89,7 +87,19 @@ public class PlayQueueViewController {
 				
 			
 		};
-		
+		ChangeListener c = new ChangeListener(){
+
+			public void stateChanged(ChangeEvent e) {
+				if(!view.isPositionChange()&&(!view.getPositionBar().getValueIsAdjusting()&&(player.isPlaying()||player.isPaused())))
+				{
+					player.stop();
+				playNew(view.getPositionBar().getValue());
+				}
+				
+			}
+			
+		};
+		view.getPositionBar().addChangeListener(c);
 		view.getPlayButton().addActionListener(a);
 		view.getNextButton().addActionListener(a);
 		view.getPreviousButton().addActionListener(a);
@@ -103,15 +113,24 @@ public class PlayQueueViewController {
 		this(null);
 	}
 	
+	/**
+	 * Listener für Veränderungen beim PausablePlayer
+	 */
 	private void addPlayerListener() {
-		player.getPlayer().addPropertyChangeListener(new PropertyChangeListener() {
+		player.getPlayer().addPropertyChangeListener(
+					
+		new PropertyChangeListener() {
+			
 			public void propertyChange(PropertyChangeEvent evt) {
-				
+				if(evt.getPropertyName()=="actualFrame"){
+					view.changePositionBar((Integer) evt.getNewValue());
+					
+				}else
 				if(player.getPlayer().getPlayerStatus()==FINISHED_BY_END){
 					
 					setCurrentMedium(getPlaylist().getNext());
 						player.stop();
-						playNew();
+						playNew(0);
 					view.getQueuePanel().resetButton();
 				}
 			}
@@ -156,9 +175,13 @@ public class PlayQueueViewController {
 	
 	}
 
-	public void playNew(){
+	/**
+	 * Startet Wiedergabe und führt nötige Erneuerungen durch
+	 * @param time Frame bei dem er starten soll
+	 */
+	public void playNew(int time){
 		
-		player.play(getCurrentMedium().getFileName());
+		player.play(getCurrentMedium().getFileName(),time);
 		File file = new File(getCurrentMedium().getFileName());
 		MP3Properties properties = null;
 		try {
@@ -171,7 +194,7 @@ public class PlayQueueViewController {
 			e1.printStackTrace();
 		}
 		duration= properties.getLength();
-		view.setPositionBar(new JSlider(0,(int)duration,((int)duration/2)));
+		view.setPositionBar(new JSlider(0,(int)duration*1000/26,time));
 		addPlayerListener();
 		
 		
