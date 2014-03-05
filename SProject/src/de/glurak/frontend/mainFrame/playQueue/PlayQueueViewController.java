@@ -18,6 +18,13 @@ import de.glurak.feature.sound.PlayerController;
 import de.vdheide.mp3.MP3Properties;
 import de.vdheide.mp3.NoMP3FrameException;
 
+/**
+ * Controller für die PlayQueueView
+ * Verarbeitet alle Änderungen/Eingaben die den Mediaplayerbetreffen
+ * 
+ * @author MMÜhlenjost,Zengo
+ *
+ */
 public class PlayQueueViewController {
 	
 	private PlayerController player;
@@ -41,6 +48,7 @@ public class PlayQueueViewController {
 			
 			public void actionPerformed(ActionEvent e) {
 				
+			if(!view.getPositionBar().getValueIsAdjusting()){
 				Object src = e.getSource();
 				if (src == view.getPlayButton()) {
 					if (player.isPaused()) {
@@ -84,20 +92,29 @@ public class PlayQueueViewController {
 					}
 				}
 			}
+			}
 		};
 		
 		ChangeListener c = new ChangeListener(){
 
 			public void stateChanged(ChangeEvent e) {
-				if(!view.isPositionChange()&&(!view.getPositionBar().getValueIsAdjusting()&&(player.isPlaying()||player.isPaused())))
-				{
-					player.stop();
-				playNew(view.getPositionBar().getValue());
+				if(view.getPositionBar().getValueIsAdjusting()){
+					if(player.isPlaying()){
+						player.stop();
+					}
+				}
+				
+				if(!view.isPositionChange()&&!view.getPositionBar().getValueIsAdjusting()){
+					System.out.println("leeetzteee");
+					if(player.isPlaying()||player.isPaused()){
+						player.stop();
+						playNew(view.getPositionBar().getValue());
 				}
 				
 			}
-			
+			}
 		};
+		
 		view.getPositionBar().addChangeListener(c);
 		view.getPlayButton().addActionListener(a);
 		view.getNextButton().addActionListener(a);
@@ -113,7 +130,7 @@ public class PlayQueueViewController {
 	}
 	
 	/**
-	 * Listener für Veränderungen beim PausablePlayer
+	 * Fügt Listener für Veränderungen beim PausablePlayer hinzu
 	 */
 	private void addPlayerListener() {
 		player.getPlayer().addPropertyChangeListener(
@@ -121,6 +138,7 @@ public class PlayQueueViewController {
 		new PropertyChangeListener() {
 			
 			public void propertyChange(PropertyChangeEvent evt) {
+				if(!view.getPositionBar().getValueIsAdjusting()){
 				if(evt.getPropertyName()=="actualFrame"){
 					view.changePositionBar((Integer) evt.getNewValue());
 					
@@ -133,6 +151,7 @@ public class PlayQueueViewController {
 					view.getQueuePanel().resetButton();
 				}
 			}
+			}		
             });
 	}
 	
