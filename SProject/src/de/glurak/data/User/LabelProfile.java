@@ -1,6 +1,9 @@
 package de.glurak.data.User;
 
 import javax.persistence.*;
+
+import de.glurak.Query;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +82,14 @@ public class LabelProfile extends Profile implements Serializable{
         return "TheLabel";
     }
 
-
+    @Override
+    public String getPictureFileNameOrDefaultPictureName(){
+    	if (pictureFileName.isEmpty()){
+    		return (Query.FOLDER_PICTURE_ICONS + "userf.jpg");
+  		
+    	}
+    	return pictureFileName;
+    }
 
     public List<ArtistProfile> getMyartists() {
         return myartists;

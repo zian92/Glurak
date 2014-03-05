@@ -1,9 +1,11 @@
 package de.glurak.data.User;
 
 import de.glurak.data.Announcement;
+import de.glurak.Query;
 import de.glurak.data.NotEnoughRightException;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 /**
  * Oberklasse aller Profile eines Benutzers
@@ -104,6 +106,20 @@ public abstract class UserProfile extends Profile implements Serializable {
         myUser=u;
         if (u!=null)
             u.setProfile(this);
+    }
+    
+    @Override
+    public String getPictureFileNameOrDefaultPictureName(){
+    	System.out.println("Is Empty: " + pictureFileName.isEmpty());
+    	if (pictureFileName.isEmpty()){
+    		if (isFemale){
+    			return (Query.FOLDER_PICTURE_ICONS + "userf.jpg");
+    		}else{
+    			return (Query.FOLDER_PICTURE_ICONS + "userm.jpg");
+    		}
+    		
+    	}
+    	return pictureFileName;
     }
 
     @Override
