@@ -4,6 +4,9 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import de.glurak.frontend.mainFrame.ContentController;
+import de.glurak.frontend.mainFrame.content.message.MessageVController;
+import de.glurak.frontend.mainFrame.content.playlist.PlaylistVController;
+import de.glurak.frontend.mainFrame.content.profile.ProfileEditVController;
 
 /**
  * Diese Klasse stellt dem ProfileView die Funktionalität zur Verfügung.
@@ -48,7 +51,17 @@ public class ProfileVController implements ActionListener, ContentController {
 	}
 	
 	public void actionPerformed(ActionEvent e){
+		Object obj = e.getSource();
 		
+		if (obj == profileview.b_moreplaylists){
+	//		setContentController(new PlaylistVController());
+		} else if (obj == profileview.b_message){
+	//		setContentController(new MessageVController());
+		} else if (obj == profileview.b_follow){
+			
+		} else if (obj == profileview.b_edit){
+	//      setContentController(new ProfileEditVController());		
+		}
 	}
 
 	public JComponent getView() {

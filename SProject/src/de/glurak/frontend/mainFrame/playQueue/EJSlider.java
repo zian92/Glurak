@@ -17,13 +17,15 @@ public class EJSlider extends JSlider {
 	      addMouseListener(new MouseAdapter() {
 	         @Override
 	         public void mousePressed(MouseEvent e) {
+	        	 setValueIsAdjusting(true);
 	            Point p = e.getPoint();
 	            double percent = p.x / ((double) getWidth());
 	            int range = getMaximum() - getMinimum();
 	            double newVal = range * percent;
 	            int result = (int)(getMinimum() + newVal);
-	            System.out.println(result);
 	            setValue(result);
+	            setValueIsAdjusting(true);
+	            
 	         }
 	      });
 	   }
