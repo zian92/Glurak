@@ -38,9 +38,6 @@ public class Medium implements Serializable,Hateable {
     //@Column(name="ID")
 	private long id;
 
-    /*@ManyToMany(mappedBy = "mediumList")
-    private List<Playlist> l; */
-
     boolean isLocked;
 	
 	/**
@@ -69,10 +66,18 @@ public class Medium implements Serializable,Hateable {
 		this.titel = titel;
 	}
 
+    /**
+     * Gibt den Dateinamen (den Mp3-Pfad) des Mediums zurück
+     * @return den Dateinamen
+     */
 	public String getFileName() {
 		return fileName;
 	}
 
+    /**
+     * Setzt den Dateinamen des Mediums (Mp3-Pfad)
+     * @param fileName der Dateiname
+     */
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
@@ -90,10 +95,18 @@ public class Medium implements Serializable,Hateable {
 		this.owner = owner;
 	}
 
+    /**
+     * Gibt zurück ob das Medium gesperrt ist oder nicht
+     * @return true falls gesperrt, false sonst
+     */
     public boolean isLocked() {
         return isLocked;
     }
 
+    /**
+     * Setzt die sperre des Mediums
+     * @param isLocked true falls gesperrt sein soll, false sonst
+     */
     public void setLocked(boolean isLocked) {
         this.isLocked = isLocked;
     }
@@ -116,7 +129,6 @@ public class Medium implements Serializable,Hateable {
         this.liker.add(liker);
     }
 
-    
     public int hateCount() {
         return hater.size();
     }
@@ -126,12 +138,10 @@ public class Medium implements Serializable,Hateable {
         return liker.size();
     }
 
-    
     public List<User> getHater() {
         return hater;
     }
 
-    
     public List<User> getLiker() {
         return liker;
     }

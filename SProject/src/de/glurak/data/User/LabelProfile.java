@@ -24,10 +24,27 @@ public class LabelProfile extends Profile implements Serializable{
     }
 
 
+    /**
+     * Fügt einen Artist den Label hinzu
+     * @param pro
+     */
     public void addArtist(ArtistProfile pro){
+        if (pro==null) return;
         if (myartists.contains(pro)) return;
         myartists.add(pro);
         pro.setMyLabel(this);
+    }
+
+    /**
+     * Löscht den Artisten mit den Profil pro aus den Profil
+     * @param pro das Profil des zu löschenden
+     */
+    public void removeArtist(ArtistProfile pro){
+        if (pro == null) return;
+        if (!myartists.contains(pro)) return;
+        myartists.remove(pro);
+        if (pro.getMyLabel()==this)
+            pro.setMyLabel(null);
     }
 
     public void setName(String name) {
