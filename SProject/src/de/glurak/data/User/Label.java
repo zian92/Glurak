@@ -38,10 +38,25 @@ public class Label extends Reachable implements Serializable {
         return manager;
     }
 
+    /**
+     * Fügt den LabelManagerProfile pr in das Label hinzu
+     * @param pr das Profil des hinzuzufügenden Labelmanagers
+     */
     public void addLabelManager(LabelManagerProfile pr){
         if (manager.contains(pr)) return;
         pr.setMyLabel(this);
         this.manager.add(pr);
+    }
+
+    /**
+     * Löscht den Labelmanager pr aus dem Label
+     * @param pr das Profil des zu löschenden Labelmanagers
+     */
+    public void removeLabelManager(LabelManagerProfile pr){
+        if (!manager.contains(pr))  return;
+        this.manager.remove(pr);
+        if (pr.getMyLabel()==this)
+            pr.setMyLabel(null);
     }
 
     public void setManager(List<LabelManagerProfile> manager) {

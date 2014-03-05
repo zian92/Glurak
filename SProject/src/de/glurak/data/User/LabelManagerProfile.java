@@ -16,11 +16,19 @@ public class LabelManagerProfile extends ListenerProfile implements Serializable
         return myLabel;
     }
 
+    /**
+     * Setzt das Label des Labelmanagers
+     * @param myLabel das Label, null falls keins mehr
+     */
     public void setMyLabel(Label myLabel) {
         if (this.myLabel== myLabel) return;
+        Label oldLabel = this.myLabel;
         this.myLabel = myLabel;
+        if (oldLabel != null)
+            oldLabel.removeLabelManager(this);
         //if (!myLabel.getManager().contains(this))
-        myLabel.addLabelManager(this);
+        if (myLabel!= null)
+            myLabel.addLabelManager(this);
     }
 
     @Override

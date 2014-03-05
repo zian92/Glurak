@@ -25,23 +25,39 @@ public class Message implements Serializable{
 
     boolean isApplication;
 
+    /**
+     * Gibt den Gelesen-Zustand aus
+     * @return true falls gelesen, false sonst
+     */
     public boolean isAlreadyRead() {
         return isAlreadyRead;
     }
 
+    /**
+     * Setzt den Gelese-Zustand
+     * @param isAlreadyRead true falls gelesen, false sonst
+     */
     public void setAlreadyRead(boolean isAlreadyRead) {
         this.isAlreadyRead = isAlreadyRead;
     }
 
+    /**
+     * Gibt zurück ob die Naricht eine Bewerbung ist
+     * @return true falls Bewerbung, false sonst
+     */
     public boolean isApplication() {
         return isApplication;
     }
 
+    /**
+     * Setzt ob die Naricht eine Bewerbung ist
+     * @param isApplication true falls Bewerbung, false sonst
+     */
     public void setApplication(boolean isApplication) {
         this.isApplication = isApplication;
     }
 
-    boolean isAlreadyRead;
+    private boolean isAlreadyRead;
 
 	/**
 	 * Konstruktor
@@ -49,7 +65,6 @@ public class Message implements Serializable{
 	public Message(){
 		
 	}
-	
 	public void setMessage(String pMessage){
 		message = pMessage;
 	}
