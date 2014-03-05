@@ -15,8 +15,8 @@ public abstract class Profile implements Serializable {
     @Id
     @GeneratedValue
     protected long id;
-    protected String address;
-    protected String pictureFileName;
+    protected String address		 = "";
+    protected String pictureFileName = "";
 
     @OneToMany(mappedBy = "belongsTo")
     protected List<Announcement> announcements;
@@ -40,6 +40,8 @@ public abstract class Profile implements Serializable {
     public String getPictureFileName() {
         return pictureFileName;
     }
+    
+    abstract public String getPictureFileNameOrDefaultPictureName();
 
     public void setPictureFileName(String pictureFileName) {
         this.pictureFileName = pictureFileName;
