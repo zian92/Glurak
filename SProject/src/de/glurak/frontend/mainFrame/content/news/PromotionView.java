@@ -82,11 +82,9 @@ public class PromotionView extends JPanel {
 	}
 
 	private int getMaxRowCount(){
-		System.out.println("maxRowCount = " + panelDim.width / sliderDim.width );
 		return panelDim.width / sliderDim.width;
 	}
 	private int getMaxColCount(){
-		System.out.println("maxColCount = " + panelDim.height / sliderDim.height);
 		return panelDim.height / sliderDim.height;
 	}
 	

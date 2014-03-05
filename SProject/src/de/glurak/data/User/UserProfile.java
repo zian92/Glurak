@@ -110,7 +110,6 @@ public abstract class UserProfile extends Profile implements Serializable {
     
     @Override
     public String getPictureFileNameOrDefaultPictureName(){
-    	System.out.println("Is Empty: " + pictureFileName.isEmpty());
     	if (pictureFileName.isEmpty()){
     		if (isFemale){
     			return (Query.FOLDER_PICTURE_ICONS + "userf.jpg");

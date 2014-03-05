@@ -48,42 +48,12 @@ public class PromotionVController  implements ContentController{
 	 */
 	public PromotionVController(){
 		promPan = new PromotionView(promPanelDim, slidePaneDim);
-
-		//promPan.bt_start.addActionListener(this);
-		//promPan.bt_add.addActionListener(this);
 		
 		initNewsEntries();
-		//initPromPanel();
-		//loadArrayList();
-		//fillSliderPanel();
 	}
 	
 	public JComponent getView(){ return promPan; }
 		
-	/*
-
-	public void fillSliderPanel(){
-		
-		for (int sliderPos = 0 ; sliderPos < promPan.getSliderCount(); sliderPos++){
-						
-			JLayeredPane layered_pan = new JLayeredPane();
-			
-			layered_pan.setPreferredSize(slidePaneDim);
-			JButton bt_like = new JButton("L");
-			JButton bt_hate = new JButton("H");
-			bt_like.setBounds(180,240,50,50);
-			bt_hate.setBounds(240,240,50,50);
-			
-			// Add -1 for adding the last 4 pictures later with the addContentTo function
-			for (int i = 1; i < (imageLabelList.size()/promPan.getSliderCount() ); i++){
-				promPan.getSLiderAtPos(sliderPos).addSliderComponent(imageLabelList.get( sliderPos + (i*promPan.getSliderCount())));
-			}
-		promPan.getSLiderAtPos(sliderPos).refresh();
-		}
-	}
-	
-	*/
-	
 	public void addContentTo(int sliderPos, String filename){
 		
 		//test if filename == ""
@@ -104,7 +74,6 @@ public class PromotionVController  implements ContentController{
 		promPan.getSLiderAtPos(sliderPos).refresh();
 
 	}
-
 	
 	/**
 	 * Initialisiert die PanelSliderElemente mit Inhalten aus
@@ -112,7 +81,9 @@ public class PromotionVController  implements ContentController{
 	 */
 	private void initNewsEntries(){
 		
-		// Get Items from newsList of current User
+		//TODO: Get Items from newsList of current User
+		
+		// Creating dummy-Objects for testing 
 		Album a1 = new Album();
 		Album a2 = new Album();
 		Medium m1 = new Medium(13, "Song 2", null, new User());
