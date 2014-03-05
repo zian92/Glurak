@@ -101,7 +101,6 @@ public class LoginVController implements ActionListener, WindowListener {
 		java.util.TimerTask action = new java.util.TimerTask() {
 			@Override
 			public void run() {
-				System.out.println(" LoginVController calling slide()");
 				if (con_slider.slideAble()) {
 					con_slider.slide();
 				}

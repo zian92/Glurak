@@ -29,7 +29,7 @@ import de.glurak.frontend.mainFrame.ContentController;
  * @author MxB
  *
  */
-public class PromotionVController  implements ActionListener,ContentController{
+public class PromotionVController  implements ContentController{
 
 	private List<JLabel> imageLabelList = new ArrayList<JLabel>();
 	
@@ -141,13 +141,16 @@ public class PromotionVController  implements ActionListener,ContentController{
 		newsList.add(new NewsEntry(a1));
 		newsList.add(new NewsEntry(a1));
 		newsList.add(new NewsEntry(u1));
+		newsList.add(new NewsEntry(m1));
 		newsList.add(new NewsEntry(a2));
 		newsList.add(new NewsEntry(m1));
 		newsList.add(new NewsEntry(a2));
 		newsList.add(new NewsEntry(u2));
 		newsList.add(new NewsEntry(a1));
+		newsList.add(new NewsEntry(u1));
 		newsList.add(new NewsEntry(m1));
 		newsList.add(new NewsEntry(a1));
+		newsList.add(new NewsEntry(a2));
 		newsList.add(new NewsEntry(a1));
 		newsList.add(new NewsEntry(m1));
 		
@@ -170,58 +173,26 @@ public class PromotionVController  implements ActionListener,ContentController{
 	}
 
 	
+	/**
+	 * TestTimerTask for testing the sliding behaviour
+	 * Will be reworked in the final version
+	 */
 	private void startTimer(){
 		java.util.TimerTask action = new java.util.TimerTask() {
 			@Override
 			public void run() {
-				for (int j = 0; j < promPan.getSliderCount(); j++){
-					if (promPan.getSLiderAtPos(j).getItemCount() > 0){
-						promPan.getSLiderAtPos(j).next();
-					}
+				int j = 0 + (int)(Math.random()*promPan.getSliderCount()); 
+				int i = 0 + (int)(Math.random()*promPan.getSliderCount()); 
+				if (promPan.getSLiderAtPos(i).getItemCount() > 0){
+					promPan.getSLiderAtPos(i).next();
+				}
+				if (promPan.getSLiderAtPos(j).getItemCount() > 0){
+					promPan.getSLiderAtPos(j).next();
 				}
 			}
 		};
 		java.util.Timer ankurbler = new java.util.Timer();
-		ankurbler.schedule(action, 1000, 5000);
-	}
-	
-	
-	
-	
-	// only for testing
-	public void actionPerformed(ActionEvent e) {
-		// TODO distinguish the SOurce of the Event and handle it
-		if (e.getSource() == promPan.bt_start){
-			// Start behaviour
-					java.util.TimerTask action = new java.util.TimerTask() {
-						@Override
-						public void run() {
-						
-							if ((Math.random()*100) < 99){
-								
-								for (int j = 0; j < promPan.getSliderCount(); j++){
-								
-									if (promPan.getSLiderAtPos(j).getItemCount() > 0){
-										promPan.getSLiderAtPos(j).next();
-									}
-								}
-							}else{
-								for (int j = 0; j < promPan.getSliderCount(); j++){
-									if (promPan.getSLiderAtPos(j).getItemCount() > 0){
-										promPan.getSLiderAtPos(j).previous();
-									}
-								}
-							}
-						}
-			
-					};
-				java.util.Timer ankurbler = new java.util.Timer();
-				ankurbler.schedule(action,  1000, 5000);	
-		}else{
-			 addContentTo(5,"pic17.jpg");
-		}
-				
-		
+		ankurbler.schedule(action, 1000, 2000);
 	}
 
 }
