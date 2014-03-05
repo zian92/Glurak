@@ -60,7 +60,7 @@ public class NewsEntry extends Observable {
 
     public NewsEntry(User source) {
         // TODO: implement User img
-        this(null, null, source.getProfile().getFirstname(), source);
+        this(source.getProfile().getPictureFileNameOrDefaultPictureName(), null, source.getProfile().getFirstname(), source);
     }
 
     public NewsEntry(Label source) {
