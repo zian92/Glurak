@@ -3,9 +3,13 @@ package de.glurak.frontend.mainFrame.content.playlist;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class PlaylistVController implements ActionListener{
+import javax.swing.JComponent;
 
-	private PlaylistView playview;
+import de.glurak.frontend.mainFrame.ContentController;
+
+public class PlaylistVController implements ActionListener, ContentController{
+
+	private PlaylistView view;
 	
 	/**
 	 * Konstruktor
@@ -17,6 +21,10 @@ public class PlaylistVController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public JComponent getView() {
+		return view;
 	}
 	
 }

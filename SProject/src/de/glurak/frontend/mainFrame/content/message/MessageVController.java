@@ -6,12 +6,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import de.glurak.frontend.mainFrame.ContentController;
+
 /**
  * Der Kontroller fuer die Messageview.
  * @author Simon
  *
  */
-public class MessageVController implements ActionListener{
+public class MessageVController implements ActionListener, ContentController{
 
 	private MessageView messview;
 	

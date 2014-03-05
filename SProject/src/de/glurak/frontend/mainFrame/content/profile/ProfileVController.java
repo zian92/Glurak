@@ -43,6 +43,10 @@ public class ProfileVController implements ActionListener, ContentController {
 		
 	}
 	
+	public ProfileVController(boolean own) {
+		this(own,0);
+	}
+	
 	public void actionPerformed(ActionEvent e){
 		
 	}
