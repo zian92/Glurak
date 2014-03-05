@@ -212,7 +212,9 @@ public class PlayQueueViewController {
 			e1.printStackTrace();
 		}
 		duration= properties.getLength();
-		view.setPositionBar(new JSlider(0,(int)duration*1000/26,time));
+		//System.out.println(properties.getSamplerate());  
+		view.setPositionBar(new JSlider(0,(int)(duration*1000/26),time));
+		view.getPositionBar().validate();
 		addPlayerListener();
 		
 		
