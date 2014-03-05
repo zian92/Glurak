@@ -22,7 +22,7 @@ public abstract class UserProfile extends Profile implements Serializable {
     private User myUser;
 
     /**
-     * Prüft ob der Benutzer das Recht besitzt
+     * Prüft ob der Benutzer das Recht right besitzt
      * @param right das zu überprüfende Recht
      * @return true, falls Recht besitzt, sonst false
      */

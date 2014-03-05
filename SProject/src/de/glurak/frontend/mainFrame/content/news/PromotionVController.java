@@ -142,7 +142,7 @@ public class PromotionVController  implements ActionListener,ContentController{
 		for (int pos = 0; pos < sMax; pos++){
 				for (int j = 0; j < q; j++){
 					if (newsList.size() <= (pos+(j*sMax))) break;
-					promPan.getSLiderAtPos(pos).addSliderComponent(newsList.get(pos+(j*sMax)));
+					promPan.getSLiderAtPos(pos).addSliderComponent(newsList.get(pos+(j*sMax)).getLayeredPane());
 			}
 		} 
 

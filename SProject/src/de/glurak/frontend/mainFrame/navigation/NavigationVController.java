@@ -4,17 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 
+import de.glurak.frontend.mainFrame.ContentController;
+import de.glurak.frontend.mainFrame.content.news.PromotionVController;
+import de.glurak.frontend.mainFrame.content.profile.ProfileVController;
+
 public class NavigationVController extends Observable {
 
 	private NavigationView view;
-	private String navigateTo;
+	private ContentController contentController;
 	/**
 	 * Konstruktor
 	 */
 	public NavigationVController(){
-		navigateTo = null;
-		
-		view = new NavigationView();		
+		view = new NavigationView();	
 		
 		ActionListener a = new ActionListener() {
 			
@@ -22,15 +24,15 @@ public class NavigationVController extends Observable {
 				Object src = e.getSource();
 				
 				if (src == view.getEditProfile()) {
-					navigateTo = "EditProfile";
+					setContentController(new ProfileVController(true));		
 				} else if (src == view.getShowNews()) {
-					navigateTo = "ShowNews";
+					setContentController(new PromotionVController());		
 				} else if (src == view.getShowPlaylists()) {
-					navigateTo = "ShowPlaylists";
+					
 				} else if (src == view.getShowMessages()) {
-					navigateTo = "ShowMessages";
+					
 				} else if (src == view.getUpload()) {
-					navigateTo = "Upload";
+					
 				}
 			}
 		};
@@ -41,12 +43,6 @@ public class NavigationVController extends Observable {
 		view.getShowMessages().addActionListener(a);
 		view.getUpload().addActionListener(a);
 	}
-	
-	
-	public String getNavigateTo() {
-		return navigateTo;
-	}
-
 
 	public NavigationView getView() {
 		return view;
@@ -54,6 +50,18 @@ public class NavigationVController extends Observable {
 
 	public void setView(NavigationView view) {
 		this.view = view;
+	}
+
+
+	public ContentController getContentController() {
+		return contentController;
+	}
+
+
+	public void setContentController(ContentController contentController) {
+		this.contentController = contentController;
+		setChanged();
+		notifyObservers();
 	}
 
 }

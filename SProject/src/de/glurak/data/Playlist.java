@@ -19,6 +19,7 @@ public class Playlist implements Serializable,Hateable{
             joinColumns={@JoinColumn(name="PLAYLIST_ID", referencedColumnName="ID")},
             inverseJoinColumns={@JoinColumn(name="MEDIUM_ID", referencedColumnName="ID")})
 	private List<Medium> mediumList;
+    @Transient
     private int index;
 
     @ManyToMany
@@ -79,7 +80,8 @@ public class Playlist implements Serializable,Hateable{
 		this(id, name, null);
 	}
 	
-	
+
+    //TODO: !!! DIE getCurrent funktionen und ähnliche gehören hier nicht hin !!!!!!
 	
 	/**
 	 * Gibt aktuelles Medium zurück
@@ -116,7 +118,8 @@ public class Playlist implements Serializable,Hateable{
 		if(index<0){index=this.getMediumList().size()-1;}
 		return this.getMediumList().get(index);
 	}
-	
+
+    //TODO: !! JA ALLE DA OBEN !! SIE SOLLTEN IN EINE PLAYQUEUE-KLASSE DIE DIE PLAYLIST IMPORTIERT !!!!!!!!!!!!!!!
 	public void add(int index, Medium medium) {
 		this.getMediumList().add(index, medium);
 	}
