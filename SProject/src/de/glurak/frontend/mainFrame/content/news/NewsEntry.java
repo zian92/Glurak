@@ -63,14 +63,6 @@ public class NewsEntry extends JLayeredPane{
 		newController= newContent;
 		mainPicture = new JLabel(new ImageIcon( scaleImage(imgFilename, panWidth, panHeight)));
 		mainPicture.setBounds(0, 0, panWidth, panHeight);;
-		/*
-		JFrame f = new JFrame();
-		f.getContentPane().setLayout(new BorderLayout());
-		f.getContentPane().add(mainPicture,BorderLayout.CENTER);
-		f.setVisible(true);
-		/*
-		 *  ownerPicture = new JLabel(new ImageIcon(sclaeImage( owner.getProfileImage() , ownerIconWidth, ownerIconHeight)))
-		 * */
 		textSpace = new JLabel(message);
 		textSpace.setBounds(0, 0, panWidth, 70);
 		textSpace.setForeground(Color.BLUE);
