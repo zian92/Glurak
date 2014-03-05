@@ -50,6 +50,7 @@ public class ProfileView extends JPanel{
 	/**
 	 * Constructor
 	 * @param own Wird das eigene Profil angezeigt oder ein anderes?
+	 * @param anzPlaylists <= 5, falls ein User mehr Playlisten hat, sind diese über den "More"-Button verfügbar.
 	 */
 	public ProfileView(boolean own, int anzPlaylists){
 		
