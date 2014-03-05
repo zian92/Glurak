@@ -5,7 +5,9 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 
 import de.glurak.frontend.mainFrame.ContentController;
+import de.glurak.frontend.mainFrame.content.message.MessageVController;
 import de.glurak.frontend.mainFrame.content.news.PromotionVController;
+import de.glurak.frontend.mainFrame.content.playlist.PlaylistVController;
 import de.glurak.frontend.mainFrame.content.profile.ProfileVController;
 
 public class NavigationVController extends Observable {
@@ -28,9 +30,9 @@ public class NavigationVController extends Observable {
 				} else if (src == view.getShowNews()) {
 					setContentController(new PromotionVController());		
 				} else if (src == view.getShowPlaylists()) {
-					
+					setContentController(new PlaylistVController());	
 				} else if (src == view.getShowMessages()) {
-					
+					setContentController(new MessageVController());
 				} else if (src == view.getUpload()) {
 					
 				}
