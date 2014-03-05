@@ -12,6 +12,10 @@ import de.glurak.frontend.mainFrame.header.HeaderVController;
 import de.glurak.frontend.mainFrame.navigation.NavigationVController;
 import de.glurak.frontend.mainFrame.playQueue.PlayQueueViewController;
 
+/**
+ * @author Zengo
+ *
+ */
 public class MainFrameVController implements Observer{
 
 	private MainFrameView view;
@@ -19,8 +23,6 @@ public class MainFrameVController implements Observer{
 	private PlayQueueViewController playerController;
 	private NavigationVController navigationController;
 	private ContentController contentController;
-	private PromotionVController promotionController;
-	
 	
 	/**
 	 * Konstruktor
@@ -34,9 +36,9 @@ public class MainFrameVController implements Observer{
 			LinkedList<Medium> mediumList= new LinkedList<Medium>();
 			Playlist pl= new Playlist();
 			pl.setMediumList(mediumList);
-			Medium m1 = new Medium(1,"Blah Blah Gay",Query.FOLDER_MUSIC+"Go Far Kid.mp3", null);
-			Medium m2 = new Medium(2,"POKEMOOOOON",Query.FOLDER_MUSIC+"Pokemon Theme.mp3", null);
-			Medium m3 = new Medium(1,"PinkFluffyUniconrs",Query.FOLDER_MUSIC+"Pink Fluffy Unicorns.mp3", null);
+			Medium m1 = new Medium(1,"Go Far Kid",Query.FOLDER_MUSIC+"Go Far Kid.mp3", null);
+			Medium m2 = new Medium(2,"Pokemon Theme",Query.FOLDER_MUSIC+"Pokemon Theme.mp3", null);
+			Medium m3 = new Medium(1,"PinkFluffyUnicorns",Query.FOLDER_MUSIC+"Pink Fluffy Unicorns.mp3", null);
 
 			pl.getMediumList().add(m1);
 			pl.getMediumList().add(m2);
