@@ -81,8 +81,14 @@ public class User extends Reachable implements Serializable{
 
     public void setProfile(UserProfile profile) {
         if (this.profile==profile) return;
+        if (this.profile!=null){
+            UserProfile tmp=this.profile;
+            this.profile=null;
+            tmp.setUser(null);
+        }
         this.profile = profile;
-        profile.setUser(this);
+        if (profile!=null)
+            profile.setUser(this);
     }
 
     public List<Playlist> getMyPlaylists() {

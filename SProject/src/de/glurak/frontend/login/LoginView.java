@@ -8,6 +8,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -39,8 +40,13 @@ public class LoginView extends JFrame{
 	private JPanel pan_logframe;
 	
 	private JLayeredPane pan_content;
-	
-	public LoginView(String Titel){
+
+    /**
+     * Konstruktor
+     * @param Titel der Titel des Fensters
+     * @param lis der Listener für die Buttons, null für keinen
+     */
+	public LoginView(String Titel,ActionListener listener){
 		super(Titel);
 		
 		// set layout
@@ -58,9 +64,15 @@ public class LoginView extends JFrame{
 		JPanel pan_login	= new JPanel(new GridLayout(4,1,10,10));
 		pan_slider = new JPanel(new BorderLayout());
 		
-		
+
 		bt_login = new JButton("Einloggen");
+        bt_login.setActionCommand("login");
+        if (listener != null)
+            bt_login.addActionListener(listener);
 		bt_register = new JButton("Registrieren");
+        bt_register.setActionCommand("registrate");
+        if (listener != null)
+            bt_register.addActionListener(listener);
 		
 		JLabel l_name 		= new JLabel("Name", JLabel.LEFT);
 		JLabel l_passwort 	= new JLabel("Passwort", JLabel.LEFT);
@@ -132,16 +144,25 @@ public class LoginView extends JFrame{
 		setVisible(true);
 
 	}
+
+    /**
+     * Gibt das eingegebene Password zurück
+     * @return das Password
+     */
+    public String getPassword(){
+        return new String(t_passwort.getPassword());
+    }
+
+    /**
+     * Gibt den eingegebenen Benutzernamen zurück
+     * @return den Benutzernamen
+     */
+    public String getUsername(){
+        return t_name.getText();
+    }
 	
 	public JPanel getSliderPanel(){ return this.pan_slider; }
-	public JButton getBt_login() {
-		return bt_login;
-	}
 
-	public JButton getBt_register() {
-		return bt_register;
-	}
-	
 	public void setPanLogFrame(JPanel lPanel){
 		pan_logframe = lPanel;
 	}
