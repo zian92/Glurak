@@ -18,6 +18,7 @@ public class SessionThing {
     private SessionThing(){
         db = new HibernateDB();
     }
+
     public static SessionThing getInstance(){
         if (instance==null){
             instance = new SessionThing();
@@ -25,14 +26,26 @@ public class SessionThing {
         return instance;
     }
 
+    /**
+     * Gibt die Datenbank zurück, sie wurde werden des Konstruktors erstellt
+     * @return die Datenbank
+     */
     public  HibernateDB getDatabase(){
         return db;
     }
 
+    /**
+     * Setzt den aktuelle User
+     * @param u der aktuelle User
+     */
     public void setSessionUser(User u){
         user = u;
     }
 
+    /**
+     * Gibt den aktuellen User (vor dem Bildschirm) zurück
+     * @return aktuelle User
+     */
     public User getSessionUser(){
         return user;
     }
