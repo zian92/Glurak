@@ -62,7 +62,6 @@ public class LoginVController implements ActionListener, WindowListener {
 			regvcon.getView().setBounds(600,150,400,320);
 			startLoginScreen.getPanContent().add(regvcon.getView(), JLayeredPane.PALETTE_LAYER+1, 0);
 		}
-
 	}
 
 	public void windowClosed(WindowEvent e) {
