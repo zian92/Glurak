@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -17,7 +19,6 @@ import javax.swing.JLabel;
 
 import de.glurak.Query;
 import de.glurak.data.Album;
-import de.glurak.data.Medium;
 import de.glurak.frontend.mainFrame.ContentController;
 
 
@@ -27,7 +28,7 @@ import de.glurak.frontend.mainFrame.ContentController;
  * @author MxB
  *
  */
-public class PromotionVController  implements ActionListener,ContentController{
+public class PromotionVController  implements ActionListener,ContentController,Observer{
 
 	private List<JLabel> imageLabelList = new ArrayList<JLabel>();
 	
@@ -205,13 +206,13 @@ public class PromotionVController  implements ActionListener,ContentController{
 		int q = newsList.size()/sMax;
 		if (sMax*q<newsList.size()){
 			q=q+1;
-		}
-		for (int pos = 0; pos < sMax; pos++){
-				for (int j = 0; j < q; j++){
-					if (newsList.size() <= (pos+(j*sMax))) break;
-					promPan.getSLiderAtPos(pos).addSliderComponent(newsList.get(pos+(j*sMax)));
-			}
-		} 
+        }
+        for (int pos = 0; pos < sMax; pos++) {
+            for (int j = 0; j < q; j++) {
+                if (newsList.size() <= (pos + (j * sMax))) break;
+                promPan.getSLiderAtPos(pos).addSliderComponent(newsList.get(pos + (j * sMax)).getLayeredPane());
+            }
+        }
 		
 		
 		
@@ -271,8 +272,10 @@ public class PromotionVController  implements ActionListener,ContentController{
 		}else{
 			 addContentTo(5,"pic17.jpg");
 		}
-				
-		
-	}
+    }
+
+    public void update(Observable arg0, Object arg1) {
+        // TODO was soll hier rein!?
+    }
 
 }
