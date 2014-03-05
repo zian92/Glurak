@@ -213,7 +213,8 @@ public class PlayQueueViewController {
 		}
 		duration= properties.getLength();
 		System.out.println("Name: "+ getCurrentMedium().getFileName() + "  Samplerate: " +properties.getSamplerate() + " bitrate: "+ properties.getBitrate());  
-		view.setPositionBar(new JSlider(0,(int)(duration*1000/26),time));
+		
+		view.setPositionBar(new JSlider(0,(int)((duration*1000/26)/(128/properties.getBitrate())),time));
 		view.getPositionBar().validate();
 		addPlayerListener();
 		
