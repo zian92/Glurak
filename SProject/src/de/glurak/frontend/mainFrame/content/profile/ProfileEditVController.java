@@ -3,6 +3,8 @@ package de.glurak.frontend.mainFrame.content.profile;
 import java.awt.event.*;
 import javax.swing.*;
 
+import de.glurak.frontend.mainFrame.ContentController;
+
 /**
  * Diese Klasse stellt dem ProfileEditView die Funktionalität zur Verfügung.
  * @author Christopher Distelkämper		
@@ -31,7 +33,13 @@ public class ProfileEditVController implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e){
+		Object obj = e.getSource();
 		
+		if (obj == profileEditView.b_save){
+			
+		} else if (obj == profileEditView.b_uploadpic){
+			
+		}
 	}
 
 }
