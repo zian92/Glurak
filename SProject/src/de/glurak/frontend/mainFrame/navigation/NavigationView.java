@@ -9,20 +9,17 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneLayout;
 
 import de.glurak.Query;
 
 /**
  * In der Navigationview werden das Profilbild des Users und seine Funktionen,
  * wie z.B. Profil bearbeiten, und seine Playlists angezeigt.
- * @author Simon
+ * @author Simon, Zengo
  *
  */
 public class NavigationView extends JPanel{
@@ -30,7 +27,6 @@ public class NavigationView extends JPanel{
 	private JPanel profilePicture, buttonPanel;
 	private JLabel userPicture;
 	private JButton editProfile, showPlaylists, showNews, showMessages, upload;
-	private JScrollPane scrollbar;
 	
 	/**
 	 * Konstruktor
