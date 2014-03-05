@@ -14,8 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import de.glurak.Query;
 import de.glurak.data.Album;
 import de.glurak.data.Hateable;
+import de.glurak.data.Medium;
 import de.glurak.data.User.Label;
 import de.glurak.data.User.User;
 import de.glurak.frontend.mainFrame.ContentController;
@@ -46,6 +48,11 @@ public class NewsEntry extends Observable {
      * @param message
      *            A short text, that can be displayed
      */
+    
+    public NewsEntry(Medium source) {
+        // TODO: implement Album img
+        this(Query.FOLDER_PICTURE_ICONS + "musicfile.jpg", null, "Your Song", source);
+    }
     public NewsEntry(Album source) {
         // TODO: implement Album img
         this(source.getFilename(), null, source.getName(), source);
