@@ -3,8 +3,11 @@ package de.glurak.frontend.mainFrame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import de.glurak.Query;
 
 
 public class MainFrameView extends JFrame {
@@ -16,6 +19,7 @@ public class MainFrameView extends JFrame {
 	
 	
 	public MainFrameView(){
+		setTitle(Query.APPLICATION_NAME);
 		header = new JPanel(new BorderLayout());
 		header.setPreferredSize(new Dimension(1024, 35));
 		header.setBackground(Color.GREEN);

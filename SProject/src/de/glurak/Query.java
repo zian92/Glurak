@@ -2,7 +2,7 @@ package de.glurak;
 
 public class Query {
 
-    public static final String APPLICATION_NAME = "Glurak rules the world";
+    public static final String APPLICATION_NAME = "Application Name comming soon";
     public static final String ROOTPATH = "./";
     public static final String[] SUPPORTED_PICTURE_TYPES = { "png", "jpg", "bmp" };
     public static final String[] SUPPORTED_MUSIC_TYPES = { "mp3", };
