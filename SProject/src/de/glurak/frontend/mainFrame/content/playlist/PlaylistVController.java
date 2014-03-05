@@ -15,6 +15,7 @@ public class PlaylistVController implements ActionListener, ContentController{
 	 * Konstruktor
 	 */
 	public PlaylistVController(){
+		view = new PlaylistView();
 		
 	}
 
