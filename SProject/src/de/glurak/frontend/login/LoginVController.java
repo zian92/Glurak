@@ -69,18 +69,21 @@ public class LoginVController implements ActionListener, WindowListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("login")) {
-			if (!startLoginScreen.getUsername().equals("Olaf")&&!authenticate(startLoginScreen.getUsername(),startLoginScreen.getPassword())){
-	             JOptionPane.showMessageDialog(startLoginScreen,"Login failed. Check Username and Password.");
-	             return ;
-	         }
-			startLoginScreen.dispose();
-			MainFrameVController mainController = new MainFrameVController();
+		if (e.getActionCommand().equals("login") || e.getActionCommand().equals("OK")) {
+			
+			if (startLoginScreen.getUsername().equals("Olaf") || !startLoginScreen.getUsername().equals("")&&!startLoginScreen.getPassword().equals("")){
+				if (!startLoginScreen.getUsername().equals("Olaf")&&!authenticate(startLoginScreen.getUsername(),startLoginScreen.getPassword())){
+		             JOptionPane.showMessageDialog(startLoginScreen,"Login failed. Check Username and Password.");
+		             return ;
+		         }
+				startLoginScreen.dispose();
+				MainFrameVController mainController = new MainFrameVController();
+			}
 		} else if (e.getActionCommand().equals("registrate")) {
 			RegistrationVController regvcon = new RegistrationVController();
 			regvcon.getView().setBounds(600, 150, 400, 320);
 			startLoginScreen.getPanContent().add(regvcon.getView(), JLayeredPane.PALETTE_LAYER+1, 0);
-		}
+		} 
 	}
 	
 

@@ -81,7 +81,9 @@ public class LoginView extends JFrame{
 
 		t_name 				= new JTextField("", 20);
 		t_passwort			= new JPasswordField(8);
-		//t_passwort 			= new JTextField("", 20);
+		t_passwort.setActionCommand("OK");
+		t_passwort.addActionListener(listener);
+
 				
 		//create Backgroundimage
 		try {
