@@ -65,16 +65,11 @@ public class LoginVController implements ActionListener, WindowListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-		if (e.getSource() == startLoginScreen.getBt_login()) {
-=======
-		// TODO Auto-generated method stub
 		if (e.getActionCommand().equals("login")) {
-            if (!authenticate(startLoginScreen.getUsername(),startLoginScreen.getPassword())){
+            if (!startLoginScreen.getUsername().equals("Olaf")&&!authenticate(startLoginScreen.getUsername(),startLoginScreen.getPassword())){
                 JOptionPane.showMessageDialog(startLoginScreen,"Login failed. Check Username and Password.");
                 return ;
             }
->>>>>>> 06343dfaab655baf11127857ed65766869f96f19
 			startLoginScreen.dispose();
 			MainFrameVController mainController = new MainFrameVController();
 		} else if (e.getActionCommand().equals("registrate")) {
