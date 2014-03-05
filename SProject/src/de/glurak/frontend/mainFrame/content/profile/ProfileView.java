@@ -15,7 +15,7 @@ public class ProfileView extends JPanel{
 	// Panels
 	private JPanel pan_profileview;
 	private JPanel pan_profilepic;
-	private JPanel pan_picture;
+	protected JPanel pan_picture;
 	private JPanel pan_profiledata;
 	private JPanel pan_topplaylists;
 	private JPanel pan_likes;
@@ -78,18 +78,20 @@ public class ProfileView extends JPanel{
 			d.gridx = 0;
 			d.gridy = 0;
 			d.gridwidth = 3;
+			d.gridheight = 1;
 			pan_picture = new JPanel();
 			pan_picture.setPreferredSize(new Dimension(100,100));
 			pan_picture.setBackground(Color.green);
 			pan_profilepic.add(pan_picture, d);
-			
-				
+		
 		    // Initialisieren der Buttons b_message, b_follow, b_edit
 			
 			if (own){  // Falls das eigene Profil angezeigt werden soll, nur b_edit anzeigen
 			
 		    	d.gridx = 1;
 				d.gridy = 1;
+				d.gridwidth = 1;
+				d.gridheight = 1;
 				b_edit = new JButton("Bearbeiten");
 				b_edit.setBackground(Color.black);
 				b_edit.setForeground(Color.white);
@@ -100,6 +102,8 @@ public class ProfileView extends JPanel{
 				
 				d.gridx = 0;
 				d.gridy = 1;
+				d.gridwidth = 1;
+				d.gridheight = 1;
 			    b_message = new JButton("Nachricht");
 			    b_message.setBackground(Color.black);
 			    b_message.setForeground(Color.white);
@@ -107,6 +111,8 @@ public class ProfileView extends JPanel{
 			    
 			    d.gridx = 2;
 			    d.gridy = 1;
+			    d.gridwidth = 1;
+			    d.gridheight = 1;
 			    b_follow = new JButton("Follow");
 			    b_follow.setBackground(Color.black);
 			    b_follow.setForeground(Color.white);
@@ -233,7 +239,7 @@ public class ProfileView extends JPanel{
 		c.gridx = 1;
 		c.gridy = 0;
 		c.weightx = 0.5;
-		c.weighty = 0.5;
+		c.weighty = 0.0;
 		pan_profileview.add(pan_profilepic, c);
 		
 		c.gridx = 0;
@@ -245,7 +251,7 @@ public class ProfileView extends JPanel{
 		c.gridx = 1;
 		c.gridy = 1;
 		c.weightx = 0.5;
-		c.weighty = 0.5;
+		c.weighty = 1.0;
 		pan_profileview.add(pan_profiledata, c);
 		
 		// Hinzufügen des Panels zur ContentPane
