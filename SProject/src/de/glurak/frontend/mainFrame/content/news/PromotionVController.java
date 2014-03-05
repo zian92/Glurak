@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import de.glurak.Query;
 import de.glurak.data.Album;
 import de.glurak.data.Medium;
+import de.glurak.data.User.ListenerProfile;
 import de.glurak.data.User.User;
 import de.glurak.frontend.mainFrame.ContentController;
 
@@ -123,6 +124,20 @@ public class PromotionVController  implements ActionListener,ContentController{
 		NewsEntry n1 = new NewsEntry(a1);
 		NewsEntry n2 = new NewsEntry(a2);
 		
+		User u1 = new User();
+		u1.setUsername("Olaf der Erste");
+		ListenerProfile pu1 = new ListenerProfile();
+		pu1.setFirstname(u1.getUsername());
+		pu1.setFemale(false);
+		u1.setProfile(pu1);
+		
+		User u2 = new User();
+		u2.setUsername("Olafs Freundin");
+		ListenerProfile pu2 = new ListenerProfile();
+		pu2.setFirstname(u2.getUsername());
+		pu2.setFemale(true);
+		u2.setProfile(pu2);
+		
 		newsList.add(n1);
 		newsList.add(n2);
 		newsList.add(new NewsEntry(a1));
@@ -132,6 +147,8 @@ public class PromotionVController  implements ActionListener,ContentController{
 		newsList.add(new NewsEntry(a1));
 		newsList.add(new NewsEntry(a1));
 		newsList.add(new NewsEntry(m1));
+		newsList.add(new NewsEntry(u1));
+		newsList.add(new NewsEntry(u2));
 
 		// Fill every SLider with Content from NewsList
 		int sMax = promPan.getSliderCount();
