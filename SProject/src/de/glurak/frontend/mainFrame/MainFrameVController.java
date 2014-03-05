@@ -40,6 +40,9 @@ public class MainFrameVController implements Observer{
 		headerController= new HeaderVController();
 		navigationController = new NavigationVController();
 		
+		
+		navigationController.addObserver(this);
+		
 		view.getContent().add( contentController.getView());
 		view.getHeader().add(headerController.getView());
 		view.getPlayer().add( playerController.getView());
@@ -49,6 +52,10 @@ public class MainFrameVController implements Observer{
 
 	// View Anpassen
 	public void update(Observable o, Object arg) {
+		view.getContent().removeAll();
+		view.getContent().add(navigationController.getContentController().getView());
+		view.getContent().repaint();
+		view.getContent().revalidate();
 		System.out.println("UPADTE");
 	}
 	
