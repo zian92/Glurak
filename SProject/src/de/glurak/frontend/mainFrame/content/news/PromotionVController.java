@@ -115,22 +115,22 @@ public class PromotionVController  implements ActionListener,ContentController{
 		// Get Items from newsList of current User
 		Album a1 = new Album();
 		Album a2 = new Album();
-		Medium m1 = new Medium(13, "tralala", null, new User());
+		Medium m1 = new Medium(13, "Song 2", null, new User());
 		
 		a1.setName("This is It");
-		a2.setName("Good Olaf gone bad");
+		a2.setName("Album dummy");
 		NewsEntry n1 = new NewsEntry(a1);
 		NewsEntry n2 = new NewsEntry(a2);
 		
 		User u1 = new User();
-		u1.setUsername("Olaf der Erste");
+		u1.setUsername("TestUser m");
 		ListenerProfile pu1 = new ListenerProfile();
 		pu1.setFirstname(u1.getUsername());
 		pu1.setFemale(false);
 		u1.setProfile(pu1);
 		
 		User u2 = new User();
-		u2.setUsername("Olafs Freundin");
+		u2.setUsername("TestUser f");
 		ListenerProfile pu2 = new ListenerProfile();
 		pu2.setFirstname(u2.getUsername());
 		pu2.setFemale(true);
@@ -140,12 +140,18 @@ public class PromotionVController  implements ActionListener,ContentController{
 		newsList.add(n2);
 		newsList.add(new NewsEntry(a1));
 		newsList.add(new NewsEntry(a1));
+		newsList.add(new NewsEntry(u1));
 		newsList.add(new NewsEntry(a2));
+		newsList.add(new NewsEntry(m1));
 		newsList.add(new NewsEntry(a2));
+		newsList.add(new NewsEntry(u2));
+		newsList.add(new NewsEntry(a1));
+		newsList.add(new NewsEntry(m1));
 		newsList.add(new NewsEntry(a1));
 		newsList.add(new NewsEntry(a1));
 		newsList.add(new NewsEntry(m1));
-		newsList.add(new NewsEntry(u1));
+		
+		newsList.add(new NewsEntry(u2));
 		newsList.add(new NewsEntry(u2));
 
 		// Fill every SLider with Content from NewsList
@@ -160,9 +166,28 @@ public class PromotionVController  implements ActionListener,ContentController{
 					promPan.getSLiderAtPos(pos).addSliderComponent(newsList.get(pos+(j*sMax)).getLayeredPane());
 			}
 		} 
-
+		startTimer();
 	}
 
+	
+	private void startTimer(){
+		java.util.TimerTask action = new java.util.TimerTask() {
+			@Override
+			public void run() {
+				for (int j = 0; j < promPan.getSliderCount(); j++){
+					if (promPan.getSLiderAtPos(j).getItemCount() > 0){
+						promPan.getSLiderAtPos(j).next();
+					}
+				}
+			}
+		};
+		java.util.Timer ankurbler = new java.util.Timer();
+		ankurbler.schedule(action, 1000, 5000);
+	}
+	
+	
+	
+	
 	// only for testing
 	public void actionPerformed(ActionEvent e) {
 		// TODO distinguish the SOurce of the Event and handle it
