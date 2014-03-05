@@ -4,15 +4,11 @@ import static org.junit.Assert.assertTrue;
 
 import javax.persistence.EntityTransaction;
 
+import de.glurak.data.User.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.glurak.data.User.Label;
-import de.glurak.data.User.LabelManagerProfile;
-import de.glurak.data.User.LabelProfile;
-import de.glurak.data.User.Profile;
-import de.glurak.data.User.User;
 import de.glurak.database.HibernateDB;
 /**
  * @author Entscheider
@@ -20,7 +16,9 @@ import de.glurak.database.HibernateDB;
  */
 public class ProfileTest {
     private HibernateDB db;
-    private User user1;
+    private User user1,artist;
+    private ArtistProfile artistProfile;
+    private Label l;
     @Before
     public void before(){
         db = new HibernateDB();
@@ -34,7 +32,7 @@ public class ProfileTest {
         LabelProfile lb = new LabelProfile();
         lb.setName("Shelden");
         LabelManagerProfile pr = new LabelManagerProfile();
-        Label l = new Label();
+        l = new Label();
         db.registrateReachable(l,tr);
         pr.setMyLabel(l);
         pr.setFirstname("Schnee");
@@ -44,13 +42,35 @@ public class ProfileTest {
         db.registrateProfile(pr, tr);
 
         user1.setProfile(pr);
+
+        artist = new User();
+        artistProfile=new ArtistProfile();
+        artist.setUsername("Artist");
+        db.registrateUser(artist,tr);
+        db.registrateProfile(artistProfile,tr);
+        artist.setProfile(artistProfile);
+        artistProfile.setMyLabel(lb);
     }
 
 
     @After
     public void after(){
         db.getEnityManager().getTransaction().rollback();
-    } 
+    }
+
+    @Test
+    public void aritstTest(){
+        User a = db.getUserByUsername("Artist");
+        assertTrue(a!=null);
+        assertTrue(a==artist);
+        UserProfile p = a.getProfile();
+        assertTrue(p!=null);
+        assertTrue(p.roleName().equals("Artist"));
+        ArtistProfile aProfile = (ArtistProfile) p;
+        assertTrue(aProfile.getMyLabel()!=null);
+        assertTrue(aProfile.getMyLabel().getMyLabel()==l);
+    }
+
     @Test
     public void labelTest(){
         User a = db.getUserByUsername("Olaf der Schneemann");
@@ -62,11 +82,65 @@ public class ProfileTest {
         LabelProfile lp = db.labelProfileByName("Shelden") ;
         assertTrue(lp.getId() == pp.getMyLabel().getProfile().getId());
         assertTrue(lp.getName().equals("Shelden"));
+        assertTrue(lp.getMyLabel()!=null);
+        assertTrue(lp.getMyLabel().getId()==l.getId());
 
         lp.setName("Sh");
         lp = db.labelProfileByName("Sh");
         assertTrue(lp.getName().equals("Sh"));
         assertTrue(pp.getMyLabel().getProfile().getName().equals("Sh"));
+    }
+
+    @Test
+    public void removeLabelLabelManagerTest1(){
+        User a = db.getUserByUsername("Olaf der Schneemann");
+        Profile p =a.getProfile();
+        LabelManagerProfile pp = (LabelManagerProfile)  p;
+        LabelProfile lp = db.labelProfileByName("Shelden") ;
+
+        assertTrue(lp.getMyLabel().getManager().contains(pp));
+
+        lp.getMyLabel().removeLabelManager(pp);
+        assertTrue(!lp.getMyLabel().getManager().contains(pp));
+        assertTrue(pp.getMyLabel()==null);
+    }
+
+    @Test
+    public void removeLabelLabelManagerTest2(){
+        User a = db.getUserByUsername("Olaf der Schneemann");
+        Profile p =a.getProfile();
+        LabelManagerProfile pp = (LabelManagerProfile)  p;
+        LabelProfile lp = db.labelProfileByName("Shelden") ;
+
+        assertTrue(lp.getMyLabel().getManager().contains(pp));
+
+        pp.setMyLabel(null);
+        assertTrue(!lp.getMyLabel().getManager().contains(pp));
+        assertTrue(pp.getMyLabel()==null);
+    }
+
+    @Test
+    public void removeArtistLabelTest1(){
+        User a = db.getUserByUsername("Artist");
+        UserProfile p = a.getProfile();
+        ArtistProfile aProfile = (ArtistProfile) p;
+        assertTrue(l.getProfile().getMyartists().contains(aProfile));
+        aProfile.setMyLabel(null);
+
+        assertTrue(aProfile.getMyLabel()==null);
+        assertTrue(!l.getProfile().getMyartists().contains(aProfile));
+    }
+
+    @Test
+    public void removeArtistLabelTest2(){
+        User a = db.getUserByUsername("Artist");
+        UserProfile p = a.getProfile();
+        ArtistProfile aProfile = (ArtistProfile) p;
+        assertTrue(l.getProfile().getMyartists().contains(aProfile));
+        aProfile.getMyLabel().removeArtist(aProfile);
+
+        assertTrue(aProfile.getMyLabel()==null);
+        assertTrue(!l.getProfile().getMyartists().contains(aProfile));
     }
 
     @Test

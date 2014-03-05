@@ -2,6 +2,7 @@ package de.glurak.data.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,6 +25,10 @@ public class LabelProfile extends Profile implements Serializable{
     }
 
 
+
+    public LabelProfile(){
+        myartists=new ArrayList<ArtistProfile>();
+    }
     /**
      * Fügt einen Artist den Label hinzu
      * @param pro
@@ -61,7 +66,12 @@ public class LabelProfile extends Profile implements Serializable{
     public void setLabel(Label l){
         if (l==myLabel) return;
         myLabel=l;
-        l.setProfile(this);
+        if (l!=null)
+            l.setProfile(this);
+    }
+
+    public Label getMyLabel() {
+        return myLabel;
     }
 
     @Override
