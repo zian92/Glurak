@@ -12,6 +12,11 @@ import javax.swing.ScrollPaneLayout;
 import de.glurak.data.Medium;
 import de.glurak.data.Playlist;
 
+/**
+ * Gui für den MediaPlayer, mit ControllPanel(Play/Stop,Next/Prev) && QueueView
+ * @author MMÜhlenjost
+ *
+ */
 public class PlayQueueView extends JPanel{
 	private JButton 	playButton;
 	private JButton 	nextButton;

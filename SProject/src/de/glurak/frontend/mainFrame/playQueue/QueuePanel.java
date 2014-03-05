@@ -12,11 +12,17 @@ import javax.swing.JScrollPane;
 import de.glurak.data.Medium;
 import de.glurak.data.Playlist;
 
+/**
+ * Gui-Panel für die gerade zu spielende Playlist
+ * 
+ * @author MMÜhlenjost
+ *
+ */
 public class QueuePanel extends JPanel{
 	
 	private	JPanel[] 		mediumPanelArray;
 	private	JButton[] 		mediumButtonArray;
-	private JPanel			m;
+	private JPanel			firstPanel;
 	private Playlist 		playlist;
 	private	Medium 			current;
 	
@@ -68,8 +74,8 @@ public class QueuePanel extends JPanel{
 		
 		setPlaylist(playlist);
 		setCurrent(current);
-		m= new JPanel();
-		m.setLayout(new GridLayout(1,getPlaylist().getMediumList().size()));
+		firstPanel= new JPanel();
+		firstPanel.setLayout(new GridLayout(1,getPlaylist().getMediumList().size()));
 		mediumPanelArray = new JPanel[getPlaylist().getMediumList().size()];
 		mediumButtonArray = new JButton[getPlaylist().getMediumList().size()];
 			
@@ -85,11 +91,15 @@ public class QueuePanel extends JPanel{
 				mediumPanelArray[i].setBackground(Color.BLUE);
 				
 			}
-			m.add(mediumPanelArray[i]);
-			this.add(m,BorderLayout.CENTER);
+			firstPanel.add(mediumPanelArray[i]);
+			this.add(firstPanel,BorderLayout.CENTER);
 			
 		}
 	}
+	
+	/** 
+	 * Button für Medien der Playlist werden neu gezeichnet(bei Änderungen des CurrentMedium)
+	 */
 	public void resetButton(){
 		for(int i=0;i<getPlaylist().getMediumList().size();i++){
 			mediumPanelArray[i].setBackground(Color.LIGHT_GRAY);
@@ -99,11 +109,12 @@ public class QueuePanel extends JPanel{
 		}
 		this.validate();
 	}
+	
 	public JScrollPane getScrollbar() {
 		return scrollbar;
 	}
 	public JPanel getFirstPanel(){
-		return m;
+		return firstPanel;
 	}
 	
 	public void setScrollbar(JScrollPane scrollbar) {
