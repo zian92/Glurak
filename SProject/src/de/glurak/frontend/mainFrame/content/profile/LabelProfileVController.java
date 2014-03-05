@@ -33,12 +33,12 @@ public class LabelProfileVController implements ActionListener{
 		}
 		
 		// Daten in die Textfelder schreiben
-		/*
+		
 		labelProfileView.t_labelname.setText("");
-		for (int i = 1; i == anzArtists; i++){
-			labelProfileView.t_kuenstler[i].setText("");
+		for (int i = 1; i <= anzArtists; i++){
+			labelProfileView.t_kuenstler[i].setText("Test");
 		}
-		*/
+		
 	}
 	
 	public void actionPerformed(ActionEvent e){

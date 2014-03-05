@@ -77,7 +77,7 @@ public class LabelProfileView extends JPanel{
 			    	d.gridx = 0;
 					d.gridy = 1;
 					d.gridheight = 1;
-					d.gridwidth = 1;
+					d.gridwidth = 2;
 					b_edit = new JButton("Bearbeiten");
 					b_edit.setBorder(BorderFactory.createLineBorder(Color.white));
 					b_edit.setBackground(Color.black);
@@ -112,7 +112,7 @@ public class LabelProfileView extends JPanel{
 						d.gridx = 0;
 						d.gridy = 1;
 						d.gridheight = 1;
-						d.gridwidth = 1;
+						d.gridwidth = 2;
 						b_follow = new JButton("Follow");
 						b_follow.setBorder(BorderFactory.createLineBorder(Color.white));
 						b_follow.setBackground(Color.black);
@@ -166,7 +166,7 @@ public class LabelProfileView extends JPanel{
 				t_kuenstler = new JTextField[10];
 				l_kuenstler = new JLabel[10];
 				
-				for (int i = 1; i == anzArtists; i++){
+				for (int i = 1; i <= anzArtists; i++){
 
 					// Label und Textfelder hinzufügen
 					e.gridx = 0;
@@ -189,9 +189,7 @@ public class LabelProfileView extends JPanel{
 					t_kuenstler[i].setForeground(Color.white);
 					pan_profiledata.add(t_kuenstler[i], e);
 
-				}
-			
-				
+				}				
 				
 			// Hinzufügen der Panels zum Panel pan_profileview
 			c.gridx = 0;
@@ -235,7 +233,7 @@ public class LabelProfileView extends JPanel{
 	    labelprofile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//Registrationview in das Frame laden
-		JComponent newContentPane = new LabelProfileView(true, false, 2);
+		JComponent newContentPane = new LabelProfileView(false, false, 4);
         newContentPane.setOpaque(true);
         labelprofile.setContentPane(newContentPane);
         
