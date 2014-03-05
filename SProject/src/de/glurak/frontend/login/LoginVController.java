@@ -26,7 +26,7 @@ public class LoginVController implements ActionListener, WindowListener {
 		startLoginScreen.setSize(1024, 700);
 		con_slider = new LoginSLiderController();
 		startLoginScreen.getSliderPanel().add(con_slider.getView(),
-				BorderLayout.CENTER);
+                BorderLayout.CENTER);
 		startLoginScreen.addWindowListener(this);
 		// startLoginScreen.add(con_slider.getView());
 		// startLoginScreen.setSliderPanel(con_slider.getView());
@@ -58,7 +58,7 @@ public class LoginVController implements ActionListener, WindowListener {
             session.handleException(e);
             return false;
         }
-
+        
         session.setSessionUser(u);
 
         return true;
@@ -67,8 +67,12 @@ public class LoginVController implements ActionListener, WindowListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("login")) {
             if (!startLoginScreen.getUsername().equals("Olaf")&&!authenticate(startLoginScreen.getUsername(),startLoginScreen.getPassword())){
-                JOptionPane.showMessageDialog(startLoginScreen,"Login failed. Check Username and Password.");
+                JOptionPane.showMessageDialog(startLoginScreen,"Login fehlgeschlagen. Check Username and Password.");
                 return ;
+            }
+            SessionThing s = SessionThing.getInstance();
+            if (s.getSessionUser().isLocked()) {
+                JOptionPane.showMessageDialog(startLoginScreen,"Sie sind gesperrt");
             }
 			startLoginScreen.dispose();
 			MainFrameVController mainController = new MainFrameVController();
