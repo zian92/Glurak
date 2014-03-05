@@ -17,6 +17,7 @@ public class MainFrameVController implements Observer{
 	private PlayQueueViewController playerController;
 	private NavigationVController navigationController;
 	private ContentController contentController;
+	private PromotionVController promotionController;
 	
 	
 	/**
@@ -40,7 +41,7 @@ public class MainFrameVController implements Observer{
 		contentController = new PromotionVController();
 		playerController= new PlayQueueViewController(pl);
 		headerController= new HeaderVController();
-		navigationController = new NavigationVController();
+		navigationController = new NavigationVController(contentController);
 		
 		// Observer hinzufügen
 		navigationController.addObserver(this);

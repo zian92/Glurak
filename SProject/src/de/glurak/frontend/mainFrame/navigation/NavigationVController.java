@@ -14,11 +14,14 @@ public class NavigationVController extends Observable {
 
 	private NavigationView view;
 	private ContentController contentController;
+	private PromotionVController promotionVController;
+	
 	/**
 	 * Konstruktor
 	 */
-	public NavigationVController(){
-		view = new NavigationView();	
+	public NavigationVController(ContentController promoVContr){
+		view = new NavigationView();
+		promotionVController = (PromotionVController) promoVContr;
 		
 		ActionListener a = new ActionListener() {
 			
@@ -28,7 +31,7 @@ public class NavigationVController extends Observable {
 				if (src == view.getEditProfile()) {
 					setContentController(new ProfileVController(true));		
 				} else if (src == view.getShowNews()) {
-					setContentController(new PromotionVController());		
+					setContentController(promotionVController);		
 				} else if (src == view.getShowPlaylists()) {
 					setContentController(new PlaylistVController());	
 				} else if (src == view.getShowMessages()) {
