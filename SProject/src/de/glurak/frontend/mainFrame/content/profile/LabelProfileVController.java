@@ -3,6 +3,11 @@ package de.glurak.frontend.mainFrame.content.profile;
 import java.awt.event.*;
 import javax.swing.*;
 
+import de.glurak.frontend.mainFrame.ContentController;
+import de.glurak.frontend.mainFrame.content.message.ApplicationVController;
+import de.glurak.frontend.mainFrame.content.playlist.PlaylistVController;
+import de.glurak.frontend.mainFrame.content.profile.ProfileEditVController;
+
 /**
  * Diese Klasse stellt dem LabelProfileView die Funktionalität zur Verfügung.
  * @author Christopher Distelkämper
@@ -49,6 +54,17 @@ public class LabelProfileVController implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e){
+		Object obj = e.getSource();
+		
+		if (obj == labelProfileView.b_follow){
+	
+		} else if (obj == labelProfileView.b_moreplaylists){
+	//		setContentController(new PlaylistVController());				
+		} else if (obj == labelProfileView.b_edit){
+	// 		setContentController(new ProfileEditVController());		
+		} else if (obj == labelProfileView.b_apply){
+	//  	setContentController(new ApplicationVController());		
+		}
 		
 	}
 	
