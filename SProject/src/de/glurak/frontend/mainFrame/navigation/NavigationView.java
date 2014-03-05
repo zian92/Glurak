@@ -56,7 +56,7 @@ public class NavigationView extends JPanel{
 		buttonPanel.add(editProfile);
 		buttonPanel.add(showPlaylists);
 		buttonPanel.add(showMessages);
-		
+		buttonPanel.add(upload);
 		
 		BufferedImage img = null;
 		try {
