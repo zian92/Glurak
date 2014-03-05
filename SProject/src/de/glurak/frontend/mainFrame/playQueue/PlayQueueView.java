@@ -53,7 +53,7 @@ public class PlayQueueView extends JPanel{
 		setPlayButton(new JButton("Play"));
 		setNextButton(new JButton("=>"));
 		setPreviousButton(new JButton("<="));
-		positionBar = new EJSlider(0,50,0);
+		positionBar = new EJSlider(0,0,0);
 		positionBar.setOrientation(JSlider.HORIZONTAL);
 		positionBar.setExtent(0);
 		setControllPanel(new JPanel());

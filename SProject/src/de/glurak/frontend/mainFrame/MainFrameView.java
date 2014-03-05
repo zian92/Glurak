@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+
 public class MainFrameView extends JFrame {
 	
 	private JPanel header;
@@ -32,6 +33,8 @@ public class MainFrameView extends JFrame {
 		add(navigation, BorderLayout.WEST);
 		add(player, BorderLayout.SOUTH);
 		add(content, BorderLayout.CENTER);
+		
+		setMinimumSize(new Dimension(1060,740));
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();

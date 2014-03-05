@@ -3,6 +3,8 @@ package de.glurak.frontend.mainFrame;
 import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
+
+import de.glurak.Query;
 import de.glurak.data.Medium;
 import de.glurak.data.Playlist;
 import de.glurak.frontend.mainFrame.content.news.PromotionVController;
@@ -32,8 +34,8 @@ public class MainFrameVController implements Observer{
 			LinkedList<Medium> mediumList= new LinkedList<Medium>();
 			Playlist pl= new Playlist();
 			pl.setMediumList(mediumList);
-			Medium m1 = new Medium(1,"PinkFluffyUniconrs","test2.mp3", null);
-			Medium m2 = new Medium(2,"Blah","test.mp3", null);
+			Medium m1 = new Medium(1,"Blah Blah Gay","test.mp3", null);
+			Medium m2 = new Medium(2,"POKEMOOOOON","test2.mp3", null);
 			pl.getMediumList().add(m1);
 			pl.getMediumList().add(m2);
 		

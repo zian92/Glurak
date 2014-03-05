@@ -9,6 +9,7 @@ import de.glurak.frontend.mainFrame.content.message.MessageVController;
 import de.glurak.frontend.mainFrame.content.news.PromotionVController;
 import de.glurak.frontend.mainFrame.content.playlist.PlaylistVController;
 import de.glurak.frontend.mainFrame.content.profile.ProfileVController;
+import de.glurak.frontend.mainFrame.content.upload.UploadVController;
 
 public class NavigationVController extends Observable {
 
@@ -37,7 +38,7 @@ public class NavigationVController extends Observable {
 				} else if (src == view.getShowMessages()) {
 					setContentController(new MessageVController());
 				} else if (src == view.getUpload()) {
-					
+					setContentController(new UploadVController());
 				}
 			}
 		};
