@@ -14,7 +14,6 @@ import javax.swing.JFrame;
 public class RegistrationVController implements ActionListener{
 
 	private RegistrationView regview;
-	//private JFrame regframe = new JFrame("Registrierung");
 	
 	/**
 	 * Konstruktor
@@ -23,9 +22,6 @@ public class RegistrationVController implements ActionListener{
 		regview = new RegistrationView();
 		regview.b_cancel.addActionListener(this);
 		regview.b_register.addActionListener(this);
-		//regframe.add(regview);
-		//regframe.setVisible(true);
-		//regframe.pack();
 	}
 	
 	public void actionPerformed(ActionEvent e){
@@ -74,7 +70,7 @@ public class RegistrationVController implements ActionListener{
 		}
 		else{
 			if(e.getSource() == regview.b_cancel){
-				//regframe.dispose();
+				regview.setVisible(false);
 			}
 		}
 	}

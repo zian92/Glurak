@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
 import de.glurak.frontend.mainFrame.MainFrameVController;
-import de.glurak.frontend.mainFrame.content.news.SliderPanelController;
 import de.glurak.frontend.registration.RegistrationVController;
 
 public class LoginVController implements ActionListener, WindowListener {
@@ -60,10 +59,8 @@ public class LoginVController implements ActionListener, WindowListener {
 			MainFrameVController mainController = new MainFrameVController();
 		} else if (e.getSource() == startLoginScreen.getBt_register()) {
 			RegistrationVController regvcon = new RegistrationVController();
-			startLoginScreen.getPanLogFrame().setVisible(false);
-			startLoginScreen.getPanContent().add(regvcon.getView(), JLayeredPane.PALETTE_LAYER, 0);
-			//startLoginScreen.getPanLogFrame().setBounds(600, 150, 400, 320);
-			//startLoginScreen.getPanLogFrame().add(regvcon.getView());
+			regvcon.getView().setBounds(600,150,400,320);
+			startLoginScreen.getPanContent().add(regvcon.getView(), JLayeredPane.PALETTE_LAYER+1, 0);
 		}
 
 	}
