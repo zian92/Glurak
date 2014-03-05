@@ -37,7 +37,11 @@ public class Genre implements Serializable {
 	public String getTitle() {
 		return title;
 	}
-	
+
+    /**
+     * Gibt das übergeordnete Genre zurück
+     * @return das übergeordente Genre, null falls keine Obergenre
+     */
 	public Genre getParentGenre() {
 		return parentGenre;
 	}
@@ -50,7 +54,11 @@ public class Genre implements Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
+    /**
+     * Setzt das übergeordnete Genre
+     * @param genre das übergordnete Genre, null falls obergenre
+     */
 	public void setParentGenre(Genre genre) {
 		this.parentGenre = genre;
 	}

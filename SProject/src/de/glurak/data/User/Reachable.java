@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * Oberklasse für alles im Programm,
- * was Narichten empfangen kann.
+ * was Narichten empfangen kann oder sonst im System funktional integriert ist.
  * @author Entscheider
  */
 @Entity

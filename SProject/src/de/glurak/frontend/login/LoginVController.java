@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.security.NoSuchAlgorithmException;
@@ -26,8 +28,10 @@ public class LoginVController implements ActionListener, WindowListener {
 		startLoginScreen.setSize(1024, 700);
 		con_slider = new LoginSLiderController();
 		startLoginScreen.getSliderPanel().add(con_slider.getView(),
-                BorderLayout.CENTER);
+				BorderLayout.CENTER);
 		startLoginScreen.addWindowListener(this);
+	
+		
 		// startLoginScreen.add(con_slider.getView());
 		// startLoginScreen.setSliderPanel(con_slider.getView());
 
@@ -58,7 +62,7 @@ public class LoginVController implements ActionListener, WindowListener {
             session.handleException(e);
             return false;
         }
-        
+
         session.setSessionUser(u);
 
         return true;
@@ -66,16 +70,10 @@ public class LoginVController implements ActionListener, WindowListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("login")) {
-            if (!startLoginScreen.getUsername().equals("Olaf")){
-                if (!authenticate(startLoginScreen.getUsername(),startLoginScreen.getPassword())){
-                    JOptionPane.showMessageDialog(startLoginScreen,"Login fehlgeschlagen. Check Username and Password.");
-                    return ;
-                }
-                SessionThing s = SessionThing.getInstance();
-                if (s.getSessionUser().isLocked()) {
-                    JOptionPane.showMessageDialog(startLoginScreen,"Sie sind gesperrt");
-                }
-            }
+			if (!startLoginScreen.getUsername().equals("Olaf")&&!authenticate(startLoginScreen.getUsername(),startLoginScreen.getPassword())){
+	             JOptionPane.showMessageDialog(startLoginScreen,"Login failed. Check Username and Password.");
+	             return ;
+	         }
 			startLoginScreen.dispose();
 			MainFrameVController mainController = new MainFrameVController();
 		} else if (e.getActionCommand().equals("registrate")) {
@@ -84,6 +82,7 @@ public class LoginVController implements ActionListener, WindowListener {
 			startLoginScreen.getPanContent().add(regvcon.getView(), JLayeredPane.PALETTE_LAYER+1, 0);
 		}
 	}
+	
 
 	public void windowClosed(WindowEvent e) {
 		// TODO Auto-generated method stub
