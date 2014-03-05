@@ -33,7 +33,7 @@ public class RegistrationVController implements ActionListener{
 				int year = Integer.parseInt(regview.t_birthdate_year.getText());
 				//Abfrage, ob alle Textfelder ausgefüllt wurden 
 				if (	(regview.t_username.getText() == null) ||
-						(regview.t_password.getText() == null) ||
+						(regview.t_password.getPassword().length == 0) ||
 						(regview.t_birthdate_day.getText() == null) ||
 						(regview.t_birthdate_month.getText() == null) ||
 						(regview.t_birthdate_year.getText() == null) ||

@@ -53,7 +53,6 @@ public class LoginVController implements ActionListener, WindowListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		if (e.getSource() == startLoginScreen.getBt_login()) {
 			startLoginScreen.dispose();
 			MainFrameVController mainController = new MainFrameVController();
