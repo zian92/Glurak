@@ -40,12 +40,19 @@ public class ProfileView extends JPanel{
 	private JLabel l_birthdate;
 	private JLabel l_homecountry;
 	
+	// TextField-Array für die Playlisten
+	protected JTextField[] t_playlist;
+	
+	// Label-Array für die Playlisten
+	private JLabel[] l_playlist;
+	
 	
 	/**
 	 * Constructor
 	 * @param own Wird das eigene Profil angezeigt oder ein anderes?
+	 * @param anzPlaylists <= 5, falls ein User mehr Playlisten hat, sind diese über den "More"-Button verfügbar.
 	 */
-	public ProfileView(boolean own){
+	public ProfileView(boolean own, int anzPlaylists){
 		
 		// Initialisieren Panel pan_profileview
 		pan_profileview = new JPanel(new GridBagLayout());
@@ -125,11 +132,49 @@ public class ProfileView extends JPanel{
 		pan_topplaylists.setBackground(Color.black);
 		pan_topplaylists.setBorder(BorderFactory.createLineBorder(Color.black));
 		
+			// Layout-Restriktionen festlegen.
+			GridBagConstraints e = new GridBagConstraints();
+			e.fill = GridBagConstraints.HORIZONTAL;
+			e.insets = new Insets(2,2,2,2);	
+			
+			l_playlist = new JLabel[5];
+			t_playlist = new JTextField[5];
+			
+			for (int i = 1; i <= anzPlaylists; i++){
+				
+				// Labels und Textfelder hinzufügen
+				e.gridx = 0;
+				e.gridy = i-1;
+				e.weightx = 0.0;
+				e.gridheight = 1;
+				e.gridwidth = 1;
+				l_playlist[i] = new JLabel("Playlist " + i + ":");
+				l_playlist[i].setForeground(Color.white);
+				pan_topplaylists.add(l_playlist[i], e);
+				
+				e.gridx = 1;
+				e.gridy = i-1;
+				e.weightx = 1.0;
+				e.gridheight = 1;
+				e.gridwidth = 1;
+				t_playlist[i] = new JTextField();
+				t_playlist[i].setBackground(Color.black);
+				t_playlist[i].setForeground(Color.white);
+				t_playlist[i].setEditable(false);
+				pan_topplaylists.add(t_playlist[i], e);
+				
+			}
+			
 			// Initialisieren des Buttons b_moreplaylists
+			e.gridx = 0;
+			e.gridy = anzPlaylists;
+			e.gridheight = 1;
+			e.gridwidth = 2;
+			e.weightx = 0.0;
 			b_moreplaylists = new JButton("mehr");
 			b_moreplaylists.setBackground(Color.black);
 			b_moreplaylists.setForeground(Color.white);
-			pan_topplaylists.add(b_moreplaylists);
+			pan_topplaylists.add(b_moreplaylists, e);
 					
 		// Initialisieren Panel pan_profiledata
 		pan_profiledata = new JPanel(new GridBagLayout());	
@@ -138,95 +183,95 @@ public class ProfileView extends JPanel{
 		pan_profiledata.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 			// Layout-Restriktionen festlegen.
-			GridBagConstraints e = new GridBagConstraints();
-			e.fill = GridBagConstraints.HORIZONTAL;
-			e.insets = new Insets(2,2,2,2);	
+			GridBagConstraints f = new GridBagConstraints();
+			f.fill = GridBagConstraints.HORIZONTAL;
+			f.insets = new Insets(2,2,2,2);	
 
 			// Label und Textfelder hinzufügen
 			// Username
-			e.gridx = 0;
-			e.gridy = 0;
-			e.weightx = 0.0;
+			f.gridx = 0;
+			f.gridy = 0;
+			f.weightx = 0.0;
 			l_username = new JLabel("Username:");
 			l_username.setForeground(Color.white);
-			pan_profiledata.add(l_username, e);
+			pan_profiledata.add(l_username, f);
 			
-			e.gridx = 1;
-			e.gridy = 0;
-			e.weightx = 1.0;
+			f.gridx = 1;
+			f.gridy = 0;
+			f.weightx = 1.0;
 			t_username = new JTextField();
 			t_username.setEditable(false);
 			t_username.setBackground(Color.black);
 			t_username.setForeground(Color.white);
-			pan_profiledata.add(t_username, e);
+			pan_profiledata.add(t_username, f);
 			
 			// Vorname
-			e.gridx = 0;
-			e.gridy = 1;
-			e.weightx = 0.0;
+			f.gridx = 0;
+			f.gridy = 1;
+			f.weightx = 0.0;
 			l_firstname = new JLabel("Vorname:");
 			l_firstname.setForeground(Color.white);
-			pan_profiledata.add(l_firstname, e);
+			pan_profiledata.add(l_firstname, f);
 			
-			e.gridx = 1;
-			e.gridy = 1;
-			e.weightx = 1.0;
+			f.gridx = 1;
+			f.gridy = 1;
+			f.weightx = 1.0;
 			t_firstname = new JTextField();
 			t_firstname.setEditable(false);
 			t_firstname.setBackground(Color.black);
 			t_firstname.setForeground(Color.white);
-			pan_profiledata.add(t_firstname, e);
+			pan_profiledata.add(t_firstname, f);
 			
 			// Nachname
-			e.gridx = 0;
-			e.gridy = 2;
-			e.weightx = 0.0;
+			f.gridx = 0;
+			f.gridy = 2;
+			f.weightx = 0.0;
 			l_lastname = new JLabel("Nachname:");
 			l_lastname.setForeground(Color.white);
-			pan_profiledata.add(l_lastname, e);
+			pan_profiledata.add(l_lastname, f);
 			
-			e.gridx = 1;
-			e.gridy = 2;
-			e.weightx = 1.0;
+			f.gridx = 1;
+			f.gridy = 2;
+			f.weightx = 1.0;
 			t_lastname = new JTextField();
 			t_lastname.setEditable(false);
 			t_lastname.setBackground(Color.black);
 			t_lastname.setForeground(Color.white);
-			pan_profiledata.add(t_lastname, e);
+			pan_profiledata.add(t_lastname, f);
 			
 			// Geburtstag
-			e.gridx = 0;
-			e.gridy = 3;
-			e.weightx = 0.0;
+			f.gridx = 0;
+			f.gridy = 3;
+			f.weightx = 0.0;
 			l_birthdate = new JLabel("Geburtstag:");
 			l_birthdate.setForeground(Color.white);
-			pan_profiledata.add(l_birthdate, e);
+			pan_profiledata.add(l_birthdate, f);
 			
-			e.gridx = 1;
-			e.gridy = 3;
-			e.weightx = 1.0;
+			f.gridx = 1;
+			f.gridy = 3;
+			f.weightx = 1.0;
 			t_birthdate = new JTextField();
 			t_birthdate.setEditable(false);
 			t_birthdate.setBackground(Color.black);
 			t_birthdate.setForeground(Color.white);
-			pan_profiledata.add(t_birthdate, e);
+			pan_profiledata.add(t_birthdate, f);
 			
 			// Heimatland
-			e.gridx = 0;
-			e.gridy = 4;
-			e.weightx = 0.0;
+			f.gridx = 0;
+			f.gridy = 4;
+			f.weightx = 0.0;
 			l_homecountry = new JLabel("Heimatland:");
 			l_homecountry.setForeground(Color.white);
-			pan_profiledata.add(l_homecountry, e);
+			pan_profiledata.add(l_homecountry, f);
 			
-			e.gridx = 1;
-			e.gridy = 4;
-			e.weightx = 1.0;
+			f.gridx = 1;
+			f.gridy = 4;
+			f.weightx = 1.0;
 			t_homecountry = new JTextField();
 			t_homecountry.setEditable(false);
 			t_homecountry.setBackground(Color.black);
 			t_homecountry.setForeground(Color.white);
-			pan_profiledata.add(t_homecountry, e);
+			pan_profiledata.add(t_homecountry, f);
 			
 			
 		// Hinzufügen der Panels zum Panel pan_profileview
@@ -269,7 +314,7 @@ public class ProfileView extends JPanel{
 		profile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//Registrationview in das Frame laden
-		JComponent newContentPane = new ProfileView(false);
+		JComponent newContentPane = new ProfileView(false, 2);
         newContentPane.setOpaque(true);
         profile.setContentPane(newContentPane);
         

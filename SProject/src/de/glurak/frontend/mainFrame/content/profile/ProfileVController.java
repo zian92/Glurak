@@ -14,8 +14,13 @@ public class ProfileVController implements ActionListener, ContentController {
 	
 	private ProfileView profileview;
 	
-	public ProfileVController(boolean own){
-		profileview = new ProfileView(own);
+	/**
+	 * Constructor
+	 * @param own Wird das eigene Profil angezeigt?
+	 * @param anzPlaylists <= 5, falls ein User mehr Playlisten hat sind diese über den "More"-Button verfügbar.
+	 */
+	public ProfileVController(boolean own, int anzPlaylists){
+		profileview = new ProfileView(own, anzPlaylists);
 		
 		// Hinzufügen der ActionListener
 		profileview.b_moreplaylists.addActionListener(this);

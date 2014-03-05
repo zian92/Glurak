@@ -52,9 +52,16 @@ public class Announcement implements Serializable{
         return belongsTo;
     }
 
+    /**
+     * Setzt das Profil zu dem diese Ankündigung gehört.
+     * @param belongsTo ein Profil, null falls kein Profil zugeordnet
+     */
     public void setBelongsTo(Profile belongsTo) {
         if (this.belongsTo==belongsTo)  return;
+        Profile oldProfile = this.belongsTo;
         this.belongsTo = belongsTo;
+        if (oldProfile!=null)
+            oldProfile.removeAnnouncement(this);
         belongsTo.addAnnouncement(this);
     }
 
