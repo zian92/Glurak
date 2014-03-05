@@ -12,9 +12,16 @@ public class LabelProfileVController implements ActionListener{
 
 	private LabelProfileView labelProfileView;
 	
-	public LabelProfileVController(boolean artist, boolean labelManager, int anzArtists){
+	/**
+	 * Constructor
+	 * @param artist Greift ein Künstler auf das Profil zu?
+	 * @param labelManager Greift ein LabelManager auf das Profil zu?
+	 * @param anzArtists <= 10
+	 * @param anzPlaylists <= 5, falls mehr als 5 Playlisten existieren, sind diese über den "More"-Button verfügbar
+	 */
+	public LabelProfileVController(boolean artist, boolean labelManager, int anzArtists, int anzPlaylists){
 		
-		labelProfileView = new LabelProfileView(artist, labelManager, anzArtists);
+		labelProfileView = new LabelProfileView(artist, labelManager, anzArtists, anzPlaylists);
 		
 		// Hinzufügen der ActionListener
 		labelProfileView.b_moreplaylists.addActionListener(this);
