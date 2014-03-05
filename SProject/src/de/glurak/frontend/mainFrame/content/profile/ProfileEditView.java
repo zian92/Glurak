@@ -13,6 +13,7 @@ public class ProfileEditView extends JPanel{
 		// Panels
 		private JPanel pan_profileeditview;
 		private JPanel pan_profilepic;
+		private JPanel pan_picture;
 		private JPanel pan_profiledata;
 		private JPanel pan_likes;
 		
@@ -66,7 +67,15 @@ public class ProfileEditView extends JPanel{
 				GridBagConstraints d = new GridBagConstraints();
 				d.fill = GridBagConstraints.HORIZONTAL;
 				d.insets = new Insets(2,2,2,2);	
-					
+				
+				// Initialisieren des Profilbildes
+				d.gridx = 0;
+				d.gridy = 0;
+				pan_picture = new JPanel();
+				pan_picture.setPreferredSize(new Dimension(100,100));
+				pan_picture.setBackground(Color.green);
+				pan_profilepic.add(pan_picture, d);
+				
 			    // Initialisieren des Buttons b_uploadpic
 				d.gridx = 0;
 				d.gridy = 1;
@@ -186,18 +195,23 @@ public class ProfileEditView extends JPanel{
 			c.weightx = 0.5;
 			c.weighty = 0.5;
 			c.gridheight = 2;
+			c.gridwidth = 1;
 			pan_profileeditview.add(pan_likes, c);
 			
 			c.gridx = 1;
 			c.gridy = 0;
+			c.gridheight = 1;
+			c.gridwidth = 1;
 			c.weightx = 0.5;
-			c.weighty = 0.5;
+			c.weighty = 0.0;
 			pan_profileeditview.add(pan_profilepic, c);
 						
 			c.gridx = 1;
 			c.gridy = 1;
+			c.gridheight = 1;
+			c.gridwidth = 1;
 			c.weightx = 0.5;
-			c.weighty = 0.5;
+			c.weighty = 1.0;
 			pan_profileeditview.add(pan_profiledata, c);
 			
 			// Hinzufügen des Panels zur ContentPane
