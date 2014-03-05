@@ -9,8 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -19,6 +17,8 @@ import javax.swing.JLabel;
 
 import de.glurak.Query;
 import de.glurak.data.Album;
+import de.glurak.data.Medium;
+import de.glurak.data.User.User;
 import de.glurak.frontend.mainFrame.ContentController;
 
 
@@ -28,7 +28,7 @@ import de.glurak.frontend.mainFrame.ContentController;
  * @author MxB
  *
  */
-public class PromotionVController  implements ActionListener,ContentController,Observer{
+public class PromotionVController  implements ActionListener,ContentController{
 
 	private List<JLabel> imageLabelList = new ArrayList<JLabel>();
 	
@@ -42,10 +42,8 @@ public class PromotionVController  implements ActionListener,ContentController,O
 
 	/**
 	 * Konstructor
-	 * creates the PromotionPanel, attaches this as Actionlistener
-	 * and initialize the array of items, that will be shown by the promotionpanel.
-	 * @post Panel with sliderpanels is created, initialized and ready 
-	 * 		 to be filled with further elements.
+	 * Erzeugt das PromoPanel und initialisiert deren Elemente.
+	 * @post Panel mit Slidern ist erzeugt und initialisiert
 	 */
 	public PromotionVController(){
 		promPan = new PromotionView(promPanelDim, slidePaneDim);
@@ -61,22 +59,8 @@ public class PromotionVController  implements ActionListener,ContentController,O
 	
 	public JComponent getView(){ return promPan; }
 		
-	/**
-	 * Initialize the item array with the first, initial hardcorded elements.
-	 * Adds the first items to the Promotionpanel components 
-	 */
-	private void initPromPanel(){
-		
-		initImageLabelList();
-		// fill the sliders
-		for (int pos = 0 ; pos < promPan.getSliderCount(); pos++){
-			/* promPan.getSLiderAtPos(sliderPos).setPreferredSize(slidePaneDim);  Allready done in the constructor */
-			// the initial panels have no abilities
-			
-			promPan.getSLiderAtPos(pos).addSliderComponent(imageLabelList.get(pos));
-		}
-	}
 	/*
+
 	public void fillSliderPanel(){
 		
 		for (int sliderPos = 0 ; sliderPos < promPan.getSliderCount(); sliderPos++){
@@ -119,58 +103,18 @@ public class PromotionVController  implements ActionListener,ContentController,O
 		promPan.getSLiderAtPos(sliderPos).refresh();
 
 	}
-	
-	/*
-	private JLayeredPane ComponentWithButtons(JLabel l_pic){
-		JLayeredPane layered_pan = new JLayeredPane();
-		layered_pan.setPreferredSize(slidePaneDim);
-		JButton bt_like = new JButton("L");
-		JButton bt_hate = new JButton("H");
-		bt_like.setBounds(180,240,50,50);
-		bt_hate.setBounds(240,240,50,50);
-		
-		l_pic.setBounds(0 , 0, slidePaneDim.width ,slidePaneDim.height);
-		
-		layered_pan.add(l_pic, JLayeredPane.DEFAULT_LAYER, 0);
-		layered_pan.add(bt_like, JLayeredPane.PALETTE_LAYER, 0);
-		layered_pan.add(bt_hate, JLayeredPane.PALETTE_LAYER, 0);
-		
-		return layered_pan;
-	}
-	*/
-	/**
-	 * Loads images and attacht them to picturelabels.
-	 * Stores that picturelabels in the item-array.
-	 * @post A Number of illustrated picturelabels is stored in the item-array.
-	 * 		 The number depends on the amount of sliders on the PromotionPanel.
-	 */
-	private void initImageLabelList(){
-		String filename = new String("pic");
-		
-		
-		
-		try {
-			for (int sliderNr = 0 ; sliderNr < promPan.getSliderCount(); sliderNr++){
-				BufferedImage labelImage = ImageIO.read(new File(Query.FOLDER_PICTURE_SLIDER + filename + sliderNr + ".jpg"));
-				Image img =  labelImage.getScaledInstance(slidePaneDim.width,slidePaneDim.height, Image.SCALE_SMOOTH);
-				JLabel picLabel = new JLabel(new ImageIcon(img));
-				picLabel.setPreferredSize(slidePaneDim);
-				imageLabelList.add(picLabel);
-				
-			}
-		}catch (IOException e){
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
 	
 	/**
-	 * 
-	 * 
+	 * Initialisiert die PanelSliderElemente mit Inhalten aus
+	 * der newsList des eingeloggten Benutzers.  
 	 */
 	private void initNewsEntries(){
+		
+		// Get Items from newsList of current User
 		Album a1 = new Album();
 		Album a2 = new Album();
+		Medium m1 = new Medium(13, "tralala", null, new User());
 		
 		a1.setName("This is It");
 		a2.setName("Good Olaf gone bad");
@@ -186,61 +130,25 @@ public class PromotionVController  implements ActionListener,ContentController,O
 		newsList.add(new NewsEntry(a2));
 		newsList.add(new NewsEntry(a2));
 		newsList.add(new NewsEntry(a1));
-	//	newsList.add(new NewsEntry(a1));
+		newsList.add(new NewsEntry(a1));
+		newsList.add(new NewsEntry(m1));
 
-
-		
-		
-		//fill slider
-		/*
-		for (int pos = 0 ; pos < promPan.getSliderCount(); pos++){
-			System.out.println(pos);
-			if (newsList.size() <= pos) break;
-			promPan.getSLiderAtPos(pos).addSliderComponent(newsList.get(pos));	
-		}
-		
-		*/
-		
+		// Fill every SLider with Content from NewsList
 		int sMax = promPan.getSliderCount();
-		//int q = (int) Math.ceil(1.0*newsList.size()/sMax);
 		int q = newsList.size()/sMax;
 		if (sMax*q<newsList.size()){
 			q=q+1;
-        }
-        for (int pos = 0; pos < sMax; pos++) {
-            for (int j = 0; j < q; j++) {
-                if (newsList.size() <= (pos + (j * sMax))) break;
-                promPan.getSLiderAtPos(pos).addSliderComponent(newsList.get(pos + (j * sMax)).getLayeredPane());
-            }
-        }
-		
-		
-		
-	}
-	/*	
-	private void loadArrayList(){
-		String filename = new String("pic");
-		
-		try {
-			for (int j = 1; j < 4; j++){	
-				for (int i = 1; i< 5; i++){
-					BufferedImage BGImage = ImageIO.read(new File(Query.FOLDER_PICTURE_SLIDER + filename  + i + j + ".jpg"));
-					Image img =  BGImage.getScaledInstance(picDim,picDim, Image.SCALE_SMOOTH);
-					JLabel picLabel = new JLabel(new ImageIcon(img));
-					picLabel.setPreferredSize(slidePaneDim);
-					imageLabelList.add(picLabel);
-					//System.out.println(filename + i + j + ".jpg");
-				}
-			}
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		
+		for (int pos = 0; pos < sMax; pos++){
+				for (int j = 0; j < q; j++){
+					if (newsList.size() <= (pos+(j*sMax))) break;
+					promPan.getSLiderAtPos(pos).addSliderComponent(newsList.get(pos+(j*sMax)));
+			}
+		} 
+
 	}
-	
-	*/
+
+	// only for testing
 	public void actionPerformed(ActionEvent e) {
 		// TODO distinguish the SOurce of the Event and handle it
 		if (e.getSource() == promPan.bt_start){
@@ -272,10 +180,8 @@ public class PromotionVController  implements ActionListener,ContentController,O
 		}else{
 			 addContentTo(5,"pic17.jpg");
 		}
-    }
-
-    public void update(Observable arg0, Object arg1) {
-        // TODO was soll hier rein!?
-    }
+				
+		
+	}
 
 }

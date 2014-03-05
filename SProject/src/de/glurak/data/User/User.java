@@ -65,6 +65,10 @@ public class User extends Reachable implements Serializable{
         return this.passwordHash.equals(hashString(p));
     }
 
+    /**
+     * Gibt zurück ob der Benutzer gesperrt ist
+     * @return true falls gesperrt, false wenn nicht
+     */
     public boolean isLocked() {
         return isLocked;
     }
@@ -75,14 +79,28 @@ public class User extends Reachable implements Serializable{
 
     public String getPasswordHash(){return passwordHash;}
 
+    /**
+     * Gibt das Profil zurück, welches den Benutzer zugewiesen ist
+     * @return  das Benutzerprofil, null falls es keines hat
+     */
     public UserProfile getProfile() {
         return profile;
     }
 
+    /**
+     * Setzt das Benutzerprofil
+     * @param profile das Profil, null, falls es keines haben soll
+     */
     public void setProfile(UserProfile profile) {
         if (this.profile==profile) return;
+        if (this.profile!=null){
+            UserProfile tmp=this.profile;
+            this.profile=null;
+            tmp.setUser(null);
+        }
         this.profile = profile;
-        profile.setUser(this);
+        if (profile!=null)
+            profile.setUser(this);
     }
 
     public List<Playlist> getMyPlaylists() {

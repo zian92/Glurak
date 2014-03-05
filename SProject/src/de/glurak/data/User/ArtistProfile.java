@@ -15,10 +15,19 @@ public class ArtistProfile extends ListenerProfile implements Serializable{
         return myLabel;
     }
 
+    /**
+     * Setzt das Label des Artisten
+     * @param myLabel das Label, oder null falls kein Label
+     */
     public void setMyLabel(LabelProfile myLabel) {
         if (myLabel==this.myLabel) return;
+        LabelProfile oldLabel = this.myLabel;
         this.myLabel = myLabel;
-        myLabel.addArtist(this);
+        if (oldLabel!=null){
+            oldLabel.removeArtist(this);
+        }
+        if (myLabel!=null)
+             myLabel.addArtist(this);
     }
 
     @Override

@@ -1,0 +1,4 @@
+Mp3-Player (Library: javazoom und mp3plugin):
+JavaZoom ist eine library welche MP3 Dateien in echtzeit dekodiert, konvertiert und abspielt. 
+
+Mp3plugin kann aus Mp3 Dateien Eigenschaften wie Bitrate, Länge und Samplerate auslesen.
