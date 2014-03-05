@@ -37,11 +37,10 @@ public class MainFrameVController implements Observer{
 			Medium m1 = new Medium(1,"Blah Blah Gay",Query.FOLDER_MUSIC+"Go Far Kid.mp3", null);
 			Medium m2 = new Medium(2,"POKEMOOOOON",Query.FOLDER_MUSIC+"Pokemon Theme.mp3", null);
 			Medium m3 = new Medium(1,"PinkFluffyUniconrs",Query.FOLDER_MUSIC+"Pink Fluffy Unicorns.mp3", null);
-			Medium m4 = new Medium(2,"Red Alert",Query.FOLDER_MUSIC+"hell.mp3", null);
+
 			pl.getMediumList().add(m1);
 			pl.getMediumList().add(m2);
 			pl.getMediumList().add(m3);
-			pl.getMediumList().add(m4);
 		
 		// andere Controller laden
 		contentController = new PromotionVController();
