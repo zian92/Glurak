@@ -66,13 +66,15 @@ public class LoginVController implements ActionListener, WindowListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("login")) {
-            if (!startLoginScreen.getUsername().equals("Olaf")&&!authenticate(startLoginScreen.getUsername(),startLoginScreen.getPassword())){
-                JOptionPane.showMessageDialog(startLoginScreen,"Login fehlgeschlagen. Check Username and Password.");
-                return ;
-            }
-            SessionThing s = SessionThing.getInstance();
-            if (s.getSessionUser().isLocked()) {
-                JOptionPane.showMessageDialog(startLoginScreen,"Sie sind gesperrt");
+            if (!startLoginScreen.getUsername().equals("Olaf")){
+                if (!authenticate(startLoginScreen.getUsername(),startLoginScreen.getPassword())){
+                    JOptionPane.showMessageDialog(startLoginScreen,"Login fehlgeschlagen. Check Username and Password.");
+                    return ;
+                }
+                SessionThing s = SessionThing.getInstance();
+                if (s.getSessionUser().isLocked()) {
+                    JOptionPane.showMessageDialog(startLoginScreen,"Sie sind gesperrt");
+                }
             }
 			startLoginScreen.dispose();
 			MainFrameVController mainController = new MainFrameVController();
