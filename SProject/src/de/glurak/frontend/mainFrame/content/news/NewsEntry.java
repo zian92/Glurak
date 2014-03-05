@@ -34,12 +34,13 @@ public class NewsEntry extends JLayeredPane{
 	private JPanel newContent;
 	private JButton bt_like, bt_hate;
 	private ContentController newController;
-	private int panWidth = 265,
-				panHeight = 250,
+	private int panWidth = 260,
+				panHeight = 270,
 				ownerIconWidth = 80,
 				ownerIconHeight = 80;
 	
 	/**
+	 *  
 	 *  
 	 * @param mainImage The image displayed on the Slider
 	 * @param owner	A reference to the owner of this entry

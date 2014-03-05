@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
 import de.glurak.frontend.mainFrame.MainFrameVController;
-import de.glurak.frontend.mainFrame.content.news.SliderPanelController;
 import de.glurak.frontend.registration.RegistrationVController;
 
 public class LoginVController implements ActionListener, WindowListener {

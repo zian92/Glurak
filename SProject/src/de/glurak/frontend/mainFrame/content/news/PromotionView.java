@@ -62,7 +62,7 @@ public class PromotionView extends JPanel {
 			}
 		}	
 		
-		/* BUttons for testing */
+		/* BUttons for testing 
 		c.fill = GridBagConstraints.HORIZONTAL;
 	  	c.gridx = 0;
 		c.gridy = 2;
@@ -73,19 +73,22 @@ public class PromotionView extends JPanel {
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
 	  	c.gridx = 0;
-		c.gridy = 3;
+		c.gridy = 2;
 		c.gridwidth = 2;
 		
 		bt_add = new JButton("add Bieber");
 		add(bt_add, c); 
+		*/
 		setVisible(true);
 		
 	}
 
 	private int getMaxRowCount(){
+		System.out.println("maxRowCount = " + panelDim.width / sliderDim.width );
 		return panelDim.width / sliderDim.width;
 	}
 	private int getMaxColCount(){
+		System.out.println("maxColCount = " + panelDim.height / sliderDim.height);
 		return panelDim.height / sliderDim.height;
 	}
 	

@@ -22,10 +22,8 @@ import de.glurak.frontend.mainFrame.ContentController;
 
 
 /**
- * Creates The PromotionPanel with a list of items
- * that can be scrolled throughout the panels components.
- * Manages the slidingbehaviour of the PromotionPanels
- * 
+ * Erzeugt das PromotionPanel, welches mit Slidern
+ * versehen wird. Kümmert sich um das Slidingverhalten der einzelnen Slider.
  * @author MxB
  *
  */
@@ -36,13 +34,13 @@ public class PromotionVController  implements ActionListener,ContentController{
 	private List<NewsEntry>newsList = new ArrayList<NewsEntry>();
 	
 	private PromotionView promPan;
-	private Dimension slidePaneDim = new Dimension(400, 200);
-	private Dimension promPanelDim = new Dimension(800, 600);
+	private Dimension slidePaneDim = new Dimension(200, 180);
+	private Dimension promPanelDim = new Dimension(810, 560);
 	
 	//private int picDim = slidePaneDim.width;
 
 	/**
-	 * Constructor
+	 * Konstructor
 	 * creates the PromotionPanel, attaches this as Actionlistener
 	 * and initialize the array of items, that will be shown by the promotionpanel.
 	 * @post Panel with sliderpanels is created, initialized and ready 
@@ -51,8 +49,8 @@ public class PromotionVController  implements ActionListener,ContentController{
 	public PromotionVController(){
 		promPan = new PromotionView(promPanelDim, slidePaneDim);
 
-		promPan.bt_start.addActionListener(this);
-		promPan.bt_add.addActionListener(this);
+		//promPan.bt_start.addActionListener(this);
+		//promPan.bt_add.addActionListener(this);
 		
 		initNewsEntries();
 		//initPromPanel();
@@ -186,7 +184,8 @@ public class PromotionVController  implements ActionListener,ContentController{
 		newsList.add(new NewsEntry(a1));
 		newsList.add(new NewsEntry(a2));
 		newsList.add(new NewsEntry(a2));
-		//newsList.add(new NewsEntry(a1));
+		newsList.add(new NewsEntry(a1));
+	//	newsList.add(new NewsEntry(a1));
 
 
 		
