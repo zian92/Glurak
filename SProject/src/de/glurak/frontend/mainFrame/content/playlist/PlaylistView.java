@@ -1,49 +1,50 @@
 package de.glurak.frontend.mainFrame.content.playlist;
 
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.FlowLayout;
+
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
 
 /**
- * In der dieser View wird eine erstellte Playlist von einem User angezeigt.
- * Die Playlist besteht aus Musikdateien.
+ * In der dieser View wird eine erstellte Playlist von einem User angezeigt. Die Playlist besteht aus Musikdateien.
+ * 
  * @author Simon
- *
+ * 
  */
-public class PlaylistView extends JPanel{
+public class PlaylistView extends JPanel {
+    private JTable jT;
+    private JLabel playlistName;
 
-	/**
-	 * Konstruktor
-	 */
-	public PlaylistView(){
-		
-	}
-	
-	/**
-	 * Erzeugt die Playlistview und zeigt sie an.
-	 */
-	private static void createAndShowView(){
-		//Erzeugen des Frames
-		JFrame playlist = new JFrame("Playlist");
-		playlist.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				
-		//Registrationview in das Frame laden
-		JComponent newContentPane = new PlaylistView();
-        newContentPane.setOpaque(true);
-        playlist.setContentPane(newContentPane);
-				
-		//Frame anpassen und sichtbar machen
-		playlist.pack();
-		playlist.setVisible(true);
-	}
-	
-	public static void main(String[] args){
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowView();
-            }
-        });
-	}
-	
+    /**
+     * Konstruktor
+     */
+    public PlaylistView() {
+        this.setLayout(new FlowLayout());
+    }
+
+    public PlaylistView(JTable jT) {
+        this();
+        this.jT = jT;
+        this.playlistName = new JLabel("Playlist test");
+        this.createAndShowView();
+        
+    }
+
+    /**
+     * Erzeugt die Playlistview und zeigt sie an.
+     */
+    private void createAndShowView() {
+        this.add(playlistName);
+        this.add(jT);
+    }
+
+    public JTable getjT() {
+        return jT;
+    }
+
+    public void setjT(JTable jT) {
+        this.jT = jT;
+    }
+
 }

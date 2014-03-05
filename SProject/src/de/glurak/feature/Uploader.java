@@ -112,6 +112,7 @@ public class Uploader {
      * Oeffnet einen Dialog zum auswaehlen eines Bildes. Falls mehrere Bilder ausgewaehlt werden, wird das erste benutzt.
      * 
      * @param comp
+     *            Den Besitzer des Fensters
      * @return
      */
     public File selectSinglePicture(Component comp) {
@@ -122,6 +123,7 @@ public class Uploader {
      * Oeffnet einen Dialog um Musikdateien hochzuladen.
      * 
      * @param comp
+     *            Den Besitzer des Fensters
      * @return
      */
     public File[] selectMusic(Component comp) {
