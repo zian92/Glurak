@@ -29,7 +29,7 @@ import de.glurak.frontend.mainFrame.ContentController;
  * @author MxB
  *
  */
-public class PromotionVController  implements ActionListener,ContentController{
+public class PromotionVController  implements ContentController{
 
 	private List<JLabel> imageLabelList = new ArrayList<JLabel>();
 	
@@ -48,42 +48,12 @@ public class PromotionVController  implements ActionListener,ContentController{
 	 */
 	public PromotionVController(){
 		promPan = new PromotionView(promPanelDim, slidePaneDim);
-
-		//promPan.bt_start.addActionListener(this);
-		//promPan.bt_add.addActionListener(this);
 		
 		initNewsEntries();
-		//initPromPanel();
-		//loadArrayList();
-		//fillSliderPanel();
 	}
 	
 	public JComponent getView(){ return promPan; }
 		
-	/*
-
-	public void fillSliderPanel(){
-		
-		for (int sliderPos = 0 ; sliderPos < promPan.getSliderCount(); sliderPos++){
-						
-			JLayeredPane layered_pan = new JLayeredPane();
-			
-			layered_pan.setPreferredSize(slidePaneDim);
-			JButton bt_like = new JButton("L");
-			JButton bt_hate = new JButton("H");
-			bt_like.setBounds(180,240,50,50);
-			bt_hate.setBounds(240,240,50,50);
-			
-			// Add -1 for adding the last 4 pictures later with the addContentTo function
-			for (int i = 1; i < (imageLabelList.size()/promPan.getSliderCount() ); i++){
-				promPan.getSLiderAtPos(sliderPos).addSliderComponent(imageLabelList.get( sliderPos + (i*promPan.getSliderCount())));
-			}
-		promPan.getSLiderAtPos(sliderPos).refresh();
-		}
-	}
-	
-	*/
-	
 	public void addContentTo(int sliderPos, String filename){
 		
 		//test if filename == ""
@@ -104,7 +74,6 @@ public class PromotionVController  implements ActionListener,ContentController{
 		promPan.getSLiderAtPos(sliderPos).refresh();
 
 	}
-
 	
 	/**
 	 * Initialisiert die PanelSliderElemente mit Inhalten aus
@@ -112,27 +81,27 @@ public class PromotionVController  implements ActionListener,ContentController{
 	 */
 	private void initNewsEntries(){
 		
-		// Get Items from newsList of current User
+		//TODO: Get Items from newsList of current User
+		
+		// Creating dummy-Objects for testing 
 		Album a1 = new Album();
 		Album a2 = new Album();
-		Medium m1 = new Medium(13, "tralala", null, new User());
+		Medium m1 = new Medium(13, "Song 2", null, new User());
 		
 		a1.setName("This is It");
-		a2.setName("Good Olaf gone bad");
-		a1.setFilename(Query.FOLDER_PICTURE_SLIDER + "pic3.jpg");
-		a2.setFilename(Query.FOLDER_PICTURE_SLIDER + "mj.jpg");
+		a2.setName("Album dummy");
 		NewsEntry n1 = new NewsEntry(a1);
 		NewsEntry n2 = new NewsEntry(a2);
 		
 		User u1 = new User();
-		u1.setUsername("Olaf der Erste");
+		u1.setUsername("TestUser m");
 		ListenerProfile pu1 = new ListenerProfile();
 		pu1.setFirstname(u1.getUsername());
 		pu1.setFemale(false);
 		u1.setProfile(pu1);
 		
 		User u2 = new User();
-		u2.setUsername("Olafs Freundin");
+		u2.setUsername("TestUser f");
 		ListenerProfile pu2 = new ListenerProfile();
 		pu2.setFirstname(u2.getUsername());
 		pu2.setFemale(true);
@@ -142,12 +111,21 @@ public class PromotionVController  implements ActionListener,ContentController{
 		newsList.add(n2);
 		newsList.add(new NewsEntry(a1));
 		newsList.add(new NewsEntry(a1));
+		newsList.add(new NewsEntry(u1));
+		newsList.add(new NewsEntry(m1));
 		newsList.add(new NewsEntry(a2));
+		newsList.add(new NewsEntry(m1));
 		newsList.add(new NewsEntry(a2));
+		newsList.add(new NewsEntry(u2));
 		newsList.add(new NewsEntry(a1));
+		newsList.add(new NewsEntry(u1));
+		newsList.add(new NewsEntry(m1));
+		newsList.add(new NewsEntry(a1));
+		newsList.add(new NewsEntry(a2));
 		newsList.add(new NewsEntry(a1));
 		newsList.add(new NewsEntry(m1));
-		newsList.add(new NewsEntry(u1));
+		
+		newsList.add(new NewsEntry(u2));
 		newsList.add(new NewsEntry(u2));
 
 		// Fill every SLider with Content from NewsList
@@ -162,43 +140,30 @@ public class PromotionVController  implements ActionListener,ContentController{
 					promPan.getSLiderAtPos(pos).addSliderComponent(newsList.get(pos+(j*sMax)).getLayeredPane());
 			}
 		} 
-
+		startTimer();
 	}
 
-	// only for testing
-	public void actionPerformed(ActionEvent e) {
-		// TODO distinguish the SOurce of the Event and handle it
-		if (e.getSource() == promPan.bt_start){
-			// Start behaviour
-					java.util.TimerTask action = new java.util.TimerTask() {
-						@Override
-						public void run() {
-						
-							if ((Math.random()*100) < 99){
-								
-								for (int j = 0; j < promPan.getSliderCount(); j++){
-								
-									if (promPan.getSLiderAtPos(j).getItemCount() > 0){
-										promPan.getSLiderAtPos(j).next();
-									}
-								}
-							}else{
-								for (int j = 0; j < promPan.getSliderCount(); j++){
-									if (promPan.getSLiderAtPos(j).getItemCount() > 0){
-										promPan.getSLiderAtPos(j).previous();
-									}
-								}
-							}
-						}
-			
-					};
-				java.util.Timer ankurbler = new java.util.Timer();
-				ankurbler.schedule(action,  1000, 5000);	
-		}else{
-			 addContentTo(5,"pic17.jpg");
-		}
-				
-		
+	
+	/**
+	 * TestTimerTask for testing the sliding behaviour
+	 * Will be reworked in the final version
+	 */
+	private void startTimer(){
+		java.util.TimerTask action = new java.util.TimerTask() {
+			@Override
+			public void run() {
+				int j = 0 + (int)(Math.random()*promPan.getSliderCount()); 
+				int i = 0 + (int)(Math.random()*promPan.getSliderCount()); 
+				if (promPan.getSLiderAtPos(i).getItemCount() > 0){
+					promPan.getSLiderAtPos(i).next();
+				}
+				if (promPan.getSLiderAtPos(j).getItemCount() > 0){
+					promPan.getSLiderAtPos(j).next();
+				}
+			}
+		};
+		java.util.Timer ankurbler = new java.util.Timer();
+		ankurbler.schedule(action, 1000, 2000);
 	}
 
 }

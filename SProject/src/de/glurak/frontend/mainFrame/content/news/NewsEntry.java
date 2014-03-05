@@ -1,6 +1,7 @@
 package de.glurak.frontend.mainFrame.content.news;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -33,7 +34,7 @@ public class NewsEntry extends Observable {
     private JPanel newContent;
     private JButton bt_like, bt_hate;
     private ContentController newController;
-    private int panWidth = 180;
+    private int panWidth = 200;
     private int panHeight = 180;
     private int ownerIconWidth = 80;
     private int ownerIconHeight = 80;
@@ -79,13 +80,14 @@ public class NewsEntry extends Observable {
          * JFrame f = new JFrame(); f.getContentPane().setLayout(new BorderLayout()); f.getContentPane().add(mainPicture,BorderLayout.CENTER); f.setVisible(true); /* ownerPicture = new JLabel(new ImageIcon(sclaeImage( owner.getProfileImage() , ownerIconWidth, ownerIconHeight)))
          */
         textSpace = new JLabel(message);
-        textSpace.setBounds(0, 0, panWidth, 70);
-        textSpace.setForeground(Color.BLUE);
+        textSpace.setBounds(8, 5, panWidth, 30);
+        textSpace.setForeground(Color.WHITE);
+        textSpace.setFont(new Font("Verdana", Font.BOLD, 22));
         // build NewsEntry
         bt_like = new JButton("L");
         bt_hate = new JButton("H");
-        bt_like.setBounds(panWidth - 2 * 55, panHeight - 55, 50, 50);
-        bt_hate.setBounds(panWidth - 55, panHeight - 55, 50, 50);
+        bt_like.setBounds(panWidth - 2 * 35, panHeight - 35, 30, 30);
+        bt_hate.setBounds(panWidth - 35, panHeight - 35, 30, 30);
 
         layeredPane.setBounds(0, 0, panWidth, panHeight);
 

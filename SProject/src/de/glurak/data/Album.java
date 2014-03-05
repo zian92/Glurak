@@ -1,5 +1,6 @@
 package de.glurak.data;
 
+import de.glurak.Query;
 import de.glurak.data.User.Rights;
 import de.glurak.data.User.User;
 
@@ -21,7 +22,7 @@ public class Album extends Playlist implements Serializable {
 	
 	private String yearOfPublication;
 	// Album-Cover
-	private String filename;
+	private String filename = Query.FOLDER_PICTURE_ICONS + "playlistic.jpg";
 	
 	// Für Hibernate leerer Konstruktor
 	public Album() { }
