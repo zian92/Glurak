@@ -84,9 +84,8 @@ public class PlayQueueViewController {
 					}
 				}
 			}
-				
-			
 		};
+		
 		ChangeListener c = new ChangeListener(){
 
 			public void stateChanged(ChangeEvent e) {
