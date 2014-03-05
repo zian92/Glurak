@@ -16,13 +16,12 @@ public class PlayQueueView extends JPanel{
 	private JButton 	playButton;
 	private JButton 	nextButton;
 	private JButton 	previousButton;
-	private JButton 	increaseVolumeButton;
-	private JButton 	decreaseVolumeButton;
 	private JSlider 	positionBar;
 	private JPanel		controllPanel;
 	private JPanel		t;
 	private QueuePanel	queuePanel;
 	private JScrollPane scrollbar;
+	private boolean 	positionChange;
 	
 	public PlayQueueView (){
 		this(null,null);
@@ -35,6 +34,7 @@ public class PlayQueueView extends JPanel{
 	 */
 	public PlayQueueView (Playlist playlist,Medium current){
 		super();
+		positionChange = false;
 		initComponents(playlist,current);
 	
 	}
@@ -48,17 +48,14 @@ public class PlayQueueView extends JPanel{
 		setPlayButton(new JButton("Play"));
 		setNextButton(new JButton("=>"));
 		setPreviousButton(new JButton("<="));
-//		setIncreaseVolumeButton(new JButton("+"));
-//		setDecreaseVolumeButton(new JButton("-"));
-		positionBar = new JSlider(JSlider.HORIZONTAL,0,50,0);	
+		positionBar = new JSlider(JSlider.HORIZONTAL,0,50,0);
+		positionBar.setExtent(0);
 		setControllPanel(new JPanel());
 		getControllPanel().setLayout(new BorderLayout());
 		
 		getControllPanel().add(getPlayButton(),BorderLayout.CENTER);
 		getControllPanel().add(getNextButton(),BorderLayout.EAST);
 		getControllPanel().add(getPreviousButton(),BorderLayout.WEST);
-//		getControllPanel().add(getIncreaseVolumeButton(),BorderLayout.NORTH);
-//		getControllPanel().add(getDecreaseVolumeButton(),BorderLayout.SOUTH);
 		
 		if(playlist!=null){
 			initQueueView(playlist,current);}
@@ -104,20 +101,10 @@ public class PlayQueueView extends JPanel{
 		this.nextButton = nextButton;
 	}
 
-	public JButton getIncreaseVolumeButton() {
-		return increaseVolumeButton;
-	}
-
-	public void setIncreaseVolumeButton(JButton increaseVolumeButton) {
-		this.increaseVolumeButton = increaseVolumeButton;
-	}
-
-	public JButton getDecreaseVolumeButton() {
-		return decreaseVolumeButton;
-	}
-
-	public void setDecreaseVolumeButton(JButton decreaseVolumeButton) {
-		this.decreaseVolumeButton = decreaseVolumeButton;
+	public void changePositionBar(int newValue){
+		positionChange = true;
+		this.positionBar.setValue(newValue);
+		positionChange = false;
 	}
 
 	public JSlider getPositionBar() {
@@ -125,8 +112,10 @@ public class PlayQueueView extends JPanel{
 	}
 
 	public void setPositionBar(JSlider positionBar) {
+		positionChange = true;
 		this.positionBar.setMaximum(positionBar.getMaximum());
 		this.positionBar.setValue(positionBar.getValue());
+		positionChange = false;
 	}
 
 	public JPanel getControllPanel() {
@@ -157,6 +146,12 @@ public class PlayQueueView extends JPanel{
 	}
 	public void setScrollbar(JScrollPane scrollbar){
 		this.scrollbar = scrollbar;
+	}
+	public boolean isPositionChange() {
+		return positionChange;
+	}
+	public void setPositionChange(boolean positionChange) {
+		this.positionChange = positionChange;
 	}
 	
 	

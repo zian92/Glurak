@@ -36,6 +36,9 @@ public abstract class UserProfile extends Profile implements Serializable {
     protected String firstname;
     protected String lastname;
     protected String emailadr;
+    protected boolean isFemale;
+
+    protected String country;
 
     public String getEmail() {
         return email;
@@ -69,6 +72,22 @@ public abstract class UserProfile extends Profile implements Serializable {
         this.emailadr = emailadr;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public boolean isFemale() {
+        return isFemale;
+    }
+
+    public void setFemale(boolean isFemale) {
+        this.isFemale = isFemale;
+    }
+
 
     @Override
     public User belongTo() {
@@ -77,8 +96,14 @@ public abstract class UserProfile extends Profile implements Serializable {
 
     public void setUser(User u){
         if (u==myUser) return;
+        if (myUser!=null){
+            User tmp = myUser;
+            myUser=null;
+            tmp.setProfile(null);
+        }
         myUser=u;
-        u.setProfile(this);
+        if (u!=null)
+            u.setProfile(this);
     }
 
     @Override

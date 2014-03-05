@@ -1,11 +1,17 @@
 package de.glurak.frontend.registration;
 
+import de.glurak.data.User.ListenerProfile;
+import de.glurak.data.User.User;
+import de.glurak.frontend.SessionThing;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.security.NoSuchAlgorithmException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -26,26 +32,27 @@ import javax.swing.JPasswordField;
 public class RegistrationView extends JPanel{
 
 	//Textfelder fuer die Registrierung
-	protected JTextField t_username = new JTextField();
-	protected JPasswordField t_password = new JPasswordField();
-	protected JTextField t_birthdate_day = new JTextField();
-	protected JTextField t_birthdate_month = new JTextField();
-	protected JTextField t_birthdate_year = new JTextField();
+	private JTextField t_username = new JTextField();
+	private JPasswordField t_password = new JPasswordField();
+	private JTextField t_birthdate_day = new JTextField();
+	private JTextField t_birthdate_month = new JTextField();
+	private JTextField t_birthdate_year = new JTextField();
 	//Dropdown Menue um das Herkunftsland auszuwaehlen
 	protected JComboBox<String> d_homecountry;
 	//Radiobuttons um das Geschlecht auszuwaehlen
-	protected JRadioButton r_gender_m;
-	protected JRadioButton r_gender_f;
+	private JRadioButton r_gender_m;
+	private JRadioButton r_gender_f;
 	//Buttons zum bestaetigen oder abbrechen
-	protected JButton b_register;
-	protected JButton b_cancel;
+	private JButton b_register;
+	private JButton b_cancel;
 	//Farbe fuer das Panel
 	private Color  panColor = new Color(7354141);
 	
 	/**
-	 * Konstruktor
+	 * Konstruktor.
+     * @param listener der Actionlistener für die Button. null für keinen
 	 */
-	public RegistrationView(){
+	public RegistrationView(ActionListener listener){
 		
 		//Layout des Frames festlegen
 		setLayout(new BorderLayout());
@@ -56,7 +63,13 @@ public class RegistrationView extends JPanel{
 		
 		//Initialisierung der Buttons
 		b_register = new JButton("Registrieren");
+        if (listener!=null)
+        b_register.addActionListener(listener);
+        b_register.setActionCommand("registrate");
 		b_cancel = new JButton("Abbrechen");
+        if (listener !=null)
+        b_cancel.addActionListener(listener);
+        b_cancel.setActionCommand("cancel");
 		
 		//Initialisierung der Radionbuttons
 		r_gender_m = new JRadioButton("männlich");
@@ -147,6 +160,40 @@ public class RegistrationView extends JPanel{
 		add(pan_buttons, BorderLayout.SOUTH);
 		add(l_note, BorderLayout.NORTH);
 	}
+
+    /**
+     * Gibt den User zurück der von den Werten in der Eingabe erzeugt wird.
+     * Er muss noch in der Datenbank registriert werden.
+     * @author Entscheider
+     * @return der neue Benutzer, null falls irgendwechle Daten fehlen
+     */
+    public User getEnteredUser(){
+        User res = new User();
+        res.setUsername(t_username.getText().trim());
+        if (t_username.getText().trim().isEmpty()) return null;
+        String pass = new String(t_password.getPassword()).trim();
+        if (pass.isEmpty()) return null;
+        try {
+            res.setPassword(pass);
+        } catch (NoSuchAlgorithmException e) {
+            SessionThing s = SessionThing.getInstance();
+            s.handleException(e);
+        }
+        ListenerProfile p = new ListenerProfile();
+
+
+        int day = Integer.valueOf(t_birthdate_day.getText());
+        int month = Integer.valueOf(t_birthdate_month.getText());
+        int year = Integer.valueOf(t_birthdate_year.getText());
+        if (!(1<=day&& day<=31 && 1<=month&& month<=12 && 1900<=year) )
+            return null;
+        p.setBirthdate(day+"."+month+"."+year);
+        res.setProfile(p);
+        p.setFemale(r_gender_f.isSelected());
+        p.setCountry(d_homecountry.getSelectedItem().toString());
+        //TODO: andere Felder
+        return res;
+    }
 	
 	
 	/**
@@ -158,7 +205,7 @@ public class RegistrationView extends JPanel{
 		register.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//Registrationview in das Frame laden
-		JComponent newContentPane = new RegistrationView();
+		JComponent newContentPane = new RegistrationView(null);
         newContentPane.setOpaque(true);
         register.setContentPane(newContentPane);
         

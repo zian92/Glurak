@@ -6,10 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.security.NoSuchAlgorithmException;
 
-import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
+import javax.swing.*;
 
+import de.glurak.data.User.User;
+import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.MainFrameVController;
 import de.glurak.frontend.registration.RegistrationVController;
 
@@ -20,14 +22,12 @@ public class LoginVController implements ActionListener, WindowListener {
 
 	public LoginVController(String viewTitel) {
 		// build the view
-		this.startLoginScreen = new LoginView(viewTitel);
+		this.startLoginScreen = new LoginView(viewTitel,this);
 		startLoginScreen.setSize(1024, 700);
 		con_slider = new LoginSLiderController();
 		startLoginScreen.getSliderPanel().add(con_slider.getView(),
 				BorderLayout.CENTER);
-		startLoginScreen.getBt_login().addActionListener(this);
 		startLoginScreen.addWindowListener(this);
-		startLoginScreen.getBt_register().addActionListener(this);
 		// startLoginScreen.add(con_slider.getView());
 		// startLoginScreen.setSliderPanel(con_slider.getView());
 
@@ -37,29 +37,45 @@ public class LoginVController implements ActionListener, WindowListener {
 		return startLoginScreen;
 	}
 
-	public static boolean authenticate(String username, String passwort) {
+    /**
+     * Prüft nach ob der Benutzer in der Datenbank registriert ist und das
+     * Password korrekt ist
+     * @author Entscheider
+     * @param username der Benutzername
+     * @param password das Password
+     * @return true falls alle Angaben korrekt, false sonst
+     */
+	public boolean authenticate(String username, String password) {
 
-		// check if User with this Username exists
-		/*
-		 * User u = new User(); try{ u = XXX.getUserByUsername(username); //
-		 * creates a User instance from DB Entries }catch (NoUserFoundException
-		 * e){ return false; }
-		 */
-		// check the password matches the USername
-		/*
-		 * u.checkPassword(passwort);
-		 */
-		return true;
+        SessionThing session = SessionThing.getInstance();
+        User u =session.getDatabase().getUserByUsername(username);
+
+        if (u==null) return false;
+
+        try {
+            if (!u.checkPassword(password)) return false;
+        } catch (NoSuchAlgorithmException e) {
+            session.handleException(e);
+            return false;
+        }
+
+        session.setSessionUser(u);
+
+        return true;
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getSource() == startLoginScreen.getBt_login()) {
+		if (e.getActionCommand().equals("login")) {
+            if (!authenticate(startLoginScreen.getUsername(),startLoginScreen.getPassword())){
+                JOptionPane.showMessageDialog(startLoginScreen,"Login failed. Check Username and Password.");
+                return ;
+            }
 			startLoginScreen.dispose();
 			MainFrameVController mainController = new MainFrameVController();
-		} else if (e.getSource() == startLoginScreen.getBt_register()) {
+		} else if (e.getActionCommand().equals("registrate")) {
 			RegistrationVController regvcon = new RegistrationVController();
-			regvcon.getView().setBounds(600,150,400,320);
+			regvcon.getView().setBounds(600, 150, 400, 320);
 			startLoginScreen.getPanContent().add(regvcon.getView(), JLayeredPane.PALETTE_LAYER+1, 0);
 		}
 	}

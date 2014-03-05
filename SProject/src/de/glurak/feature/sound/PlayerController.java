@@ -38,13 +38,17 @@ public class PlayerController {
 	 * Startet Dateiwiedergabe
 	 * @param location Der Pfad zur Datei
 	 */
-	public void play(String location) {
-		
+	/**
+	 * @param location
+	 * @param time
+	 */
+	public void play(String location,int time) {
+		player=null;
 		try {
-            FileInputStream input = new FileInputStream(location); 
+            FileInputStream input = new FileInputStream(location);
             player = new PausablePlayer(input);
             
-            player.play();
+            player.play(time);
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }
@@ -74,6 +78,9 @@ public class PlayerController {
 		isPaused = false;
 	}
 	
+	/**
+	 * Stoppt aktuelle Wiedergabe
+	 */
 	public void stop() {
 		player.stop();
 
