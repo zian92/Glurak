@@ -119,8 +119,6 @@ public class PromotionVController  implements ActionListener,ContentController{
 		
 		a1.setName("This is It");
 		a2.setName("Good Olaf gone bad");
-		a1.setFilename(Query.FOLDER_PICTURE_SLIDER + "pic3.jpg");
-		a2.setFilename(Query.FOLDER_PICTURE_SLIDER + "mj.jpg");
 		NewsEntry n1 = new NewsEntry(a1);
 		NewsEntry n2 = new NewsEntry(a2);
 		

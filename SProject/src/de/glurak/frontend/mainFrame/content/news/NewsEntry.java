@@ -1,6 +1,7 @@
 package de.glurak.frontend.mainFrame.content.news;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -79,8 +80,9 @@ public class NewsEntry extends Observable {
          * JFrame f = new JFrame(); f.getContentPane().setLayout(new BorderLayout()); f.getContentPane().add(mainPicture,BorderLayout.CENTER); f.setVisible(true); /* ownerPicture = new JLabel(new ImageIcon(sclaeImage( owner.getProfileImage() , ownerIconWidth, ownerIconHeight)))
          */
         textSpace = new JLabel(message);
-        textSpace.setBounds(0, 0, panWidth, 70);
+        textSpace.setBounds(8, 5, panWidth, 30);
         textSpace.setForeground(Color.BLUE);
+        textSpace.setFont(new Font("Verdana", Font.PLAIN, 22));
         // build NewsEntry
         bt_like = new JButton("L");
         bt_hate = new JButton("H");
