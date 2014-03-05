@@ -15,7 +15,7 @@ public class ProfileView extends JPanel{
 	// Panels
 	private JPanel pan_profileview;
 	private JPanel pan_profilepic;
-	private JPanel pan_picture;
+	protected JPanel pan_picture;
 	private JPanel pan_profiledata;
 	private JPanel pan_topplaylists;
 	private JPanel pan_likes;
@@ -83,8 +83,7 @@ public class ProfileView extends JPanel{
 			pan_picture.setPreferredSize(new Dimension(100,100));
 			pan_picture.setBackground(Color.green);
 			pan_profilepic.add(pan_picture, d);
-			
-				
+		
 		    // Initialisieren der Buttons b_message, b_follow, b_edit
 			
 			if (own){  // Falls das eigene Profil angezeigt werden soll, nur b_edit anzeigen

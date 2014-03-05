@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.geom.QuadCurve2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -34,18 +35,15 @@ public class NewsEntry extends JLayeredPane{
 	private JPanel newContent;
 	private JButton bt_like, bt_hate;
 	private ContentController newController;
-	private int panWidth = 260,
-				panHeight = 270,
-				ownerIconWidth = 80,
-				ownerIconHeight = 80;
+	private int panWidth = 190,
+				panHeight = 180,
+				ownerIconWidth = 20,
+				ownerIconHeight = 20;
 	
-	/**
-	 *  
-	 *  
-	 * @param mainImage The image displayed on the Slider
-	 * @param owner	A reference to the owner of this entry
-	 * @param message A short text, that can be displayed
-	 */
+	public NewsEntry(Medium source){
+		//TODO: implement Album img 
+		this(Query.FOLDER_PICTURE_ICONS + "musicfile.jpg", null, source.getTitel(),source);
+	}
 	public NewsEntry(Album source){
 		//TODO: implement Album img 
 		this(source.getFilename(), null, source.getName(),source);
@@ -79,8 +77,8 @@ public class NewsEntry extends JLayeredPane{
 		// build NewsEntry
 		bt_like = new JButton("L");
 		bt_hate = new JButton("H");
-		bt_like.setBounds(panWidth-2*55,panHeight-55,50,50);
-		bt_hate.setBounds(panWidth-55,panHeight-55,50,50);
+		bt_like.setBounds(panWidth-2*35,panHeight-35,30,30);
+		bt_hate.setBounds(panWidth-35,panHeight-35,30,30);
 		
 		setBounds(0 , 0, panWidth ,panHeight);
 		

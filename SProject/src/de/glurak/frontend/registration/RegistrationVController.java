@@ -1,5 +1,9 @@
 package de.glurak.frontend.registration;
 
+import de.glurak.data.User.User;
+import de.glurak.data.User.UserProfile;
+import de.glurak.frontend.SessionThing;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
@@ -19,15 +23,13 @@ public class RegistrationVController implements ActionListener{
 	 * Konstruktor
 	 */
 	public RegistrationVController(){
-		regview = new RegistrationView();
-		regview.b_cancel.addActionListener(this);
-		regview.b_register.addActionListener(this);
+		regview = new RegistrationView(this);
 	}
 	
 	public void actionPerformed(ActionEvent e){
-		if (e.getSource() == regview.b_register){
-			//Ueberpruefen, ob in der Geburtstagszeile ein Datum eingeben wurde
+		if (e.getActionCommand().equals("registrate")){
 			try {
+<<<<<<< HEAD
 				int day = Integer.parseInt(regview.t_birthdate_day.getText());
 				int month = Integer.parseInt(regview.t_birthdate_month.getText());
 				int year = Integer.parseInt(regview.t_birthdate_year.getText());
@@ -64,12 +66,35 @@ public class RegistrationVController implements ActionListener{
 					}
 				}
 			}
+=======
+
+                User u = regview.getEnteredUser();
+                if (u==null){
+                    JOptionPane.showMessageDialog(regview, "Bitte füllen sie alle Felder korrekt aus, um sich zu registrieren!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                SessionThing s = SessionThing.getInstance();
+                if (s.getDatabase().hasUser(u.getUsername())){
+                    JOptionPane.showMessageDialog(regview,"Ein Benutzer mit diesen Benutzernamen existiert bereits");
+                    return;
+                }
+
+                UserProfile tmp = u.getProfile();
+                u.setProfile(null);
+                s.getDatabase().registrateProfile(tmp, null);
+                u.setProfile(tmp);
+                s.getDatabase().registrateUser(u,null);
+
+                regview.setVisible(false);
+            }
+>>>>>>> 06343dfaab655baf11127857ed65766869f96f19
 			catch (NumberFormatException nmf){
-				JOptionPane.showMessageDialog(null, "Bitte geben sie ein gültiges Datum an!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);	
+				JOptionPane.showMessageDialog(regview, "Bitte geben sie ein gültiges Datum an!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else{
-			if(e.getSource() == regview.b_cancel){
+			if(e.getActionCommand().equals("cancel")){
 				regview.setVisible(false);
 			}
 		}

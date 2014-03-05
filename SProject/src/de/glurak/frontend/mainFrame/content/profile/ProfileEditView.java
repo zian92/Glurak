@@ -13,7 +13,7 @@ public class ProfileEditView extends JPanel{
 		// Panels
 		private JPanel pan_profileeditview;
 		private JPanel pan_profilepic;
-		private JPanel pan_picture;
+		protected JPanel pan_picture;
 		private JPanel pan_profiledata;
 		private JPanel pan_likes;
 		
