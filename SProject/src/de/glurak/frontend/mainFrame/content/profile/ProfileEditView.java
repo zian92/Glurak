@@ -1,8 +1,6 @@
 package de.glurak.frontend.mainFrame.content.profile;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-
 import java.awt.*;
 
 /**
