@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 import de.glurak.feature.SliderPanel;
 
-public class PromotionPanel extends JPanel {
+public class PromotionView extends JPanel {
 	
 	private int sliderCount = 0;
 	private Dimension panelDim;
@@ -34,7 +34,7 @@ public class PromotionPanel extends JPanel {
 	 * @param preferedSliderSize
 	 * @author MxB
 	 */
-	public PromotionPanel(Dimension preferedSize, Dimension preferedSliderSize){
+	public PromotionView(Dimension preferedSize, Dimension preferedSliderSize){
 		super();
 		// set the size of the panel itself and calculate the maximum amount of sliders fitting in
 		setPreferredSize(preferedSize);
@@ -62,7 +62,7 @@ public class PromotionPanel extends JPanel {
 			}
 		}	
 		
-		/* BUttons for testing */
+		/* BUttons for testing 
 		c.fill = GridBagConstraints.HORIZONTAL;
 	  	c.gridx = 0;
 		c.gridy = 2;
@@ -73,19 +73,22 @@ public class PromotionPanel extends JPanel {
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
 	  	c.gridx = 0;
-		c.gridy = 3;
+		c.gridy = 2;
 		c.gridwidth = 2;
 		
 		bt_add = new JButton("add Bieber");
 		add(bt_add, c); 
+		*/
 		setVisible(true);
 		
 	}
 
 	private int getMaxRowCount(){
+		System.out.println("maxRowCount = " + panelDim.width / sliderDim.width );
 		return panelDim.width / sliderDim.width;
 	}
 	private int getMaxColCount(){
+		System.out.println("maxColCount = " + panelDim.height / sliderDim.height);
 		return panelDim.height / sliderDim.height;
 	}
 	

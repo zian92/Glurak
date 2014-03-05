@@ -4,7 +4,8 @@ import de.glurak.data.User.User;
 import de.glurak.data.User.UserProfile;
 
 /**
- * Exception wird geworfen, wenn nicht genug Rechte existieren
+ * Exception wird geworfen, wenn nicht genug Rechte für die Operationen
+ * vorhanden sind.
  * @author Entscheider.
  */
 public class NotEnoughRightException extends RuntimeException{
@@ -16,7 +17,7 @@ public class NotEnoughRightException extends RuntimeException{
      * @param right_to_have das Recht welches gebraucht wird.
      */
     public NotEnoughRightException(String right_to_have){
-        super("Needed Right "+right_to_have+" but do not have it");
+        super("User do not have the Required right \""+right_to_have+"\"");
         this.right_to_have=right_to_have;
     }
 

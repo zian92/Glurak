@@ -14,6 +14,7 @@ public class LabelProfileView extends JPanel{
 		// Panels
 		private JPanel pan_labelprofileview;
 		private JPanel pan_profilepic;
+		protected JPanel pan_picture;
 		private JPanel pan_profiledata;
 		private JPanel pan_playlists;
 		
@@ -41,7 +42,7 @@ public class LabelProfileView extends JPanel{
 			
 			// Initialisieren Panel pan_profileview
 			pan_labelprofileview = new JPanel(new GridBagLayout());
-			pan_labelprofileview.setPreferredSize(new Dimension(1000,500));
+			pan_labelprofileview.setPreferredSize(new Dimension(724, 545));
 			pan_labelprofileview.setBackground(Color.black);
 			
 			// Layout-Restriktionen festlegen.
@@ -59,12 +60,24 @@ public class LabelProfileView extends JPanel{
 				GridBagConstraints d = new GridBagConstraints();
 				d.fill = GridBagConstraints.HORIZONTAL;
 				d.insets = new Insets(2,2,2,2);	
-					
+				
+				// Initialisieren des Labelbildes
+				d.gridx = 0;
+				d.gridy = 0;
+				d.gridheight = 1;
+				d.gridwidth = 2;
+				pan_picture = new JPanel();
+				pan_picture.setPreferredSize(new Dimension(100, 100));
+				pan_picture.setBackground(Color.green);
+				pan_profilepic.add(pan_picture, d);
+				
 			    // Initialisieren der Buttons b_apply, b_follow, b_edit
 				if (labelManager){  // Falls aus der Sicht des LabelManagers auf das LabelProfile zugegriffen wird.
 				
 			    	d.gridx = 0;
 					d.gridy = 1;
+					d.gridheight = 1;
+					d.gridwidth = 1;
 					b_edit = new JButton("Bearbeiten");
 					b_edit.setBorder(BorderFactory.createLineBorder(Color.white));
 					b_edit.setBackground(Color.black);
@@ -77,6 +90,8 @@ public class LabelProfileView extends JPanel{
 					if (artist){    // Falls aus der Sicht des Künstlers auf das LabelProfile zugegriffen wird.
 						d.gridx = 0;
 						d.gridy = 1;
+						d.gridheight = 1;
+						d.gridwidth = 1;
 						b_apply = new JButton("Bewerben");
 						b_apply.setBorder(BorderFactory.createLineBorder(Color.white));
 						b_apply.setBackground(Color.black);
@@ -85,6 +100,8 @@ public class LabelProfileView extends JPanel{
 				    
 						d.gridx = 1;
 						d.gridy = 1;
+						d.gridheight = 1;
+						d.gridwidth = 1;
 						b_follow = new JButton("Follow");
 						b_follow.setBorder(BorderFactory.createLineBorder(Color.white));
 						b_follow.setBackground(Color.black);
@@ -94,6 +111,8 @@ public class LabelProfileView extends JPanel{
 					else{		 // Falls weder der LabelManager noch der Künstler auf das Profil zugreifen.
 						d.gridx = 0;
 						d.gridy = 1;
+						d.gridheight = 1;
+						d.gridwidth = 1;
 						b_follow = new JButton("Follow");
 						b_follow.setBorder(BorderFactory.createLineBorder(Color.white));
 						b_follow.setBackground(Color.black);
@@ -152,15 +171,22 @@ public class LabelProfileView extends JPanel{
 					// Label und Textfelder hinzufügen
 					e.gridx = 0;
 					e.gridy = i+1;
+					e.gridheight = 1;
+					e.gridwidth = 1;
 					e.weightx = 0.0;
 					l_kuenstler[i] = new JLabel("Künstler " + i + ":");
+					l_kuenstler[i].setForeground(Color.white);
 					pan_profiledata.add(l_kuenstler[i], e);
 					
 					e.gridx = 1;
 					e.gridy = i+1;
+					e.gridheight = 1;
+					e.gridwidth = 1;
 					e.weightx = 1.0;
 					t_kuenstler[i] = new JTextField();
-					t_labelname.setEditable(false);
+					t_kuenstler[i].setEditable(false);
+					t_kuenstler[i].setBackground(Color.black);
+					t_kuenstler[i].setForeground(Color.white);
 					pan_profiledata.add(t_kuenstler[i], e);
 
 				}
@@ -173,19 +199,24 @@ public class LabelProfileView extends JPanel{
 			c.weightx = 0.5;
 			c.weighty = 0.5;
 			c.gridheight = 2;
+			c.gridwidth = 1;
 			pan_labelprofileview.add(pan_playlists, c);
 			
 			c.gridx = 1;
 			c.gridy = 0;
 			c.weightx = 0.5;
 			c.weighty = 0.5;
+			c.gridheight = 1;
+			c.gridwidth = 1;
 			pan_labelprofileview.add(pan_profilepic, c);
 
 			
 			c.gridx = 1;
 			c.gridy = 1;
 			c.weightx = 0.5;
-			c.weighty = 0.5;
+			c.weighty = 1.0;
+			c.gridheight = 1;
+			c.gridwidth = 1;
 			pan_labelprofileview.add(pan_profiledata, c);
 			
 			// Hinzufügen des Panels zur ContentPane
