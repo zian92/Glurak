@@ -1,7 +1,12 @@
 package de.glurak.frontend.mainFrame.playQueue;
 
+import java.awt.Component;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
@@ -34,6 +39,7 @@ public class PlayQueueViewController {
 	private long 				duration;
     private final static int 	FINISHED_BY_END = 4;
     private ActionListener		a;
+    private MouseListener		m;
 	
 	
     
@@ -78,23 +84,7 @@ public class PlayQueueViewController {
 					view.getQueuePanel().resetButton();
 		
 				}
-				else { 
-					for(int i = 0;i<getPlaylist().getMediumList().size();i++){
-						if(src== view.getQueuePanel().getMediumButtonArray()[i]){
-							
-							getPlaylist().setCurrent(i);
-								
-								if (player.isPaused()||player.isPlaying()){
-									player.stop();}
-								
-								playNew(0);
-								view.getQueuePanel().resetButton();
-								
-								
-						}
-					
-					}
-				}
+			
 			}
 			}
 			}
@@ -124,13 +114,40 @@ public class PlayQueueViewController {
 			}
 		};
 		
+		m= new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+    				for(int i = 0;i<getPlaylist().getMediumList().size();i++){
+    					if(e.getSource()==view.getQueuePanel().getMediumPanelArray()[i]){
+    						if (e.getClickCount() >= 2) { 	
+    							getPlaylist().setCurrent(i);
+    							if (player.isPaused()||player.isPlaying()){
+    								player.stop();}
+							
+    							playNew(0);
+    							view.getQueuePanel().resetButton();
+    						}else{
+    							
+    							
+    							view.getQueuePanel().showInformations(i);
+    							
+    						}
+    			
+    					}
+    				}
+    		
+    			}
+			
+		};
+		
+		view.getQueuePanel().addMouseListener(m);
 		view.getPositionBar().addChangeListener(c);
 		view.getPlayButton().addActionListener(a);
 		view.getNextButton().addActionListener(a);
 		view.getPreviousButton().addActionListener(a);
 		if(getPlaylist()!=null){	
 			for(int i = 0;i<getPlaylist().getMediumList().size();i++){
-				view.getPlaylistButton()[i].addActionListener(a);
+				//view.getPlaylistButton()[i].addActionListener(a);
+				view.getQueuePanel().getMediumPanelArray()[i].addMouseListener(m);
 			}
 		}
 	}
@@ -173,7 +190,7 @@ public class PlayQueueViewController {
 		setPlaylist(playlist);
 		view.initQueueView(playlist);
 		for(int i = 0;i<getPlaylist().getMediumList().size();i++){
-			view.getPlaylistButton()[i].addActionListener(a);
+			view.getQueuePanel().getMediumPanelArray()[i].addMouseListener(m);
 		}
 	}
 	
