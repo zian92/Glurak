@@ -7,15 +7,23 @@ import de.glurak.data.NotEnoughRightException;
 import java.io.Serializable;
 
 import javax.persistence.*;
+
 /**
  * Oberklasse aller Profile eines Benutzers
+ * 
  * @author Entscheider
  */
 @Entity
 public abstract class UserProfile extends Profile implements Serializable {
+    protected String email;
+    protected String firstname;
+    protected String lastname;
+    protected boolean isFemale;
+    protected String country;
+
     /**
-     * Soll in den Unterklassen implementiert werden.
-     * Gibt die Rechte zurück die ein Nutzer mit diesem Profil besitzt
+     * Soll in den Unterklassen implementiert werden. Gibt die Rechte zurück die ein Nutzer mit diesem Profil besitzt
+     * 
      * @return die Rechte des Nutzer des Profils
      */
     public abstract String[] myRights();
@@ -25,21 +33,17 @@ public abstract class UserProfile extends Profile implements Serializable {
 
     /**
      * Prüft ob der Benutzer das Recht right besitzt
-     * @param right das zu überprüfende Recht
+     * 
+     * @param right
+     *            das zu überprüfende Recht
      * @return true, falls Recht besitzt, sonst false
      */
-    public boolean hasRight(String right){
-        for (String r: myRights()){
+    public boolean hasRight(String right) {
+        for (String r : myRights()) {
             if (r.equals(right)) return true;
         }
         return false;
     }
-    protected String email;
-    protected String firstname;
-    protected String lastname;
-    protected boolean isFemale;
-
-    protected String country;
 
     public String getEmail() {
         return email;
@@ -65,7 +69,6 @@ public abstract class UserProfile extends Profile implements Serializable {
         this.lastname = lastname;
     }
 
-
     public String getCountry() {
         return country;
     }
@@ -82,40 +85,38 @@ public abstract class UserProfile extends Profile implements Serializable {
         this.isFemale = isFemale;
     }
 
-
     @Override
     public User belongTo() {
-         return myUser;
+        return myUser;
     }
 
-    public void setUser(User u){
-        if (u==myUser) return;
-        if (myUser!=null){
+    public void setUser(User u) {
+        if (u == myUser) return;
+        if (myUser != null) {
             User tmp = myUser;
-            myUser=null;
+            myUser = null;
             tmp.setProfile(null);
         }
-        myUser=u;
-        if (u!=null)
-            u.setProfile(this);
+        myUser = u;
+        if (u != null) u.setProfile(this);
     }
-    
+
     @Override
-    public String getPictureFileNameOrDefaultPictureName(){
-    	if (pictureFileName.isEmpty()){
-    		if (isFemale){
-    			return (Query.FOLDER_PICTURE_ICONS + "userf.jpg");
-    		}else{
-    			return (Query.FOLDER_PICTURE_ICONS + "userm.jpg");
-    		}
-    		
-    	}
-    	return pictureFileName;
+    public String getPictureFileNameOrDefaultPictureName() {
+        if (pictureFileName.isEmpty()) {
+            if (isFemale) {
+                return (Query.FOLDER_PICTURE_ICONS + "userf.jpg");
+            } else {
+                return (Query.FOLDER_PICTURE_ICONS + "userm.jpg");
+            }
+
+        }
+        return pictureFileName;
     }
 
     @Override
     public void addAnnouncement(Announcement a) {
-        NotEnoughRightException.throwIfNot(this,Rights.ANOUNCEMENTS_RIGHTS);
+        NotEnoughRightException.throwIfNot(this, Rights.ANOUNCEMENTS_RIGHTS);
         super.addAnnouncement(a);
     }
 }
