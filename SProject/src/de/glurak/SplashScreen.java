@@ -3,25 +3,50 @@ package de.glurak;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.BorderFactory;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JWindow;
 
 public class SplashScreen extends JFrame {
 
+    private final String filepath = Query.FOLDER_PICTURE_ICONS + "userf.jpg";
+
     public SplashScreen() {
-        this.showSplash();
+        JPanel c = new JPanel(new BorderLayout());
+        setBackground(Color.black);
+        // Set the window's bounds, centering the window
+        int width = 300;
+        int height = 250;
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screen.width - width) / 2;
+        int y = (screen.height - height) / 2;
+        setBounds(x, y, width, height);
+        // image
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File(filepath));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        this.setContentPane(new JLabel(new ImageIcon(img)));
+        JLabel image = new JLabel(new ImageIcon(img));
+        c.add(image, BorderLayout.CENTER);
+        c.setVisible(true);
+        this.add(c);
+        this.setVisible(true);
     }
 
     public void showSplash() {
-        JPanel content = (JPanel) getContentPane();
-        content.setBackground(Color.white);
+        JPanel content = new JPanel(new BorderLayout());// (JPanel) getContentPane();
+        content.setBackground(Color.black);
 
         // Set the window's bounds, centering the window
         int width = 300;
@@ -32,21 +57,24 @@ public class SplashScreen extends JFrame {
         setBounds(x, y, width, height);
 
         // Build the splash screen
-        JLabel label = new JLabel(new ImageIcon(Query.FOLDER_PICTURE + "test.jpg"));
-        JLabel copyrt = new JLabel("Copyright 2002, O'Reilly & Associates", JLabel.CENTER);
-        copyrt.setFont(new Font("Sans-Serif", Font.BOLD, 12));
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File(filepath));
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        JLabel label = new JLabel(new ImageIcon(img));
         content.add(label, BorderLayout.CENTER);
-        content.add(copyrt, BorderLayout.SOUTH);
-        Color oraRed = new Color(156, 20, 20, 255);
-        content.setBorder(BorderFactory.createLineBorder(oraRed, 10));
-
+        content.setVisible(true);
         // Display it
-        this.setUndecorated(true);
+        // this.setUndecorated(true);
+        add(content);
         setVisible(true);
 
         // wait for init
         try {
-            Thread.sleep(5000);
+            Thread.sleep(200);
         } catch (Exception e) {
         }
     }
@@ -54,5 +82,10 @@ public class SplashScreen extends JFrame {
     public void hideSplashScreen() {
         setVisible(false);
         this.dispose();
+    }
+    
+    public static void main(String[] args) {
+        SplashScreen s = new SplashScreen();
+        
     }
 }

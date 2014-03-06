@@ -23,21 +23,29 @@ public class Glurak {
         LoginVController logControll = new LoginVController(Query.APPLICATION_NAME);
     }
 
+    private static Glurak glumanda;
+    private static SplashScreen splash;
+
     public static void main(String[] args) {
+
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                Glurak glumanda = new Glurak();
-                SplashScreen splash = new SplashScreen();
-                HibernateDB db = SessionThing.getInstance().getDatabase();
-
-                if (db.allGenres().isEmpty()) {
-                    glumanda.initialisiereDB(db);
-                }
+                splash = new SplashScreen();
+                glumanda = new Glurak();
+            }
+        });
+        HibernateDB db = SessionThing.getInstance().getDatabase();
+        if (db.allGenres().isEmpty()) {
+            glumanda.initialisiereDB(db);
+        }
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
                 splash.hideSplashScreen();
                 glumanda.OpenInterface();
             }
         });
-        Runtime.getRuntime().addShutdownHook(new Thread(){
+
+        Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
                 SessionThing.getInstance().getDatabase().save();
