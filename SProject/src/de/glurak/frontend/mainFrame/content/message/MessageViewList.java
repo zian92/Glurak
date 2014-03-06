@@ -13,7 +13,7 @@ import java.awt.*;
 public class MessageViewList extends JList<Message> {
     private class MessageRenderer implements ListCellRenderer<Message> {
 
-        @Override
+        
         public Component getListCellRendererComponent(JList<? extends Message> list, Message value, int index, boolean isSelected, boolean cellHasFocus) {
             JPanel res = new JPanel();
             if (!value.isAlreadyRead())
