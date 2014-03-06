@@ -131,6 +131,17 @@ public class Uploader {
     }
 
     /**
+     * Oeffnet einen Dialog um einzelne Musikdateien hochzuladen.
+     * 
+     * @param comp
+     *            Den Besitzer des Fensters
+     * @return
+     */
+    public File selectSIngleMusic(Component comp) {
+        return this.selectFiles(comp, Query.SUPPORTED_MUSIC_TYPES, JFileChooser.FILES_ONLY, false)[0];
+    }
+
+    /**
      * Interne Funktion zum auswaehlen von Dateien.
      * 
      * @param comp
