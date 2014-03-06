@@ -10,6 +10,13 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
+
+import de.glurak.frontend.SessionThing;
+import de.glurak.data.Genre;
+
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * In der Uploadview kann man Medien auswaehlen und hochladen. 
@@ -27,6 +34,8 @@ public class UploadView extends JPanel {
 	protected JTextField t_artist = new JTextField(20);
 	protected JTextField t_title = new JTextField(20);
 	protected JTextField t_album = new JTextField(20);
+	//Dropdownmenue fuer die Genres
+	protected JComboBox<String> d_genre;
 	
 	/**
 	 * Konstruktor
@@ -37,18 +46,29 @@ public class UploadView extends JPanel {
 		
 		//Initialiserung der Panels
 		JPanel pan_buttons = new JPanel(new FlowLayout());
-		JPanel pan_info = new JPanel(new GridLayout(4, 1, 10, 15));
+		JPanel pan_info = new JPanel(new GridLayout(5, 1, 10, 15));
 		
 		//Initialisierung der Labels
 		JLabel l_upload = new JLabel("Wählen sie eine Musikdatei aus: ");
 		JLabel l_artist = new JLabel("Interpret: ");
 		JLabel l_title = new JLabel("Songtitel: ");
+		JLabel l_genre = new JLabel("Genre: ");
 		JLabel l_album = new JLabel("Album: ");
 		
 		//Initialisierung der Buttons
 		b_upload = new JButton("Upload");
 		b_cancel = new JButton("Abbrechen");
 		b_choosefile = new JButton("Datei auswählen...");
+		
+		//Initialisierung des Dropdownmenue
+		SessionThing session =  SessionThing.getInstance();
+		List<Genre> genre = new ArrayList<Genre>();
+		genre = session.getDatabase().allGenres();
+		String[] genrelist = new String[genre.size()];
+		for(int i = 0; i < genre.size(); i ++){
+			genrelist[i] = genre.get(i).getTitle();
+		};
+		d_genre = new JComboBox(genrelist);
 				
 		//Infopanel zusammenfuegen
 		pan_info.add(l_upload);
@@ -57,6 +77,8 @@ public class UploadView extends JPanel {
 		pan_info.add(t_artist);
 		pan_info.add(l_title);
 		pan_info.add(t_title);
+		pan_info.add(l_genre);
+		pan_info.add(d_genre);
 		pan_info.add(l_album);
 		pan_info.add(t_album);
 		

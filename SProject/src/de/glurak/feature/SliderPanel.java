@@ -54,6 +54,11 @@ public class SliderPanel extends JPanel {
 		itemCount = itemCount + 1;
 	}
 	
+	public void removeSliderCompinent(JComponent c){
+		pan_main.remove(c);
+		itemCount = itemCount - 1;
+	}
+	
 	public void refresh(){
 		revalidate();
 		repaint();

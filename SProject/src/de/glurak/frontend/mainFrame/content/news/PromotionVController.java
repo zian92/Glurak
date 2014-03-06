@@ -30,7 +30,7 @@ import de.glurak.frontend.mainFrame.ContentController;
  * @author MxB
  *
  */
-public class PromotionVController  extends Observable implements ContentController{
+public class PromotionVController extends Observable implements ContentController{
 
 	private List<JLabel> imageLabelList = new ArrayList<JLabel>();
 	
