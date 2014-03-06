@@ -10,7 +10,9 @@ public class SearchVController implements ActionListener{
 	/**
 	 * Konstruktor
 	 */
-	public SearchVController(){
+	public SearchVController() {
+		searchview = new SearchView();
+		
 		
 	}
 

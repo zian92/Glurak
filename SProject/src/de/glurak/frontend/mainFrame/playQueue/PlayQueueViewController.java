@@ -12,6 +12,7 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import de.glurak.Query;
 import de.glurak.data.Medium;
 import de.glurak.data.Playlist;
 import de.glurak.feature.sound.PlayerController;
@@ -27,27 +28,30 @@ import de.vdheide.mp3.NoMP3FrameException;
  */
 public class PlayQueueViewController {
 	
-	private PlayerController player;
-	private Playlist playlist;
-	private Medium currentMedium;
-	private PlayQueueView view;
-	private long duration;
-    private final static int FINISHED_BY_END = 4;
+	private PlayerController 	player;
+	private Playlist 			playlist;
+	private PlayQueueView 		view;
+	private long 				duration;
+    private final static int 	FINISHED_BY_END = 4;
+    private ActionListener		a;
 	
 	
+    
+    
+    
+    
 	/**Konstrukter mit Initialisierung der Listener
 	 * @param playlist abzuspielende Playlist
 	 */
 	public PlayQueueViewController (Playlist playlist) {
-		view = new PlayQueueView(playlist, playlist.getCurrent());
+		view = new PlayQueueView(playlist);
 		player = new PlayerController();
-		this.setCurrentMedium(playlist.getCurrent());
 		this.setPlaylist(playlist);
 		
-		ActionListener a = new ActionListener() {
+		a = new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				
+		if(getPlaylist()!=null){		
 			if(!view.getPositionBar().getValueIsAdjusting()){
 				Object src = e.getSource();
 				if (src == view.getPlayButton()) {
@@ -60,25 +64,25 @@ public class PlayQueueViewController {
 						playNew(view.getPositionBar().getValue());
 					}
 				} else if (src == view.getNextButton()) {
-					setCurrentMedium(getPlaylist().getNext());
+					getPlaylist().getNext();
 					if (player.isPaused() || player.isPlaying())
 						player.stop();
 					playNew(0);
 					view.getQueuePanel().resetButton();
 					
 				} else if (src == view.getPreviousButton()) {
-					setCurrentMedium(getPlaylist().getPrevious());
+					getPlaylist().getPrevious();
 					if (player.isPaused() || player.isPlaying())
 						player.stop();
 					playNew(0);
 					view.getQueuePanel().resetButton();
+		
 				}
 				else { 
 					for(int i = 0;i<getPlaylist().getMediumList().size();i++){
 						if(src== view.getQueuePanel().getMediumButtonArray()[i]){
 							
 							getPlaylist().setCurrent(i);
-							setCurrentMedium(getPlaylist().getCurrent());
 								
 								if (player.isPaused()||player.isPlaying()){
 									player.stop();}
@@ -91,6 +95,7 @@ public class PlayQueueViewController {
 					
 					}
 				}
+			}
 			}
 			}
 		};
@@ -118,14 +123,17 @@ public class PlayQueueViewController {
 		view.getPlayButton().addActionListener(a);
 		view.getNextButton().addActionListener(a);
 		view.getPreviousButton().addActionListener(a);
-		
-		for(int i = 0;i<getPlaylist().getMediumList().size();i++){
-			view.getPlaylistButton()[i].addActionListener(a);
+		if(getPlaylist()!=null){	
+			for(int i = 0;i<getPlaylist().getMediumList().size();i++){
+				view.getPlaylistButton()[i].addActionListener(a);
+			}
 		}
 	}
 	
 	public PlayQueueViewController () {
 		this(null);
+		
+		
 	}
 	
 	/**
@@ -144,7 +152,7 @@ public class PlayQueueViewController {
 				}else
 				if(player.getPlayer().getPlayerStatus()==FINISHED_BY_END){
 					
-					setCurrentMedium(getPlaylist().getNext());
+					getPlaylist().getNext();
 						player.stop();
 						playNew(0);
 					view.getQueuePanel().resetButton();
@@ -152,6 +160,18 @@ public class PlayQueueViewController {
 			}
 			}		
             });
+	}
+	
+	/**reagiert auf Veränderungen der Playlist
+	 * und aktualisiert View+ Listener
+	 * @param playlist
+	 */
+	public void refresh(Playlist playlist){
+		setPlaylist(playlist);
+		view.initQueueView(playlist);
+		for(int i = 0;i<getPlaylist().getMediumList().size();i++){
+			view.getPlaylistButton()[i].addActionListener(a);
+		}
 	}
 	
 	public PlayerController getPlayer() {
@@ -183,14 +203,6 @@ public class PlayQueueViewController {
 		this.view = view;
 	}
 
-	public Medium getCurrentMedium() {
-		return currentMedium;
-	}
-
-	public void setCurrentMedium(Medium currentMedium) {
-		this.currentMedium = currentMedium;
-	
-	}
 
 	/**
 	 * Startet Wiedergabe und führt nötige Erneuerungen durch
@@ -198,16 +210,14 @@ public class PlayQueueViewController {
 	 */
 	public void playNew(int time){
 		
-		player.play(getCurrentMedium().getFileName(),time);
-		File file = new File(getCurrentMedium().getFileName());
+		player.play(getPlaylist().getCurrent().getFileName(),time);
+		File file = new File(getPlaylist().getCurrent().getFileName());
 		MP3Properties properties = null;
 		try {
 			properties = new MP3Properties(file);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (NoMP3FrameException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		duration= properties.getLength();		
