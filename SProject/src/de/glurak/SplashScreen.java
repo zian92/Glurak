@@ -16,14 +16,13 @@ import javax.swing.JPanel;
 
 public class SplashScreen extends JFrame {
 
-    private final String filepath = Query.FOLDER_PICTURE_ICONS + "userf.jpg";
+    private final String filepath = Query.FOLDER_PICTURE_ICONS + "Glurak.png";
 
     public SplashScreen() {
         JPanel c = new JPanel(new BorderLayout());
-        setBackground(Color.black);
         // Set the window's bounds, centering the window
-        int width = 300;
-        int height = 250;
+        int width = 876;
+        int height = 786;
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (screen.width - width) / 2;
         int y = (screen.height - height) / 2;
@@ -39,6 +38,8 @@ public class SplashScreen extends JFrame {
         this.setContentPane(new JLabel(new ImageIcon(img)));
         JLabel image = new JLabel(new ImageIcon(img));
         c.add(image, BorderLayout.CENTER);
+        this.setUndecorated(true);
+        c.setOpaque(true);
         c.setVisible(true);
         this.add(c);
         this.setVisible(true);
@@ -83,9 +84,9 @@ public class SplashScreen extends JFrame {
         setVisible(false);
         this.dispose();
     }
-    
+
     public static void main(String[] args) {
         SplashScreen s = new SplashScreen();
-        
+
     }
 }
