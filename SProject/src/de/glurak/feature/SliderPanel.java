@@ -54,6 +54,11 @@ public class SliderPanel extends JPanel {
 		itemCount = itemCount + 1;
 	}
 	
+	public void removeSliderCompinent(JComponent c){
+		pan_main.remove(c);
+		itemCount = itemCount - 1;
+	}
+	
 	public void refresh(){
 		revalidate();
 		repaint();
@@ -80,11 +85,12 @@ public class SliderPanel extends JPanel {
 			int shift=bounds.width/steps;
 			
 			if(!isNext){
-				c1.setLocation(bounds.x-shift, bounds.y);
-				c2.setLocation(bounds.x-shift+bounds.width, bounds.y);
-			}else{
 				c1.setLocation(bounds.x+shift, bounds.y);
 				c2.setLocation(bounds.x+shift-bounds.width, bounds.y);
+			}else{
+				c1.setLocation(bounds.x-shift, bounds.y);
+				c2.setLocation(bounds.x-shift+bounds.width, bounds.y);
+				
 			}
 			
 			pan_main.repaint();

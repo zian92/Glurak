@@ -33,15 +33,18 @@ import javax.swing.JPasswordField;
 public class RegistrationView extends JPanel{
 
 	//Textfelder fuer die Registrierung
-	protected JTextField t_username = new JTextField();
-	protected JPasswordField t_password = new JPasswordField();
-	protected JTextField t_birthdate_day = new JTextField();
-	protected JTextField t_birthdate_month = new JTextField();
-	protected JTextField t_birthdate_year = new JTextField();
-	protected JTextField t_prename = new JTextField();
-	protected JTextField t_surname = new JTextField();
+	private JTextField t_username = new JTextField();
+    private JPasswordField t_password = new JPasswordField();
+    private JPasswordField t_password_2 = new JPasswordField();
+    private JTextField t_birthdate_day = new JTextField();
+    private JTextField t_birthdate_month = new JTextField();
+    private JTextField t_birthdate_year = new JTextField();
+    private JTextField t_prename = new JTextField();
+    private JTextField t_surname = new JTextField();
+    private JTextField t_mailaddr = new JTextField();
+    private JTextField t_addr = new JTextField();
 	//Dropdown Menue um das Herkunftsland auszuwaehlen
-	protected JComboBox<String> d_homecountry;
+    private JComboBox<String> d_homecountry;
 	//Radiobuttons um das Geschlecht auszuwaehlen
 	private JRadioButton r_gender_m;
 	private JRadioButton r_gender_f;
@@ -53,133 +56,125 @@ public class RegistrationView extends JPanel{
 	
 	/**
 	 * Konstruktor.
-     * @param listener der Actionlistener für die Button. null für keinen
+     * @param actionlistener der Actionlistener für die Button. null für keinen
+     * @param focuslistener der FocusListener für das Enter. null für keinen
 	 */
-	public RegistrationView(ActionListener actionlistener, FocusListener focuslistener){
-		
-		//Layout des Frames festlegen
-		setLayout(new BorderLayout());
-		
-		//Panels Initialisieren
-		JPanel pan_input = new JPanel();
-		JPanel pan_buttons = new JPanel();
-		
-		//Initialisierung der Buttons
-		b_register = new JButton("Registrieren");
+    public RegistrationView(ActionListener actionlistener, FocusListener focuslistener){
+        setLayout(new BorderLayout());
+        setBackground(panColor);
+        //Die Panels initialisieren
+        JPanel pan_input=new JPanel();
+        pan_input.setLayout(new GridLayout(0,1));
+        pan_input.setBackground(panColor);
+        JPanel pan_buttons=new JPanel();
+        pan_buttons.setLayout(new FlowLayout());
+        pan_buttons.setBackground(panColor);
+
+        //Buttons initialisieren
+        b_register = new JButton("Registrieren");
         if (actionlistener!=null)
-        b_register.addActionListener(actionlistener);
+            b_register.addActionListener(actionlistener);
         b_register.setActionCommand("registrate");
-		b_cancel = new JButton("Abbrechen");
+        b_cancel = new JButton("Abbrechen");
         if (actionlistener !=null)
-        b_cancel.addActionListener(actionlistener);
+            b_cancel.addActionListener(actionlistener);
         b_cancel.setActionCommand("cancel");
-		
-		//Initialisierung der Radionbuttons
-		r_gender_m = new JRadioButton("männlich");
-		r_gender_f = new JRadioButton("weiblich");
-		
-		//Die Radiobuttons gruppieren
-		ButtonGroup r_group = new ButtonGroup();
-		r_group.add(r_gender_m);
-		r_group.add(r_gender_f);
-		
-		//Die Radiobuttons in ein Panel zusammenfuegen
-		JPanel pan_radio = new JPanel();
-		pan_radio.setBackground(panColor);
-		r_gender_m.setBackground(panColor);
-		r_gender_f.setBackground(panColor);
-		r_gender_m.setForeground(Color.WHITE);
-		r_gender_f.setForeground(Color.WHITE);
-		pan_radio.add(r_gender_m);
-		pan_radio.add(r_gender_f);
-		
-		//Initialisierung der Labels
-		JLabel l_note = new JLabel("<HTML><BODY>Füllen sie folgendes Formular<BR> aus, um sich zu registrieren: </BODY></HTML>");
-		JLabel l_username = new JLabel("Username: ");
-		JLabel l_prename = new JLabel("Vorname: ");
-		JLabel l_surname = new JLabel("Nachname: ");
-		JLabel l_password = new JLabel("Passwort: ");
-		JLabel l_birthdate = new JLabel("Geburtsdatum: ");
-		JLabel l_homecountry = new JLabel("Herkunftsland: ");
-		JLabel l_gender = new JLabel("Geschlecht: ");
-		
-		//Labels in weisser Schrift
-		l_note.setForeground(Color.WHITE);
-		l_username.setForeground(Color.WHITE);
-		l_prename.setForeground(Color.WHITE);
-		l_surname.setForeground(Color.WHITE);
-		l_password.setForeground(Color.WHITE);
-		l_birthdate.setForeground(Color.WHITE);
-		l_homecountry.setForeground(Color.WHITE);
-		l_gender.setForeground(Color.WHITE);
-		
-		//Layout der Panels festlegen
-		pan_input.setLayout(new GridLayout(7, 1, 10, 5));
-		pan_buttons.setLayout(new FlowLayout());
-		
-		//Buttons in Buttonpanel einfuegen
-		pan_buttons.add(b_register);
-		pan_buttons.add(b_cancel);
-		
-		//Dropdownmenue fuer das Herkunftsland anlegen
-		String[] countries = new String[] {"", "Belgium", "China", "Dänemark", "Deutschland", "England", "Finnland", 
-				"Frankreich", "Irland", "Italien", "Japan", "Luxemburg", "Niederlande", "Norwegen", "Österreich", 
-				"Polen", "Portugal", "Russland", "Schweden", "Schweiz", "Spanien", "Tschechien", "Vereinigte Staaten", 
-				"anderes Land"};
-		d_homecountry = new JComboBox(countries);
-		
-		//Textfelder Focuslistener hinzufuegen
-		t_username.addFocusListener(focuslistener);
-		t_prename.addFocusListener(focuslistener);
-		t_surname.addFocusListener(focuslistener);
-		t_password.addFocusListener(focuslistener);
-		t_birthdate_day.addFocusListener(focuslistener);
-		t_birthdate_month.addFocusListener(focuslistener);
-		t_birthdate_year.addFocusListener(focuslistener);
-		
-		//Geburtstagspanel erzeugen
-		JPanel birthday = new JPanel();
-		birthday.setBackground(panColor);
-		birthday.setLayout(new GridLayout(1,0));
-		JLabel dd = new JLabel(" (dd) . ");
-		dd.setForeground(Color.WHITE);
-		birthday.add(t_birthdate_day);
-		birthday.add(dd);
-		JLabel mm = new JLabel(" (mm) . ");
-		mm.setForeground(Color.WHITE);
-		birthday.add(t_birthdate_month);
-		birthday.add(mm);
-		birthday.add(t_birthdate_year);
-		JLabel yyyy = new JLabel(" (yyyy)");
-		yyyy.setForeground(Color.WHITE);
-		birthday.add(yyyy);
-		
-		//Labels, Textfelder, Dropdownmenue und Radiobuttons in das Input Panel einfuegen
-		pan_input.add(l_username);
-		pan_input.add(t_username);
-		pan_input.add(l_prename);
-		pan_input.add(t_prename);
-		pan_input.add(l_surname);
-		pan_input.add(t_surname);
-		pan_input.add(l_password);
-		pan_input.add(t_password);
-		pan_input.add(l_birthdate);
-		pan_input.add(birthday);
-		pan_input.add(l_homecountry);
-		pan_input.add(d_homecountry);
-		pan_input.add(l_gender);
-		pan_input.add(pan_radio);
-		
-		//Panels Hintergrundfarbe hinzufuegen
-		pan_buttons.setBackground(panColor);
-		pan_input.setBackground(panColor);
-		setBackground(panColor);
-		
-		//Panel in das Frame einfuegen
-		add(pan_input, BorderLayout.CENTER);
-		add(pan_buttons, BorderLayout.SOUTH);
-		add(l_note, BorderLayout.NORTH);
-	}
+
+
+
+        //Titel
+        JLabel l_note = new JLabel("<HTML><BODY>Füllen sie folgendes Formular<BR> aus, um sich zu registrieren: </BODY></HTML>");
+        l_note.setForeground(Color.WHITE);
+        add(l_note, BorderLayout.NORTH);
+
+        //Dropdownmenue fuer das Herkunftsland anlegen
+        String[] countries = new String[] {"", "Belgium", "China", "Dänemark", "Deutschland", "England", "Finnland",
+                "Frankreich", "Irland", "Italien", "Japan", "Luxemburg", "Niederlande", "Norwegen", "Österreich",
+                "Polen", "Portugal", "Russland", "Schweden", "Schweiz", "Spanien", "Tschechien", "Vereinigte Staaten",
+                "anderes Land"};
+        d_homecountry = new JComboBox(countries);
+
+        //Inputsachen
+        pan_input.add(addAEntry("Username:", t_username));
+        pan_input.add(addAEntry("Password:", t_password));
+
+        pan_input.add(addAEntry("Password wiederholen:", t_password_2));
+        pan_input.add(addAEntry("Mail-Addresse:", t_mailaddr));
+        pan_input.add(addAEntry("Vorname:", t_prename));
+        pan_input.add(addAEntry("Nachname:", t_surname));
+        pan_input.add(addAEntry("Geburtsdatum:", birthdayPanel()));
+        pan_input.add(addAEntry("Addresse:", t_addr));
+        pan_input.add(addAEntry("Herkunfsland:", d_homecountry));
+        pan_input.add(addAEntry("Geschlecht:", getGenderRadio()));
+
+        //Buttons in Buttonpanel einfuegen
+        pan_buttons.add(b_register);
+        pan_buttons.add(b_cancel);
+
+        add(pan_buttons,BorderLayout.SOUTH);
+        add(pan_input,BorderLayout.NORTH);
+
+        //Sonstiges
+        if (focuslistener!=null){
+            t_username.addFocusListener(focuslistener);
+            t_prename.addFocusListener(focuslistener);
+            t_surname.addFocusListener(focuslistener);
+            t_password.addFocusListener(focuslistener);
+            t_birthdate_day.addFocusListener(focuslistener);
+            t_birthdate_month.addFocusListener(focuslistener);
+            t_birthdate_year.addFocusListener(focuslistener);
+        }
+
+    }
+
+    private JPanel getGenderRadio(){
+        //Initialisierung der Radionbuttons
+        r_gender_m = new JRadioButton("männlich");
+        r_gender_f = new JRadioButton("weiblich");
+
+        //Die Radiobuttons gruppieren
+        JPanel pan_radio = new JPanel();
+        pan_radio.setBackground(panColor);
+        r_gender_m.setBackground(panColor);
+        r_gender_f.setBackground(panColor);
+        r_gender_m.setForeground(Color.WHITE);
+        r_gender_f.setForeground(Color.WHITE);
+        pan_radio.add(r_gender_m);
+        pan_radio.add(r_gender_f);
+        return pan_radio;
+    }
+
+    private JPanel birthdayPanel(){
+    //Geburtstagspanel erzeugen
+        JPanel birthday = new JPanel();
+        birthday.setBackground(panColor);
+        birthday.setLayout(new GridLayout(1,0));
+        JLabel dd = new JLabel(" (dd) . ");
+        dd.setForeground(Color.WHITE);
+        birthday.add(t_birthdate_day);
+        birthday.add(dd);
+        JLabel mm = new JLabel(" (mm) . ");
+        mm.setForeground(Color.WHITE);
+        birthday.add(t_birthdate_month);
+        birthday.add(mm);
+        birthday.add(t_birthdate_year);
+        JLabel yyyy = new JLabel(" (yyyy)");
+        yyyy.setForeground(Color.WHITE);
+        birthday.add(yyyy);
+        return birthday;
+
+    }
+
+    public JPanel addAEntry(String description, JComponent other){
+        JPanel res = new JPanel();
+        res.setBackground(panColor);
+        res.setLayout(new GridLayout());
+        JLabel l = new JLabel(description);
+        l.setForeground(Color.WHITE);
+        res.add(l);
+        res.add(other);
+        return res;
+    }
 
     /**
      * Gibt den User zurück der von den Werten in der Eingabe erzeugt wird.
@@ -192,7 +187,8 @@ public class RegistrationView extends JPanel{
         res.setUsername(t_username.getText().trim());
         if (t_username.getText().trim().isEmpty()) return null;
         String pass = new String(t_password.getPassword()).trim();
-        if (pass.isEmpty()) return null;
+        String pass2= new String(t_password_2.getPassword()).trim();
+        if (pass.isEmpty()|| !pass.equals(pass2)) return null;
         try {
             res.setPassword(pass);
         } catch (NoSuchAlgorithmException e) {
@@ -217,6 +213,9 @@ public class RegistrationView extends JPanel{
         p.setFemale(r_gender_f.isSelected());
         p.setCountry(d_homecountry.getSelectedItem().toString());
         //TODO: andere Felder
+        p.setEmail(t_mailaddr.getText());
+        p.setAddress(t_addr.getText());
+
         return res;
     }
 	
@@ -246,6 +245,16 @@ public class RegistrationView extends JPanel{
 		register.pack();
 		register.setVisible(true);
 	}
+
+    public void selectAll(){
+        t_username.selectAll();
+        t_prename.selectAll();
+        t_surname.selectAll();
+        t_password.selectAll();
+        t_birthdate_day.selectAll();
+        t_birthdate_month.selectAll();
+        t_birthdate_year.selectAll();
+    }
 	
 	public static void main(String[] args){
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {

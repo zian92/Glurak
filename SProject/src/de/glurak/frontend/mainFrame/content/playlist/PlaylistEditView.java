@@ -1,5 +1,12 @@
 package de.glurak.frontend.mainFrame.content.playlist;
 
-public class PlaylistEditView {
+import javax.swing.JPanel;
 
+
+
+public class PlaylistEditView extends JPanel{
+	
+	public PlaylistEditView(){
+		
+	}
 }

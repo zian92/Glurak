@@ -13,19 +13,24 @@ import de.glurak.frontend.mainFrame.content.search.SearchVController;
 public class HeaderVController extends Observable implements ActionListener, MouseListener{
 
 	private HeaderView headview;
-	
+	// Der Suchbegriff, der in die Suchmaske des Headers eingegeben wird
+	private String searchKey;
 	/**
 	 * Konstruktor
 	 */
 	public HeaderVController(){
 		setHeadview(new HeaderView());
 		headview.getSearchField().addMouseListener(this);
+		headview.getSearchField().addActionListener(this);
 		headview.getSearchButton().addActionListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == headview.getSearchButton()) {
+		// JButton für Suche oder Enter-Taste betätigt?
+		if (e.getSource() == headview.getSearchButton() || 
+				e.getSource() == headview.getSearchField()) {
 			setChanged();
+			this.searchKey = headview.getSearchField().getText();
 			notifyObservers();
 		}
 		
@@ -34,10 +39,19 @@ public class HeaderVController extends Observable implements ActionListener, Mou
 	public JComponent getView() {
 		return headview;
 	}
+	
+	public String getSearchKey() {
+		return searchKey;
+	}
+	
+	public void setSearchKey(String searchKey) {
+		this.searchKey = searchKey;
+	}
 
 	public void setHeadview(HeaderView headview) {
 		this.headview = headview;
 	}
+	
 	
 	// Bei Mausklick wird default-Inhalt des Suchfeldes gelöscht.
 	public void mouseClicked(MouseEvent me) {
