@@ -96,7 +96,6 @@ public class Playlist implements Serializable,Hateable{
 	 */
 	public void setCurrent(int index){
 		this.index = index%this.getMediumList().size();
-		System.out.println("Current :" +index+"");
 		
 	}
 	/**
