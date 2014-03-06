@@ -4,14 +4,21 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
+import de.glurak.Query;
 import de.glurak.data.Playlist;
 import de.glurak.feature.SliderPanel;
 
@@ -28,9 +35,11 @@ public class PlaylistView extends JPanel {
     
 	private JPanel 		pan_buttons, pan_lowButtons;
 	private SliderPanel pan_content;
-	
+	private ImageIcon 	ico_playList;
 	private JButton 	bt_new, bt_edit, bt_next, bt_prev;
-	private List<JPanel> contentPanArray = new ArrayList<JPanel>();	
+	private List<JPanel> pageArray = new ArrayList<JPanel>();	
+	private List<JPanel> IconArray = new ArrayList<JPanel>();	
+	
     /**
      * Konstruktor
      */
@@ -73,21 +82,32 @@ public class PlaylistView extends JPanel {
     	
     	
     	// creating a test environment
+    	
+    	BufferedImage BGImage = null;
+		try {
+			BGImage = ImageIO.read(new File(Query.FOLDER_PICTURE_ICONS + "pll.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Image img =  BGImage.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		ico_playList = new ImageIcon(img);
+
     	JPanel jp = new JPanel();
     	jp.setPreferredSize(new Dimension(50, 50));
     	jp.setBackground(Color.ORANGE); 
-    	contentPanArray.add(jp);
+    	pageArray.add(jp);
       	JPanel jp2 = new JPanel();
     	jp2.setPreferredSize(new Dimension(50, 50));
     	jp2.setBackground(Color.BLUE);
-    	contentPanArray.add(jp2);
+    	pageArray.add(jp2);
      	JPanel jp3 = new JPanel();
     	jp3.setPreferredSize(new Dimension(50, 50));
     	jp3.setBackground(Color.MAGENTA);
-    	contentPanArray.add(jp3);
+    	pageArray.add(jp3);
     
-    	for (int i =0; i < contentPanArray.size(); i++)
-    		pan_content.addSliderComponent(contentPanArray.get(i));
+    	for (int i =0; i < pageArray.size(); i++)
+    		pan_content.addSliderComponent(pageArray.get(i));
     	
     	add(pan_buttons, BorderLayout.NORTH);
     	add(pan_content, BorderLayout.CENTER);
@@ -97,6 +117,7 @@ public class PlaylistView extends JPanel {
     
     public JButton getBtNext(){ return bt_next; }
     public JButton getBtPrev(){ return bt_prev; }
+    public JButton getBtNew(){ return bt_new; }
 
     public void nextPage(){ 
     	if (pan_content.getItemCount() > 0)
@@ -104,9 +125,25 @@ public class PlaylistView extends JPanel {
    
     }
     
+    /**
+     * Erzeugt und positioniert ein Panel, das die übergebene Playist repräsentiert
+     * @param p Playlistverweis
+     */
     public void addPlaylist(Playlist p){
-    		
+    	JPanel jp = new JPanel(new BorderLayout());
+    	JLabel icon = new JLabel(ico_playList);
+    	icon.setText(p.getName());
+    	icon.setHorizontalTextPosition(JLabel.CENTER);
+    	icon.setVerticalTextPosition(JLabel.BOTTOM);
+    	jp.setPreferredSize(new Dimension(80,65));
+    	jp.setVisible(true);
+    	jp.add(icon, BorderLayout.CENTER);
+    	IconArray.add(jp);
+    	System.out.println("PlaylistView: Icon set");
+    	pageArray.get(0).add(IconArray.get(IconArray.size()-1 ), BorderLayout.CENTER );
+    	pan_content.refresh();
     }
+    
     
     public void prevPage(){ 
     	if (pan_content.getItemCount() > 0)

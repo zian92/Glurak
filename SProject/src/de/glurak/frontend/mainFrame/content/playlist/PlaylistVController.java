@@ -23,6 +23,7 @@ public class PlaylistVController extends Observable implements ActionListener, C
         view = new PlaylistView();
         view.getBtNext().addActionListener(this);
         view.getBtPrev().addActionListener(this);
+        view.getBtNew().addActionListener(this);
       //  view.setjT(this.fillTable());
         view.setVisible(true);
     }
@@ -40,7 +41,9 @@ public class PlaylistVController extends Observable implements ActionListener, C
     	}else if (e.getActionCommand().equals("prevSlide")){
     		view.prevPage();
     	}else if(e.getActionCommand().equals("newList")){
-    		
+    		System.out.println("PlaylistVCOntr: new List catched");
+    		Playlist p = new Playlist(5, "Pokemon");
+    		view.addPlaylist(p);
     	}else if(e.getActionCommand().equals("editList")){
     		
     	}
