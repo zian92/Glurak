@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Observable;
 
 import de.glurak.Query;
+import de.glurak.data.User.Rights;
 import de.glurak.data.User.User;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
@@ -57,11 +58,11 @@ public class NavigationVController extends Observable {
 
 
         view = new NavigationView(a,username,getProfileImage(imgFilename));
-        addController(new ProfileVController(true), "Profil");
-        addController(new PlaylistVController(),"Playlist");
-        addController(promotionVController,"News");
-        addController(new MessageVController(),"Narichten");
-        addController(new UploadVController(),"Upload");
+        addController(new ProfileVController(true), "Profil",null);
+        addController(new PlaylistVController(),"Playlist", Rights.MANAGE_PLAYLIST);
+        addController(promotionVController,"News",null);
+        addController(new MessageVController(),"Narichten",Rights.DO_MESSAGE);
+        addController(new UploadVController(),"Upload",Rights.MANAGE_OWN_MEDIEN);
 	}
 
     public ImageIcon getProfileImage(String imgFileName){
@@ -77,10 +78,16 @@ public class NavigationVController extends Observable {
 
     /**
      * Fügt einen Button im View hinzu mit allen Callback
-     * @param c
-     * @param name
+     * @param c der ContentController der angezeigt werden kann
+     * @param name der Name der angezeigt werden soll (keine zwei Sachen mit den selben Namen!)
+     * @param right das Recht das benötigt wird um das anzuzeigen, null falls kein Recht benötigt
      */
-    public void addController(ContentController c, String name){
+    public void addController(ContentController c, String name, String right){
+        if (right!=null){
+            User u = SessionThing.getInstance().getSessionUser();
+            if (u!= null && !u.getProfile().hasRight(right))
+                return;
+        }
         map.put(name,c);
         view.addButton(name);
     }
