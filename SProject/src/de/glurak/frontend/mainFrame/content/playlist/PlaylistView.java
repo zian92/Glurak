@@ -35,7 +35,7 @@ import de.glurak.feature.SliderPanel;
 public class PlaylistView extends JPanel {
     
 	private JTable jT;
-    private JLabel playlistName;
+    private JLabel lab_name;
     
 	private JPanel 		pan_buttons, pan_lowButtons;
 	private SliderPanel pan_content;
@@ -54,6 +54,9 @@ public class PlaylistView extends JPanel {
     	this.setLayout(new BorderLayout());
     	this.actionRef = a;
     	this.mouseRef = m;
+    	lab_name = new JLabel();
+    	lab_name.setBounds(10, 10, 80, 50);
+    	lab_name.setForeground(Color.white);
     	
     	// Buttonpanel for the main functions of this view
     	pan_buttons = new JPanel(new FlowLayout());
@@ -88,6 +91,7 @@ public class PlaylistView extends JPanel {
     	// Linking all the components together
     	pan_lowButtons.add(bt_next, BorderLayout.EAST);
     	pan_lowButtons.add(bt_prev, BorderLayout.WEST);
+    	pan_lowButtons.add(lab_name, BorderLayout.CENTER);
     	
     	pan_content = new SliderPanel();
     	pan_content.setPreferredSize(new Dimension(600,300));
@@ -167,17 +171,22 @@ public class PlaylistView extends JPanel {
     	pan_content.refresh();
     }
     
+    public JLabel getTextLabel(){
+    	return lab_name;
+    }
+    
     public PlaylistView(JTable jT) {
         this.jT = jT;
-        this.playlistName = new JLabel("Playlist test");
+       // this.playlistName = new JLabel("Playlist test");
         this.createAndShowView();
     }
-
+    
+    
     /**
      * Erzeugt die Playlistview und zeigt sie an.
      */
     private void createAndShowView() {
-        this.add(playlistName);
+       // this.add(playlistName);
         this.add(jT);
     }
 

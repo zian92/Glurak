@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import java.util.Observable;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 
 import de.glurak.data.Playlist;
@@ -66,10 +67,11 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
         return tableHeader;
     }
 
-	public void mouseClicked(MouseEvent arg0) {
+	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		view.nextPage();
+		JLabel l = (JLabel) e.getSource();
 		
+		view.getTextLabel().setText(l.getText());
 	}
 
 	public void mouseEntered(MouseEvent arg0) {
