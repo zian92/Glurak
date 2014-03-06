@@ -42,7 +42,7 @@ public class MessageVController implements ActionListener, ContentController {
                     JOptionPane.showMessageDialog(messview, "Dieser Empfänger existiert nicht. Bitte geben sie einen existierenden Empfänger an!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
                 } else {
                     // Abfarge ob der sender der empfaenger ist
-                    if (session.getSessionUser().equals(db.getUserByUsername(messview.t_receiver.getSelectedText()))) {
+                    if (!session.getSessionUser().equals(db.getUserByUsername(messview.t_receiver.getSelectedText()))) {
                         JOptionPane.showMessageDialog(messview, "Du kannst dir nicht selber eine Nachricht schreiben. Bitte geben sie einen anderen Empfänger an!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
                     } else {
                         // Abfrage, ob die Nachricht leer ist
