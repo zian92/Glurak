@@ -20,7 +20,7 @@ public class PlaylistVController implements ActionListener, ContentController {
      */
     public PlaylistVController() {
         view = new PlaylistView();
-        view.setjT(this.fillTable());
+      //  view.setjT(this.fillTable());
         view.setVisible(true);
     }
 
@@ -32,6 +32,7 @@ public class PlaylistVController implements ActionListener, ContentController {
 
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
+    	
     }
 
     public JComponent getView() {
