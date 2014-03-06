@@ -79,8 +79,10 @@ public class MainFrameVController implements Observer{
 			contentController = ((NextContent) contentController).getNextContent();
 		}
 		
-
-		((Observable) contentController).addObserver(this);
+		
+		if (contentController instanceof Observable) {
+			((Observable) contentController).addObserver(this);
+		}
 		view.getContent().add(contentController.getView());
 		view.getContent().repaint();
 		view.getContent().revalidate();
