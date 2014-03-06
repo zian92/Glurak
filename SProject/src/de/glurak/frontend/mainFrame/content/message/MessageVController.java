@@ -33,7 +33,7 @@ public class MessageVController implements ActionListener, ContentController {
         if (e.getSource() == messview.b_send) {
             SessionThing session = SessionThing.getInstance();
             HibernateDB db = session.getDatabase();
-            // Abfrage, ob ein Empfaenger eingegeben wurde
+            // Abfrage, ob ein Empfaenger eingegebeFn wurde
             if (messview.t_receiver.getText() == "") {
                 JOptionPane.showMessageDialog(messview, "Sie haben noch keinen Empfänger eingegeben. Bitte fügen sie einen Empfänger hinzu!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
             } else {
