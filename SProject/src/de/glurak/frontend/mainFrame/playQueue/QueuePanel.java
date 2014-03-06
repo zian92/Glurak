@@ -31,8 +31,9 @@ import de.glurak.data.Playlist;
  */
 public class QueuePanel extends JPanel{
 	
-	private	JPanel[] 	mediumPanelArray;
-	private	JButton[] 		mediumButtonArray;
+	private	JPanel[] 		mediumPanelArray;
+	private JTable[]		mediumTableArray;
+	private JLabel[]		mediumLabelArray;
 	private JPanel			firstPanel;
 	private Playlist 		playlist;
 	private JScrollPane scrollbar;
@@ -76,16 +77,15 @@ public class QueuePanel extends JPanel{
 		firstPanel= new JPanel();
 		firstPanel.setLayout(new GridLayout(1,getPlaylist().getMediumList().size()));
 		mediumPanelArray = new JPanel[getPlaylist().getMediumList().size()];
-		mediumButtonArray = new JButton[getPlaylist().getMediumList().size()];
+		mediumTableArray= new JTable[getPlaylist().getMediumList().size()];
+		mediumLabelArray= new JLabel[getPlaylist().getMediumList().size()];
 			
 		this.setLayout(new BorderLayout());
 		this.setBackground(Color.GRAY);
 
 		for(int i=0;i<getPlaylist().getMediumList().size();i++){
-			mediumButtonArray[i] = new JButton(getPlaylist().getMediumList().get(i).getTitel()); 
 			mediumPanelArray[i]	= new JPanel();
-			//mediumPanelArray[i].setLayout(new BorderLayout());
-			//mediumPanelArray[i].add(mediumButtonArray[i]);
+			mediumLabelArray[i] = new JLabel(getPlaylist().getMediumList().get(i).getTitel());
 			firstPanel.add(mediumPanelArray[i]);
 			this.add(firstPanel,BorderLayout.CENTER);
 			
@@ -102,13 +102,22 @@ public class QueuePanel extends JPanel{
 		for(int i=0;i<getPlaylist().getMediumList().size();i++){
 			mediumPanelArray[i].setPreferredSize(new Dimension(80,80));
 			mediumPanelArray[i].removeAll();
-			mediumPanelArray[i].add(new JLabel((getPlaylist().getMediumList().get(i).getTitel())));
+			mediumPanelArray[i].add(mediumLabelArray[i]);
 			if(getPlaylist().getMediumList().get(i).equals(getPlaylist().getCurrent())){
 				icon= new JLabel(new ImageIcon(currentIcon));
 			}else{
 				icon=new JLabel(new ImageIcon(standardIcon));
 			}
 			mediumPanelArray[i].add(icon);
+		
+			String[][] rowData={{"Titel",getPlaylist().getMediumList().get(i).getTitel()},{"Hates","0"},{"Likes","0"}};
+			String[] columns={"",""};
+			mediumTableArray[i] =new JTable(rowData,columns){
+				 public boolean isCellEditable(int x, int y) {
+			           return false;}
+			       };
+			mediumTableArray[i].setPreferredSize(new Dimension(100,100));
+			
 			
 		}
 		}
@@ -124,12 +133,6 @@ public class QueuePanel extends JPanel{
 		this.scrollbar = scrollbar;
 	}
 
-	public JButton[] getMediumButtonArray(){
-		return mediumButtonArray;
-	}
-	public void setMediumButtonArray(JButton[] mediumButtonArray){
-		this.mediumButtonArray = mediumButtonArray;
-	}
 
 	public Image getCurrentIcon() {
 		return currentIcon;
@@ -171,18 +174,17 @@ public class QueuePanel extends JPanel{
         return scaledImg;
     }
 
-	public void showInformations(int i) {}
-	/*
-		String[][] rowData={{"Titel",getPlaylist().getMediumList().get(i).getTitel()},{"Hates","0"},{"Likes","0"}};
-		String[] columns={"",""};
-		JTable j =new JTable(rowData,columns){
-			 public boolean isCellEditable(int x, int y) {
-		           return false;}
-		       };
-		j.setPreferredSize(new Dimension(40,20));
+	public void showInformations(int i) {
+	
+		if(mediumPanelArray[i].getComponent(1)==mediumTableArray[i]){
+			mediumPanelArray[i].remove(mediumTableArray[i]);
+			mediumPanelArray[i].add(mediumLabelArray[i]);
+			
+		}else{
+		mediumPanelArray[i].remove(mediumLabelArray[i]);
+		mediumPanelArray[i].add(mediumTableArray[i]);}
 		
-		mediumPanelArray[i].add(j);
-		mediumPanelArray[i].validate();
+		mediumPanelArray[i].repaint();
 	}
-	*/
+	
 }
