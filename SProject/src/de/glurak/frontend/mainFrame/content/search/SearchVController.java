@@ -26,7 +26,6 @@ public class SearchVController implements ActionListener, ContentController {
 	}
 
 	public JComponent getView() {
-		
 		return searchview;
 	}
 	
