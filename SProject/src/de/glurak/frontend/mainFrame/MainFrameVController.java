@@ -54,6 +54,7 @@ public class MainFrameVController implements Observer{
 		// Observer hinzufügen
 		navigationController.addObserver(this);
 		headerController.addObserver(this);
+//		contentController.addObserver(this);
 		
 		// Views anhängen
 		view.getContent().add( contentController.getView());
@@ -67,11 +68,16 @@ public class MainFrameVController implements Observer{
 	public void update(Observable o, Object arg) {
 		view.getContent().removeAll();
 		
+		// Woher kommt das Update?
 		if (o.equals(headerController)) {
 			view.getContent().add(new SearchVController().getView());
-		} else {
+		} else if (o.equals(navigationController)){
 			view.getContent().add(navigationController.getContentController().getView());
-		}		
+		} else if (o.equals(view.getContent())) {
+			System.out.println("YOLOLOLO");
+		}
+		
+		
 		view.getContent().repaint();
 		view.getContent().revalidate();
 	}

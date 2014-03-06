@@ -100,7 +100,12 @@ public class PlayQueueViewController {
 			}
 		};
 		
-		ChangeListener c = new ChangeListener(){
+		ChangeListener c = /**
+		 * @author MMÜhlenjost
+		 *Reagiert auf Veränderungen der Scrollbar
+		 *
+		 */
+		new ChangeListener(){
 
 			public void stateChanged(ChangeEvent e) {
 				if(view.getPositionBar().getValueIsAdjusting()){
@@ -132,8 +137,6 @@ public class PlayQueueViewController {
 	
 	public PlayQueueViewController () {
 		this(null);
-		
-		
 	}
 	
 	/**

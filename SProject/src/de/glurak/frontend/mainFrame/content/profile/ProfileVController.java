@@ -59,6 +59,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
 		profileview.t_homecountry.setText("");
 		*/
 		
+		
 	}
 	
 	public ProfileVController(boolean own) {
