@@ -27,12 +27,14 @@ import de.glurak.frontend.SessionThing;
 public class NavigationView extends JPanel{
 
 	private JPanel profilePicture, buttonPanel;
-	private JLabel userPicture;
+	private JLabel userPicture, userName;
     private ActionListener l;
 	
 	/**
 	 * Konstruktor
      * @param l der Aktionlistener für die Buttons, null falls keine Aktion
+     * @param username der Benutzername der angezeigt werden soll
+     * @param profilPicture das Bild das angezeigt werden soll
 	 */
 	public NavigationView(ActionListener l, String username, ImageIcon profilPicture){
         this.l=l;
@@ -49,11 +51,19 @@ public class NavigationView extends JPanel{
         GridLayout lay= new GridLayout(10,5);
 		buttonPanel.setLayout(lay);
 
-		
+		JPanel northPanel = new JPanel();
+        northPanel.setLayout(new BorderLayout());
 		userPicture = new JLabel(profilPicture);
 		profilePicture.add(userPicture);
+        northPanel.add(userPicture,BorderLayout.CENTER);
+
+        userName=new JLabel(username);
+        userName.setForeground(Color.WHITE);
+        userName.setHorizontalAlignment(JLabel.CENTER);
+        northPanel.add(userName,BorderLayout.SOUTH);
+        northPanel.setBackground(Color.BLACK);
 		
-		this.add(profilePicture, BorderLayout.NORTH);
+		this.add(northPanel, BorderLayout.NORTH);
 		this.add(buttonPanel, BorderLayout.CENTER);
 
 	}
