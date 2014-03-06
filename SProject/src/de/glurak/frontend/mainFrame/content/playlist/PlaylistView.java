@@ -17,6 +17,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -41,7 +42,7 @@ public class PlaylistView extends JPanel {
 	private SliderPanel pan_content;
 	private ImageIcon 	ico_playList;
 	private JButton 	bt_new, bt_edit, bt_next, bt_prev;
-	private List<JPanel> pageArray = new ArrayList<JPanel>();	
+	private List<SmartPage> pageArray = new ArrayList<SmartPage>();	
 	private List<JLabel> IconArray = new ArrayList<JLabel>();	
 	private int currentPage = -1;
 	private ActionListener actionRef;
@@ -109,15 +110,15 @@ public class PlaylistView extends JPanel {
 		Image img =  BGImage.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 		ico_playList = new ImageIcon(img);
 
-    	JPanel jp = new JPanel();
+		SmartPage jp = new SmartPage();
     	jp.setPreferredSize(new Dimension(50, 50));
     	jp.setBackground(FrontendColors.DARK_GREY); 
     	pageArray.add(jp);
-      	JPanel jp2 = new JPanel();
+    	SmartPage jp2 = new SmartPage();
     	jp2.setPreferredSize(new Dimension(50, 50));
     	jp2.setBackground(Color.BLUE);
     	pageArray.add(jp2);
-     	JPanel jp3 = new JPanel();
+    	SmartPage jp3 = new SmartPage();
     	jp3.setPreferredSize(new Dimension(50, 50));
     	jp3.setBackground(Color.MAGENTA);
     	pageArray.add(jp3);
@@ -157,13 +158,14 @@ public class PlaylistView extends JPanel {
      * @param p Playlistverweis
      */
     public void addPlaylist(Playlist p){
+    	selectPageForAdd();
     	JLabel icon = new JLabel(ico_playList);
     	icon.setForeground(Color.WHITE);
     	icon.setFont(new Font("Verdana", Font.BOLD, 13));
     	icon.setText(p.getName());
     	icon.setHorizontalTextPosition(JLabel.CENTER);
     	icon.setVerticalTextPosition(JLabel.BOTTOM);
-    	icon.setPreferredSize(new Dimension(100	,100));
+    	icon.setPreferredSize(new Dimension(120	,120));
     	icon.setVisible(true);
     	icon.addMouseListener(mouseRef);
     	IconArray.add(icon);
@@ -171,11 +173,18 @@ public class PlaylistView extends JPanel {
     	
     }
     
+    private void selectPageForAdd(){
+    	if (!(pageArray.get(currentPage).getItemCount() < 24)){
+    		nextPage();
+    		selectPageForAdd();
+    	}
+    }
+    
     private void placeIcon(JLabel icon){
     	
-    	pageArray.get(currentPage).add(IconArray.get(IconArray.size()-1 ), BorderLayout.CENTER );
+    	pageArray.get(currentPage).addItem(IconArray.get(IconArray.size()-1 ), BorderLayout.CENTER );
     	pan_content.refresh();
-    	lab_name.setText("" + pan_content.getItemCount());
+    	lab_name.setText("" + pageArray.get(currentPage).getItemCount());
     }
     
     public JLabel getTextLabel(){
@@ -205,4 +214,20 @@ public class PlaylistView extends JPanel {
         this.jT = jT;
     }
     
+    private class SmartPage extends JPanel{
+    	
+    	private int itemCount = 0;
+    	
+    	public SmartPage(){
+    		super();
+    		itemCount = 0;
+    	}
+    	
+    	public void addItem(JComponent comp, Object constrain){
+    		add(comp, constrain);
+    		itemCount++;
+    	}
+    	
+    	public int getItemCount(){ return itemCount; }
+    }
 }
