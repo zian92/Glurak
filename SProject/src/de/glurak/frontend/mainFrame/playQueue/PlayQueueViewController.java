@@ -105,7 +105,6 @@ public class PlayQueueViewController {
 				}
 				
 				if(!view.isPositionChange()&&!view.getPositionBar().getValueIsAdjusting()){
-					System.out.println("leeetzteee");
 					if(player.isPlaying()||player.isPaused()){
 						player.stop();
 						playNew(view.getPositionBar().getValue());
@@ -211,9 +210,7 @@ public class PlayQueueViewController {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		duration= properties.getLength();
-		System.out.println("Name: "+ getCurrentMedium().getFileName() + "  Samplerate: " +properties.getSamplerate() + " bitrate: "+ properties.getBitrate());  
-		
+		duration= properties.getLength();		
 		view.setPositionBar(new JSlider(0,(int)((duration*1000/26)/(128/properties.getBitrate())),time));
 		view.getPositionBar().validate();
 		addPlayerListener();
