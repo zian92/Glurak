@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 
 import de.glurak.Query;
+import de.glurak.frontend.SessionThing;
 
 /**
  * In der Navigationview werden das Profilbild des Users und seine Funktionen,
@@ -26,18 +28,15 @@ public class NavigationView extends JPanel{
 
 	private JPanel profilePicture, buttonPanel;
 	private JLabel userPicture;
-	private JButton editProfile, showPlaylists, showNews, showMessages, upload;
+    private ActionListener l;
 	
 	/**
 	 * Konstruktor
+     * @param l der Aktionlistener für die Buttons, null falls keine Aktion
 	 */
-	public NavigationView(){
-		
-		editProfile = new JButton("Profil");
-		showPlaylists = new JButton("Playlist");
-		showNews = new JButton("News");
-		showMessages = new JButton("Nachrichten");
-		upload  = new JButton("Upload");
+	public NavigationView(ActionListener l, String username, ImageIcon profilPicture){
+        this.l=l;
+
 		
 		buttonPanel = new JPanel();
 		
@@ -47,28 +46,25 @@ public class NavigationView extends JPanel{
 		
 		//Layout des Panels
 		this.setLayout(new BorderLayout());
-		buttonPanel.setLayout(new GridLayout(10,5));
-		buttonPanel.add(showNews);
-		buttonPanel.add(editProfile);
-		buttonPanel.add(showPlaylists);
-		buttonPanel.add(showMessages);
-		buttonPanel.add(upload);
+        GridLayout lay= new GridLayout(10,5);
+		buttonPanel.setLayout(lay);
+
 		
-		BufferedImage img = null;
-		try {
-			img = ImageIO.read(new File(Query.FOLDER_PICTURE_ICONS+"userm.jpg"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		userPicture = new JLabel(new ImageIcon(img));
+		userPicture = new JLabel(profilPicture);
 		profilePicture.add(userPicture);
 		
 		this.add(profilePicture, BorderLayout.NORTH);
 		this.add(buttonPanel, BorderLayout.CENTER);
 
 	}
+
+    public void addButton(String name){
+        JButton b = new JButton(name);
+        b.setActionCommand(name);
+        if (l!=null)
+            b.addActionListener(l);
+        buttonPanel.add(b);
+    }
 
 	public JPanel getProfilePicture() {
 		return profilePicture;
@@ -77,46 +73,5 @@ public class NavigationView extends JPanel{
 	public void setProfilePicture(JPanel profilPicture) {
 		this.profilePicture = profilPicture;
 	}
-
-	public JButton getEditProfile() {
-		return editProfile;
-	}
-
-	public void setEditProfile(JButton editProfile) {
-		this.editProfile = editProfile;
-	}
-
-	public JButton getShowPlaylists() {
-		return showPlaylists;
-	}
-
-	public void setShowPlaylists(JButton showPlaylists) {
-		this.showPlaylists = showPlaylists;
-	}
-
-	public JButton getShowNews() {
-		return showNews;
-	}
-
-	public void setShowNews(JButton showNews) {
-		this.showNews = showNews;
-	}
-
-	public JButton getShowMessages() {
-		return showMessages;
-	}
-
-	public void setShowMessages(JButton showMessages) {
-		this.showMessages = showMessages;
-	}
-
-	public JButton getUpload() {
-		return upload;
-	}
-
-	public void setUpload(JButton upload) {
-		this.upload = upload;
-	}
-	
 	
 }

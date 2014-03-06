@@ -24,7 +24,6 @@ public class QueuePanel extends JPanel{
 	private	JButton[] 		mediumButtonArray;
 	private JPanel			firstPanel;
 	private Playlist 		playlist;
-	private	Medium 			current;
 	
 	private JScrollPane scrollbar;
 	
@@ -35,11 +34,10 @@ public class QueuePanel extends JPanel{
 	
 	/**
 	 * @param playlist die abzuspielende Playlist
-	 * @param current  das gerade abgespielte Medium
 	 */
-	public QueuePanel (Playlist playlist,Medium current){
+	public QueuePanel (Playlist playlist){
 		super();
-		initComponents(playlist,current);		
+		initComponents(playlist);		
 		
 	}
 	
@@ -58,22 +56,12 @@ public class QueuePanel extends JPanel{
 	public void setPlaylist(Playlist playlist) {
 		this.playlist = playlist;
 	}
-
-	public Medium getCurrent() {
-		return current;
-	}
-
-	public void setCurrent(Medium current) {
-		this.current = current;
-	}
-
 	/**
 	 * initialisiert View f�r die angegebene Playlist
 	 */
-	public void initComponents(Playlist playlist,Medium current){
-		
+	public void initComponents(Playlist playlist){
+		this.removeAll();
 		setPlaylist(playlist);
-		setCurrent(current);
 		firstPanel= new JPanel();
 		firstPanel.setLayout(new GridLayout(1,getPlaylist().getMediumList().size()));
 		mediumPanelArray = new JPanel[getPlaylist().getMediumList().size()];
@@ -86,15 +74,12 @@ public class QueuePanel extends JPanel{
 			mediumButtonArray[i] = new JButton(getPlaylist().getMediumList().get(i).getTitel()); 
 			mediumPanelArray[i]	= new JPanel();
 			mediumPanelArray[i].add(mediumButtonArray[i]);
-			mediumPanelArray[i].setBackground(Color.LIGHT_GRAY);
-			if(getPlaylist().getMediumList().get(i).equals(current)){
-				mediumPanelArray[i].setBackground(Color.BLUE);
-				
-			}
 			firstPanel.add(mediumPanelArray[i]);
 			this.add(firstPanel,BorderLayout.CENTER);
 			
 		}
+		resetButton();
+	
 	}
 	
 	/** 
