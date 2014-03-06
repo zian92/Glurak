@@ -199,9 +199,14 @@ public class RegistrationView extends JPanel{
             SessionThing s = SessionThing.getInstance();
             s.handleException(e);
         }
+        String prename = t_prename.getText().trim();
+        if (t_prename.getText().trim().isEmpty()) return null;
+        String surname = t_surname.getText().trim();
         ListenerProfile p = new ListenerProfile();
 
-
+        
+        p.setFirstname(prename);
+        p.setLastname(surname);
         int day = Integer.valueOf(t_birthdate_day.getText());
         int month = Integer.valueOf(t_birthdate_month.getText());
         int year = Integer.valueOf(t_birthdate_year.getText());
