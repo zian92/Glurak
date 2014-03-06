@@ -167,8 +167,15 @@ public class PlaylistView extends JPanel {
     	icon.setVisible(true);
     	icon.addMouseListener(mouseRef);
     	IconArray.add(icon);
+    	placeIcon(icon);
+    	
+    }
+    
+    private void placeIcon(JLabel icon){
+    	
     	pageArray.get(currentPage).add(IconArray.get(IconArray.size()-1 ), BorderLayout.CENTER );
     	pan_content.refresh();
+    	lab_name.setText("" + pan_content.getItemCount());
     }
     
     public JLabel getTextLabel(){
@@ -197,5 +204,5 @@ public class PlaylistView extends JPanel {
     public void setjT(JTable jT) {
         this.jT = jT;
     }
-
+    
 }
