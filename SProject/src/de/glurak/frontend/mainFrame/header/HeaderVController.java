@@ -4,12 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Observable;
 
 import javax.swing.JComponent;
 
 import de.glurak.frontend.mainFrame.content.search.SearchVController;
 
-public class HeaderVController implements ActionListener, MouseListener{
+public class HeaderVController extends Observable implements ActionListener, MouseListener{
 
 	private HeaderView headview;
 	
@@ -24,7 +25,8 @@ public class HeaderVController implements ActionListener, MouseListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == headview.getSearchButton()) {
-			SearchVController searchController = new SearchVController();
+			setChanged();
+			notifyObservers();
 		}
 		
 	}
