@@ -230,6 +230,8 @@ public class HibernateDB {
      * Unbedingt aufrufen, falls beendet wird!!!
      */
     public void save(){
+        em.getTransaction().begin();
+        em.getTransaction().commit();
         em.close();
         emf.close();
     }

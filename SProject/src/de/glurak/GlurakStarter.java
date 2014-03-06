@@ -37,6 +37,12 @@ public class GlurakStarter {
                 glumanda.OpenInterface();
             }
         });
+        Runtime.getRuntime().addShutdownHook(new Thread(){
+            @Override
+            public void run() {
+                SessionThing.getInstance().getDatabase().save();
+            }
+        });
     }
 
     private void initialisiereDB(HibernateDB db) {
