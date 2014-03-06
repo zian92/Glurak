@@ -30,7 +30,6 @@ public class SplashScreen extends JFrame {
         try {
             img = ImageIO.read(new File(Query.SPLASHSCREEN_IMAGE));
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         this.setContentPane(new JLabel(new ImageIcon(img)));
@@ -48,10 +47,5 @@ public class SplashScreen extends JFrame {
     public void hideSplashScreen() {
         setVisible(false);
         this.dispose();
-    }
-
-    public static void main(String[] args) {
-        SplashScreen s = new SplashScreen();
-
     }
 }
