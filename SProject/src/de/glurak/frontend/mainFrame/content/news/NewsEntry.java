@@ -52,6 +52,7 @@ public class NewsEntry extends Observable {
     
     public NewsEntry(Medium source) {
         // TODO: implement Album img
+        //this( source.getPictureFilename(), null, "Your Song", source);
         this(Query.FOLDER_PICTURE_ICONS + "musicfile.jpg", null, "Your Song", source);
     }
     public NewsEntry(Album source) {
@@ -84,7 +85,21 @@ public class NewsEntry extends Observable {
         textSpace.setForeground(Color.WHITE);
         textSpace.setFont(new Font("Verdana", Font.BOLD, 22));
         // build NewsEntry
-        bt_like = new JButton("L");
+        bt_like = new JButton();
+        /*
+        bt_like.setBackground(Color.BLUE);
+		try {
+			 BufferedImage img = ImageIO.read(new File(Query.FOLDER_PICTURE_ICONS + "sp.png"));
+			Image scaledImg = img.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+			 bt_like.setIcon(new ImageIcon(scaledImg ));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
+        
+        
+       
         bt_hate = new JButton("H");
         bt_like.setBounds(panWidth - 2 * 35, panHeight - 35, 30, 30);
         bt_hate.setBounds(panWidth - 35, panHeight - 35, 30, 30);

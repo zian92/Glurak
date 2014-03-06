@@ -90,8 +90,6 @@ public class PromotionVController  implements ContentController{
 		
 		a1.setName("This is It");
 		a2.setName("Album dummy");
-		NewsEntry n1 = new NewsEntry(a1);
-		NewsEntry n2 = new NewsEntry(a2);
 		
 		User u1 = new User();
 		u1.setUsername("TestUser m");
@@ -107,10 +105,8 @@ public class PromotionVController  implements ContentController{
 		pu2.setFemale(true);
 		u2.setProfile(pu2);
 		
-		newsList.add(n1);
-		newsList.add(n2);
 		newsList.add(new NewsEntry(a1));
-		newsList.add(new NewsEntry(a1));
+		newsList.add(new NewsEntry(a2));
 		newsList.add(new NewsEntry(u1));
 		newsList.add(new NewsEntry(m1));
 		newsList.add(new NewsEntry(a2));
@@ -124,7 +120,6 @@ public class PromotionVController  implements ContentController{
 		newsList.add(new NewsEntry(a2));
 		newsList.add(new NewsEntry(a1));
 		newsList.add(new NewsEntry(m1));
-		
 		newsList.add(new NewsEntry(u2));
 		newsList.add(new NewsEntry(u2));
 
