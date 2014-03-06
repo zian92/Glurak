@@ -38,6 +38,10 @@ public class PlaylistVController implements ActionListener, ContentController {
     		view.nextPage();
     	}else if (e.getActionCommand().equals("prevSlide")){
     		view.prevPage();
+    	}else if(e.getActionCommand().equals("newList")){
+    		
+    	}else if(e.getActionCommand().equals("editList")){
+    		
     	}
     	
     }

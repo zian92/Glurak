@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
+import de.glurak.data.Playlist;
 import de.glurak.feature.SliderPanel;
 
 /**
@@ -38,32 +39,37 @@ public class PlaylistView extends JPanel {
     	this.setLayout(new BorderLayout());
     	
     	// Buttonpanel for the main functions of this view
-    	pan_buttons = new JPanel();
-    	pan_buttons.setPreferredSize(new Dimension(600, 150));
+    	pan_buttons = new JPanel(new FlowLayout());
+    	//pan_buttons.setPreferredSize(new Dimension(600, 80));
+    	pan_buttons.setBounds(0, 10, 600, 80);
     	pan_buttons.setBackground(Color.BLACK);
     	
         // Buttonpanel for the navigation within this Panel
     	pan_lowButtons = new JPanel(new BorderLayout());
-    	pan_lowButtons.setPreferredSize(new Dimension(600, 60));
+    	pan_lowButtons.setBounds(0, 10, 600, 80);
     	pan_lowButtons.setBackground(Color.BLACK);
     	
     	// Main Buttons
     	bt_new = new JButton("Neue Playlist erstellen");
+    	bt_new.setActionCommand("newList");
     	bt_edit = new JButton("Playlist bearbeiten");
+    	bt_edit.setActionCommand("editList");
+    	
+    	pan_buttons.add(bt_new);
+    	pan_buttons.add(bt_edit);
     	
     	// Navigation Buttons
     	bt_next = new JButton("next");
     	bt_next.setActionCommand("nextSlide");
     	bt_prev = new JButton("previous");
     	bt_prev.setActionCommand("prevSlide");
-    	
-    	
+    	    	
     	// Linking all the components together
     	pan_lowButtons.add(bt_next, BorderLayout.EAST);
     	pan_lowButtons.add(bt_prev, BorderLayout.WEST);
     	
     	pan_content = new SliderPanel();
-    	pan_content.setPreferredSize(new Dimension(200,250));
+    	pan_content.setPreferredSize(new Dimension(600,300));
     	
     	
     	// creating a test environment
@@ -97,6 +103,11 @@ public class PlaylistView extends JPanel {
     		pan_content.previous();
    
     }
+    
+    public void addPlaylist(Playlist p){
+    		
+    }
+    
     public void prevPage(){ 
     	if (pan_content.getItemCount() > 0)
     		pan_content.next();
