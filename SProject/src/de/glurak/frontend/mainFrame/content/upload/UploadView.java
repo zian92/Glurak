@@ -67,7 +67,7 @@ public class UploadView extends JPanel {
 		String[] genrelist = new String[genre.size()];
 		for(int i = 0; i < genre.size(); i ++){
 			genrelist[i] = genre.get(i).getTitle();
-		};
+		}
 		d_genre = new JComboBox(genrelist);
 				
 		//Infopanel zusammenfuegen
