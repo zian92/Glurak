@@ -66,17 +66,17 @@ public class HeaderVController extends Observable implements ActionListener, Mou
 		// TODO Auto-generated method stub
 		
 	}
-
+	// nicht benötigt
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	// nicht benötigt
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	// nicht benötigt
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
