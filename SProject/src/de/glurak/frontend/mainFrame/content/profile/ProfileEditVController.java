@@ -1,10 +1,13 @@
 package de.glurak.frontend.mainFrame.content.profile;
 
 import java.awt.event.*;
+import java.security.NoSuchAlgorithmException;
 import java.util.Observable;
 
 import javax.swing.*;
 
+import de.glurak.data.User.Profile;
+import de.glurak.data.User.User;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.NextContent;
 
@@ -15,15 +18,18 @@ import de.glurak.frontend.mainFrame.NextContent;
  */
 public class ProfileEditVController extends Observable implements ActionListener, ContentController, NextContent {
 	
-	private ProfileEditView profileEditView;
+	private ProfileView profileEditView;
+	private ContentController nextContent;
+	private User user;
 	
-	public ProfileEditVController(){
+	public ProfileEditVController(User user){
 		
-		profileEditView = new ProfileEditView();
+		this.user = user;
+		profileEditView = new ProfileView(true, 0, user, true);
 		
 		// Setzen der ActionListener
-		profileEditView.b_save.addActionListener(this);
-		profileEditView.b_uploadpic.addActionListener(this);
+		profileEditView.b_edit.addActionListener(this);
+//		profileEditView.b_uploadpic.addActionListener(this);
 		
 		// Daten in die Textfelder schreiben.
 		/*
@@ -38,11 +44,25 @@ public class ProfileEditVController extends Observable implements ActionListener
 	public void actionPerformed(ActionEvent e){
 		Object obj = e.getSource();
 		
-		if (obj == profileEditView.b_save){
+		if (obj == profileEditView.b_edit){
 			
-		} else if (obj == profileEditView.b_uploadpic){
-			
-		}
+			try {
+				if (profileEditView.t_password.getText()!="" && profileEditView.t_password.getText()!=null)
+					user.setPassword(profileEditView.t_password.getText());
+			} catch (NoSuchAlgorithmException e1) {
+				e1.printStackTrace();
+			}
+			user.getProfile().setFirstname(profileEditView.t_firstname.getText());
+			user.getProfile().setLastname(profileEditView.t_lastname.getText());
+			user.getProfile().setEmail(profileEditView.t_email.getText());
+			user.getProfile().setCountry(profileEditView.t_homecountry.getText());
+			nextContent = new ProfileVController(true);
+			setChanged();
+			notifyObservers();
+		} 
+//		else if (obj == profileEditView.b_uploadpic){
+//			// TODO
+//		}
 	}
 
 	public JComponent getView() {
@@ -50,8 +70,7 @@ public class ProfileEditVController extends Observable implements ActionListener
 	}
 
 	public ContentController getNextContent() {
-		// TODO Auto-generated method stub
-		return null;
+		return nextContent;
 	}
 
 }

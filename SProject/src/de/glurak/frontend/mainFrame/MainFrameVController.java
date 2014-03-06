@@ -70,7 +70,9 @@ public class MainFrameVController implements Observer{
 		
 		// Woher kommt das Update?
 		if (o.equals(headerController)) {
-			contentController = new SearchVController();
+			SearchVController tmp = new SearchVController();
+			contentController = tmp;
+			tmp.getView().setAllText(headerController.getSearchKey());
 			
 		} else if (o.equals(navigationController)){
 			contentController = navigationController.getContentController();

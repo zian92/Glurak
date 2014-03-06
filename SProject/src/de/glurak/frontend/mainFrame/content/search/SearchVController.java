@@ -36,7 +36,7 @@ public class SearchVController implements ActionListener, ContentController {
 		
 	}
 
-	public JComponent getView() {
+	public SearchView getView() {
 		return searchview;
 	}
 	
@@ -51,5 +51,20 @@ public class SearchVController implements ActionListener, ContentController {
 	 */
 	public void search(String genre, String user, String music, String artist, String playlist){
 		// Suche nach Ergebnissen in der Datenbank
+		if (genre != ""){
+			
+		}
+		if (user != ""){
+			
+		}
+		if (music != ""){
+			
+		}
+		if (artist != ""){
+			
+		}
+		if (playlist != ""){
+			
+		}
 	}
 }

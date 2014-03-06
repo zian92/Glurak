@@ -7,7 +7,10 @@ import javax.swing.*;
 
 import org.hibernate.Session;
 
+import de.glurak.data.User.ListenerProfile;
 import de.glurak.data.User.Profile;
+import de.glurak.data.User.User;
+import de.glurak.data.User.UserProfile;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.NextContent;
@@ -23,8 +26,9 @@ import de.glurak.frontend.mainFrame.content.profile.ProfileEditVController;
 public class ProfileVController extends Observable implements ActionListener, ContentController, NextContent {
 	
 	private ProfileView profileview;
-	private Profile profile;
+	private ListenerProfile profile;
 	private ContentController nextContent;
+	private User user;
 	
 	/**
 	 * Constructor
@@ -33,14 +37,13 @@ public class ProfileVController extends Observable implements ActionListener, Co
 	 */
 	public ProfileVController(boolean own, int anzPlaylists){
 		
-		
 		if (own) {
-			profile = SessionThing.getInstance().getSessionUser().getProfile();
+			user = SessionThing.getInstance().getSessionUser();
 		} else {
 			// fremdes profile laden TODO
 		}
 		
-		profileview = new ProfileView(own, anzPlaylists, profile);
+		profileview = new ProfileView(own, anzPlaylists, user, false);
 		
 		// Hinzufügen der ActionListener
 		profileview.b_moreplaylists.addActionListener(this);
@@ -78,7 +81,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
 		} else if (obj == profileview.b_follow){
 			
 		} else if (obj == profileview.b_edit){
-			nextContent = new ProfileEditVController();
+			nextContent = new ProfileEditVController(user);
 			setChanged();
 			notifyObservers();
 		}
