@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 
 import de.glurak.Query;
+import de.glurak.frontend.SessionThing;
 
 /**
  * In der Navigationview werden das Profilbild des Users und seine Funktionen,
@@ -33,7 +34,7 @@ public class NavigationView extends JPanel{
 	 * Konstruktor
      * @param l der Aktionlistener für die Buttons, null falls keine Aktion
 	 */
-	public NavigationView(ActionListener l){
+	public NavigationView(ActionListener l, String username, ImageIcon profilPicture){
         this.l=l;
 
 		
@@ -47,16 +48,9 @@ public class NavigationView extends JPanel{
 		this.setLayout(new BorderLayout());
         GridLayout lay= new GridLayout(10,5);
 		buttonPanel.setLayout(lay);
+
 		
-		BufferedImage img = null;
-		try {
-			img = ImageIO.read(new File(Query.FOLDER_PICTURE_ICONS+"userm.jpg"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		userPicture = new JLabel(new ImageIcon(img));
+		userPicture = new JLabel(profilPicture);
 		profilePicture.add(userPicture);
 		
 		this.add(profilePicture, BorderLayout.NORTH);
