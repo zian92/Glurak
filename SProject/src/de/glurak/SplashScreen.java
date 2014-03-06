@@ -29,6 +29,16 @@ public class SplashScreen extends JFrame {
         int y = (screen.height - height) / 2;
         setBounds(x, y, width, height);
         // image
+        // BufferedImage img = null;
+        // try {
+        // img = ImageIO.read(new File(Query.SPLASHSCREEN_IMAGE));
+        // } catch (IOException e) {
+        // e.printStackTrace();
+        // }
+        // this.setContentPane(new JLabel(new ImageIcon(img)));
+        // JLabel image = new JLabel(new ImageIcon(img));
+        // c.add(image, BorderLayout.CENTER);
+
         JLabel image = new JLabel(Query.APPLICATION_NAME, new ImageIcon(Query.SPLASHSCREEN_IMAGE), JLabel.LEFT);
 
         // this.setContentPane(new JLabel(new ImageIcon(img)));
