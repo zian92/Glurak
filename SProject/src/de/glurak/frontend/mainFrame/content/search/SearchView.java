@@ -38,12 +38,14 @@ public class SearchView extends JPanel{
 	// Suchfelder
 	protected JTextField t_genreSearch;
 	protected JTextField t_userSearch;
+	protected JTextField t_musicSearch;
 	protected JTextField t_artistSearch;
 	protected JTextField t_playlistSearch;
 	
 	// Label für Suchfelder
 	private JLabel l_advancedSearch;
 	private JLabel l_genreSearch;
+	private JLabel l_musicSearch;
 	private JLabel l_userSearch;
 	private JLabel l_artistSearch;
 	private JLabel l_playlistSearch;
@@ -107,11 +109,19 @@ public class SearchView extends JPanel{
 		d.gridheight = 1;
 		d.gridwidth = 1;
 		d.weightx = 0.0;
+		l_musicSearch = new JLabel("Suche nach Musik:");
+		pan_advancedSearch.add(l_musicSearch, d);
+		
+		d.gridx = 0;
+		d.gridy = 4;
+		d.gridheight = 1;
+		d.gridwidth = 1;
+		d.weightx = 0.0;
 		l_artistSearch = new JLabel("Suche nach Künstler");
 		pan_advancedSearch.add(l_artistSearch, d);
 		
 		d.gridx = 0;
-		d.gridy = 4;
+		d.gridy = 5;
 		d.gridheight = 1;
 		d.gridwidth = 1;
 		d.weightx = 0.0;
@@ -140,11 +150,19 @@ public class SearchView extends JPanel{
 		d.gridheight = 1;
 		d.gridwidth = 1;
 		d.weightx = 1.0;
+		t_musicSearch = new JTextField();
+		pan_advancedSearch.add(t_musicSearch, d);
+		
+		d.gridx = 1;
+		d.gridy = 4;
+		d.gridheight = 1;
+		d.gridwidth = 1;
+		d.weightx = 1.0;
 		t_artistSearch = new JTextField();
 		pan_advancedSearch.add(t_artistSearch, d);
 		
 		d.gridx = 1;
-		d.gridy = 4;
+		d.gridy = 5;
 		d.gridheight = 1;
 		d.gridwidth = 1;
 		d.weightx = 1.0;
@@ -153,7 +171,7 @@ public class SearchView extends JPanel{
 		
 		// Button hinzufügen
 		d.gridx = 0;
-		d.gridy = 5;
+		d.gridy = 6;
 		d.gridheight = 1;
 		d.gridwidth = 2;
 		d.weightx = 1.0;
