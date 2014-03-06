@@ -1,104 +1,80 @@
 package de.glurak.frontend.mainFrame.content.message;
 
+import de.glurak.data.Message;
+import de.glurak.database.HibernateDB;
+import de.glurak.frontend.SessionThing;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+import java.util.List;
 
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
+import javax.swing.event.ListSelectionListener;
 
 /**
  * MessageView zeigt das Fenster an, wenn man einen anderen User des Systems eine Nachricht schreiben moechte.
  * 
- * @author Simon
+ * @author Entscheider
  * 
  */
 public class MessageView extends JPanel {
-
-    // Textfelder
-    protected JTextField t_receiver = new JTextField();
-    protected JTextArea t_message = new JTextArea();
-    // Scrolltabelle fuer das Nachrichtenfeld
-    private JScrollPane s_message = new JScrollPane(t_message);
-    // Buttons
-    protected JButton b_send;
-    protected JButton b_cancel;
+    private MessageViewWriter writer;
+    private MessageViewList list;
+    private DefaultListModel<Message> model;
 
     /**
      * Konstruktor
+     * @param actionl der Listener für die Knöpfe im MessageViewWriter, null für keinen
+     * @param listl der Listener falls in der Liste was selektiert wurd. null für keinen
      */
-    public MessageView() {
-
-        // Layout des Frames festlegen
+    public MessageView(ActionListener actionl, ListSelectionListener listl){
+        writer = new MessageViewWriter(actionl);
         setLayout(new BorderLayout());
-
-        // Initialisierung der Buttons
-        b_send = new JButton("Senden");
-        b_cancel = new JButton("Abbrechen");
-
-        // Initialisierung der Labels
-        JLabel l_receiver = new JLabel("Empfänger: ");
-        JLabel l_message = new JLabel("Nachricht: ");
-
-        // Initialisierung der Panels
-        JPanel pan_receiver = new JPanel();
-        JPanel pan_message = new JPanel();
-        JPanel pan_buttons = new JPanel();
-
-        // Layout der Panels festlegen
-        pan_receiver.setLayout(new GridLayout(1, 0));
-        pan_message.setLayout(new BorderLayout());
-        pan_buttons.setLayout(new FlowLayout());
-
-        // Buttons in das Buttonpanel hinzufuegen
-        pan_buttons.add(b_send);
-        pan_buttons.add(b_cancel);
-
-        // Label und Textfeld in das Empfaengerpanel hinzufuegen
-        pan_receiver.add(l_receiver);
-        pan_receiver.add(t_receiver);
-
-        // Textfeld anpassen
-        t_message.setLineWrap(true);
-        t_message.setWrapStyleWord(true);
-
-        // Label und Textfeld in das Nachrichtenpanel hinzufuegen
-        pan_message.add(l_message, BorderLayout.NORTH);
-        pan_message.add(s_message, BorderLayout.CENTER);
-
-        // Panels in das Frame einfuegen
-        add(pan_receiver, BorderLayout.NORTH);
-        add(pan_message, BorderLayout.CENTER);
-        add(pan_buttons, BorderLayout.SOUTH);
+        add(writer, BorderLayout.SOUTH);
+        list = new MessageViewList();
+        initModel();
+        if (listl!=null)
+            list.addListSelectionListener(listl);
+        list.setModel(model);
+        add(new JScrollPane(list), BorderLayout.CENTER);
     }
 
     /**
-     * Erzeugt die MessageView und zeigt sie an.
+     * Gibt die Naricht aus, die in der Liste in der Position p ist
+     * @param p die Position
+     * @return die Naricht, oder null falls die Position nicht gültig
      */
-    private static void createAndShowView() {
-        // Erzeugen des Frames
-        JFrame f_message = new JFrame("Nachricht schreiben");
-        f_message.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public Message messageAtPos(int p){
+        if (p<0||p>=model.getSize()) return null;
+        return model.getElementAt(p);
+    }
 
-        // Registrationview in das Frame laden
-        JComponent newContentPane = new MessageView();
-        newContentPane.setOpaque(true);
-        f_message.setContentPane(newContentPane);
+    private void initModel(){
+        model = new DefaultListModel<Message>();
+        HibernateDB db = SessionThing.getInstance().getDatabase();
+        List<Message> myMessage = db.messageByReceiver(SessionThing.getInstance().getSessionUser());
+        for (Message m: myMessage){
+            model.addElement(m);
+        }
+    }
 
-        // Groesse des Frames festlegen
-        f_message.setPreferredSize(new Dimension(400, 300));
-        // Groesse des Frames soll nicht veraenderbar sein
-        f_message.setResizable(false);
+    /**
+     * Gibt die Naricht zurück. Diese Message ist temporär und
+     * nicht in der Datenbank. Sie ist dafür da sofort wieder gelöscht zu werden
+     * @return die Naricht
+     */
+    public Message getEnteredMessage(){
+        return writer.createMessage();
+    }
 
-        // Frame anpassen und sichtbar machen
-        f_message.pack();
-        f_message.setVisible(true);
+    /**
+     * Setzt die eingeben Naricht
+     * @param m die Naricht, null für ein leeres Feld
+     */
+    public void setEnteredMessage(Message m){
+        writer.setMessage(m);
     }
 }

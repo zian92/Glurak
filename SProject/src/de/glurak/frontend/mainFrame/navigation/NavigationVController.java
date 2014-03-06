@@ -60,7 +60,7 @@ public class NavigationVController extends Observable {
         addController(new ProfileVController(true), "Profil",null);
         addController(new PlaylistVController(),"Playlist", Rights.MANAGE_PLAYLIST);
         addController(promotionVController,"News",null);
-        addController(new MessageVController(),"Narichten",Rights.DO_MESSAGE);
+        addController(new MessageVController(),"Nachrichten",Rights.DO_MESSAGE);
         addController(new UploadVController(),"Upload",Rights.MANAGE_OWN_MEDIEN);
 	}
 
