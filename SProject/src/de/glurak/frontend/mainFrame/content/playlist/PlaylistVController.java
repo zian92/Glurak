@@ -20,6 +20,8 @@ public class PlaylistVController implements ActionListener, ContentController {
      */
     public PlaylistVController() {
         view = new PlaylistView();
+        view.getBtNext().addActionListener(this);
+        view.getBtPrev().addActionListener(this);
       //  view.setjT(this.fillTable());
         view.setVisible(true);
     }
@@ -32,6 +34,11 @@ public class PlaylistVController implements ActionListener, ContentController {
 
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
+    	if (e.getActionCommand().equals("nextSlide")){
+    		view.nextPage();
+    	}else if (e.getActionCommand().equals("prevSlide")){
+    		view.prevPage();
+    	}
     	
     }
 
