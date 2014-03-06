@@ -30,7 +30,6 @@ public class MessageVController implements ActionListener, ContentController {
      */
     public MessageVController() {
         ListSelectionListener s = new ListSelectionListener() {
-            @Override
             public void valueChanged(ListSelectionEvent e) {
                 for (int k = e.getFirstIndex(); k<=e.getLastIndex();k++){
                      Message m = messview.messageAtPos(k);

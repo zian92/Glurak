@@ -21,11 +21,14 @@ public class HeaderVController extends Observable implements ActionListener, Mou
 	public HeaderVController(){
 		setHeadview(new HeaderView());
 		headview.getSearchField().addMouseListener(this);
+		headview.getSearchField().addActionListener(this);
 		headview.getSearchButton().addActionListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == headview.getSearchButton()) {
+		// JButton für Suche oder Enter-Taste betätigt?
+		if (e.getSource() == headview.getSearchButton() || 
+				e.getSource() == headview.getSearchField()) {
 			setChanged();
 			this.searchKey = headview.getSearchField().getText();
 			notifyObservers();
