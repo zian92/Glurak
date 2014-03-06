@@ -217,28 +217,7 @@ public class ProfileView extends JPanel{
 			f.insets = new Insets(2,2,2,2);	
 
 			// Label und Textfelder hinzufügen
-<<<<<<< HEAD
-						
-=======
-			// Username
-			f.gridx = 0;
-			f.gridy = 0;
-			f.weightx = 0.0;
-			l_username = new JLabel("Username:");
-			l_username.setForeground(Color.white);
-			pan_profiledata.add(l_username, f);
-			
-			f.gridx = 1;
-			f.gridy = 0;
-			f.weightx = 1.0;
-			t_username = new JTextField();
-			t_username.setEditable(false);
-			t_username.setBackground(Color.black);
-			t_username.setForeground(Color.white);
-			t_username.setCaretColor(Color.white);
-			pan_profiledata.add(t_username, f);
-			
->>>>>>> 2609bc2a18ab9ed2255e5dba6b33c0e411912fb5
+
 			// Vorname
 			f.gridx = 0;
 			f.gridy = 0;
@@ -286,20 +265,12 @@ public class ProfileView extends JPanel{
 			f.gridx = 1;
 			f.gridy = 2;
 			f.weightx = 1.0;
-<<<<<<< HEAD
 			t_email = new JTextField(user.getProfile().getEmail());
 			t_email.setEditable(edit);
 			t_email.setBackground(Color.black);
 			t_email.setForeground(Color.white);
 			pan_profiledata.add(t_email, f);
-=======
-			t_birthdate = new JTextField();
-			t_birthdate.setEditable(false);
-			t_birthdate.setBackground(Color.black);
-			t_birthdate.setForeground(Color.white);
-			t_birthdate.setCaretColor(Color.white);
-			pan_profiledata.add(t_birthdate, f);
->>>>>>> 2609bc2a18ab9ed2255e5dba6b33c0e411912fb5
+
 			
 			// Heimatland
 			f.gridx = 0;

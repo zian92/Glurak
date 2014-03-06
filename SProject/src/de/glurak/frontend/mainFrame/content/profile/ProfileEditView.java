@@ -10,9 +10,6 @@ import java.awt.*;
  */
 public class ProfileEditView extends JPanel{
 
-<<<<<<< HEAD
-}
-=======
 		// Panels
 		private JPanel pan_profileeditview;
 		private JPanel pan_profilepic;
@@ -262,4 +259,3 @@ public class ProfileEditView extends JPanel{
 	        });
 		}
 }
->>>>>>> 2609bc2a18ab9ed2255e5dba6b33c0e411912fb5

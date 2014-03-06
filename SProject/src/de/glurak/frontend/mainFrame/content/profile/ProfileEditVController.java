@@ -47,7 +47,8 @@ public class ProfileEditVController extends Observable implements ActionListener
 		if (obj == profileEditView.b_edit){
 			
 			try {
-				user.setPassword(profileEditView.t_password.getText());
+				if (profileEditView.t_password.getText()!="" && profileEditView.t_password.getText()!=null)
+					user.setPassword(profileEditView.t_password.getText());
 			} catch (NoSuchAlgorithmException e1) {
 				e1.printStackTrace();
 			}
