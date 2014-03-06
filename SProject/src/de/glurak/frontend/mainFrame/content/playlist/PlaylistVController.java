@@ -2,15 +2,19 @@ package de.glurak.frontend.mainFrame.content.playlist;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Observable;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 
 import de.glurak.data.Playlist;
+import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 
-public class PlaylistVController extends Observable implements ActionListener, ContentController {
+public class PlaylistVController extends Observable implements MouseListener, ActionListener, ContentController {
 
     private PlaylistView view;
     private Playlist pList;
@@ -20,10 +24,8 @@ public class PlaylistVController extends Observable implements ActionListener, C
      * Konstruktor
      */
     public PlaylistVController() {
-        view = new PlaylistView();
-        view.getBtNext().addActionListener(this);
-        view.getBtPrev().addActionListener(this);
-        view.getBtNew().addActionListener(this);
+        view = new PlaylistView(this,this);
+
       //  view.setjT(this.fillTable());
         view.setVisible(true);
     }
@@ -41,11 +43,15 @@ public class PlaylistVController extends Observable implements ActionListener, C
     	}else if (e.getActionCommand().equals("prevSlide")){
     		view.prevPage();
     	}else if(e.getActionCommand().equals("newList")){
-    		System.out.println("PlaylistVCOntr: new List catched");
-    		Playlist p = new Playlist(5, "Pokemon");
+    		Playlist p = new Playlist();
+    		p.setName("Pokemon");
+    		SessionThing.getInstance().getDatabase().addPlaylist(p, null);
     		view.addPlaylist(p);
     	}else if(e.getActionCommand().equals("editList")){
-    		
+    		Playlist p = new Playlist();
+    		p.setName("Gaga");
+    		SessionThing.getInstance().getDatabase().addPlaylist(p, null);
+    		view.addPlaylist(p);
     	}
     	
     }
@@ -65,4 +71,31 @@ public class PlaylistVController extends Observable implements ActionListener, C
     public String[] getTableheader() {
         return tableHeader;
     }
+
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		JLabel l = (JLabel) e.getSource();
+		
+		view.getTextLabel().setText(l.getText());
+	}
+
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 }

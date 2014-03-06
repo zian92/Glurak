@@ -25,6 +25,7 @@ public class LoginSLiderController{
 	private LoginPromoPanel promoPanel;
 	private Dimension slidePaneDim = new Dimension(240, 240);
 	private int loginSLiderSides = 3;
+	
 	public LoginSLiderController(){
 		promoPanel = new LoginPromoPanel(new Dimension(480,500), slidePaneDim);
 		initPromPanel();
