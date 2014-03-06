@@ -48,11 +48,20 @@ public class HeaderView extends JPanel{
 		setVisible(true);
 		
 	}
+	
+	public JTextField getSearchField() {
+		return t_search;
+	}
+	
+	public JButton getSearchButton() {
+		return b_search;
+	}
+	
 
 	/**
 	 * Erzeugt die ProfileView und zeigt sie an.
 	 */
-	private static void createAndShowView(){
+/*	private static void createAndShowView(){
 		//Erzeugen des Frames
 		JFrame header = new JFrame("Header");
 		header.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,13 +82,13 @@ public class HeaderView extends JPanel{
 		//Frame anpassen und sichtbar machen
 		header.pack();
 		header.setVisible(true);
-	}
+	} */
 	
-	public static void main(String[] args){
+/*	public static void main(String[] args){
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 createAndShowView();
             }
         });
-	}
+	} */
 }

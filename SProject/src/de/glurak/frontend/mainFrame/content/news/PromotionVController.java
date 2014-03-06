@@ -48,42 +48,12 @@ public class PromotionVController  implements ContentController{
 	 */
 	public PromotionVController(){
 		promPan = new PromotionView(promPanelDim, slidePaneDim);
-
-		//promPan.bt_start.addActionListener(this);
-		//promPan.bt_add.addActionListener(this);
 		
 		initNewsEntries();
-		//initPromPanel();
-		//loadArrayList();
-		//fillSliderPanel();
 	}
 	
 	public JComponent getView(){ return promPan; }
 		
-	/*
-
-	public void fillSliderPanel(){
-		
-		for (int sliderPos = 0 ; sliderPos < promPan.getSliderCount(); sliderPos++){
-						
-			JLayeredPane layered_pan = new JLayeredPane();
-			
-			layered_pan.setPreferredSize(slidePaneDim);
-			JButton bt_like = new JButton("L");
-			JButton bt_hate = new JButton("H");
-			bt_like.setBounds(180,240,50,50);
-			bt_hate.setBounds(240,240,50,50);
-			
-			// Add -1 for adding the last 4 pictures later with the addContentTo function
-			for (int i = 1; i < (imageLabelList.size()/promPan.getSliderCount() ); i++){
-				promPan.getSLiderAtPos(sliderPos).addSliderComponent(imageLabelList.get( sliderPos + (i*promPan.getSliderCount())));
-			}
-		promPan.getSLiderAtPos(sliderPos).refresh();
-		}
-	}
-	
-	*/
-	
 	public void addContentTo(int sliderPos, String filename){
 		
 		//test if filename == ""
@@ -104,7 +74,6 @@ public class PromotionVController  implements ContentController{
 		promPan.getSLiderAtPos(sliderPos).refresh();
 
 	}
-
 	
 	/**
 	 * Initialisiert die PanelSliderElemente mit Inhalten aus
@@ -112,15 +81,15 @@ public class PromotionVController  implements ContentController{
 	 */
 	private void initNewsEntries(){
 		
-		// Get Items from newsList of current User
+		//TODO: Get Items from newsList of current User
+		
+		// Creating dummy-Objects for testing 
 		Album a1 = new Album();
 		Album a2 = new Album();
 		Medium m1 = new Medium(13, "Song 2", null, new User());
 		
 		a1.setName("This is It");
 		a2.setName("Album dummy");
-		NewsEntry n1 = new NewsEntry(a1);
-		NewsEntry n2 = new NewsEntry(a2);
 		
 		User u1 = new User();
 		u1.setUsername("TestUser m");
@@ -136,10 +105,8 @@ public class PromotionVController  implements ContentController{
 		pu2.setFemale(true);
 		u2.setProfile(pu2);
 		
-		newsList.add(n1);
-		newsList.add(n2);
 		newsList.add(new NewsEntry(a1));
-		newsList.add(new NewsEntry(a1));
+		newsList.add(new NewsEntry(a2));
 		newsList.add(new NewsEntry(u1));
 		newsList.add(new NewsEntry(m1));
 		newsList.add(new NewsEntry(a2));
@@ -153,7 +120,6 @@ public class PromotionVController  implements ContentController{
 		newsList.add(new NewsEntry(a2));
 		newsList.add(new NewsEntry(a1));
 		newsList.add(new NewsEntry(m1));
-		
 		newsList.add(new NewsEntry(u2));
 		newsList.add(new NewsEntry(u2));
 
