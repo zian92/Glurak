@@ -2,6 +2,7 @@ package de.glurak.frontend.mainFrame.content.playlist;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 
 import javax.swing.JComponent;
 import javax.swing.JTable;
@@ -9,7 +10,7 @@ import javax.swing.JTable;
 import de.glurak.data.Playlist;
 import de.glurak.frontend.mainFrame.ContentController;
 
-public class PlaylistVController implements ActionListener, ContentController {
+public class PlaylistVController extends Observable implements ActionListener, ContentController {
 
     private PlaylistView view;
     private Playlist pList;
