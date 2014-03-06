@@ -26,6 +26,7 @@ public class HeaderVController extends Observable implements ActionListener, Mou
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		// JButton für Suche oder Enter-Taste betätigt?
 		if (e.getSource() == headview.getSearchButton() || 
 				e.getSource() == headview.getSearchField()) {
 			setChanged();
