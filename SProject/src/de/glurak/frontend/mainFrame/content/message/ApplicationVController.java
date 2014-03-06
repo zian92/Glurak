@@ -18,6 +18,7 @@ import de.glurak.frontend.SessionThing;
 public class ApplicationVController implements ActionListener {
 
     private ApplicationView appliview;
+    private String errorMsgBoxName = "Fehlermeldung";
 
     /**
      * Konstruktor
@@ -33,7 +34,7 @@ public class ApplicationVController implements ActionListener {
             SessionThing session = SessionThing.getInstance();
             HibernateDB db = session.getDatabase();
             // Abfrage, ob ein Empfaenger eingegeben wurde
-            if (appliview.t_receiver.getText() == "") {
+            if (appliview.t_receiver.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Sie haben noch keinen Empfänger eingegeben. Bitte fügen sie einen Empfänger hinzu!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
             } else {
                 // Abfrage, ob der Empfaenger existiert
@@ -41,8 +42,8 @@ public class ApplicationVController implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Dieser Empfänger existiert nicht. Bitte geben sie einen existierenden Empfänger an!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
                 } else {
                     // Abfrage, ob die Nachricht leer ist
-                    if (appliview.t_application.getText() == "") {
-                        JOptionPane.showMessageDialog(null, "Sie haben keine Nachricht eingegeben. Bitte schreiben sie zuerst ihre Nachricht!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
+                    if (appliview.t_application.getText().equals("")) {
+                        JOptionPane.showMessageDialog(null, "Sie haben keine Nachricht eingegeben. Bitte schreiben sie zuerst ihre Nachricht!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
                     } else {
                         db.createMessage(session.getSessionUser(), db.getUserByUsername(appliview.t_receiver.getText()), appliview.t_application.getText(), false, null);
                     }
