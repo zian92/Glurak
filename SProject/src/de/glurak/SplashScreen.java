@@ -16,8 +16,6 @@ import javax.swing.JPanel;
 
 public class SplashScreen extends JFrame {
 
-    private final String filepath = Query.FOLDER_PICTURE_ICONS + "splash.png";
-
     public SplashScreen() {
         JPanel c = new JPanel(new BorderLayout());
         // Set the window's bounds, centering the window
@@ -30,7 +28,7 @@ public class SplashScreen extends JFrame {
         // image
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File(filepath));
+            img = ImageIO.read(new File(Query.SPLASHSCREEN_IMAGE));
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -45,41 +43,6 @@ public class SplashScreen extends JFrame {
         // this.setOpacity(0);
         this.add(c);
         this.setVisible(true);
-    }
-
-    public void showSplash() {
-        JPanel content = new JPanel(new BorderLayout());// (JPanel) getContentPane();
-        content.setBackground(Color.black);
-
-        // Set the window's bounds, centering the window
-        int width = 300;
-        int height = 250;
-        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (screen.width - width) / 2;
-        int y = (screen.height - height) / 2;
-        setBounds(x, y, width, height);
-
-        // Build the splash screen
-        BufferedImage img = null;
-        try {
-            img = ImageIO.read(new File(filepath));
-        } catch (IOException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-        JLabel label = new JLabel(new ImageIcon(img));
-        content.add(label, BorderLayout.CENTER);
-        content.setVisible(true);
-        // Display it
-        // this.setUndecorated(true);
-        add(content);
-        setVisible(true);
-
-        // wait for init
-        try {
-            Thread.sleep(200);
-        } catch (Exception e) {
-        }
     }
 
     public void hideSplashScreen() {
