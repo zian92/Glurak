@@ -120,9 +120,12 @@ public class RegistrationView extends JPanel{
             t_prename.addFocusListener(focuslistener);
             t_surname.addFocusListener(focuslistener);
             t_password.addFocusListener(focuslistener);
+            t_password.addFocusListener(focuslistener);
             t_birthdate_day.addFocusListener(focuslistener);
             t_birthdate_month.addFocusListener(focuslistener);
             t_birthdate_year.addFocusListener(focuslistener);
+            t_mailaddr.addFocusListener(focuslistener);
+            t_addr.addFocusListener(focuslistener);
         }
 
     }
@@ -251,9 +254,12 @@ public class RegistrationView extends JPanel{
         t_prename.selectAll();
         t_surname.selectAll();
         t_password.selectAll();
+        t_password_2.selectAll();
         t_birthdate_day.selectAll();
         t_birthdate_month.selectAll();
         t_birthdate_year.selectAll();
+        t_mailaddr.selectAll();
+        t_addr.selectAll();
     }
 	
 	public static void main(String[] args){
