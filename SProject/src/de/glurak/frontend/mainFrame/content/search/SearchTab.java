@@ -1,5 +1,7 @@
 package de.glurak.frontend.mainFrame.content.search;
 
+import java.util.List;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -7,6 +9,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -34,12 +38,12 @@ public class SearchTab extends JPanel {
 	
 	/**
 	 * Konstruktor
-	 * @param searchKey
+	 * @param sk
 	 */
-	public SearchTab(Searchable searchKey, String name) {
+	public SearchTab(Searchable sk, String name) {
 		
 		this.name = name;
-		this.searchKey = searchKey;
+		this.searchKey = sk;
 		
 		setLayout(new BorderLayout());
 		JPanel northPane = new JPanel();
@@ -47,6 +51,18 @@ public class SearchTab extends JPanel {
 		northPane.add(new JLabel("Suche"));
 		northPane.add(t_search);
 		northPane.add(b_search);
+
+        b_search.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<String> res = searchKey.searchFor(t_search.getText());
+                for (String k: res){
+                    String[] data = new String[4];
+                    data[0]=k;
+                    searchtable_model.addRow(data);
+                }
+            }
+        });
 		
 		add(northPane, BorderLayout.NORTH);
 		

@@ -1,19 +1,13 @@
 package de.glurak.frontend.mainFrame.content.search;
 
+import de.glurak.frontend.mainFrame.content.search.Searches.*;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 
 /**
  * Die SearchView ermöglicht die Erweiterte-Suche und die Ergebnisse von 
@@ -28,11 +22,11 @@ public class SearchView extends JPanel{
 	public SearchView(){
 		
 		setLayout(new BorderLayout());
-		tabs.add(new SearchTab(null, "Genre"));
-		tabs.add(new SearchTab(null, "Musik"));
-		tabs.add(new SearchTab(null, "User"));
-		tabs.add(new SearchTab(null, "Playlist"));
-		tabs.add(new SearchTab(null, "Label"));
+		tabs.add(new SearchTab(new GenreSearch(), "Genre"));
+		tabs.add(new SearchTab(new MusicSearch(), "Musik"));
+		tabs.add(new SearchTab(new UserSearch(), "User"));
+		tabs.add(new SearchTab(new PlaylistSearch(), "Playlist"));
+		tabs.add(new SearchTab(new LabelSearch(), "Label"));
 		
 		JTabbedPane pane = new JTabbedPane();
 		add(pane, BorderLayout.CENTER);
