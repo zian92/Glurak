@@ -15,7 +15,9 @@ public class Query {
     public static final String FOLDER_PICTURE_SLIDER = FOLDER_PICTURE + "slider/";
     public static final String FOLDER_PICTURE_ICONS = FOLDER_PICTURE + "defaulticons/";
     public static final String[] FOLDERS = { DATAPATH, FOLDER_MUSIC, FOLDER_PICTURE, FOLDER_PICTURE_PROFILE, FOLDER_PICTURE_COVER, FOLDER_PICTURE_SLIDER };
-    
+
+    public static final String[] INITIALE_GENRE = { "Metal", "Rock", "Pop", "Punk", "Weltmusik", "Elektro", "Hip-Hop", "RnB", };
+
     private Query() {
 
     }
