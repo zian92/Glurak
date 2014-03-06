@@ -7,9 +7,11 @@ import java.awt.event.MouseListener;
 import java.util.Observable;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 
 import de.glurak.data.Playlist;
+import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 
 public class PlaylistVController extends Observable implements MouseListener, ActionListener, ContentController {
@@ -41,10 +43,14 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
     	}else if (e.getActionCommand().equals("prevSlide")){
     		view.prevPage();
     	}else if(e.getActionCommand().equals("newList")){
-    		Playlist p = new Playlist(5, "Pokemon");
+    		Playlist p = new Playlist();
+    		p.setName("Pokemon");
+    		SessionThing.getInstance().getDatabase().addPlaylist(p, null);
     		view.addPlaylist(p);
     	}else if(e.getActionCommand().equals("editList")){
-    		Playlist p = new Playlist(6, "Little Pony");
+    		Playlist p = new Playlist();
+    		p.setName("Gaga");
+    		SessionThing.getInstance().getDatabase().addPlaylist(p, null);
     		view.addPlaylist(p);
     	}
     	
@@ -66,10 +72,11 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
         return tableHeader;
     }
 
-	public void mouseClicked(MouseEvent arg0) {
+	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		view.nextPage();
+		JLabel l = (JLabel) e.getSource();
 		
+		view.getTextLabel().setText(l.getText());
 	}
 
 	public void mouseEntered(MouseEvent arg0) {
