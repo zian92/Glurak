@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionListener;
 
 /**
  * MessageView zeigt das Fenster an, wenn man einen anderen User des Systems eine Nachricht schreiben moechte.
@@ -26,16 +27,29 @@ public class MessageView extends JPanel {
 
     /**
      * Konstruktor
-     * @param l der Listener für die Knöpfe im MessageViewWriter, null für keinen
+     * @param actionl der Listener für die Knöpfe im MessageViewWriter, null für keinen
+     * @param listl der Listener falls in der Liste was selektiert wurd. null für keinen
      */
-    public MessageView(ActionListener l){
-        writer = new MessageViewWriter(l);
+    public MessageView(ActionListener actionl, ListSelectionListener listl){
+        writer = new MessageViewWriter(actionl);
         setLayout(new BorderLayout());
         add(writer, BorderLayout.SOUTH);
         list = new MessageViewList();
         initModel();
+        if (listl!=null)
+            list.addListSelectionListener(listl);
         list.setModel(model);
         add(new JScrollPane(list), BorderLayout.CENTER);
+    }
+
+    /**
+     * Gibt die Naricht aus, die in der Liste in der Position p ist
+     * @param p die Position
+     * @return die Naricht, oder null falls die Position nicht gültig
+     */
+    public Message messageAtPos(int p){
+        if (p<0||p>=model.getSize()) return null;
+        return model.getElementAt(p);
     }
 
     private void initModel(){

@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import de.glurak.data.Message;
 import de.glurak.data.User.User;
@@ -27,9 +29,25 @@ public class MessageVController implements ActionListener, ContentController {
      * Konstruktor
      */
     public MessageVController() {
-        messview = new MessageView(this);
+        ListSelectionListener s = new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                for (int k = e.getFirstIndex(); k<=e.getLastIndex();k++){
+                     Message m = messview.messageAtPos(k);
+                    if (m!=null)
+                        m.setAlreadyRead(true);
+                }
+            }
+        };
+        messview = new MessageView(this,s);
     }
 
+    /**
+     * Prüft ob das temporäre Message-Objekt m gütige Angaben besitzt.
+     * Außerdem wird dem Nutzer noch Dialoge angezeigt.
+     * @param m die Message
+     * @return true falls alles OK, sonst false
+     */
     private boolean checkIfMessageValid(Message m){
         SessionThing s = SessionThing.getInstance();
         HibernateDB db = s.getDatabase();

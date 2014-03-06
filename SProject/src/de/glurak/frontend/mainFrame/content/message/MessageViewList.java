@@ -16,6 +16,10 @@ public class MessageViewList extends JList<Message> {
         @Override
         public Component getListCellRendererComponent(JList<? extends Message> list, Message value, int index, boolean isSelected, boolean cellHasFocus) {
             JPanel res = new JPanel();
+            if (!value.isAlreadyRead())
+                res.setBackground(Color.GREEN);
+            if (isSelected)
+                res.setBackground(Color.GRAY);
             res.setLayout(new BorderLayout());
             JLabel message = new JLabel(value.getMessage());
             res.add(message,BorderLayout.CENTER) ;
