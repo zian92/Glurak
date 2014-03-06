@@ -21,11 +21,11 @@ public class MessageTest {
     private HibernateDB db;
     private User rec, sender;
 
-    private User getOlaf(EntityTransaction tr) throws NoSuchAlgorithmException {
+    private User getReceiver(EntityTransaction tr) throws NoSuchAlgorithmException {
         User res = new User();
         ListenerProfile p = new ListenerProfile();
         db.registrateProfile(p,tr);
-        res.setUsername("Olaf");
+        res.setUsername("Receiver");
         res.setPassword("Oli");
         res.setLocked(false);
         res.setProfile(p);
@@ -33,9 +33,9 @@ public class MessageTest {
         return res;
     }
 
-    private User getOlm(EntityTransaction tr) throws NoSuchAlgorithmException {
+    private User getSender(EntityTransaction tr) throws NoSuchAlgorithmException {
         User res = new User();
-        res.setUsername("Olm");
+        res.setUsername("Sender");
         res.setPassword("Oli");
         res.setLocked(false);
         ListenerProfile p = new ListenerProfile();
@@ -50,8 +50,8 @@ public class MessageTest {
         db=new HibernateDB();
         EntityTransaction tr = db.getEnityManager().getTransaction();
         tr.begin();
-        rec= getOlaf(tr);
-        sender = getOlm(tr);
+        rec= getReceiver(tr);
+        sender = getSender(tr);
         db.createMessage(rec,sender,"Hey alter!",false,tr);
         db.createMessage(rec,sender,"Antworte!",true,tr);
         db.createMessage(sender,rec,"Lass mich. Sonst hol ich Brüder!",false,tr);
