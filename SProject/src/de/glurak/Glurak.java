@@ -51,11 +51,13 @@ public class Glurak {
         // userA
         User userA = new User();
         userA.setUsername("Olaf");
+        /*
         try {
             userA.setPassword("olaf");
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
+        */
         db.registrateUser(userA, null);
         ListenerProfile profileA = new ListenerProfile();
         db.registrateProfile(profileA, null);
