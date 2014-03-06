@@ -3,6 +3,7 @@ package de.glurak.frontend.mainFrame.content.upload;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import de.glurak.feature.Uploader;
@@ -25,9 +26,16 @@ public class UploadVController implements ActionListener, ContentController{
 			uploader.getInstance();
 			uploader.selectMusic(upview);
 		}else if(ae.getSource() == upview.b_upload){
-			//TODO Was soll passieren wenn man upload drueckt?
+			if((upview.t_title.getText().isEmpty()) || (upview.t_artist.getText().isEmpty()) || (upview.t_album.getText().isEmpty())){
+                JOptionPane.showMessageDialog(upview, "Bitte füllen sie alle Felder aus, um das Medium hochzuladen!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
+			}else{
+				//TODO Was soll passieren wenn man upload drueckt?
+			}
 		}else if(ae.getSource() == upview.b_cancel){
-			//TODO Was soll bei abbrechen passieren? Ist abbrechen unnoetig?
+			//TODO Was soll bei abbrechen passieren? Ist abbrechen noetig?
+			upview.t_title.setText("");
+			upview.t_artist.setText("");
+			upview.t_album.setText("");
 		}
 	}
 	

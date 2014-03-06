@@ -19,6 +19,7 @@ import de.glurak.frontend.mainFrame.ContentController;
 public class MessageVController implements ActionListener, ContentController {
 
     private MessageView messview;
+    private String errorMsgBoxName = "Fehlermeldung";
 
     /**
      * Konstruktor
@@ -33,21 +34,21 @@ public class MessageVController implements ActionListener, ContentController {
         if (e.getSource() == messview.b_send) {
             SessionThing session = SessionThing.getInstance();
             HibernateDB db = session.getDatabase();
-            // Abfrage, ob ein Empfaenger eingegeben wurde
-            if (messview.t_receiver.getText() == "") {
-                JOptionPane.showMessageDialog(messview, "Sie haben noch keinen Empfänger eingegeben. Bitte fügen sie einen Empfänger hinzu!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
+            // Abfrage, ob ein Empfaenger eingegebeFn wurde
+            if (messview.t_receiver.getText().equals("")) {
+                JOptionPane.showMessageDialog(messview, "Sie haben noch keinen Empfänger eingegeben. Bitte fügen sie einen Empfänger hinzu!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
             } else {
                 // Abfrage, ob der Empfaenger nicht existiert
                 if (!db.hasUser(messview.t_receiver.getText())) {
-                    JOptionPane.showMessageDialog(messview, "Dieser Empfänger existiert nicht. Bitte geben sie einen existierenden Empfänger an!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(messview, "Dieser Empfänger existiert nicht. Bitte geben sie einen existierenden Empfänger an!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
                 } else {
                     // Abfarge ob der sender der empfaenger ist
                     if (session.getSessionUser().equals(db.getUserByUsername(messview.t_receiver.getText()))) {
-                        JOptionPane.showMessageDialog(messview, "Du kannst dir nicht selber eine Nachricht schreiben. Bitte geben sie einen anderen Empfänger an!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(messview, "Du kannst dir nicht selber eine Nachricht schreiben. Bitte geben sie einen anderen Empfänger an!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
                     } else {
                         // Abfrage, ob die Nachricht leer ist
-                        if (messview.t_message.getText() == "") {
-                            JOptionPane.showMessageDialog(messview, "Sie haben keine Nachricht eingegeben. Bitte schreiben sie zuerst ihre Nachricht!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
+                        if (messview.t_message.getText().equals("")) {
+                            JOptionPane.showMessageDialog(messview, "Sie haben keine Nachricht eingegeben. Bitte schreiben sie zuerst ihre Nachricht!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
                         } else {
                             db.createMessage(session.getSessionUser(), db.getUserByUsername(messview.t_receiver.getText()), messview.t_message.getText(), false, null);
                         }
@@ -56,7 +57,6 @@ public class MessageVController implements ActionListener, ContentController {
             }
         } else
             if (e.getSource() == messview.b_cancel) {
-                // TODO Das Panel schliessen, im Mainframe zerstoeren
                 messview.t_message.setText("");
                 messview.t_receiver.setText("");
             }
