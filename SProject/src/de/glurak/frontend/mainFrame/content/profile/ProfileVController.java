@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import de.glurak.data.User.Profile;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
+import de.glurak.frontend.mainFrame.NextContent;
 import de.glurak.frontend.mainFrame.content.message.MessageVController;
 import de.glurak.frontend.mainFrame.content.playlist.PlaylistVController;
 import de.glurak.frontend.mainFrame.content.profile.ProfileEditVController;
@@ -19,10 +20,11 @@ import de.glurak.frontend.mainFrame.content.profile.ProfileEditVController;
  * @author Christopher Distelkämper
  * Date: 28.02.2014
  */
-public class ProfileVController extends Observable implements ActionListener, ContentController {
+public class ProfileVController extends Observable implements ActionListener, ContentController, NextContent {
 	
 	private ProfileView profileview;
 	private Profile profile;
+	private ContentController nextContent;
 	
 	/**
 	 * Constructor
@@ -76,6 +78,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
 		} else if (obj == profileview.b_follow){
 			
 		} else if (obj == profileview.b_edit){
+			nextContent = new ProfileEditVController();
 			setChanged();
 			notifyObservers();
 		}
@@ -83,6 +86,14 @@ public class ProfileVController extends Observable implements ActionListener, Co
 
 	public JComponent getView() {
 		return profileview;
+	}
+
+	public ContentController getNextContent() {
+		return nextContent;
+	}
+
+	public void setNextContent(ContentController nextContent) {
+		this.nextContent = nextContent;
 	}
 
 }
