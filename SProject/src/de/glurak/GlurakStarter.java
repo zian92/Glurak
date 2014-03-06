@@ -13,6 +13,7 @@ public class GlurakStarter {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 // Create GUI
+                @SuppressWarnings("unused")
                 LoginVController logControll = new LoginVController(Query.APPLICATION_NAME);
             }
         });

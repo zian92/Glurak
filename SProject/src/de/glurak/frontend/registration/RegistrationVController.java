@@ -6,16 +6,17 @@ import de.glurak.frontend.SessionThing;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.FocusEvent;
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
-import javax.swing.JFrame;
 
 /**
  * Der Kontroller für die Registrationview.
  * @author Simon
  *
  */
-public class RegistrationVController implements ActionListener{
+public class RegistrationVController implements ActionListener, FocusListener{
 
 	private RegistrationView regview;
 	
@@ -23,7 +24,7 @@ public class RegistrationVController implements ActionListener{
 	 * Konstruktor
 	 */
 	public RegistrationVController(){
-		regview = new RegistrationView(this);
+		regview = new RegistrationView(this, this);
 	}
 	
 	public void actionPerformed(ActionEvent e){
@@ -65,6 +66,21 @@ public class RegistrationVController implements ActionListener{
 	 */
 	public JPanel getView(){
 		return regview;
+	}
+
+	public void focusGained(FocusEvent e) {
+		regview.t_username.selectAll();
+		regview.t_prename.selectAll();
+		regview.t_surname.selectAll();
+		regview.t_password.selectAll();
+		regview.t_birthdate_day.selectAll();
+		regview.t_birthdate_month.selectAll();
+		regview.t_birthdate_year.selectAll();
+	}
+
+	public void focusLost(FocusEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -29,7 +30,7 @@ import de.glurak.frontend.mainFrame.ContentController;
  * @author MxB
  *
  */
-public class PromotionVController  implements ContentController{
+public class PromotionVController  extends Observable implements ContentController{
 
 	private List<JLabel> imageLabelList = new ArrayList<JLabel>();
 	
@@ -46,7 +47,7 @@ public class PromotionVController  implements ContentController{
 	 * Erzeugt das PromoPanel und initialisiert deren Elemente.
 	 * @post Panel mit Slidern ist erzeugt und initialisiert
 	 */
-	public PromotionVController(){
+	public PromotionVController() {
 		promPan = new PromotionView(promPanelDim, slidePaneDim);
 		
 		initNewsEntries();

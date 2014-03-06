@@ -1,8 +1,14 @@
 package de.glurak.frontend.mainFrame.content.profile;
 
 import java.awt.event.*;
+import java.util.Observable;
+
 import javax.swing.*;
 
+import org.hibernate.Session;
+
+import de.glurak.data.User.Profile;
+import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.content.message.MessageVController;
 import de.glurak.frontend.mainFrame.content.playlist.PlaylistVController;
@@ -13,9 +19,10 @@ import de.glurak.frontend.mainFrame.content.profile.ProfileEditVController;
  * @author Christopher Distelkämper
  * Date: 28.02.2014
  */
-public class ProfileVController implements ActionListener, ContentController {
+public class ProfileVController extends Observable implements ActionListener, ContentController {
 	
 	private ProfileView profileview;
+	private Profile profile;
 	
 	/**
 	 * Constructor
@@ -23,7 +30,15 @@ public class ProfileVController implements ActionListener, ContentController {
 	 * @param anzPlaylists <= 5, falls ein User mehr Playlisten hat sind diese über den "More"-Button verfügbar.
 	 */
 	public ProfileVController(boolean own, int anzPlaylists){
-		profileview = new ProfileView(own, anzPlaylists);
+		
+		
+		if (own) {
+			profile = SessionThing.getInstance().getSessionUser().getProfile();
+		} else {
+			// fremdes profile laden TODO
+		}
+		
+		profileview = new ProfileView(own, anzPlaylists, profile);
 		
 		// Hinzufügen der ActionListener
 		profileview.b_moreplaylists.addActionListener(this);
@@ -44,6 +59,7 @@ public class ProfileVController implements ActionListener, ContentController {
 		profileview.t_homecountry.setText("");
 		*/
 		
+		
 	}
 	
 	public ProfileVController(boolean own) {
@@ -60,7 +76,8 @@ public class ProfileVController implements ActionListener, ContentController {
 		} else if (obj == profileview.b_follow){
 			
 		} else if (obj == profileview.b_edit){
-	//      setContentController(new ProfileEditVController());		
+			setChanged();
+			notifyObservers();
 		}
 	}
 

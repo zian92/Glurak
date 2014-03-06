@@ -8,6 +8,7 @@ import de.glurak.Query;
 import de.glurak.data.Medium;
 import de.glurak.data.Playlist;
 import de.glurak.frontend.mainFrame.content.news.PromotionVController;
+import de.glurak.frontend.mainFrame.content.search.SearchVController;
 import de.glurak.frontend.mainFrame.header.HeaderVController;
 import de.glurak.frontend.mainFrame.navigation.NavigationVController;
 import de.glurak.frontend.mainFrame.playQueue.PlayQueueViewController;
@@ -52,6 +53,8 @@ public class MainFrameVController implements Observer{
 		
 		// Observer hinzufügen
 		navigationController.addObserver(this);
+		headerController.addObserver(this);
+//		contentController.addObserver(this);
 		
 		// Views anhängen
 		view.getContent().add( contentController.getView());
@@ -64,7 +67,17 @@ public class MainFrameVController implements Observer{
 	// View Anpassen
 	public void update(Observable o, Object arg) {
 		view.getContent().removeAll();
-		view.getContent().add(navigationController.getContentController().getView());
+		
+		// Woher kommt das Update?
+		if (o.equals(headerController)) {
+			view.getContent().add(new SearchVController().getView());
+		} else if (o.equals(navigationController)){
+			view.getContent().add(navigationController.getContentController().getView());
+		} else if (o.equals(view.getContent())) {
+			System.out.println("YOLOLOLO");
+		}
+		
+		
 		view.getContent().repaint();
 		view.getContent().revalidate();
 	}

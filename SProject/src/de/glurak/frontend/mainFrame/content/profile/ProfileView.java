@@ -1,8 +1,15 @@
 package de.glurak.frontend.mainFrame.content.profile;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import de.glurak.Query;
+import de.glurak.data.User.Profile;
+
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Die ProfileView zeigt dem User ein Profil an.
@@ -39,6 +46,7 @@ public class ProfileView extends JPanel{
 	private JLabel l_lastname;
 	private JLabel l_birthdate;
 	private JLabel l_homecountry;
+	private JLabel l_userPic;
 	
 	// TextField-Array für die Playlisten
 	protected JTextField[] t_playlist;
@@ -47,17 +55,19 @@ public class ProfileView extends JPanel{
 	private JLabel[] l_playlist;
 	
 	
+	
 	/**
 	 * Constructor
 	 * @param own Wird das eigene Profil angezeigt oder ein anderes?
 	 * @param anzPlaylists <= 5, falls ein User mehr Playlisten hat, sind diese über den "More"-Button verfügbar.
 	 */
-	public ProfileView(boolean own, int anzPlaylists){
+	public ProfileView(boolean own, int anzPlaylists, Profile profile){
+		
 		
 		// Initialisieren Panel pan_profileview
 		pan_profileview = new JPanel(new GridBagLayout());
 		pan_profileview.setPreferredSize(new Dimension(724, 545));
-		pan_profileview.setBackground(Color.black);
+		pan_profileview.setBackground(Color.blue);
 		
 		// Layout-Restriktionen festlegen.
 		GridBagConstraints c = new GridBagConstraints();
@@ -67,13 +77,13 @@ public class ProfileView extends JPanel{
 		// Initialisieren Panel pan_likes
 		pan_likes = new JPanel(new GridBagLayout());
 		pan_likes.setPreferredSize(new Dimension(350,200));
-		pan_likes.setBackground(Color.black);
+		pan_likes.setBackground(Color.green);
 		pan_likes.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		// Initialisieren Panel pan_profilepic
 		pan_profilepic = new JPanel(new GridBagLayout());
-		pan_profilepic.setPreferredSize(new Dimension(350, 200));
-		pan_profilepic.setBackground(Color.black);
+		pan_profilepic.setPreferredSize(new Dimension(350, 300));
+		pan_profilepic.setBackground(Color.yellow);
 		pan_profilepic.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 			// Layout-Restriktionen festlegen.
@@ -87,9 +97,20 @@ public class ProfileView extends JPanel{
 			d.gridwidth = 3;
 			d.gridheight = 1;
 			pan_picture = new JPanel();
-			pan_picture.setPreferredSize(new Dimension(100,100));
-			pan_picture.setBackground(Color.green);
+			pan_picture.setPreferredSize(new Dimension(200,200));
+			pan_picture.setBackground(Color.pink);
 			pan_profilepic.add(pan_picture, d);
+			
+			BufferedImage img = null;
+			try {
+				img = ImageIO.read(new File(profile.getPictureFileNameOrDefaultPictureName()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			l_userPic = new JLabel(new ImageIcon(img));
+			pan_picture.add(l_userPic);
 		
 		    // Initialisieren der Buttons b_message, b_follow, b_edit
 			
@@ -100,7 +121,7 @@ public class ProfileView extends JPanel{
 				d.gridwidth = 1;
 				d.gridheight = 1;
 				b_edit = new JButton("Bearbeiten");
-				b_edit.setBackground(Color.black);
+				b_edit.setBackground(Color.gray);
 				b_edit.setForeground(Color.white);
 				pan_profilepic.add(b_edit, d);
 				
@@ -305,37 +326,30 @@ public class ProfileView extends JPanel{
 		
 	}
 		
-	/**
-	 * Erzeugt die ProfileView und zeigt sie an.
-	 */
-	private static void createAndShowView(){
-		//Erzeugen des Frames
-		JFrame profile = new JFrame("Profile");
-		profile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		//Registrationview in das Frame laden
-		JComponent newContentPane = new ProfileView(false, 2);
-        newContentPane.setOpaque(true);
-        profile.setContentPane(newContentPane);
-        
-        //Groesse des Frames festlegen
-        profile.setPreferredSize(new Dimension(1000, 500));
-        //Groesse des Frames soll nicht veraenderbar sein
-        profile.setResizable(false);
-        //Registrationview wird in der Mitte des Bildschirms geladen
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        profile.setLocation(dim.width/2-profile.getSize().width/2-300, dim.height/2-profile.getSize().height/2-150);
-		
-		//Frame anpassen und sichtbar machen
-		profile.pack();
-		profile.setVisible(true);
-	}
+//	/**
+//	 * Erzeugt die ProfileView und zeigt sie an.
+//	 */
+//	private static void createAndShowView(){
+//		//Erzeugen des Frames
+//		JFrame profile = new JFrame("Profile");
+//		profile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		
+//		//Registrationview in das Frame laden
+//		JComponent newContentPane = new ProfileView(false, 2);
+//        newContentPane.setOpaque(true);
+//        profile.setContentPane(newContentPane);
+//        
+//        //Groesse des Frames festlegen
+//        profile.setPreferredSize(new Dimension(1000, 500));
+//        //Groesse des Frames soll nicht veraenderbar sein
+//        profile.setResizable(false);
+//        //Registrationview wird in der Mitte des Bildschirms geladen
+//        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+//        profile.setLocation(dim.width/2-profile.getSize().width/2-300, dim.height/2-profile.getSize().height/2-150);
+//		
+//		//Frame anpassen und sichtbar machen
+//		profile.pack();
+//		profile.setVisible(true);
+//	}
 	
-	public static void main(String[] args){
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowView();
-            }
-        });
-	}
 }

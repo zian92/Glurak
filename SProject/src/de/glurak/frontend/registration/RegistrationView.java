@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 import java.security.NoSuchAlgorithmException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -32,11 +33,13 @@ import javax.swing.JPasswordField;
 public class RegistrationView extends JPanel{
 
 	//Textfelder fuer die Registrierung
-	private JTextField t_username = new JTextField();
-	private JPasswordField t_password = new JPasswordField();
-	private JTextField t_birthdate_day = new JTextField();
-	private JTextField t_birthdate_month = new JTextField();
-	private JTextField t_birthdate_year = new JTextField();
+	protected JTextField t_username = new JTextField();
+	protected JPasswordField t_password = new JPasswordField();
+	protected JTextField t_birthdate_day = new JTextField();
+	protected JTextField t_birthdate_month = new JTextField();
+	protected JTextField t_birthdate_year = new JTextField();
+	protected JTextField t_prename = new JTextField();
+	protected JTextField t_surname = new JTextField();
 	//Dropdown Menue um das Herkunftsland auszuwaehlen
 	protected JComboBox<String> d_homecountry;
 	//Radiobuttons um das Geschlecht auszuwaehlen
@@ -52,7 +55,7 @@ public class RegistrationView extends JPanel{
 	 * Konstruktor.
      * @param listener der Actionlistener für die Button. null für keinen
 	 */
-	public RegistrationView(ActionListener listener){
+	public RegistrationView(ActionListener actionlistener, FocusListener focuslistener){
 		
 		//Layout des Frames festlegen
 		setLayout(new BorderLayout());
@@ -63,12 +66,12 @@ public class RegistrationView extends JPanel{
 		
 		//Initialisierung der Buttons
 		b_register = new JButton("Registrieren");
-        if (listener!=null)
-        b_register.addActionListener(listener);
+        if (actionlistener!=null)
+        b_register.addActionListener(actionlistener);
         b_register.setActionCommand("registrate");
 		b_cancel = new JButton("Abbrechen");
-        if (listener !=null)
-        b_cancel.addActionListener(listener);
+        if (actionlistener !=null)
+        b_cancel.addActionListener(actionlistener);
         b_cancel.setActionCommand("cancel");
 		
 		//Initialisierung der Radionbuttons
@@ -93,6 +96,8 @@ public class RegistrationView extends JPanel{
 		//Initialisierung der Labels
 		JLabel l_note = new JLabel("<HTML><BODY>Füllen sie folgendes Formular<BR> aus, um sich zu registrieren: </BODY></HTML>");
 		JLabel l_username = new JLabel("Username: ");
+		JLabel l_prename = new JLabel("Vorname: ");
+		JLabel l_surname = new JLabel("Nachname: ");
 		JLabel l_password = new JLabel("Passwort: ");
 		JLabel l_birthdate = new JLabel("Geburtsdatum: ");
 		JLabel l_homecountry = new JLabel("Herkunftsland: ");
@@ -101,13 +106,15 @@ public class RegistrationView extends JPanel{
 		//Labels in weisser Schrift
 		l_note.setForeground(Color.WHITE);
 		l_username.setForeground(Color.WHITE);
+		l_prename.setForeground(Color.WHITE);
+		l_surname.setForeground(Color.WHITE);
 		l_password.setForeground(Color.WHITE);
 		l_birthdate.setForeground(Color.WHITE);
 		l_homecountry.setForeground(Color.WHITE);
 		l_gender.setForeground(Color.WHITE);
 		
 		//Layout der Panels festlegen
-		pan_input.setLayout(new GridLayout(5, 1, 10, 15));
+		pan_input.setLayout(new GridLayout(7, 1, 10, 5));
 		pan_buttons.setLayout(new FlowLayout());
 		
 		//Buttons in Buttonpanel einfuegen
@@ -120,6 +127,15 @@ public class RegistrationView extends JPanel{
 				"Polen", "Portugal", "Russland", "Schweden", "Schweiz", "Spanien", "Tschechien", "Vereinigte Staaten", 
 				"anderes Land"};
 		d_homecountry = new JComboBox(countries);
+		
+		//Textfelder Focuslistener hinzufuegen
+		t_username.addFocusListener(focuslistener);
+		t_prename.addFocusListener(focuslistener);
+		t_surname.addFocusListener(focuslistener);
+		t_password.addFocusListener(focuslistener);
+		t_birthdate_day.addFocusListener(focuslistener);
+		t_birthdate_month.addFocusListener(focuslistener);
+		t_birthdate_year.addFocusListener(focuslistener);
 		
 		//Geburtstagspanel erzeugen
 		JPanel birthday = new JPanel();
@@ -141,6 +157,10 @@ public class RegistrationView extends JPanel{
 		//Labels, Textfelder, Dropdownmenue und Radiobuttons in das Input Panel einfuegen
 		pan_input.add(l_username);
 		pan_input.add(t_username);
+		pan_input.add(l_prename);
+		pan_input.add(t_prename);
+		pan_input.add(l_surname);
+		pan_input.add(t_surname);
 		pan_input.add(l_password);
 		pan_input.add(t_password);
 		pan_input.add(l_birthdate);
@@ -179,9 +199,14 @@ public class RegistrationView extends JPanel{
             SessionThing s = SessionThing.getInstance();
             s.handleException(e);
         }
+        String prename = t_prename.getText().trim();
+        if (t_prename.getText().trim().isEmpty()) return null;
+        String surname = t_surname.getText().trim();
         ListenerProfile p = new ListenerProfile();
 
-
+        
+        p.setFirstname(prename);
+        p.setLastname(surname);
         int day = Integer.valueOf(t_birthdate_day.getText());
         int month = Integer.valueOf(t_birthdate_month.getText());
         int year = Integer.valueOf(t_birthdate_year.getText());
@@ -205,7 +230,7 @@ public class RegistrationView extends JPanel{
 		register.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//Registrationview in das Frame laden
-		JComponent newContentPane = new RegistrationView(null);
+		JComponent newContentPane = new RegistrationView(null, null);
         newContentPane.setOpaque(true);
         register.setContentPane(newContentPane);
         
