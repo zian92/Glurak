@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import de.glurak.data.Message;
+import de.glurak.data.User.User;
 import de.glurak.database.HibernateDB;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
@@ -25,41 +27,46 @@ public class MessageVController implements ActionListener, ContentController {
      * Konstruktor
      */
     public MessageVController() {
-        messview = new MessageView();
-        messview.b_send.addActionListener(this);
-        messview.b_cancel.addActionListener(this);
+        messview = new MessageView(this);
+    }
+
+    private boolean checkIfMessageValid(Message m){
+        SessionThing s = SessionThing.getInstance();
+        HibernateDB db = s.getDatabase();
+        User u = (User) m.getReceiver();
+        if (u.getUsername().trim().isEmpty()){
+            JOptionPane.showMessageDialog(messview, "Sie haben noch keinen Empfänger eingegeben. Bitte fügen sie einen Empfänger hinzu!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (!db.hasUser(u.getUsername())){
+            JOptionPane.showMessageDialog(messview, "Dieser Empfänger existiert nicht. Bitte geben sie einen existierenden Empfänger an!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (s.getSessionUser().getUsername().equals(u.getUsername())){
+            JOptionPane.showMessageDialog(messview, "Du kannst dir nicht selber eine Nachricht schreiben. Bitte geben sie einen anderen Empfänger an!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (m.getMessage().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(messview, "Sie haben keine Nachricht eingegeben. Bitte schreiben sie zuerst ihre Nachricht!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == messview.b_send) {
-            SessionThing session = SessionThing.getInstance();
-            HibernateDB db = session.getDatabase();
-            // Abfrage, ob ein Empfaenger eingegebeFn wurde
-            if (messview.t_receiver.getText().equals("")) {
-                JOptionPane.showMessageDialog(messview, "Sie haben noch keinen Empfänger eingegeben. Bitte fügen sie einen Empfänger hinzu!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
-            } else {
-                // Abfrage, ob der Empfaenger nicht existiert
-                if (!db.hasUser(messview.t_receiver.getText())) {
-                    JOptionPane.showMessageDialog(messview, "Dieser Empfänger existiert nicht. Bitte geben sie einen existierenden Empfänger an!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
-                } else {
-                    // Abfarge ob der sender der empfaenger ist
-                    if (session.getSessionUser().equals(db.getUserByUsername(messview.t_receiver.getText()))) {
-                        JOptionPane.showMessageDialog(messview, "Du kannst dir nicht selber eine Nachricht schreiben. Bitte geben sie einen anderen Empfänger an!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
-                    } else {
-                        // Abfrage, ob die Nachricht leer ist
-                        if (messview.t_message.getText().equals("")) {
-                            JOptionPane.showMessageDialog(messview, "Sie haben keine Nachricht eingegeben. Bitte schreiben sie zuerst ihre Nachricht!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
-                        } else {
-                            db.createMessage(session.getSessionUser(), db.getUserByUsername(messview.t_receiver.getText()), messview.t_message.getText(), false, null);
-                        }
-                    }
-                }
-            }
-        } else
-            if (e.getSource() == messview.b_cancel) {
-                messview.t_message.setText("");
-                messview.t_receiver.setText("");
-            }
+        if (e.getActionCommand().equals("send")){
+            SessionThing s = SessionThing.getInstance();
+            HibernateDB db = s.getDatabase();
+            Message m = messview.getEnteredMessage();
+            if (!checkIfMessageValid(m)) return;
+            User u = (User) m.getReceiver();
+            User realUser = db.getUserByUsername(u.getUsername());
+            db.createMessage(s.getSessionUser(),realUser,m.getMessage(),false,null);
+            messview.setEnteredMessage(null);
+        }
+        if (e.getActionCommand().equals("cancel")){
+            messview.setEnteredMessage(null);
+        }
     }
 
     /**
