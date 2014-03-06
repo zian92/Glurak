@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JWindow;
 
-public class SplashScreen extends JWindow {
+public class SplashScreen extends JFrame {
 
     public SplashScreen() {
         this.showSplash();
@@ -41,13 +41,14 @@ public class SplashScreen extends JWindow {
         content.setBorder(BorderFactory.createLineBorder(oraRed, 10));
 
         // Display it
+        this.setUndecorated(true);
         setVisible(true);
-        
+
         // wait for init
-        // try {
-        // Thread.sleep(5000);
-        // } catch (Exception e) {
-        // }
+        try {
+            Thread.sleep(5000);
+        } catch (Exception e) {
+        }
     }
 
     public void hideSplashScreen() {

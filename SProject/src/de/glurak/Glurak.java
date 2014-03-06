@@ -11,9 +11,9 @@ import de.glurak.database.HibernateDB;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.login.LoginVController;
 
-public class GlurakStarter {
+public class Glurak {
 
-    private GlurakStarter() {
+    private Glurak() {
         System.out.println("Started");
     }
 
@@ -26,7 +26,7 @@ public class GlurakStarter {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                GlurakStarter glumanda = new GlurakStarter();
+                Glurak glumanda = new Glurak();
                 SplashScreen splash = new SplashScreen();
                 HibernateDB db = SessionThing.getInstance().getDatabase();
 
