@@ -158,6 +158,7 @@ public class LabelProfileView extends JPanel{
 					t_playlist[i].setBackground(Color.black);
 					t_playlist[i].setForeground(Color.white);
 					t_playlist[i].setEditable(false);
+					t_playlist[i].setCaretColor(Color.white);
 					pan_playlists.add(t_playlist[i], e);
 					
 				}
@@ -228,6 +229,7 @@ public class LabelProfileView extends JPanel{
 					t_kuenstler[i].setEditable(false);
 					t_kuenstler[i].setBackground(Color.black);
 					t_kuenstler[i].setForeground(Color.white);
+					t_kuenstler[i].setCaretColor(Color.white);
 					pan_profiledata.add(t_kuenstler[i], f);
 
 				}				

@@ -182,6 +182,7 @@ public class ProfileView extends JPanel{
 				t_playlist[i].setBackground(Color.black);
 				t_playlist[i].setForeground(Color.white);
 				t_playlist[i].setEditable(false);
+				t_playlist[i].setCaretColor(Color.white);
 				pan_topplaylists.add(t_playlist[i], e);
 				
 			}
@@ -224,6 +225,7 @@ public class ProfileView extends JPanel{
 			t_username.setEditable(false);
 			t_username.setBackground(Color.black);
 			t_username.setForeground(Color.white);
+			t_username.setCaretColor(Color.white);
 			pan_profiledata.add(t_username, f);
 			
 			// Vorname
@@ -241,6 +243,7 @@ public class ProfileView extends JPanel{
 			t_firstname.setEditable(false);
 			t_firstname.setBackground(Color.black);
 			t_firstname.setForeground(Color.white);
+			t_firstname.setCaretColor(Color.white);
 			pan_profiledata.add(t_firstname, f);
 			
 			// Nachname
@@ -258,6 +261,7 @@ public class ProfileView extends JPanel{
 			t_lastname.setEditable(false);
 			t_lastname.setBackground(Color.black);
 			t_lastname.setForeground(Color.white);
+			t_lastname.setCaretColor(Color.white);
 			pan_profiledata.add(t_lastname, f);
 			
 			// Geburtstag
@@ -275,6 +279,7 @@ public class ProfileView extends JPanel{
 			t_birthdate.setEditable(false);
 			t_birthdate.setBackground(Color.black);
 			t_birthdate.setForeground(Color.white);
+			t_birthdate.setCaretColor(Color.white);
 			pan_profiledata.add(t_birthdate, f);
 			
 			// Heimatland
@@ -292,6 +297,7 @@ public class ProfileView extends JPanel{
 			t_homecountry.setEditable(false);
 			t_homecountry.setBackground(Color.black);
 			t_homecountry.setForeground(Color.white);
+			t_homecountry.setCaretColor(Color.white);
 			pan_profiledata.add(t_homecountry, f);
 			
 			
