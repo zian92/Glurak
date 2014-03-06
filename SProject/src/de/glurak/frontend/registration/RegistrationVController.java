@@ -69,13 +69,7 @@ public class RegistrationVController implements ActionListener, FocusListener{
 	}
 
 	public void focusGained(FocusEvent e) {
-		regview.t_username.selectAll();
-		regview.t_prename.selectAll();
-		regview.t_surname.selectAll();
-		regview.t_password.selectAll();
-		regview.t_birthdate_day.selectAll();
-		regview.t_birthdate_month.selectAll();
-		regview.t_birthdate_year.selectAll();
+        regview.selectAll();
 	}
 
 	public void focusLost(FocusEvent e) {
