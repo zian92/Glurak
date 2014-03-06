@@ -2,6 +2,8 @@ package de.glurak.frontend.mainFrame.navigation;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 
 import de.glurak.frontend.mainFrame.ContentController;
@@ -16,39 +18,37 @@ public class NavigationVController extends Observable {
 	private NavigationView view;
 	private ContentController contentController;
 	private PromotionVController promotionVController;
+    private Map<String,ContentController> map;
 	
 	/**
 	 * Konstruktor
 	 */
 	public NavigationVController(ContentController promoVContr){
-		view = new NavigationView();
+        map = new HashMap<String, ContentController>();
 		promotionVController = (PromotionVController) promoVContr;
 		
 		ActionListener a = new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				Object src = e.getSource();
-				
-				if (src == view.getEditProfile()) {
-					setContentController(new ProfileVController(true));		
-				} else if (src == view.getShowNews()) {
-					setContentController(promotionVController);		
-				} else if (src == view.getShowPlaylists()) {
-					setContentController(new PlaylistVController());	
-				} else if (src == view.getShowMessages()) {
-					setContentController(new MessageVController());
-				} else if (src == view.getUpload()) {
-					setContentController(new UploadVController());
-				}
+                String name = e.getActionCommand();
+                ContentController c = map.get(name);
+                setContentController(c);
 			}
 		};
-		
-		view.getEditProfile().addActionListener(a);
-		view.getShowNews().addActionListener(a);
-		view.getShowPlaylists().addActionListener(a);
-		view.getShowMessages().addActionListener(a);
-		view.getUpload().addActionListener(a);
+        view = new NavigationView(a);
+        addController(new ProfileVController(true), "Profil");
+        addController(new PlaylistVController(),"Playlist");
+        addController(promotionVController,"News");
+        addController(new MessageVController(),"Narichten");
+        addController(new UploadVController(),"Upload");
 	}
+
+    public void addController(ContentController c, String name){
+        map.put(name,c);
+        view.addButton(name);
+    }
+
+
 
 	public NavigationView getView() {
 		return view;
