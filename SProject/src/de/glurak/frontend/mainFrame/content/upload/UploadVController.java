@@ -36,6 +36,7 @@ public class UploadVController implements ActionListener, ContentController{
 			upview.t_title.setText("");
 			upview.t_artist.setText("");
 			upview.t_album.setText("");
+			upview.d_genre.setSelectedIndex(0);
 		}
 	}
 	

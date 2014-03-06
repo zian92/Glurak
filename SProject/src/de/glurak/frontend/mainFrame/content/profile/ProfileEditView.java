@@ -10,6 +10,9 @@ import java.awt.*;
  */
 public class ProfileEditView extends JPanel{
 
+<<<<<<< HEAD
+}
+=======
 		// Panels
 		private JPanel pan_profileeditview;
 		private JPanel pan_profilepic;
@@ -112,6 +115,7 @@ public class ProfileEditView extends JPanel{
 				t_username.setEditable(false);
 				t_username.setBackground(Color.black);
 				t_username.setForeground(Color.white);
+				t_username.setCaretColor(Color.white);
 				pan_profiledata.add(t_username, e);
 				
 				// Vorname
@@ -128,6 +132,7 @@ public class ProfileEditView extends JPanel{
 				t_firstname = new JTextField();
 				t_firstname.setBackground(Color.black);
 				t_firstname.setForeground(Color.white);
+				t_firstname.setCaretColor(Color.white);
 				pan_profiledata.add(t_firstname, e);
 				
 				// Nachname
@@ -144,6 +149,7 @@ public class ProfileEditView extends JPanel{
 				t_lastname = new JTextField();
 				t_lastname.setBackground(Color.black);
 				t_lastname.setForeground(Color.white);
+				t_lastname.setCaretColor(Color.white);
 				pan_profiledata.add(t_lastname, e);
 				
 				// Geburtstag
@@ -160,6 +166,7 @@ public class ProfileEditView extends JPanel{
 				t_birthdate = new JTextField();
 				t_birthdate.setBackground(Color.black);
 				t_birthdate.setForeground(Color.white);
+				t_birthdate.setCaretColor(Color.white);
 				pan_profiledata.add(t_birthdate, e);
 				
 				// Heimatland
@@ -176,6 +183,7 @@ public class ProfileEditView extends JPanel{
 				t_homecountry = new JTextField();
 				t_homecountry.setBackground(Color.black);
 				t_homecountry.setForeground(Color.white);
+				t_homecountry.setCaretColor(Color.white);
 				pan_profiledata.add(t_homecountry, e);
 				
 				// Einfügen des Buttons b_save
@@ -254,3 +262,4 @@ public class ProfileEditView extends JPanel{
 	        });
 		}
 }
+>>>>>>> 2609bc2a18ab9ed2255e5dba6b33c0e411912fb5
