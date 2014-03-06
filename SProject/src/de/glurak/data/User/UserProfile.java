@@ -37,7 +37,6 @@ public abstract class UserProfile extends Profile implements Serializable {
     protected String email;
     protected String firstname;
     protected String lastname;
-    protected String emailadr;
     protected boolean isFemale;
 
     protected String country;
@@ -66,13 +65,6 @@ public abstract class UserProfile extends Profile implements Serializable {
         this.lastname = lastname;
     }
 
-    public String getEmailadr() {
-        return emailadr;
-    }
-
-    public void setEmailadr(String emailadr) {
-        this.emailadr = emailadr;
-    }
 
     public String getCountry() {
         return country;

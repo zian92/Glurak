@@ -33,7 +33,7 @@ public class MessageViewList extends JList<Message> {
             JLabel message = new JLabel("<html>"+htmlescape(value.getMessage())+"</html>");
             res.add(message,BorderLayout.CENTER) ;
             JLabel from = new JLabel();
-            from.setText("<html><b>From</b>:<i>"+value.getSender().getUsername()+"</i></html>");
+            from.setText("<html><b>From</b>: <i>"+value.getSender().getUsername()+"</i></html>");
             res.add(from,BorderLayout.NORTH);
             JLabel to = new JLabel();
             Reachable r = value.getReceiver();
