@@ -2,6 +2,7 @@ package de.glurak.frontend.mainFrame.content.playlist;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 
 import javax.swing.JComponent;
 import javax.swing.JTable;
@@ -9,7 +10,7 @@ import javax.swing.JTable;
 import de.glurak.data.Playlist;
 import de.glurak.frontend.mainFrame.ContentController;
 
-public class PlaylistVController implements ActionListener, ContentController {
+public class PlaylistVController extends Observable implements ActionListener, ContentController {
 
     private PlaylistView view;
     private Playlist pList;
@@ -22,6 +23,7 @@ public class PlaylistVController implements ActionListener, ContentController {
         view = new PlaylistView();
         view.getBtNext().addActionListener(this);
         view.getBtPrev().addActionListener(this);
+        view.getBtNew().addActionListener(this);
       //  view.setjT(this.fillTable());
         view.setVisible(true);
     }
@@ -38,6 +40,12 @@ public class PlaylistVController implements ActionListener, ContentController {
     		view.nextPage();
     	}else if (e.getActionCommand().equals("prevSlide")){
     		view.prevPage();
+    	}else if(e.getActionCommand().equals("newList")){
+    		System.out.println("PlaylistVCOntr: new List catched");
+    		Playlist p = new Playlist(5, "Pokemon");
+    		view.addPlaylist(p);
+    	}else if(e.getActionCommand().equals("editList")){
+    		
     	}
     	
     }
