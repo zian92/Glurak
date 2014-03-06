@@ -23,13 +23,12 @@ public class PlayQueueView extends JPanel{
 	private JButton 	previousButton;
 	private EJSlider 	positionBar;
 	private JPanel		controllPanel;
-	private JPanel		t;
 	private QueuePanel	queuePanel;
 	private JScrollPane scrollbar;
 	private boolean 	positionChange;
 	
 	public PlayQueueView (){
-		this(null,null);
+		this(null);
 		
 		
 	}
@@ -37,16 +36,16 @@ public class PlayQueueView extends JPanel{
 	 * @param playlist die abzuspielende Playlist
 	 * @param current  das gerade abgespielte Medium
 	 */
-	public PlayQueueView (Playlist playlist,Medium current){
+	public PlayQueueView (Playlist playlist){
 		super();
 		positionChange = false;
-		initComponents(playlist,current);
+		initComponents(playlist);
 	
 	}
 	/**
 	 * initialisiert View f�r die angegebene Playlist
 	 */
-	public void initComponents(Playlist playlist,Medium current){
+	public void initComponents(Playlist playlist){
 		
 		this.setLayout(new BorderLayout());
 		
@@ -64,7 +63,7 @@ public class PlayQueueView extends JPanel{
 		getControllPanel().add(getPreviousButton(),BorderLayout.WEST);
 		
 		if(playlist!=null){
-			initQueueView(playlist,current);}
+			initQueueView(playlist);}
 		
 		
 		
@@ -76,12 +75,14 @@ public class PlayQueueView extends JPanel{
 	/**
 	 * Initialisiert QueueView(Scrollbar+Panels)
 	 * @param playlist die abzuspielende Playlist
-	 * @param current  das gerade abgespielte Medium
 	 */
-	public void initQueueView(Playlist playlist,Medium current){
-		
-		setQueuePanel(new QueuePanel(playlist,current));
-		this.add(getQueuePanel());
+	public void initQueueView(Playlist playlist){
+		if(getQueuePanel()==null){
+		setQueuePanel(new QueuePanel(playlist));
+		this.add(getQueuePanel());}
+		else {
+			getQueuePanel().initComponents(playlist);
+		}
 		scrollbar = new JScrollPane(getQueuePanel().getFirstPanel(),JScrollPane.VERTICAL_SCROLLBAR_NEVER,   
 	        	JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollbar.setLayout(new ScrollPaneLayout());
