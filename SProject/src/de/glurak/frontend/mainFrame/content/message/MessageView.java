@@ -41,6 +41,10 @@ public class MessageView extends JPanel {
         add(new JScrollPane(list), BorderLayout.CENTER);
     }
 
+    public void setMessage(String receiver, String message){
+        writer.setMessage(receiver,message);
+    }
+
     /**
      * Gibt die Naricht aus, die in der Liste in der Position p ist
      * @param p die Position

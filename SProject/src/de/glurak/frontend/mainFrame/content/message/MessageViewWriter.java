@@ -106,4 +106,9 @@ public class MessageViewWriter extends JPanel {
         t_receiver.setText(u.getUsername());
         t_message.setText(t_message.getText());
     }
+
+    public void setMessage(String receiver, String message){
+        t_receiver.setText(receiver);
+        t_message.setText(message);
+    }
 }
