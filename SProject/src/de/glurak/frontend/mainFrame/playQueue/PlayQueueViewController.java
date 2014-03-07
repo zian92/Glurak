@@ -120,17 +120,34 @@ public class PlayQueueViewController {
 			public void mouseReleased(MouseEvent e){
     				for(int i = 0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
     					if(e.getSource()==view.getQueuePanel().getMediumPanelArray()[i]){
-    						if (e.getButton() == 1) { 	
-    							getPlayqueue().setCurrent(i);
-    							view.getQueuePanel().resetButton();
-    							if (player.isPaused()||player.isPlaying()){
-    								player.stop();}
+    						if (e.getButton() == 1) { 
+    							if(e.getClickCount()>=2){
+    								getPlayqueue().setCurrent(i);
+    								view.getQueuePanel().resetButton();
+    								if (player.isPaused()||player.isPlaying()){
+    									player.stop();}
 							
-    							playNew(0);
-    							view.getQueuePanel().resetButton();
+    								playNew(0);
+    								view.getQueuePanel().resetButton();
+    							}
     						}
-    						
-    					}
+    						else{
+    							
+    							if(!getPlayqueue().isCurrent(i)){
+    								getPlayqueue().removeMedium(getPlayqueue().getPlaylist().getMediumList().get(i));
+    							}
+    							else{
+    								if (player.isPaused()||player.isPlaying()){
+    									player.stop();}	
+    								getPlayqueue().removeMedium(getPlayqueue().getPlaylist().getMediumList().get(i));
+    								playNew(0);
+    								}
+    								
+    							}
+    							System.out.println(getPlayqueue());	
+    							refresh();
+    				
+    						}
     				}
     		
     			}

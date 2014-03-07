@@ -29,7 +29,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
 	public ProfileVController (User user) {
 		
 		// parameter überprüfen
-		if (user==null) {
+		if (user==null || user==SessionThing.getInstance().getSessionUser()) {
 			this.user = SessionThing.getInstance().getSessionUser();
 			own = true;
 		} else {
@@ -75,17 +75,20 @@ public class ProfileVController extends Observable implements ActionListener, Co
                 }
             }
         }
-		Playlist[] returnArray = new Playlist[3];
+		Playlist[] returnArray;
 		
 		// die 5 top lists in returnArray schreiben
-		for (int i=0;i<myPlaylists.size();i++) {
-			returnArray[i] = myPlaylists.get(i);
+		if ( myPlaylists.size() < 5){
+			returnArray = new Playlist[myPlaylists.size()];
+			for (int i=0;i<myPlaylists.size();i++) {
+				returnArray[i] = myPlaylists.get(i);
+			}
+		}else {
+			returnArray = new Playlist[5];
+			for (int i=0;i<5;i++) {
+				returnArray[i] = myPlaylists.get(i);
+			}
 		}
-		
-		returnArray[0] = new Playlist(100, "Swag");
-		returnArray[1] = new Playlist(101, "Glurak");
-		returnArray[2] = new Playlist(103, "Yolo");
-		
 		return returnArray;
 	}
 

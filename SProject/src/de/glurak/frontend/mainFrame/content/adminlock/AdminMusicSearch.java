@@ -23,9 +23,11 @@ public class AdminMusicSearch extends MusicSearch {
                 l.setText(value.getTitel());
                 res.add(l,BorderLayout.CENTER);
                 JLabel info=new JLabel();
-                if (value.isLocked())
+                if (value.isLocked()){
                     info.setText("Gesperrt");
-                else
+                    info.setForeground(Color.RED);
+                    l.setForeground(Color.RED);
+                }else
                     info.setText("Nicht gesperrt");
                 res.add(info,BorderLayout.EAST);
                 return res;
