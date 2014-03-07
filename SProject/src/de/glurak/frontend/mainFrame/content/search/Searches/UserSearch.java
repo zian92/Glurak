@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Suche für einen User
  *@author Entscheider
  */
 public class UserSearch implements Searchable<User> {

@@ -53,7 +53,11 @@ public class SearchView extends JPanel{
 		}
 		
 	}
-	
+
+    /**
+     * Setzt bei jeden SearchTab den Suchtext
+     * @param text der neue Suchtext
+     */
 	public void setAllText(String text) {
 		for (SearchTab s : tabs) {
 			s.setSearchText(text);
