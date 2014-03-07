@@ -2,10 +2,13 @@ package de.glurak.frontend.mainFrame.content.search.Searches;
 
 import de.glurak.data.Genre;
 import de.glurak.data.Medium;
+import de.glurak.data.Playqueue;
 import de.glurak.database.DBSearch;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.content.search.Searchable;
+import de.glurak.frontend.mainFrame.playQueue.PlayQueueView;
+import de.glurak.frontend.mainFrame.playQueue.PlayQueueViewController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,5 +43,9 @@ public class MusicSearch implements Searchable<Medium> {
 
     public ContentController getChangeController(Medium field) {
         return null;
+    }
+
+    public void otherDoubleClickAction(Medium value) {
+        PlayQueueViewController.getInstance().addMedium(value);
     }
 }

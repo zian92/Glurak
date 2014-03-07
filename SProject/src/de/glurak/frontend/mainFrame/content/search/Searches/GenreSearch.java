@@ -45,4 +45,8 @@ public class GenreSearch implements Searchable<Genre> {
     public ContentController getChangeController(Genre field) {
         return null;
     }
+
+    public void otherDoubleClickAction(Genre value) {
+
+    }
 }

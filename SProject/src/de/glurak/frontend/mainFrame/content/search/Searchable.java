@@ -31,4 +31,5 @@ public interface Searchable<T> {
      */
     public ContentController getChangeController(T field);
 
+    public void otherDoubleClickAction (T value);
 }

@@ -43,16 +43,13 @@ public class SearchTab<T> extends JPanel {
 	
 	private Searchable searchKey;
 	private String name;
-    private SearchView parentView;
 	
 	/**
 	 * Konstruktor
 	 * @param sk das Searchable mit den Funktionen und Daten für diese Suche, null falls keine Funktionalität
      * @param name der Name der in Tab angeigt wird
-     * @param pV das SearchView das diesen Tab enhält, null falls kein
 	 */
-	public SearchTab(Searchable<T> sk, String name, SearchView pV) {
-        this.parentView=pV;
+	public SearchTab(Searchable<T> sk, String name) {
 		
 		this.name = name;
 		this.searchKey = sk;
@@ -78,35 +75,25 @@ public class SearchTab<T> extends JPanel {
 		add(northPane, BorderLayout.NORTH);
         if (sk !=null && sk.getRenderer()!=null)
             searchlist.setCellRenderer(sk.getRenderer());
-
-
-        searchlist.addMouseListener(new MouseListener() {
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount()==2 && searchKey!=null){
-                    T val = (T) searchlist.getSelectedValue();
-                    ContentController c = searchKey.getChangeController(val);
-                    if (parentView!=null && c !=null)
-                        parentView.notifyNewControllerArrivedListener(c);
-                }
-            }
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
 		add(new JScrollPane(searchlist), BorderLayout.CENTER);
 	}
+
+    public T getSelectedItem(){
+        T res = ((T) searchlist.getSelectedValue());
+        return res;
+    }
+
+    public Searchable<T> getSearchable(){
+        return this.searchKey;
+    }
+
+    public void addMouseListener(MouseListener m){
+        searchlist.addMouseListener(m);
+    }
+
+    public void removeMouseListener(MouseListener m){
+       searchlist.removeMouseListener(m);
+    }
 	
 	public void setSearchText(String searchText) {
 		t_search.setText(searchText);

@@ -13,6 +13,9 @@ import java.io.IOException;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import de.glurak.data.Medium;
+import de.glurak.data.Playlist;
 import de.glurak.data.Playqueue;
 import de.glurak.feature.sound.PlayerController;
 import de.vdheide.mp3.MP3Properties;
@@ -126,12 +129,7 @@ public class PlayQueueViewController {
     							playNew(0);
     							view.getQueuePanel().resetButton();
     						}
-    						/*else{
-
-    							view.getQueuePanel().showInformations(i);
-    							
-    						}
-    						*/
+    						
     					}
     				}
     		
@@ -176,20 +174,46 @@ public class PlayQueueViewController {
             });
 	}
 	
-	/**reagiert auf Veränderungen der PlayQueue
+	/**reagiert auf neue Playlist
 	 * und aktualisiert View+ Listener
 	 * @param PlayQueue
 	 */
 	public void refresh(Playqueue playqueue){
-		if(playqueue!=null){
 			setPlayqueue(playqueue);
-			view.initQueueView(playqueue);
+			refresh();
+	}
+	
+	/**fügt einzelnes Medium der aktuellenPlayqueue hinzu
+	 * 
+	 * @param medium
+	 */
+	public void addMedium(Medium medium){
+		if(getPlayqueue()==null){
+			Playlist pl= new Playlist();
+			pl.addMedium(medium);
+			setPlayqueue(new Playqueue(pl));
+		}
+		else{
+			getPlayqueue().add(medium);				
+		}
+		refresh();
+	}
+	
+	/**
+	 * reagiert intern au Änderungen der Playlist
+	 */
+	private void refresh() {
+		
+		if(getPlayqueue()!=null){
+			view.initQueueView(getPlayqueue());
 			for(int i = 0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
 				view.getQueuePanel().getMediumPanelArray()[i].addMouseListener(m);
 			}
-		}
+		}	
 	}
-	
+
+
+
 	public PlayerController getPlayer() {
 		return player;
 	}

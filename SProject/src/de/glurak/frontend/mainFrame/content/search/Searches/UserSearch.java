@@ -44,4 +44,8 @@ public class UserSearch implements Searchable<User> {
         ContentController c = new ProfileVController(field);
         return c;
     }
+
+    public void otherDoubleClickAction(User value) {
+
+    }
 }

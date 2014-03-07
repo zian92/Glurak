@@ -56,10 +56,10 @@ public class Uploader {
      * @return
      * @throws IOException
      */
-    public void saveMusic(Medium[] medien) {
+    public void saveMusic(Medium[] medien, String albumName) {
         File[] files = this.getFileArrayFromMedium(medien);
         for (int i = 0; i < files.length; i++) {
-            String artistPath = Query.FOLDER_MUSIC + medien[i].getOwner().getUsername() + "/";
+            String artistPath = Query.FOLDER_MUSIC + medien[i].getOwner().getUsername() + "/" + albumName + "/";
             medien[i].setFileName(this.saveFile(new File(medien[i].getFileName()), artistPath).getPath());
         }
     }
@@ -76,6 +76,7 @@ public class Uploader {
                     Files.copy(file.toPath(), path.toPath(), StandardCopyOption.REPLACE_EXISTING);
                     b = false;
                 } catch (IOException e) {
+                    b = true;
                 }
             }
             i++;
@@ -177,9 +178,12 @@ public class Uploader {
         chooser.setFileFilter(new FileNameExtensionFilter(this.makeFileExtensionString(fileExtensions), fileExtensions));
         chooser.setFileFilter(new FileNameExtensionFilter(null, fileExtensions));
         File[] files = null;
-        int result = chooser.showSaveDialog(comp);
+        int result = chooser.showOpenDialog(comp);
         if (result == JFileChooser.APPROVE_OPTION) {
             files = chooser.getSelectedFiles();
+            if (files.length == 0) {
+                files = new File[] { chooser.getSelectedFile(), };
+            }
         } else
             if (result == JFileChooser.CANCEL_OPTION) {
                 return new File[0];
