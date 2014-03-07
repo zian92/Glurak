@@ -5,8 +5,10 @@ import java.awt.event.ActionEvent;
 import java.util.Observable;
 
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 
 import de.glurak.data.Playlist;
+import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.NextContent;
 
@@ -40,6 +42,26 @@ public class PlaylistEditVController extends Observable implements ActionListene
 			//nextContent = c;
 			setChanged();
 			notifyObservers();
+		}else if (e.getActionCommand().equals("save")){
+			if (!playeditview.NameAppropriate()){
+				JOptionPane.showMessageDialog(playeditview,"Ihr Playlistname ist unangemessen.","Fehlerhafte Eingabe",JOptionPane.ERROR_MESSAGE);
+				playeditview.refreshName();
+			}else{
+				// Save playlist
+				if ( playeditview.getPlaylist() == null) {
+					Playlist npl = new Playlist();
+					npl.setName(playeditview.getPlaylistName());
+					npl.setOwner(SessionThing.getInstance().getSessionUser());
+					SessionThing.getInstance().getDatabase().addPlaylist(npl, null);
+					if (nextContent instanceof PlaylistVController){
+						((PlaylistVController) nextContent).refreshView();
+					}
+					
+					setChanged();
+					notifyObservers();
+				}
+				
+			}
 		}
 	}
 

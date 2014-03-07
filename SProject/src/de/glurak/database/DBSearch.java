@@ -10,6 +10,7 @@ import de.glurak.data.User.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +36,16 @@ public class DBSearch {
                 "SELECT k FROM Medium k WHERE UPPER(k.titel) Like UPPER('%"+title+"%')", Medium.class);
         //q1.setParameter("n",g);
         return q1.getResultList();
+    }
+
+    public List<Medium> searchForMusicByInterpret(String name){
+        List<User> userList = searchForUserByUsername(name);
+        List<Medium> res = new ArrayList<Medium>();
+        for (User u : userList){
+            List<Medium> other =db.getMedienFromUser(u);
+            res.addAll(other);
+        }
+        return res;
     }
 
     public List<User> searchForUserByUsername(String name){

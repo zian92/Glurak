@@ -6,18 +6,18 @@ import java.awt.*;
 
 /**
  * Die HeaderView ist dazu da die das oberste Panel anzuzeigen.
- * Dieses enthält unter anderem die Suchefunktion.
- * @author Christopher Distelkämper
+ * Dieses enthÃ¤lt unter anderem die Suchefunktion.
+ * @author Christopher DistelkÃ¤mper
  * Date: 26.02.2014
  */
 public class HeaderView extends JPanel{
 	
-	// Textfeld für die Sucheingabe
+	// Textfeld fÃ¼r die Sucheingabe
 	private JTextField t_search;
-	// Button für die Sucheingabe 
+	// Button fÃ¼r die Sucheingabe und Logout
 	private JButton b_search;
 	private JButton b_logout;
-	// Panel des Headers
+	// Panel des Headers und Logout-Buttons
 	private JPanel pan_header;
 	private JPanel pan_logout;
 	
@@ -26,40 +26,35 @@ public class HeaderView extends JPanel{
 	 */
 	public HeaderView(){
 		
-setLayout(new GridLayout(1,2,600,0));
+		setLayout(new GridLayout());
 		
 		// Initialisierung des Panels
-		pan_header = new JPanel();
-		pan_header.setSize(512,50);
+		pan_header = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		// pan_header.setSize(1024,50);
 		
 		// Initialisierung des Textfeldes
 		t_search = new JTextField();
 		t_search.setText(" Sucheingabe ");
-		t_search.setSize(85,20);
-		t_search.setBackground(Color.LIGHT_GRAY);
-		t_search.setForeground(Color.blue);
+		t_search.setPreferredSize(new Dimension(85,20));
+		// t_search.setBackground(Color.LIGHT_GRAY);
+		// t_search.setForeground(Color.blue);
 		
 		pan_header.add(t_search);
 		
 		// Initialisierung des Suchbuttons
 		b_search = new JButton("Suchen");
-		b_search.setBackground(Color.black);
-		b_search.setForeground(Color.white);
+		// b_search.setBackground(Color.black);
+		// b_search.setForeground(Color.white);
+		b_logout = new JButton("Logout");
 		
 		pan_header.add(b_search);
 		
-		b_logout = new JButton("Logout");
-		b_logout.setBackground(Color.black);
-		b_logout.setForeground(Color.white);
-		
-		pan_logout = new JPanel();
-		pan_logout.setSize(512, 50);
+		pan_logout = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		pan_logout.add(b_logout);
 		
-		// Hinzufügen des Panels zur ContentPane
+		// HinzufÃ¼gen des Panels zur ContentPane
 		add(pan_header);
 		add(pan_logout);
-		
 		setVisible(true);
 		
 	}
@@ -70,6 +65,10 @@ setLayout(new GridLayout(1,2,600,0));
 	
 	public JButton getSearchButton() {
 		return b_search;
+	}
+	
+	public JButton getLogoutButton() {
+		return b_logout;
 	}
 	
 

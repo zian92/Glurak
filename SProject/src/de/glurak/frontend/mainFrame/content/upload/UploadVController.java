@@ -31,6 +31,7 @@ public class UploadVController implements ActionListener, ContentController {
         if (ae.getSource() == upview.b_choosefile) {
             uploader = Uploader.getInstance();
             music_file = uploader.selectSingleMusic(upview);
+            upview.t_file.setText(music_file.getName());
         } else
             if (ae.getSource() == upview.b_upload) {
                 if ((upview.t_title.getText().isEmpty()) || (upview.t_artist.getText().isEmpty()) || (upview.t_album.getText().isEmpty())) {
@@ -40,13 +41,20 @@ public class UploadVController implements ActionListener, ContentController {
                         JOptionPane.showMessageDialog(upview, "Bitte wählen sie eine Datei aus, die hochgeladen werden soll!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
                     } else {
                         Medium musicFile = new Medium();
-                        session.getDatabase().registrateMedium(musicFile, null);
                         musicFile.setFileName(music_file.getAbsolutePath());
                         musicFile.setTitel(upview.t_title.getText());
                         musicFile.setOwner(session.getSessionUser());
                         musicFile.setMyGenre(session.getDatabase().genreByTitle((String) upview.d_genre.getSelectedItem()));
+
+                        session.getDatabase().registrateMedium(musicFile, null);
                         // TODO Album!
                         uploader.saveMusic(new Medium[] { musicFile, }, "");
+                        music_file=null;
+                        upview.t_file.setText("");
+                        upview.t_title.setText("");
+                        upview.t_artist.setText("");
+                        upview.t_album.setText("");
+                        upview.d_genre.setSelectedIndex(0);
                     }
             } else
                 if (ae.getSource() == upview.b_cancel) {
@@ -57,7 +65,7 @@ public class UploadVController implements ActionListener, ContentController {
                         upview.t_album.setText("");
                         upview.d_genre.setSelectedIndex(0);
                     } else {
-                        music_file.delete();
+                        music_file=null;
                         upview.t_file.setText("");
                         upview.t_title.setText("");
                         upview.t_artist.setText("");

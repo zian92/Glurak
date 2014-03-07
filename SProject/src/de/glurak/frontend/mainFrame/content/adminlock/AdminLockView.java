@@ -36,6 +36,10 @@ public class AdminLockView extends JPanel {
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
+    public void search(){
+        musicSearchTab.search();
+    }
+
     public Medium getSelectedMedium(){
         return musicSearchTab.getSelectedItem();
     }
