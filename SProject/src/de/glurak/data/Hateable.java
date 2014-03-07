@@ -26,13 +26,13 @@ public interface Hateable {
 	public void like(User liker);
 	
 	/**
-	 * Inkrementiert den Hate-Count.
+	 * Gibt die Anzahl der Hates zurück
 	 * @return Hate-Count
 	 */
 	public int hateCount();
 	
 	/**
-	 * Inkrementiert den Like-Count.
+	 * Gibt die Anzahl der Likes zurück
 	 * @return Like-Count
 	 */
 	public int likeCount();

@@ -62,9 +62,6 @@ public class PlayQueueView extends JPanel{
 		getControllPanel().add(getNextButton(),BorderLayout.EAST);
 		getControllPanel().add(getPreviousButton(),BorderLayout.WEST);
 		
-		if(playqueue!=null){
-			initQueueView(playqueue);}
-		
 		
 		
 		this.add(getControllPanel(),BorderLayout.WEST);

@@ -25,8 +25,11 @@ public class Uploader {
      * Erstellt ein Object vom Typ Uploader. Dabei wird ueberprueft ob die benoetigte ordnerstruktur existiert und ggf. erstellt.
      */
     private Uploader() {
-        // lege nicht vorhandene, aber benoetigte Ordner an
-        for (String s : Query.FOLDERS) {
+        this.createFolders(Query.FOLDERS);
+    }
+
+    private void createFolders(String[] folders) {
+        for (String s : folders) {
             File dir = new File(s);
             if (!dir.exists()) {
                 dir.mkdirs();
@@ -53,13 +56,31 @@ public class Uploader {
      * @return
      * @throws IOException
      */
-    public void saveMusic(Medium[] medien) throws IOException {
+    public void saveMusic(Medium[] medien) {
         File[] files = this.getFileArrayFromMedium(medien);
         for (int i = 0; i < files.length; i++) {
-            File path = new File(Query.FOLDER_MUSIC + files[i].getName());
-            Files.copy(files[i].toPath(), path.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            medien[i].setFileName(path.toPath().toString());
+            String artistPath = Query.FOLDER_MUSIC + medien[i].getOwner().getUsername() + "/";
+            medien[i].setFileName(this.saveFile(new File(medien[i].getFileName()), artistPath).getPath());
         }
+    }
+
+    private File saveFile(File file, String artistPath) {
+        File path = null;
+        this.createFolders(new String[] { artistPath, });
+        boolean b = true;
+        int i = 0;
+        while (b) {
+            path = new File(artistPath + i + file.getName());
+            if (!path.exists()) {
+                try {
+                    Files.copy(file.toPath(), path.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    b = false;
+                } catch (IOException e) {
+                }
+            }
+            i++;
+        }
+        return path;
     }
 
     /**
