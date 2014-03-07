@@ -75,17 +75,13 @@ public class ProfileVController extends Observable implements ActionListener, Co
                 }
             }
         }
-		Playlist[] returnArray = new Playlist[3];
+		Playlist[] returnArray = new Playlist[5];
 		
 		// die 5 top lists in returnArray schreiben
-		for (int i=0;i<myPlaylists.size();i++) {
+		for (int i=0;i<5;i++) {
 			returnArray[i] = myPlaylists.get(i);
 		}
-		
-		returnArray[0] = new Playlist(100, "Swag");
-		returnArray[1] = new Playlist(101, "Glurak");
-		returnArray[2] = new Playlist(103, "Yolo");
-		
+
 		return returnArray;
 	}
 
