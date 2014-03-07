@@ -1,6 +1,10 @@
 package de.glurak;
 
+import java.security.NoSuchAlgorithmException;
+
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import de.glurak.data.Genre;
 import de.glurak.data.User.AdminProfile;
@@ -24,8 +28,8 @@ public class Glurak {
     private static Glurak glumanda;
     private static SplashScreen splash;
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 splash = new SplashScreen();
@@ -60,9 +64,11 @@ public class Glurak {
         // userA
         User userA = new User();
         userA.setUsername("Olaf");
-        /*
-         * try { userA.setPassword("olaf"); } catch (NoSuchAlgorithmException e) { e.printStackTrace(); }
-         */
+        try {
+            userA.setPassword("olaf");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
         db.registrateUser(userA, null);
         AdminProfile profileA = new AdminProfile();
         db.registrateProfile(profileA, null);

@@ -25,7 +25,7 @@ public class ProfileEditVController extends Observable implements ActionListener
 	public ProfileEditVController(User user){
 		
 		this.user = user;
-		profileEditView = new ProfileView(true, 0, user, true);
+		profileEditView = new ProfileView(user, 0,  true);
 		
 		// Setzen der ActionListener
 		profileEditView.b_edit.addActionListener(this);
@@ -57,7 +57,7 @@ public class ProfileEditVController extends Observable implements ActionListener
 			user.getProfile().setLastname(profileEditView.t_lastname.getText());
 			user.getProfile().setEmail(profileEditView.t_email.getText());
 			user.getProfile().setCountry(profileEditView.t_homecountry.getText());
-			nextContent = new ProfileVController(true);
+			nextContent = new ProfileVController(null);
 			setChanged();
 			notifyObservers();
 		} 

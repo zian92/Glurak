@@ -3,15 +3,9 @@ package de.glurak;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,22 +22,12 @@ public class SplashScreen extends JFrame {
         int x = (screen.width - width) / 2;
         int y = (screen.height - height) / 2;
         setBounds(x, y, width, height);
-        // image
-        // BufferedImage img = null;
-        // try {
-        // img = ImageIO.read(new File(Query.SPLASHSCREEN_IMAGE));
-        // } catch (IOException e) {
-        // e.printStackTrace();
-        // }
-        // this.setContentPane(new JLabel(new ImageIcon(img)));
-        // JLabel image = new JLabel(new ImageIcon(img));
-        // c.add(image, BorderLayout.CENTER);
 
         JLabel image = new JLabel(Query.APPLICATION_NAME, new ImageIcon(Query.SPLASHSCREEN_IMAGE), JLabel.LEFT);
-
-        // this.setContentPane(new JLabel(new ImageIcon(img)));
-        // JLabel image = new JLabel(new ImageIcon(img));
-
+        Font boldFont = new Font("Papyrus", Font.BOLD, 18);
+        image.setFont(boldFont);
+        
+        
         c.add(image, BorderLayout.CENTER);
         this.setUndecorated(true);
         c.setOpaque(false);

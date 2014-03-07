@@ -32,22 +32,23 @@ public class ProfileVController extends Observable implements ActionListener, Co
 	
 	/**
 	 * Constructor
-	 * @param own Wird das eigene Profil angezeigt?
+	 * @param own der Nutzer der angezeigt wird. Falls null der aktuelel User
 	 * @param anzPlaylists <= 5, falls ein User mehr Playlisten hat sind diese über den "More"-Button verfügbar.
 	 */
-	public ProfileVController(boolean own, int anzPlaylists){
+	public ProfileVController(User own, int anzPlaylists){
 		
-		if (own) {
+		if (own==null) {
 			user = SessionThing.getInstance().getSessionUser();
+            own = user;
 		} else {
-			// fremdes profile laden TODO
+			user = own;
 		}
 		
-		profileview = new ProfileView(own, anzPlaylists, user, false);
+		profileview = new ProfileView(user, anzPlaylists, false);
 		
 		// Hinzufügen der ActionListener
 		profileview.b_moreplaylists.addActionListener(this);
-		if (own){
+		if (own==null||own==SessionThing.getInstance().getSessionUser()){
 			profileview.b_edit.addActionListener(this);
 		}
 		else{
@@ -67,7 +68,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
 		
 	}
 	
-	public ProfileVController(boolean own) {
+	public ProfileVController(User own) {
 		this(own,0);
 	}
 	

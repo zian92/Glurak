@@ -7,6 +7,7 @@ import de.glurak.Query;
 import de.glurak.data.User.ListenerProfile;
 import de.glurak.data.User.Profile;
 import de.glurak.data.User.User;
+import de.glurak.frontend.SessionThing;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -62,10 +63,10 @@ public class ProfileView extends JPanel{
 	
 	/**
 	 * Constructor
-	 * @param own Wird das eigene Profil angezeigt oder ein anderes?
+	 * @param user der User der angezeigt wird.
 	 * @param anzPlaylists <= 5, falls ein User mehr Playlisten hat, sind diese über den "More"-Button verfügbar.
 	 */
-	public ProfileView(boolean own, int anzPlaylists, User user, boolean edit){
+	public ProfileView(User user, int anzPlaylists,  boolean edit){
 		
 		
 		// Initialisieren Panel pan_profileview
@@ -118,7 +119,7 @@ public class ProfileView extends JPanel{
 		
 		    // Initialisieren der Buttons b_message, b_follow, b_edit
 			
-			if (own){  // Falls das eigene Profil angezeigt werden soll, nur b_edit anzeigen
+			if (user==null||user== SessionThing.getInstance().getSessionUser()){  // Falls das eigene Profil angezeigt werden soll, nur b_edit anzeigen
 				if (edit) {
 					b_edit = new JButton("Save");
 				} else {

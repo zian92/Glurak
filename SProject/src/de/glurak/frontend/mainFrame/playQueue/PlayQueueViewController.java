@@ -115,22 +115,23 @@ public class PlayQueueViewController {
 		};
 		
 		m= new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
+			public void mouseReleased(MouseEvent e){
     				for(int i = 0;i<getPlaylist().getMediumList().size();i++){
     					if(e.getSource()==view.getQueuePanel().getMediumPanelArray()[i]){
     						if (e.getClickCount() >= 2) { 	
     							getPlaylist().setCurrent(i);
+    							view.getQueuePanel().resetButton();
     							if (player.isPaused()||player.isPlaying()){
     								player.stop();}
 							
     							playNew(0);
     							view.getQueuePanel().resetButton();
-    						}else{
+    						}/*else{
     							
     							
     							view.getQueuePanel().showInformations(i);
     							
-    						}
+    						}*/
     			
     					}
     				}
