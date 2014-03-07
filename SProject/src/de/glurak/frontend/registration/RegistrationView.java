@@ -136,6 +136,9 @@ public class RegistrationView extends JPanel{
         r_gender_f = new JRadioButton("weiblich");
 
         //Die Radiobuttons gruppieren
+        ButtonGroup r_group = new ButtonGroup();
+        r_group.add(r_gender_m);
+        r_group.add(r_gender_f);
         JPanel pan_radio = new JPanel();
         pan_radio.setBackground(panColor);
         r_gender_m.setBackground(panColor);
