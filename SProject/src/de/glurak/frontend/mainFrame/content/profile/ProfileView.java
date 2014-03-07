@@ -85,7 +85,7 @@ public class ProfileView extends JPanel{
 		// Initialisieren Panel pan_profileviewW
 		pan_profileview = new JPanel(new GridBagLayout());
 		pan_profileview.setPreferredSize(new Dimension(724, 545));
-		pan_profileview.setBackground(Color.yellow);
+		pan_profileview.setBackground(FrontendColors.DARK_GREY);
 		
 		// Layout-Restraiktionen festlegen.
 		GridBagConstraints c = new GridBagConstraints();
@@ -165,7 +165,7 @@ public class ProfileView extends JPanel{
 			    d.gridy = 1;
 			    d.gridwidth = 1;
 			    d.gridheight = 1;
-			    b_follow = new JButton("Sperren");
+			    b_block = new JButton("Sperren");
 			    pan_profilepic.add(b_block, d);
 		    }
 		}
@@ -192,7 +192,6 @@ public class ProfileView extends JPanel{
 		pan_topplaylists.add(l_top5, e);
 		
 		// Playlist buttons hinzufügen
-		System.out.println("PV - 195 - Top5list length = " + top5Playlists.length );
 		for (int i = 0; i < top5Playlists.length; i++){
 			
 			e.gridx = 0;
@@ -209,7 +208,6 @@ public class ProfileView extends JPanel{
 		pan_profiledata = new JPanel(new GridBagLayout());	
 		pan_profiledata.setPreferredSize(new Dimension(300, 200));
 		pan_profiledata.setBackground(FrontendColors.DARK_GREY);
-		pan_profiledata.setBorder(BorderFactory.createLineBorder(Color.black));
 			
 		// Layout-Restriktionen festlegen.
 		GridBagConstraints f = new GridBagConstraints();
@@ -218,34 +216,42 @@ public class ProfileView extends JPanel{
 
 		// Label und Textfelder initalisieren
 		JLabel l_userInfo = new JLabel("Benutzerdaten:");
+		l_userInfo.setForeground(Color.white);
 		
 		l_firstname = new JLabel("Vorname:");
+		l_firstname.setForeground(Color.white);
 		t_firstname = new JTextField(this.user.getProfile().getFirstname());
 		t_firstname.setEditable(edit);
 		
 		l_lastname = new JLabel("Nachname:");
+		l_lastname.setForeground(Color.white);
 		t_lastname = new JTextField(user.getProfile().getLastname());
 		t_lastname.setEditable(edit);
 		
 		l_birthdate = new JLabel("Geburtstag:");
+		l_birthdate.setForeground(Color.white);
         t_birthdate = new JTextField();
         if (user.getProfile() instanceof  ListenerProfile)
             t_birthdate.setText(((ListenerProfile) user.getProfile()).getBirthdate());
         t_birthdate.setEditable(false);
 		
 		l_email = new JLabel("Email:");
+		l_email.setForeground(Color.white);
 		t_email = new JTextField(user.getProfile().getEmail());
 		t_email.setEditable(edit);
 		
 		l_homecountry = new JLabel("Heimatland:");
+		l_homecountry.setForeground(Color.white);
 		t_homecountry = new JTextField(user.getProfile().getCountry());
 		t_homecountry.setEditable(false);
 		
 		l_password = new JLabel("Neues Passwort:");
+		l_password.setForeground(Color.white);
 		t_password = new JPasswordField();
 		t_password.setEditable(edit);
 		
 		l_passwordConfirm = new JLabel("Passwort bestätigen:");
+		l_passwordConfirm.setForeground(Color.white);
 		t_passwordConfirm = new JPasswordField();
 		t_passwordConfirm.setEditable(edit);
 		
