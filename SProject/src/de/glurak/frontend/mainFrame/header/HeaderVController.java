@@ -23,6 +23,7 @@ public class HeaderVController extends Observable implements ActionListener, Mou
 		headview.getSearchField().addMouseListener(this);
 		headview.getSearchField().addActionListener(this);
 		headview.getSearchButton().addActionListener(this);
+		headview.getLogoutButton().addActionListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -32,6 +33,11 @@ public class HeaderVController extends Observable implements ActionListener, Mou
 			setChanged();
 			this.searchKey = headview.getSearchField().getText();
 			notifyObservers();
+		}
+		
+		// Logout-Button betätigt?
+		if (e.getSource() == headview.getLogoutButton()) {
+			
 		}
 		
 	}
