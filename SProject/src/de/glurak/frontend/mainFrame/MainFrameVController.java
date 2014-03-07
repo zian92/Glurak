@@ -7,6 +7,7 @@ import java.util.Observer;
 import de.glurak.Query;
 import de.glurak.data.Medium;
 import de.glurak.data.Playlist;
+import de.glurak.data.Playqueue;
 import de.glurak.frontend.mainFrame.content.news.PromotionVController;
 import de.glurak.frontend.mainFrame.content.search.SearchVController;
 import de.glurak.frontend.mainFrame.header.HeaderVController;
@@ -44,10 +45,11 @@ public class MainFrameVController implements Observer{
 			pl.getMediumList().add(m1);
 			pl.getMediumList().add(m2);
 			pl.getMediumList().add(m3);
+				
 		
 		// andere Controller laden
 		contentController = new PromotionVController();
-		playerController= new PlayQueueViewController(pl);
+		playerController= new PlayQueueViewController(new Playqueue(pl));
 		headerController= new HeaderVController();
 		navigationController = new NavigationVController(contentController);
 		
