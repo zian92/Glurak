@@ -43,4 +43,8 @@ public class LabelSearch implements Searchable<LabelProfile> {
     public ContentController getChangeController(LabelProfile field) {
         return null;
     }
+
+    public void otherDoubleClickAction(LabelProfile value) {
+
+    }
 }

@@ -3,11 +3,13 @@ package de.glurak;
 import java.security.NoSuchAlgorithmException;
 
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import de.glurak.data.Album;
 import de.glurak.data.Genre;
+import de.glurak.data.Medium;
 import de.glurak.data.User.AdminProfile;
+import de.glurak.data.User.ListenerProfile;
 import de.glurak.data.User.User;
 import de.glurak.database.HibernateDB;
 import de.glurak.frontend.SessionThing;
@@ -26,9 +28,8 @@ public class Glurak {
         LoginVController logControll = new LoginVController(Query.APPLICATION_NAME);
     }
 
-
     public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
-        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        // UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 splash = new SplashScreen();
@@ -75,5 +76,44 @@ public class Glurak {
         profileA.setFirstname("Olaf");
         profileA.setLastname("Koehler");
         userA.setProfile(profileA);
+
+        // UserB
+        User userB = new User();
+        userB.setUsername("Creator");
+        db.registrateUser(userB, null);
+        ListenerProfile profileB = new ListenerProfile();
+        db.registrateProfile(profileB, null);
+        profileB.setFemale(true);
+        profileB.setFirstname("Emma");
+        profileB.setUser(userB);
+
+        // musik
+        Album a = new Album();
+        a.setName("Unicorn Rainbow");
+        a.setOwner(userB);
+        a.setYearOfPublication("1999");
+
+        Medium m = new Medium();
+        m.setFileName(Query.FOLDER_MUSIC + "Pink Fluffy Unicorns.mp3");
+        m.setMyGenre(db.genreByTitle(Query.INITIALE_GENRE[2]));
+        m.setTitel("Pink Fluffy Unicorns");
+        db.registrateMedium(m, null);
+        a.getMediumList().add(m);
+
+        m = new Medium();
+        m.setFileName(Query.FOLDER_MUSIC + "Go Far Kid.mp3");
+        m.setMyGenre(db.genreByTitle(Query.INITIALE_GENRE[2]));
+        m.setTitel("Go Far Kid");
+        db.registrateMedium(m, null);
+        a.getMediumList().add(m);
+
+        m = new Medium();
+        m.setFileName(Query.FOLDER_MUSIC + "Pokemon Theme.mp3");
+        m.setMyGenre(db.genreByTitle(Query.INITIALE_GENRE[2]));
+        m.setTitel("Pokemon Theme");
+        db.registrateMedium(m, null);
+        a.getMediumList().add(m);
+        // register Medien
+        db.addPlaylist(a, null);
     }
 }

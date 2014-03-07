@@ -1,7 +1,5 @@
 package de.glurak.frontend.mainFrame.playQueue;
 
-import java.awt.Component;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -12,12 +10,10 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import de.glurak.Query;
 import de.glurak.data.Medium;
 import de.glurak.data.Playlist;
 import de.glurak.data.Playqueue;
@@ -41,19 +37,24 @@ public class PlayQueueViewController {
     private final static int 	FINISHED_BY_END = 4;
     private ActionListener		a;
     private MouseListener		m;
+    private static PlayQueueViewController instance= null;
 	
 	
-    
+    public static PlayQueueViewController getInstance(){
+		if(instance==null){
+			instance = new PlayQueueViewController();
+		}   	
+    	return instance;  	
+    }
     
     
     
 	/**Konstrukter mit Initialisierung der Listener
 	 * @param playlist abzuspielende Playlist
 	 */
-	public PlayQueueViewController (Playqueue playqueue) {
-		view = new PlayQueueView(playqueue);
+	private PlayQueueViewController () {
+		view = new PlayQueueView(null);
 		player = new PlayerController();
-		this.setPlayqueue(playqueue);
 		
 		a = new ActionListener() {
 			
@@ -119,7 +120,7 @@ public class PlayQueueViewController {
 			public void mouseReleased(MouseEvent e){
     				for(int i = 0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
     					if(e.getSource()==view.getQueuePanel().getMediumPanelArray()[i]){
-    						if (e.getClickCount() >= 2) { 	
+    						if (e.getButton() == 1) { 	
     							getPlayqueue().setCurrent(i);
     							view.getQueuePanel().resetButton();
     							if (player.isPaused()||player.isPlaying()){
@@ -127,13 +128,8 @@ public class PlayQueueViewController {
 							
     							playNew(0);
     							view.getQueuePanel().resetButton();
-    						}/*else{
-    							
-    							
-    							view.getQueuePanel().showInformations(i);
-    							
-    						}*/
-    			
+    						}
+    						
     					}
     				}
     		
@@ -141,23 +137,17 @@ public class PlayQueueViewController {
 			
 		};
 		
-		view.getQueuePanel().addMouseListener(m);
 		view.getPositionBar().addChangeListener(c);
 		view.getPlayButton().addActionListener(a);
 		view.getNextButton().addActionListener(a);
 		view.getPreviousButton().addActionListener(a);
 		if(getPlayqueue()!=null){	
+			view.getQueuePanel().addMouseListener(m);
 			for(int i = 0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
-				//view.getPlayQueueButton()[i].addActionListener(a);
 				view.getQueuePanel().getMediumPanelArray()[i].addMouseListener(m);
 			}
 		}
 	}
-	
-	public PlayQueueViewController () {
-		this(null);
-	}
-	
 	/**
 	 * Fügt Listener für Veränderungen beim PausablePlayer hinzu
 	 */
@@ -184,18 +174,46 @@ public class PlayQueueViewController {
             });
 	}
 	
-	/**reagiert auf Veränderungen der PlayQueue
+	/**reagiert auf neue Playlist
 	 * und aktualisiert View+ Listener
 	 * @param PlayQueue
 	 */
-	public void refresh(Playqueue PlayQueue){
-		setPlayqueue(playqueue);
-		view.initQueueView(playqueue);
-		for(int i = 0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
-			view.getQueuePanel().getMediumPanelArray()[i].addMouseListener(m);
-		}
+	public void refresh(Playqueue playqueue){
+			setPlayqueue(playqueue);
+			refresh();
 	}
 	
+	/**fügt einzelnes Medium der aktuellenPlayqueue hinzu
+	 * 
+	 * @param medium
+	 */
+	public void addMedium(Medium medium){
+		if(getPlayqueue()==null){
+			Playlist pl= new Playlist();
+			pl.addMedium(medium);
+			setPlayqueue(new Playqueue(pl));
+		}
+		else{
+			getPlayqueue().add(medium);				
+		}
+		refresh();
+	}
+	
+	/**
+	 * reagiert intern au Änderungen der Playlist
+	 */
+	private void refresh() {
+		
+		if(getPlayqueue()!=null){
+			view.initQueueView(getPlayqueue());
+			for(int i = 0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
+				view.getQueuePanel().getMediumPanelArray()[i].addMouseListener(m);
+			}
+		}	
+	}
+
+
+
 	public PlayerController getPlayer() {
 		return player;
 	}

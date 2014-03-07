@@ -49,7 +49,8 @@ public class MainFrameVController implements Observer{
 		
 		// andere Controller laden
 		contentController = new PromotionVController();
-		playerController= new PlayQueueViewController(new Playqueue(pl));
+		PlayQueueViewController.getInstance();
+		PlayQueueViewController.getInstance().refresh(new Playqueue(pl));
 		headerController= new HeaderVController();
 		navigationController = new NavigationVController(contentController);
 		
@@ -61,7 +62,7 @@ public class MainFrameVController implements Observer{
 		// Views anhängen
 		view.getContent().add( contentController.getView());
 		view.getHeader().add(headerController.getView());
-		view.getPlayer().add( playerController.getView());
+		view.getPlayer().add(PlayQueueViewController.getInstance().getView());
 		view.getNavigation().add(navigationController.getView());
 	}
 

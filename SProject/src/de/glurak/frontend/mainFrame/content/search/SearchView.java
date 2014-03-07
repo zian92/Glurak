@@ -4,6 +4,8 @@ import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.content.search.Searches.*;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,24 +37,49 @@ public class SearchView extends JPanel{
            a.gotNewController(nController);
        }
     }
+
+    private JTabbedPane pane;
 	
 	public SearchView(){
 		
 		setLayout(new BorderLayout());
-		tabs.add(new SearchTab(new GenreSearch(), "Genre",this));
-		tabs.add(new SearchTab(new MusicSearch(), "Musik",this));
-		tabs.add(new SearchTab(new UserSearch(), "User",this));
-		tabs.add(new SearchTab(new PlaylistSearch(), "Playlist",this));
-		tabs.add(new SearchTab(new LabelSearch(), "Label",this));
-		
-		JTabbedPane pane = new JTabbedPane();
-		add(pane, BorderLayout.CENTER);
-		
-		for (SearchTab s: tabs) {
-			pane.addTab(s.getName(), s);
-		}
+        pane = new JTabbedPane();
+        add(pane, BorderLayout.CENTER);
+
+        addEntry(new SearchTab(new GenreSearch(), "Genre"));
+        addEntry(new SearchTab(new MusicSearch(), "Musik"));
+        addEntry(new SearchTab(new UserSearch(), "User"));
+        addEntry(new SearchTab(new PlaylistSearch(), "Playlist"));
+        addEntry(new SearchTab(new LabelSearch(), "Label"));
 		
 	}
+
+    private class TabMouseAdapter<T> extends MouseAdapter{
+        private SearchTab<T> myTab;
+        public TabMouseAdapter(SearchTab<T> tab){
+            myTab=tab;
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e){
+            if (e.getClickCount()==2 && myTab.getSearchable()!=null){
+                T val = myTab.getSelectedItem();
+                if (val == null) return;
+                myTab.getSearchable().otherDoubleClickAction(val);
+                //Controller wechseln falls nötig
+                ContentController c = myTab.getSearchable().getChangeController(val);
+                if (c!=null)
+                    notifyNewControllerArrivedListener(c);
+            }
+        }
+
+    }
+
+    public <T> void addEntry(SearchTab<T> s){
+       tabs.add(s);
+       pane.add(s);
+       s.addMouseListener(new TabMouseAdapter<T>(s));
+    }
 
     /**
      * Setzt bei jeden SearchTab den Suchtext
