@@ -41,4 +41,8 @@ public class PlaylistSearch implements Searchable<Playlist> {
     public ContentController getChangeController(Playlist field) {
         return null;
     }
+
+    public void otherDoubleClickAction(Playlist value) {
+
+    }
 }
