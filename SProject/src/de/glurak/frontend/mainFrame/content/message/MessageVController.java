@@ -42,6 +42,10 @@ public class MessageVController implements ActionListener, ContentController {
         messview = new MessageView(this, s);
     }
 
+    public void setMessage(String receiver, String message){
+        messview.setMessage(receiver,message);
+    }
+
     /**
      * Prüft ob das temporäre Message-Objekt m gütige Angaben besitzt. Außerdem wird dem Nutzer noch Dialoge angezeigt.
      * 
