@@ -15,6 +15,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -41,12 +42,14 @@ public class SearchTab<T> extends JPanel {
 	
 	private Searchable searchKey;
 	private String name;
+    private SearchView parentView;
 	
 	/**
 	 * Konstruktor
 	 * @param sk
 	 */
-	public SearchTab(Searchable<T> sk, String name) {
+	public SearchTab(Searchable<T> sk, String name, SearchView pV) {
+        this.parentView=pV;
 		
 		this.name = name;
 		this.searchKey = sk;
@@ -78,7 +81,8 @@ public class SearchTab<T> extends JPanel {
                 if (e.getClickCount()==2){
                     T val = (T) searchlist.getSelectedValue();
                     ContentController c = searchKey.getChangeController(val);
-                    //TODO ContentController c anzeigen
+                    if (parentView!=null && c !=null)
+                        parentView.notifyNewControllerArrivedListener(c);
                 }
             }
             public void mousePressed(MouseEvent e) {

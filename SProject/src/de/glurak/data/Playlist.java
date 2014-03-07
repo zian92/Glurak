@@ -81,44 +81,6 @@ public class Playlist implements Serializable,Hateable{
 	}
 	
 
-    //TODO: !!! DIE getCurrent funktionen und ähnliche gehören hier nicht hin !!!!!!
-	
-	/**
-	 * Gibt aktuelles Medium zurück
-	 * @return Medium der MediumList and der Stelle index
-	 */
-	public Medium getCurrent() {
-		return this.getMediumList().get(this.index);
-	}
-	
-	/** Setzt aktuelles Medium
-	 * @param index des neuen aktuellen Mediums
-	 */
-	public void setCurrent(int index){
-		this.index = index%this.getMediumList().size();
-		
-	}
-	/**
-	 * Setzt index++
-	 * Gibt nächstes Medium zurück
-	 * @return medium an der Stelle index+1
-	 */
-	public Medium getNext() {
-		this.index= (index+1)%this.getMediumList().size();
-		return this.getMediumList().get(index);
-	}
-	
-	/**
-	 * Gibt vorheriges Medium zurück
-	 * @return medium an der Stelle index-1
-	 */
-	public Medium getPrevious() {
-		this.index--;
-		if(index<0){index=this.getMediumList().size()-1;}
-		return this.getMediumList().get(index);
-	}
-
-    //TODO: !! JA ALLE DA OBEN !! SIE SOLLTEN IN EINE PLAYQUEUE-KLASSE DIE DIE PLAYLIST IMPORTIERT !!!!!!!!!!!!!!!
 	public void add(int index, Medium medium) {
 		this.getMediumList().add(index, medium);
 	}

@@ -7,7 +7,6 @@ import de.glurak.Query;
 import de.glurak.data.User.ListenerProfile;
 import de.glurak.data.User.Profile;
 import de.glurak.data.User.User;
-import de.glurak.frontend.SessionThing;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -63,10 +62,10 @@ public class ProfileView extends JPanel{
 	
 	/**
 	 * Constructor
-	 * @param user der User der angezeigt wird.
+	 * @param own Wird das eigene Profil angezeigt oder ein anderes?
 	 * @param anzPlaylists <= 5, falls ein User mehr Playlisten hat, sind diese über den "More"-Button verfügbar.
 	 */
-	public ProfileView(User user, int anzPlaylists,  boolean edit){
+	public ProfileView(User user, boolean own, int anzPlaylists, boolean edit){
 		
 		
 		// Initialisieren Panel pan_profileview
@@ -106,20 +105,21 @@ public class ProfileView extends JPanel{
 			pan_picture.setBackground(Color.pink);
 			pan_profilepic.add(pan_picture, d);
 			
-			BufferedImage img = null;
-			try {
-				img = ImageIO.read(new File(user.getProfile().getPictureFileNameOrDefaultPictureName()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			
-			l_userPic = new JLabel(new ImageIcon(img));
-			pan_picture.add(l_userPic);
+//			BufferedImage img = null;
+//			try {
+//				img = ImageIO.read(new File(user.getProfile().getPictureFileNameOrDefaultPictureName()));
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			
+//			l_userPic = new JLabel(new ImageIcon(img));
+//			pan_picture.add(l_userPic);
 		
 		    // Initialisieren der Buttons b_message, b_follow, b_edit
 			
-			if (user==null||user== SessionThing.getInstance().getSessionUser()){  // Falls das eigene Profil angezeigt werden soll, nur b_edit anzeigen
+			if (own){  // Falls das eigene Profil angezeigt werden soll, nur b_edit anzeigen
 				if (edit) {
 					b_edit = new JButton("Save");
 				} else {

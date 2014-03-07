@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 public class MessageViewWriter extends JPanel {
 
     protected JTextField t_receiver = new JTextField();
-    protected JTextArea t_message = new JTextArea();
+    protected JTextArea t_message = new JTextArea(4,50);
     // Scrolltabelle fuer das Nachrichtenfeld
     private JScrollPane s_message = new JScrollPane(t_message);
     // Buttons
@@ -56,6 +56,9 @@ public class MessageViewWriter extends JPanel {
         pan_buttons.add(b_send);
         pan_buttons.add(b_cancel);
 
+        //Schriftart des Nachrichtenfeldes aendern
+        t_message.setFont(new Font("Arial", Font.BOLD, 12));
+        
         // Label und Textfeld in das Empfaengerpanel hinzufuegen
         pan_receiver.add(l_receiver);
         pan_receiver.add(t_receiver);

@@ -29,26 +29,34 @@ public class ProfileVController extends Observable implements ActionListener, Co
 	private ListenerProfile profile;
 	private ContentController nextContent;
 	private User user;
+	private boolean own;
 	
 	/**
 	 * Constructor
 	 * @param own der Nutzer der angezeigt wird. Falls null der aktuelel User
 	 * @param anzPlaylists <= 5, falls ein User mehr Playlisten hat sind diese über den "More"-Button verfügbar.
 	 */
-	public ProfileVController(User own, int anzPlaylists){
+	public ProfileVController(User user, int anzPlaylists){
 		
-		if (own==null) {
-			user = SessionThing.getInstance().getSessionUser();
-            own = user;
+		// parameter überprüfen
+		if (user==null) {
+			this.user = SessionThing.getInstance().getSessionUser();
+			own = true;
 		} else {
-			user = own;
+			// überprüfen ob es das eigene Profil ist
+			if (user==SessionThing.getInstance().getSessionUser()) {
+				own = true;
+			} else {
+				own = false;
+				this.user = user;
+			}
 		}
 		
-		profileview = new ProfileView(user, anzPlaylists, false);
+		profileview = new ProfileView(this.user, own, anzPlaylists, false);
 		
 		// Hinzufügen der ActionListener
 		profileview.b_moreplaylists.addActionListener(this);
-		if (own==null||own==SessionThing.getInstance().getSessionUser()){
+		if (own) {
 			profileview.b_edit.addActionListener(this);
 		}
 		else{

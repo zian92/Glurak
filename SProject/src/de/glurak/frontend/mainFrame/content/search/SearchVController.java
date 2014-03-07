@@ -2,17 +2,19 @@ package de.glurak.frontend.mainFrame.content.search;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Observable;
 
 import javax.swing.JComponent;
 
 import de.glurak.frontend.mainFrame.ContentController;
+import de.glurak.frontend.mainFrame.NextContent;
 
 /**
  * Diese Klasse stellt dem SearchView ihre Funktionalität zur Verfügung.
  * @author Christopher Distelkämper
  * Date: 06.03.2014
  */
-public class SearchVController implements  ContentController {
+public class SearchVController extends Observable implements  ContentController , NewControllerArrivedListener{
 
 	private SearchView searchview;
 	
@@ -21,40 +23,18 @@ public class SearchVController implements  ContentController {
 	 */
 	public SearchVController() {
 		searchview = new SearchView();
-		
-		
+		searchview.addNewControllerArrivedListener(this);
 	}
-
 
 	public SearchView getView() {
 		return searchview;
 	}
-	
-	
-	/**
-	 * Suche
-	 * @param genre
-	 * @param user
-	 * @param music
-	 * @param artist
-	 * @param playlist
-	 */
-	public void search(String genre, String user, String music, String artist, String playlist){
-		// Suche nach Ergebnissen in der Datenbank
-		if (genre != ""){
-			
-		}
-		if (user != ""){
-			
-		}
-		if (music != ""){
-			
-		}
-		if (artist != ""){
-			
-		}
-		if (playlist != ""){
-			
-		}
-	}
+
+    private ContentController nextController;
+
+    public void gotNewController(ContentController c) {
+        nextController=c;
+        this.setChanged();
+        this.notifyObservers(c);
+    }
 }
