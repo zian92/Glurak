@@ -23,7 +23,7 @@ public class UploadVController implements ActionListener, ContentController{
 	
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource() == upview.b_choosefile){
-			uploader.getInstance();
+			uploader = Uploader.getInstance();
 			uploader.selectMusic(upview);
 		}else if(ae.getSource() == upview.b_upload){
 			if((upview.t_title.getText().isEmpty()) || (upview.t_artist.getText().isEmpty()) || (upview.t_album.getText().isEmpty())){

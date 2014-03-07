@@ -14,19 +14,18 @@ import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.login.LoginVController;
 
 public class Glurak {
+    private static Glurak glumanda;
+    private static SplashScreen splash;
 
     private Glurak() {
-        System.out.println("Started");
     }
 
-    private void OpenInterface() {
+    private void openInterface() {
         // Create GUI
         @SuppressWarnings("unused")
         LoginVController logControll = new LoginVController(Query.APPLICATION_NAME);
     }
 
-    private static Glurak glumanda;
-    private static SplashScreen splash;
 
     public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
        // UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -43,7 +42,7 @@ public class Glurak {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 splash.hideSplashScreen();
-                glumanda.OpenInterface();
+                glumanda.openInterface();
             }
         });
 

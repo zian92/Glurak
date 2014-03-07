@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Suche für das LabelProfil
  * @author Entscheider
  */
 public class LabelSearch implements Searchable<LabelProfile> {

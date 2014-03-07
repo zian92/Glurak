@@ -4,12 +4,17 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Toolkit;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import de.glurak.feature.FontLoader;
 
 public class SplashScreen extends JFrame {
 
@@ -22,12 +27,24 @@ public class SplashScreen extends JFrame {
         int x = (screen.width - width) / 2;
         int y = (screen.height - height) / 2;
         setBounds(x, y, width, height);
-
+        // font
+        Font font = null;
+        try {
+            font = new FontLoader().loadFontFromFile(Query.SPLASHSCREEN_FONT);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        font = font.deriveFont(18f);
+        font = font.deriveFont(Font.BOLD);
+        // image
         JLabel image = new JLabel(Query.APPLICATION_NAME, new ImageIcon(Query.SPLASHSCREEN_IMAGE), JLabel.LEFT);
-        Font boldFont = new Font("Papyrus", Font.BOLD, 18);
-        image.setFont(boldFont);
-        
-        
+        image.setFont(font);
+
+        // Panel
         c.add(image, BorderLayout.CENTER);
         this.setUndecorated(true);
         c.setOpaque(false);
