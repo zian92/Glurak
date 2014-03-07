@@ -18,12 +18,10 @@ public class AdminLockViewController extends Observable implements ContentContro
         view = new AdminLockView(this,null);
     }
 
-    @Override
     public JComponent getView() {
         return view;
     }
 
-    @Override
     public void actionPerformed(ActionEvent e) {
         if (view.getSelectedMedium()==null) return;
         if (e.getActionCommand().equals("lock")){
