@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 import java.util.Observable;
 
 import javax.swing.BorderFactory;
@@ -30,7 +31,7 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
     private ContentController nextContent;
     private Playlist pList;
     private final String[] tableHeader = { "asdf", "sadf", "asdf", };
-
+    
     /**
      * Konstruktor
      */
@@ -40,6 +41,7 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
         
       //  view.setjT(this.fillTable());
         view.setVisible(true);
+        initfillView();
     }
 
     private JTable fillTable() {
@@ -75,23 +77,54 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
      *											 Test-Functions
      * ====================================================================================================
      */
-	private Playlist createTestPlaylist(){
+	private Playlist createTestPlaylist(int i){
 		// neuer Test Owner
-		User u1 = new User();
-		u1.setUsername("Horst");
-		u1.setProfile(new ListenerProfile());
-		// neue Test Medien
-		Medium m1 = new Medium(900, "PokeTheme", "", u1);
-		Medium m2 = new Medium(600, "Pokemon Endingtheme","", u1);
-		// neue Playlist
 		Playlist p = new Playlist();
-		p.setName("Pokemon");
-		p.addMedium(m1);
-		p.addMedium(m2);
+		switch (i){
+		case 1:
+			User u1 = new User();
+			u1.setUsername("Horst");
+			u1.setProfile(new ListenerProfile());
+			// neue Test Medien
+			Medium m1 = new Medium(900, "PokeTheme", "", u1);
+			Medium m2 = new Medium(600, "Pokemon Endingtheme","", u1);
+			// neue Playlist
+			
+			p.setName("Pokemon");
+			p.addMedium(m1);
+			p.addMedium(m2);
+			break;
+		case 2:
+			User u2 = new User();
+			u2.setUsername("Maya");
+			u2.setProfile(new ListenerProfile());
+			// neue Test Medien
+			Medium m21 = new Medium(900, "PonySong", "", u2);
+			Medium m22 = new Medium(600, "Stiupid PonySong","", u2);
+			// neue Playlist
+			p.setName("Pony Tales");
+			p.addMedium(m21);
+			p.addMedium(m22);
+			break;
+		default:
+			p = null;
+			break;
+		}
+	
 		
 		return p;
 	}
 	
+	
+	public void initfillView(){
+		List<Playlist> list = SessionThing.getInstance().getSessionUser().getMyPlaylists();
+		view.fillView(list);
+	}
+	
+	public void refreshView(){
+		List<Playlist> list = SessionThing.getInstance().getSessionUser().getMyPlaylists();
+		view.refreshView(list);
+	}
 	
     /* ====================================================================================================
      *											 Action-Handling
@@ -107,7 +140,7 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 	    		
 	    	}else if(e.getActionCommand().equals("newList")){
 	    		
-	    		Playlist p = createTestPlaylist();
+	    		Playlist p = createTestPlaylist(0);
 	    		    		
 	    		nextContent = new PlaylistEditVController(null, this);
 				setChanged();
@@ -122,9 +155,14 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 	    		view.addPlaylist(p); */
 	    		
 	    	}else if(e.getActionCommand().equals("editList")){
-	    		Playlist p = new Playlist();
-	    		p.setName("Gaga");
-	    		SessionThing.getInstance().getDatabase().addPlaylist(p, null);
+	    		Playlist p = null;
+	    		if (Math.random()*100 < 50){
+	    			p = createTestPlaylist(1);
+	    		}else{
+	    			p = createTestPlaylist(2);
+	    		}
+	    		
+	    		//SessionThing.getInstance().getDatabase().addPlaylist(p, null);
 	    		view.addPlaylist(p);
 	    	}
 	    	
@@ -134,11 +172,16 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 		// TODO Auto-generated method stub
 		PlaylistView.PlaylistLabel  l = (PlaylistView.PlaylistLabel) e.getSource();
 		if (e.getClickCount() > 1){
+			nextContent = new PlaylistEditVController(l.getPlaylist(), this);
+			setChanged();
+			notifyObservers();
+			/*
 			l.setBorder(BorderFactory.createRaisedBevelBorder());
 			view.getTextLabel().setText(l.getText() );
+			*/
 		}else {
 			
-			view.getTextLabel().setText("" + l.getPlaylistID());
+			//view.getTextLabel().setText("" + l.getPlaylistID());
 		}
 		
 		

@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import de.glurak.FrontendColors;
@@ -21,16 +23,17 @@ import de.glurak.data.Playlist;
 
 public class PlaylistEditView extends JPanel{
 	
-	private JLabel 	lab_playlistname, lab_itemCount, lab_;
-	
-	private JTable 				 tab_media;
+	private JLabel 				lab_itemCount, lab_;
+    private JTextField			field_name;
+	private JTable 				tab_media;
 	private String[] 			columnNames = {" Titel ", "Künstler"};
 	private DefaultTableModel 	tabmod_address;
 	private String 				tableEntries[][];
 	
-	private JButton bt_cancle, bt_delete, bt_rename;
-	private Playlist plRef;
-	private ActionListener lisRef;
+	private JButton bt_cancle, bt_delete, bt_save;
+	
+	private Playlist 		plRef = null;
+	private ActionListener 	lisRef;
 	
 	public PlaylistEditView(ActionListener l){
 		super();
@@ -56,36 +59,51 @@ public class PlaylistEditView extends JPanel{
 		pan_header.setBackground(Color.GREEN);
 		pan_header.setBounds(0, 0, 600, 150);
 		
-		lab_playlistname = new JLabel();
-    	lab_playlistname.setForeground(Color.WHITE);
-    	//lab_playlistname.setFont(new Font("Verdana", Font.BOLD, 24));
-    	lab_playlistname.setFont(Query.VERDANA.deriveFont(24f));;
+	  	field_name = new JTextField("\"Name eingeben\" ", 15);
+	  	//field_name.set
+	  	field_name.setBackground(FrontendColors.DARK_GREY);
+	  	field_name.setForeground(Color.WHITE);
+	  //	field_name.setOpaque(false);
+	  	field_name.setBorder(null);
+
+    	//field_name.setForeground(Color.WHITE);
+    	field_name.setFont(Query.VERDANA.deriveFont(28f));;
+		
+		
+		//lab_playlistname = new JLabel();
+    	//lab_playlistname.setForeground(Color.WHITE);
+    	//lab_playlistname.setFont(Query.VERDANA.deriveFont(24f));;
     	
-    	lab_itemCount = new JLabel();
+    	lab_itemCount = new JLabel("Anzahl Songs: 0");
     	lab_itemCount.setForeground(Color.WHITE);
     	lab_itemCount.setFont(Query.VERDANA.deriveFont(12f));
     	
-    	bt_cancle = new JButton("Abbrechen");
+    	bt_cancle = new JButton(" Abbrechen ");
     	bt_cancle.setActionCommand("cancel");
     	bt_cancle.addActionListener(lisRef);
     	
-    	bt_rename = new JButton("Umbenennen");
-    	bt_rename.setActionCommand("rename");
-    	bt_rename.addActionListener(lisRef);
+    	bt_save = new JButton(" Speichern ");
+    	bt_save.setActionCommand("save");
+    	bt_save.addActionListener(lisRef);
     	
+    	bt_delete = new JButton(" Löschen ");
+    	bt_delete.setActionCommand("delete");
+    	bt_delete.addActionListener(lisRef);
     	
     	//pan_header.add(bt_cancle, BorderLayout.WEST);
     	constr.gridx = 0;
     	constr.gridy = 0;
-    	
-    	pan_header.add(bt_rename, constr);
+    	pan_header.add(bt_save, constr);
     	constr.gridx = 0;
     	constr.gridy = 1;
+    	pan_header.add(bt_delete, constr);
+    	constr.gridx = 0;
+    	constr.gridy = 2;
     	pan_header.add(bt_cancle, constr);
     	constr.gridx = 1;
     	constr.gridy = 0;
     	constr.gridheight = 2;
-    	pan_header.add(lab_playlistname, constr);
+    	pan_header.add(field_name, constr);
     	constr.gridx = 1;
     	constr.gridy = 2;
     	pan_header.add(lab_itemCount, constr);
@@ -105,12 +123,16 @@ public class PlaylistEditView extends JPanel{
 			fillView();
 		}
 	}
-	
-
-	
+		
+	/**
+	 * Füllt die Tabelle der PlaylistEditView mit Daten aus Medien
+	 * der Playlist dieser Klasseninstanz;
+	 * @inv Wird nur aufgeruffen, wenn eine Playlist gesetzt ist.
+	 */
 	private void fillView(){
-		lab_playlistname.setText(plRef.getName());
-		lab_itemCount.setText("Songs: " + plRef.getMediumList().size());
+		field_name.setText(plRef.getName());
+		//field_name.setEditable(false);
+		lab_itemCount.setText("Anzahl Songs: " + plRef.getMediumList().size());
 		if (plRef.getMediumList().size() > 0){
 			
 			for (int i = 0; i <plRef.getMediumList().size(); i++){
@@ -125,12 +147,30 @@ public class PlaylistEditView extends JPanel{
 		
 	}
 	
-	/**
-	 * Erzeugt eine Tabelle und füllt diese mit Informationen
-	 * aus den Elementen der Playlist
-	 */
-	private void showMediumList(){
-	
+	public Playlist getPlaylist(){
+		return plRef;
 	}
 	
+	public String getPlaylistName(){
+		return field_name.getText();
+	}
+	
+	public void refreshName(){
+		field_name.setText(" \"Name eingeben\" ");
+	}
+	
+	/**
+	 * Prüft, ob eine Änderung des Playlistnamens erwünscht ist.
+	 * @return Falsch, wenn den Playlistname leer, unverändert oder == " Name eingeben " ist.
+	 */
+	public boolean NameAppropriate(){
+		if (field_name.getText().isEmpty() ||
+				field_name.getText().contains("Name eingeben") ||
+				field_name.getText().contains("Penis") ||
+				field_name.getText().contains("penis")){
+			return false;
+		}else{
+			return true;
+		}
+	}
 }
