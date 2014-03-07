@@ -40,11 +40,12 @@ public class UploadVController implements ActionListener, ContentController {
                         JOptionPane.showMessageDialog(upview, "Bitte wählen sie eine Datei aus, die hochgeladen werden soll!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
                     } else {
                         Medium musicFile = new Medium();
-                        session.getDatabase().registrateMedium(musicFile, null);
                         musicFile.setFileName(music_file.getAbsolutePath());
                         musicFile.setTitel(upview.t_title.getText());
                         musicFile.setOwner(session.getSessionUser());
                         musicFile.setMyGenre(session.getDatabase().genreByTitle((String) upview.d_genre.getSelectedItem()));
+
+                        session.getDatabase().registrateMedium(musicFile, null);
                         // TODO Album!
                         uploader.saveMusic(new Medium[] { musicFile, }, "");
                         music_file=null;
