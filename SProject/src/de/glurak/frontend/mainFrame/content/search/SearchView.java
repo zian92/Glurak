@@ -46,8 +46,10 @@ public class SearchView extends JPanel{
         pane = new JTabbedPane();
         add(pane, BorderLayout.CENTER);
 
-        addEntry(new SearchTab(new GenreSearch(), "Genre"));
+
         addEntry(new SearchTab(new MusicSearch(), "Musik"));
+        addEntry(new SearchTab(new MusicInterpretSearch(), "Musik von Interpreten"));
+        addEntry(new SearchTab(new GenreSearch(), "Genre"));
         addEntry(new SearchTab(new UserSearch(), "User"));
         addEntry(new SearchTab(new PlaylistSearch(), "Playlist"));
         addEntry(new SearchTab(new LabelSearch(), "Label"));
