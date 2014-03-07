@@ -31,7 +31,7 @@ public class SplashScreen extends JFrame {
         setBounds(x, y, width, height);
 
         JLabel image = new JLabel(Query.APPLICATION_NAME, new ImageIcon(Query.SPLASHSCREEN_IMAGE), JLabel.LEFT);
-        Font boldFont = new Font("Gungsuh", Font.BOLD, 18);
+        Font boldFont = new Font("Papyrus", Font.BOLD, 18);
         image.setFont(boldFont);
         
         
