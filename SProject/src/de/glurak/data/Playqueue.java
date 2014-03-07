@@ -28,6 +28,25 @@ public class Playqueue {
 	public void add(Medium medium){
 	 getPlaylist().addMedium(medium);	
 	}
+	
+	public boolean isCurrent(int index){
+		
+		return(this.index==index);
+	}
+	
+	public void removeMedium(Medium medium){
+		/*if(medium==getCurrent()){
+			this.index= (index)%this.getPlaylist().getMediumList().size();	
+			
+		}
+		*/
+		getPlaylist().getMediumList().remove(medium);	
+		System.out.println(index);
+	}
+		
+	 
+		
+	
 	/**
 	 * Gibt aktuelles Medium zurück
 	 * @return Medium der MediumList and der Stelle index
