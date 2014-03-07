@@ -1,6 +1,6 @@
 package de.glurak;
 
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
 import de.glurak.data.Genre;
 import de.glurak.data.User.AdminProfile;
@@ -24,8 +24,9 @@ public class Glurak {
     private static Glurak glumanda;
     private static SplashScreen splash;
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
+        UIManager.setLookAndFeel(
+                UIManager.getSystemLookAndFeelClassName());
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 splash = new SplashScreen();
