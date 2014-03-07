@@ -62,7 +62,7 @@ public class MainFrameVController implements Observer{
 		// Views anhängen
 		view.getContent().add( contentController.getView());
 		view.getHeader().add(headerController.getView());
-		view.getPlayer().add( playerController.getView());
+		view.getPlayer().add(PlayQueueViewController.getInstance().getView());
 		view.getNavigation().add(navigationController.getView());
 	}
 

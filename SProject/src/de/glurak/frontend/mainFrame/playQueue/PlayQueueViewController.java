@@ -139,12 +139,12 @@ public class PlayQueueViewController {
 			
 		};
 		
-		view.getQueuePanel().addMouseListener(m);
 		view.getPositionBar().addChangeListener(c);
 		view.getPlayButton().addActionListener(a);
 		view.getNextButton().addActionListener(a);
 		view.getPreviousButton().addActionListener(a);
 		if(getPlayqueue()!=null){	
+			view.getQueuePanel().addMouseListener(m);
 			for(int i = 0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
 				view.getQueuePanel().getMediumPanelArray()[i].addMouseListener(m);
 			}
@@ -180,11 +180,13 @@ public class PlayQueueViewController {
 	 * und aktualisiert View+ Listener
 	 * @param PlayQueue
 	 */
-	public void refresh(Playqueue PlayQueue){
-		setPlayqueue(playqueue);
-		view.initQueueView(playqueue);
-		for(int i = 0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
-			view.getQueuePanel().getMediumPanelArray()[i].addMouseListener(m);
+	public void refresh(Playqueue playqueue){
+		if(playqueue!=null){
+			setPlayqueue(playqueue);
+			view.initQueueView(playqueue);
+			for(int i = 0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
+				view.getQueuePanel().getMediumPanelArray()[i].addMouseListener(m);
+			}
 		}
 	}
 	
