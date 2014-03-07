@@ -37,7 +37,6 @@ public class MusicSearch implements Searchable<Medium> {
         };
     }
 
-    @Override
     public ContentController getChangeController(Medium field) {
         return null;
     }

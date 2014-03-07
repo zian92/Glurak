@@ -59,7 +59,6 @@ public class SearchTab<T> extends JPanel {
 		northPane.add(b_search);
 
         b_search.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 searchlist_model.clear();
                 List<T> res = searchKey.searchFor(t_search.getText());
