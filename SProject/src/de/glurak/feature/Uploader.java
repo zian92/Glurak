@@ -25,8 +25,11 @@ public class Uploader {
      * Erstellt ein Object vom Typ Uploader. Dabei wird ueberprueft ob die benoetigte ordnerstruktur existiert und ggf. erstellt.
      */
     private Uploader() {
-        // lege nicht vorhandene, aber benoetigte Ordner an
-        for (String s : Query.FOLDERS) {
+        this.createFolders(Query.FOLDERS);
+    }
+
+    private void createFolders(String[] folders) {
+        for (String s : folders) {
             File dir = new File(s);
             if (!dir.exists()) {
                 dir.mkdirs();
@@ -63,6 +66,7 @@ public class Uploader {
 
     private File saveFile(File file, String artistPath) {
         File path = null;
+        this.createFolders(new String[] { artistPath, });
         boolean b = true;
         int i = 0;
         while (b) {
