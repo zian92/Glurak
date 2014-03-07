@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Suche für das Medium
  * @author Entscheider
  */
 public class MusicSearch implements Searchable<Medium> {

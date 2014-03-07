@@ -15,11 +15,13 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Ein Tab in der SearchView
  * @author Entscheider
  * @param <T> Generik der Anzeigedaten
  */
@@ -41,12 +43,16 @@ public class SearchTab<T> extends JPanel {
 	
 	private Searchable searchKey;
 	private String name;
+    private SearchView parentView;
 	
 	/**
 	 * Konstruktor
-	 * @param sk
+	 * @param sk das Searchable mit den Funktionen und Daten für diese Suche, null falls keine Funktionalität
+     * @param name der Name der in Tab angeigt wird
+     * @param pV das SearchView das diesen Tab enhält, null falls kein
 	 */
-	public SearchTab(Searchable<T> sk, String name) {
+	public SearchTab(Searchable<T> sk, String name, SearchView pV) {
+        this.parentView=pV;
 		
 		this.name = name;
 		this.searchKey = sk;
@@ -61,6 +67,7 @@ public class SearchTab<T> extends JPanel {
         b_search.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 searchlist_model.clear();
+                if (searchKey==null) return;
                 List<T> res = searchKey.searchFor(t_search.getText());
                 for (T k: res){
                     searchlist_model.addElement(k);
@@ -69,16 +76,17 @@ public class SearchTab<T> extends JPanel {
         });
 		
 		add(northPane, BorderLayout.NORTH);
-        if (sk.getRenderer()!=null)
+        if (sk !=null && sk.getRenderer()!=null)
             searchlist.setCellRenderer(sk.getRenderer());
 
 
         searchlist.addMouseListener(new MouseListener() {
             public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount()==2){
+                if (e.getClickCount()==2 && searchKey!=null){
                     T val = (T) searchlist.getSelectedValue();
                     ContentController c = searchKey.getChangeController(val);
-                    //TODO ContentController c anzeigen
+                    if (parentView!=null && c !=null)
+                        parentView.notifyNewControllerArrivedListener(c);
                 }
             }
             public void mousePressed(MouseEvent e) {

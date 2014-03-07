@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Suche für die Playlist
  * @author Entscheider
  */
 public class PlaylistSearch implements Searchable<Playlist> {

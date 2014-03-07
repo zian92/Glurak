@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Suche für das Genre
  * @author Entscheider.
  */
 public class GenreSearch implements Searchable<Genre> {

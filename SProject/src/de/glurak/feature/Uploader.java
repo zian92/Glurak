@@ -137,7 +137,7 @@ public class Uploader {
      *            Den Besitzer des Fensters
      * @return
      */
-    public File selectSIngleMusic(Component comp) {
+    public File selectSingleMusic(Component comp) {
         return this.selectFiles(comp, Query.SUPPORTED_MUSIC_TYPES, JFileChooser.FILES_ONLY, false)[0];
     }
 

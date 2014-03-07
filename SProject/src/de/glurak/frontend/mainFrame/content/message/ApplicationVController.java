@@ -19,6 +19,8 @@ public class ApplicationVController implements ActionListener {
 
     private ApplicationView appliview;
     private String errorMsgBoxName = "Fehlermeldung";
+    private SessionThing session = SessionThing.getInstance();
+    private HibernateDB db = session.getDatabase();
 
     /**
      * Konstruktor
@@ -31,8 +33,6 @@ public class ApplicationVController implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == appliview.b_send) {
-            SessionThing session = SessionThing.getInstance();
-            HibernateDB db = session.getDatabase();
             // Abfrage, ob ein Empfaenger eingegeben wurde
             if (appliview.t_receiver.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Sie haben noch keinen Empfänger eingegeben. Bitte fügen sie einen Empfänger hinzu!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);

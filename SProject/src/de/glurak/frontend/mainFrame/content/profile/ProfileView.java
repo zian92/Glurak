@@ -1,17 +1,12 @@
 package de.glurak.frontend.mainFrame.content.profile;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import de.glurak.Query;
 import de.glurak.data.User.ListenerProfile;
-import de.glurak.data.User.Profile;
 import de.glurak.data.User.User;
-
+import de.glurak.feature.IconLoader;
+import de.glurak.frontend.SessionThing;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Die ProfileView zeigt dem User ein Profil an.
@@ -33,22 +28,26 @@ public class ProfileView extends JPanel{
 	protected JButton b_message;
 	protected JButton b_follow;
 	protected JButton b_edit;
-	protected JButton b_moreplaylists;
 	
 	// TextFields profile_data
 	protected JTextField t_password;
+	protected JTextField t_passwordConfirm;
 	protected JTextField t_firstname;
 	protected JTextField t_lastname;
 	protected JTextField t_email;
 	protected JTextField t_homecountry;
+	protected JTextField t_birthdate;
 	
 	// Labels profile_data
 	private JLabel l_username;
 	private JLabel l_firstname;
 	private JLabel l_lastname;
+	private JLabel l_email;
 	private JLabel l_birthdate;
 	private JLabel l_homecountry;
 	private JLabel l_userPic;
+	private JLabel l_password;
+	private JLabel l_passwordConfirm;
 	
 	// TextField-Array für die Playlisten
 	protected JTextField[] t_playlist;
@@ -56,7 +55,6 @@ public class ProfileView extends JPanel{
 	// Label-Array für die Playlisten
 	private JLabel[] l_playlist;
 	
-	private boolean edit;
 	
 	
 	
@@ -65,8 +63,8 @@ public class ProfileView extends JPanel{
 	 * @param own Wird das eigene Profil angezeigt oder ein anderes?
 	 * @param anzPlaylists <= 5, falls ein User mehr Playlisten hat, sind diese über den "More"-Button verfügbar.
 	 */
-	public ProfileView(User user, boolean own, int anzPlaylists, boolean edit){
-		
+	public ProfileView(User user, int anzPlaylists, boolean edit){
+		if (user==null) user = SessionThing.getInstance().getSessionUser();
 		
 		// Initialisieren Panel pan_profileview
 		pan_profileview = new JPanel(new GridBagLayout());
@@ -105,21 +103,12 @@ public class ProfileView extends JPanel{
 			pan_picture.setBackground(Color.pink);
 			pan_profilepic.add(pan_picture, d);
 			
-			
-//			BufferedImage img = null;
-//			try {
-//				img = ImageIO.read(new File(user.getProfile().getPictureFileNameOrDefaultPictureName()));
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			
-//			l_userPic = new JLabel(new ImageIcon(img));
-//			pan_picture.add(l_userPic);
+			l_userPic = new JLabel(new IconLoader(200, 200, user.getProfile().getPictureFileNameOrDefaultPictureName()).getIcon());
+			pan_picture.add(l_userPic);
 		
 		    // Initialisieren der Buttons b_message, b_follow, b_edit
 			
-			if (own){  // Falls das eigene Profil angezeigt werden soll, nur b_edit anzeigen
+			if (user== SessionThing.getInstance().getSessionUser()){  // Falls das eigene Profil angezeigt werden soll, nur b_edit anzeigen
 				if (edit) {
 					b_edit = new JButton("Save");
 				} else {
@@ -129,9 +118,6 @@ public class ProfileView extends JPanel{
 				d.gridy = 1;
 				d.gridwidth = 1;
 				d.gridheight = 1;
-				
-				b_edit.setBackground(Color.gray);
-				b_edit.setForeground(Color.white);
 				pan_profilepic.add(b_edit, d);
 			}
 			else{      // Falls ein anderes Profil angezeigt werden soll, b_message und b_follow anzeigen
@@ -141,8 +127,6 @@ public class ProfileView extends JPanel{
 				d.gridwidth = 1;
 				d.gridheight = 1;
 			    b_message = new JButton("Nachricht");
-			    b_message.setBackground(Color.black);
-			    b_message.setForeground(Color.white);
 			    pan_profilepic.add(b_message, d);
 			    
 			    d.gridx = 2;
@@ -150,11 +134,9 @@ public class ProfileView extends JPanel{
 			    d.gridwidth = 1;
 			    d.gridheight = 1;
 			    b_follow = new JButton("Follow");
-			    b_follow.setBackground(Color.black);
-			    b_follow.setForeground(Color.white);
 			    pan_profilepic.add(b_follow, d);
-			    
 			}
+			
 		// Initialisieren Panel pan_topplaylists
 		pan_topplaylists = new JPanel(new GridBagLayout());	
 		pan_topplaylists.setPreferredSize(new Dimension(350, 200));
@@ -195,16 +177,6 @@ public class ProfileView extends JPanel{
 				
 			}
 			
-			// Initialisieren des Buttons b_moreplaylists
-			e.gridx = 0;
-			e.gridy = anzPlaylists;
-			e.gridheight = 1;
-			e.gridwidth = 2;
-			e.weightx = 0.0;
-			b_moreplaylists = new JButton("mehr");
-			b_moreplaylists.setBackground(Color.black);
-			b_moreplaylists.setForeground(Color.white);
-			pan_topplaylists.add(b_moreplaylists, e);
 					
 		// Initialisieren Panel pan_profiledata
 		pan_profiledata = new JPanel(new GridBagLayout());	
@@ -217,98 +189,116 @@ public class ProfileView extends JPanel{
 			f.fill = GridBagConstraints.HORIZONTAL;
 			f.insets = new Insets(2,2,2,2);	
 
-			// Label und Textfelder hinzufügen
+			// Label und Textfelder initalisieren
+			
+			l_firstname = new JLabel("Vorname:");
+			t_firstname = new JTextField(user.getProfile().getFirstname());
+			t_firstname.setEditable(edit);
+			
+			l_lastname = new JLabel("Nachname:");
+			t_lastname = new JTextField(user.getProfile().getLastname());
+			t_lastname.setEditable(edit);
+			
+			l_birthdate = new JLabel("Geburtstag:");
+			t_birthdate = new JTextField(((ListenerProfile) user.getProfile()).getBirthdate());
+			t_birthdate.setEditable(false);
+			
+			l_email = new JLabel("Email:");
+			t_email = new JTextField(user.getProfile().getEmail());
+			t_email.setEditable(edit);
+			
+			l_homecountry = new JLabel("Heimatland:");
+			t_homecountry = new JTextField(user.getProfile().getCountry());
+			t_homecountry.setEditable(false);
+			
+			l_password = new JLabel("Neues Passwort:");
+			t_password = new JTextField();
+			t_password.setEditable(edit);
+			
+			l_passwordConfirm = new JLabel("Passwort bestätigen:");
+			t_passwordConfirm = new JTextField();
+			t_passwordConfirm.setEditable(edit);
+			
+			// Label und Textfelder ins Layout einfügen
 
 			// Vorname
 			f.gridx = 0;
 			f.gridy = 0;
 			f.weightx = 0.0;
-			l_firstname = new JLabel("Vorname:");
-			l_firstname.setForeground(Color.white);
 			pan_profiledata.add(l_firstname, f);
 			
 			f.gridx = 1;
 			f.gridy = 0;
 			f.weightx = 1.0;
-			t_firstname = new JTextField(user.getProfile().getFirstname());
-			t_firstname.setEditable(edit);
-			t_firstname.setBackground(Color.black);
-			t_firstname.setForeground(Color.white);
-			t_firstname.setCaretColor(Color.white);
 			pan_profiledata.add(t_firstname, f);
 			
 			// Nachname
 			f.gridx = 0;
 			f.gridy = 1;
 			f.weightx = 0.0;
-			l_lastname = new JLabel("Nachname:");
-			l_lastname.setForeground(Color.white);
 			pan_profiledata.add(l_lastname, f);
 			
 			f.gridx = 1;
 			f.gridy = 1;
 			f.weightx = 1.0;
-			t_lastname = new JTextField(user.getProfile().getLastname());
-			t_lastname.setEditable(edit);
-			t_lastname.setBackground(Color.black);
-			t_lastname.setForeground(Color.white);
-			t_lastname.setCaretColor(Color.white);
 			pan_profiledata.add(t_lastname, f);
 			
-			// email
+			// Geburtstag
 			f.gridx = 0;
 			f.gridy = 2;
 			f.weightx = 0.0;
-			l_birthdate = new JLabel("Email:");
-			l_birthdate.setForeground(Color.white);
 			pan_profiledata.add(l_birthdate, f);
 			
 			f.gridx = 1;
 			f.gridy = 2;
 			f.weightx = 1.0;
-			t_email = new JTextField(user.getProfile().getEmail());
-			t_email.setEditable(edit);
-			t_email.setBackground(Color.black);
-			t_email.setForeground(Color.white);
-			pan_profiledata.add(t_email, f);
+			pan_profiledata.add(t_birthdate, f);
 
-			
+
 			// Heimatland
 			f.gridx = 0;
 			f.gridy = 3;
 			f.weightx = 0.0;
-			l_homecountry = new JLabel("Heimatland:");
-			l_homecountry.setForeground(Color.white);
 			pan_profiledata.add(l_homecountry, f);
 			
 			f.gridx = 1;
 			f.gridy = 3;
 			f.weightx = 1.0;
-			t_homecountry = new JTextField(user.getProfile().getCountry());
-			t_homecountry.setEditable(edit);
-			t_homecountry.setBackground(Color.black);
-			t_homecountry.setForeground(Color.white);
-			t_homecountry.setCaretColor(Color.white);
 			pan_profiledata.add(t_homecountry, f);
 			
+			// email
+			f.gridx = 0;
+			f.gridy = 4;
+			f.weightx = 0.0;
+			pan_profiledata.add(l_email, f);
+			
+			f.gridx = 1;
+			f.gridy = 4;
+			f.weightx = 1.0;
+			pan_profiledata.add(t_email, f);
 			
 			if (edit) {
 				// Passwort
 				f.gridx = 0;
-				f.gridy = 4;
+				f.gridy = 5;
 				f.weightx = 0.0;
-				l_username = new JLabel("Neues Passwort:");
-				l_username.setForeground(Color.white);
-				pan_profiledata.add(l_username, f);
+				pan_profiledata.add(l_password, f);
 				
 				f.gridx = 1;
-				f.gridy = 4;
+				f.gridy = 5;
 				f.weightx = 1.0;
-				t_password = new JTextField();
-				t_password.setEditable(edit);
-				t_password.setBackground(Color.black);
-				t_password.setForeground(Color.white);
 				pan_profiledata.add(t_password, f);
+				
+				// Passwort
+				f.gridx = 0;
+				f.gridy = 6;
+				f.weightx = 0.0;
+				pan_profiledata.add(l_passwordConfirm, f);
+				
+				f.gridx = 1;
+				f.gridy = 6;
+				f.weightx = 1.0;
+				pan_profiledata.add(t_passwordConfirm, f);
 			}
 			
 			
