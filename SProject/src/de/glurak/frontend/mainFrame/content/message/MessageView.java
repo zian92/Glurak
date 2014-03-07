@@ -1,18 +1,17 @@
 package de.glurak.frontend.mainFrame.content.message;
 
-import de.glurak.data.Message;
-import de.glurak.database.HibernateDB;
-import de.glurak.frontend.SessionThing;
-
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.DefaultListModel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionListener;
+
+import de.glurak.data.Message;
+import de.glurak.database.HibernateDB;
+import de.glurak.frontend.SessionThing;
 
 /**
  * MessageView zeigt das Fenster an, wenn man einen anderen User des Systems eine Nachricht schreiben moechte.
@@ -40,6 +39,10 @@ public class MessageView extends JPanel {
             list.addListSelectionListener(listl);
         list.setModel(model);
         add(new JScrollPane(list), BorderLayout.CENTER);
+    }
+
+    public void setMessage(String receiver, String message){
+        writer.setMessage(receiver,message);
     }
 
     /**

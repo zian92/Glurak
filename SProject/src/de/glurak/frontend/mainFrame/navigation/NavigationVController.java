@@ -55,7 +55,6 @@ public class NavigationVController extends Observable {
             username=u.getUsername();
         }
 
-
         view = new NavigationView(a,username,getProfileImage(imgFilename));
         addController(new ProfileVController(null), "Profil",null);
         addController(new PlaylistVController(),"Playlist", Rights.MANAGE_PLAYLIST);

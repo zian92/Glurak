@@ -24,6 +24,8 @@ public class MessageVController implements ActionListener, ContentController {
 
     private MessageView messview;
     private String errorMsgBoxName = "Fehlermeldung";
+    private SessionThing session = SessionThing.getInstance();
+    private HibernateDB db = session.getDatabase();
 
     /**
      * Konstruktor
@@ -31,35 +33,37 @@ public class MessageVController implements ActionListener, ContentController {
     public MessageVController() {
         ListSelectionListener s = new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
-                for (int k = e.getFirstIndex(); k<=e.getLastIndex();k++){
-                     Message m = messview.messageAtPos(k);
-                    if (m!=null)
-                        m.setAlreadyRead(true);
+                for (int k = e.getFirstIndex(); k <= e.getLastIndex(); k++) {
+                    Message m = messview.messageAtPos(k);
+                    if (m != null) m.setAlreadyRead(true);
                 }
             }
         };
-        messview = new MessageView(this,s);
+        messview = new MessageView(this, s);
+    }
+
+    public void setMessage(String receiver, String message){
+        messview.setMessage(receiver,message);
     }
 
     /**
-     * Prüft ob das temporäre Message-Objekt m gütige Angaben besitzt.
-     * Außerdem wird dem Nutzer noch Dialoge angezeigt.
-     * @param m die Message
+     * Prüft ob das temporäre Message-Objekt m gütige Angaben besitzt. Außerdem wird dem Nutzer noch Dialoge angezeigt.
+     * 
+     * @param m
+     *            die Message
      * @return true falls alles OK, sonst false
      */
-    private boolean checkIfMessageValid(Message m){
-        SessionThing s = SessionThing.getInstance();
-        HibernateDB db = s.getDatabase();
+    private boolean checkIfMessageValid(Message m) {
         User u = (User) m.getReceiver();
-        if (u.getUsername().trim().isEmpty()){
+        if (u.getUsername().trim().isEmpty()) {
             JOptionPane.showMessageDialog(messview, "Sie haben noch keinen Empfänger eingegeben. Bitte fügen sie einen Empfänger hinzu!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        if (!db.hasUser(u.getUsername())){
+        if (!db.hasUser(u.getUsername())) {
             JOptionPane.showMessageDialog(messview, "Dieser Empfänger existiert nicht. Bitte geben sie einen existierenden Empfänger an!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        if (s.getSessionUser().getUsername().equals(u.getUsername())){
+        if (session.getSessionUser().getUsername().equals(u.getUsername())) {
             JOptionPane.showMessageDialog(messview, "Du kannst dir nicht selber eine Nachricht schreiben. Bitte geben sie einen anderen Empfänger an!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -71,17 +75,15 @@ public class MessageVController implements ActionListener, ContentController {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("send")){
-            SessionThing s = SessionThing.getInstance();
-            HibernateDB db = s.getDatabase();
+        if (e.getActionCommand().equals("send")) {
             Message m = messview.getEnteredMessage();
             if (!checkIfMessageValid(m)) return;
             User u = (User) m.getReceiver();
             User realUser = db.getUserByUsername(u.getUsername());
-            db.createMessage(s.getSessionUser(),realUser,m.getMessage(),false,null);
+            db.createMessage(session.getSessionUser(), realUser, m.getMessage(), false, null);
             messview.setEnteredMessage(null);
         }
-        if (e.getActionCommand().equals("cancel")){
+        if (e.getActionCommand().equals("cancel")) {
             messview.setEnteredMessage(null);
         }
     }
