@@ -12,6 +12,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import de.glurak.Query;
 import de.glurak.data.Medium;
+import de.glurak.frontend.SessionThing;
 
 /**
  * Uploader stellt Funktionen zum hochladen von Bild- und Musikdateien bereit. Die erlaubten Datentypen sind genauer in de.glurak.Qery spezifiziert.
@@ -98,8 +99,12 @@ public class Uploader {
      * @return
      * @throws IOException
      */
-    public void saveProfilePicture(Medium pic) throws IOException {
-        this.savePic(pic, Query.FOLDER_PICTURE_PROFILE);
+    public void saveProfilePicture(File pic) throws IOException {
+        String path = Query.FOLDER_PICTURE_PROFILE + SessionThing.getInstance().getSessionUser().getUsername();
+        this.createFolders(new String[] { path, });
+        File newPath = new File(path + "/profile" + (pic.getName().substring(pic.getName().lastIndexOf("."))));
+        this.savePic(pic, newPath.getPath());
+        SessionThing.getInstance().getSessionUser().getProfile().setPictureFileName(newPath.getPath());
     }
 
     /**
@@ -109,7 +114,7 @@ public class Uploader {
      * @return
      * @throws IOException
      */
-    public void saveAlbumCover(Medium picture) throws IOException {
+    public void saveAlbumCover(File picture) throws IOException {
         this.savePic(picture, Query.FOLDER_PICTURE_COVER);
     }
 
@@ -120,7 +125,7 @@ public class Uploader {
      * @return
      * @throws IOException
      */
-    public void saveSlider(Medium picture) throws IOException {
+    public void saveSlider(File picture) throws IOException {
         this.savePic(picture, Query.FOLDER_PICTURE_SLIDER);
     }
 
@@ -132,9 +137,12 @@ public class Uploader {
      * @return
      * @throws IOException
      */
-    private void savePic(Medium pic, String picPath) throws IOException {
-        Files.copy(this.getFileFromMedium(pic).toPath(), Paths.get(picPath), StandardCopyOption.REPLACE_EXISTING);
-        pic.setFileName(picPath);
+    private void savePic(File pic, String picPath) throws IOException {
+        System.out.println("pic: " + pic.getPath());
+        System.out.println(pic.exists());
+        System.out.println("f: " + picPath);
+
+        Files.copy(Paths.get(pic.getPath()), Paths.get(picPath), StandardCopyOption.REPLACE_EXISTING);
     }
 
     /**
