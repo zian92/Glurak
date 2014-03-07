@@ -55,7 +55,6 @@ public class ProfileVController extends Observable implements ActionListener, Co
 		profileview = new ProfileView(this.user, anzPlaylists, false);
 		
 		// Hinzufügen der ActionListener
-		profileview.b_moreplaylists.addActionListener(this);
 		if (own) {
 			profileview.b_edit.addActionListener(this);
 		}
@@ -63,17 +62,6 @@ public class ProfileVController extends Observable implements ActionListener, Co
 			profileview.b_follow.addActionListener(this);
 			profileview.b_message.addActionListener(this);
 		}
-		
-		// Daten in die Textfelder schreiben
-		/*
-		profileview.t_username.setText("");
-		profileview.t_firstname.setText("");
-		profileview.t_lastname.setText("");
-		profileview.t_birthdate.setText("");
-		profileview.t_homecountry.setText("");
-		*/
-		
-		
 	}
 	
 	public ProfileVController(User own) {
@@ -83,14 +71,15 @@ public class ProfileVController extends Observable implements ActionListener, Co
 	public void actionPerformed(ActionEvent e){
 		Object obj = e.getSource();
 		
-		if (obj == profileview.b_moreplaylists){
-	//		setContentController(new PlaylistVController());
-		} else if (obj == profileview.b_message){
-	//		setContentController(new MessageVController());
+		if (obj == profileview.b_message){
+			nextContent = new MessageVController();
+			setChanged();
+			notifyObservers();
 		} else if (obj == profileview.b_follow){
-			
+			SessionThing.getInstance().getSessionUser().follow(this.user);
+			System.out.println(SessionThing.getInstance().getSessionUser().getFollowing().size());
 		} else if (obj == profileview.b_edit){
-			nextContent = new ProfileEditVController(user);
+			nextContent = new ProfileEditVController(this.user);
 			setChanged();
 			notifyObservers();
 		}

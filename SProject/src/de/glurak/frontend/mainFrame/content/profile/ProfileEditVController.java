@@ -31,24 +31,22 @@ public class ProfileEditVController extends Observable implements ActionListener
 		profileEditView.b_edit.addActionListener(this);
 //		profileEditView.b_uploadpic.addActionListener(this);
 		
-		// Daten in die Textfelder schreiben.
-		/*
-		 profileEditView.t_username.setText("");
-		 profileEditView.t_firstname.setText("");
-		 profileEditView.t_lastname.setText("");
-		 profileEditView.t_birthdate.setText("");
-		 profileEditView.t_homecountry.setText("");
-		*/
 	}
 	
 	public void actionPerformed(ActionEvent e){
 		Object obj = e.getSource();
+		String password = profileEditView.t_password.getText();
+		String passwordConfirm = profileEditView.t_passwordConfirm.getText();
 		
 		if (obj == profileEditView.b_edit){
-			
 			try {
-				if (!profileEditView.t_password.getText().isEmpty()) {
-					user.setPassword(profileEditView.t_password.getText());
+				if (!password.isEmpty() && password.equals(passwordConfirm)) {
+						user.setPassword(password);
+				} else if (password.isEmpty() && passwordConfirm.isEmpty()){
+					
+				} else {
+					JOptionPane.showMessageDialog(profileEditView,"Passwörter nicht korrekt");
+                    return;
 				}
 			} catch (NoSuchAlgorithmException e1) {
 				e1.printStackTrace();
