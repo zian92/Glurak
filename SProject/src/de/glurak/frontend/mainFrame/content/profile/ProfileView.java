@@ -30,6 +30,7 @@ public class ProfileView extends JPanel{
 	protected JButton b_follow;
 	protected JButton b_edit;
 	protected JButton b_upload;
+	protected JButton b_block;
 	
 	// TextFields profile_data
 	protected JPasswordField t_password;
@@ -157,6 +158,16 @@ public class ProfileView extends JPanel{
 		    d.gridheight = 1;
 		    b_follow = new JButton("Follow");
 		    pan_profilepic.add(b_follow, d);
+		    
+		    if (SessionThing.getInstance().getSessionUser().getProfile().roleName().equals("Admin")) {
+	
+		    	d.gridx = 3;
+			    d.gridy = 1;
+			    d.gridwidth = 1;
+			    d.gridheight = 1;
+			    b_follow = new JButton("Sperren");
+			    pan_profilepic.add(b_block, d);
+		    }
 		}
 		
 	
