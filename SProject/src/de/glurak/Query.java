@@ -1,5 +1,7 @@
 package de.glurak;
 
+import java.awt.Font;
+
 public class Query {
 
     public static final String APPLICATION_NAME = "Glurak Rules The World!";
@@ -22,7 +24,10 @@ public class Query {
     public static final String SPLASHSCREEN_FONT = FOLDER_FONT + "PAPYRUS.TTF";
     // Genres
     public static final String[] INITIALE_GENRE = { "Metal", "Rock", "Pop", "Punk", "Weltmusik", "Elektro", "Hip-Hop", "RnB", };
-
+    // Styles
+    public static final Font VERDANA = new Font("Verdana", Font.BOLD, 8);
+    
+    
     private Query() {
 
     }
