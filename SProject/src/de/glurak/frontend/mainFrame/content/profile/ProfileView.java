@@ -195,8 +195,37 @@ public class ProfileView extends JPanel{
 	
 		// Initialisieren Panel pan_profiledata
 		pan_profiledata = new JPanel(new GridBagLayout());	
+<<<<<<< HEAD
 		pan_profiledata.setPreferredSize(new Dimension(300, 200));
 		pan_profiledata.setBackground(FrontendColors.DARK_GREY);
+=======
+		pan_profiledata.setPreferredSize(new Dimension(350, 200));
+		pan_profiledata.setBackground(Color.RED);
+		pan_profiledata.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+			// Layout-Restriktionen festlegen.
+			GridBagConstraints f = new GridBagConstraints();
+			f.fill = GridBagConstraints.HORIZONTAL;
+			f.insets = new Insets(2,2,2,2);	
+
+			// Label und Textfelder initalisieren
+			
+			l_firstname = new JLabel("Vorname:");
+			t_firstname = new JTextField(user.getProfile().getFirstname());
+			t_firstname.setEditable(edit);
+			
+			l_lastname = new JLabel("Nachname:");
+			t_lastname = new JTextField(user.getProfile().getLastname());
+			t_lastname.setEditable(edit);
+			
+			l_birthdate = new JLabel("Geburtstag:");
+
+			t_birthdate = new JTextField();
+            if (user.getProfile() instanceof ListenerProfile){
+                t_birthdate.setText(((ListenerProfile) user.getProfile()).getBirthdate());
+            }
+			t_birthdate.setEditable(false);
+>>>>>>> 7f6e3ae7021bb4cbd1a3e2b1dfc00d833b2c01b0
 			
 		// Layout-Restriktionen festlegen.
 		GridBagConstraints f = new GridBagConstraints();

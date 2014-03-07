@@ -6,15 +6,15 @@ import java.awt.*;
 
 /**
  * Die HeaderView ist dazu da die das oberste Panel anzuzeigen.
- * Dieses enthält unter anderem die Suchefunktion.
- * @author Christopher Distelkämper
+ * Dieses enthÃ¤lt unter anderem die Suchefunktion.
+ * @author Christopher DistelkÃ¤mper
  * Date: 26.02.2014
  */
 public class HeaderView extends JPanel{
 	
-	// Textfeld für die Sucheingabe
+	// Textfeld fÃ¼r die Sucheingabe
 	private JTextField t_search;
-	// Button für die Sucheingabe 
+	// Button fÃ¼r die Sucheingabe 
 	private JButton b_search;
 	// Panel des Headers
 	private JPanel pan_header;	
@@ -43,7 +43,7 @@ public class HeaderView extends JPanel{
 		b_search.setForeground(Color.white);
 		pan_header.add(b_search, BorderLayout.EAST);
 		
-		// Hinzufügen des Panels zur ContentPane
+		// HinzufÃ¼gen des Panels zur ContentPane
 		add(pan_header);		
 		setVisible(true);
 		

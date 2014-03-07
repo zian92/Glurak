@@ -24,6 +24,10 @@ public class Playqueue {
 	public void setPlaylist(Playlist playlist) {
 		this.playlist = playlist;
 	}
+	
+	public void add(Medium medium){
+	 getPlaylist().addMedium(medium);	
+	}
 	/**
 	 * Gibt aktuelles Medium zurück
 	 * @return Medium der MediumList and der Stelle index

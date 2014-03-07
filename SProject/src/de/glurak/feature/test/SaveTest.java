@@ -31,16 +31,13 @@ public class SaveTest {
         }
     }
 
+    // TODO OUtdated!
     @Test
     public void saveMusic() {
         songs = new Medium[2];
         songs[0].setFileName(Query.ROOTPATH + "test.mp3");
         songs[1].setFileName(Query.ROOTPATH + "test2.mp3");
-        try {
-            up.saveMusic(songs);
-        } catch (IOException e) {
-            System.out.println("Fehlgeschlagen");
-        }
+        up.saveMusic(songs, "testAlbum");
     }
 
     @After
