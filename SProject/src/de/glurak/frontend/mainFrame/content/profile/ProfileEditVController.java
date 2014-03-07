@@ -25,7 +25,7 @@ public class ProfileEditVController extends Observable implements ActionListener
 	public ProfileEditVController(User user){
 		
 		this.user = user;
-		profileEditView = new ProfileView(user, true, 0,  true);
+		profileEditView = new ProfileView(user, 0,  true);
 		
 		// Setzen der ActionListener
 		profileEditView.b_edit.addActionListener(this);

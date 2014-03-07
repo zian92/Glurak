@@ -52,7 +52,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
 			}
 		}
 		
-		profileview = new ProfileView(this.user, own, anzPlaylists, false);
+		profileview = new ProfileView(this.user, anzPlaylists, false);
 		
 		// Hinzufügen der ActionListener
 		profileview.b_moreplaylists.addActionListener(this);
