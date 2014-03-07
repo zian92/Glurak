@@ -72,7 +72,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
 		Object obj = e.getSource();
 		
 		if (obj == profileview.b_message){
-//			nextContent = new MessageVController(this.user);
+			nextContent = new MessageVController();
 			setChanged();
 			notifyObservers();
 		} else if (obj == profileview.b_follow){

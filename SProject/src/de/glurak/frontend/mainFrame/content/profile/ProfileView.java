@@ -1,23 +1,12 @@
 package de.glurak.frontend.mainFrame.content.profile;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import de.glurak.Query;
 import de.glurak.data.User.ListenerProfile;
-import de.glurak.data.User.Profile;
 import de.glurak.data.User.User;
-<<<<<<< HEAD
 import de.glurak.feature.IconLoader;
-=======
 import de.glurak.frontend.SessionThing;
->>>>>>> a50b921a72fa3ea0e5f3d9194a3fef138a907830
-
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.LinkedList;
 
 /**
  * Die ProfileView zeigt dem User ein Profil an.
