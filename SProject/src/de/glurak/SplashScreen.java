@@ -9,6 +9,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
@@ -30,7 +31,16 @@ public class SplashScreen extends JFrame {
         int y = (screen.height - height) / 2;
         setBounds(x, y, width, height);
         // font
-        Font font = new FontLoader().loadFontFromFile(Query.SPLASHSCREEN_FONT);
+        Font font = null;
+        try {
+            font = new FontLoader().loadFontFromFile(Query.SPLASHSCREEN_FONT);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         font = font.deriveFont(18f);
         font = font.deriveFont(Font.BOLD);
         // image
