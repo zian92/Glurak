@@ -1,6 +1,5 @@
 package de.glurak.frontend.mainFrame.content.search.Searches;
 
-import de.glurak.data.Genre;
 import de.glurak.data.User.User;
 import de.glurak.database.DBSearch;
 import de.glurak.frontend.SessionThing;
@@ -10,7 +9,6 @@ import de.glurak.frontend.mainFrame.content.search.Searchable;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +18,7 @@ import java.util.List;
 public class UserSearch implements Searchable<User> {
     public List<User> searchFor(String s) {
         DBSearch db = new DBSearch(SessionThing.getInstance().getDatabase());
-        List<User> g =db.searchForMusicByUsername(s);
+        List<User> g =db.searchForUserByUsername(s);
         return g;
     }
 
