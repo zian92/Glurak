@@ -1,6 +1,10 @@
 package de.glurak;
 
-import javax.swing.*;
+import java.security.NoSuchAlgorithmException;
+
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import de.glurak.data.Genre;
 import de.glurak.data.User.AdminProfile;
@@ -60,9 +64,11 @@ public class Glurak {
         // userA
         User userA = new User();
         userA.setUsername("Olaf");
-        /*
-         * try { userA.setPassword("olaf"); } catch (NoSuchAlgorithmException e) { e.printStackTrace(); }
-         */
+        try {
+            userA.setPassword("olaf");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
         db.registrateUser(userA, null);
         AdminProfile profileA = new AdminProfile();
         db.registrateProfile(profileA, null);

@@ -1,5 +1,9 @@
 package de.glurak.frontend.mainFrame.content.search;
 
+import de.glurak.frontend.mainFrame.ContentController;
+
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 
 import java.awt.BorderLayout;
@@ -15,17 +19,19 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class SearchTab extends JPanel {
+/**
+ * @author Entscheider
+ * @param <T> Generik der Anzeigedaten
+ */
+public class SearchTab<T> extends JPanel {
 
 	private JPanel pan_searchview;
 	private JPanel pan_advancedSearch;
 	private JPanel pan_results;
 
-	//Tabelle in der die Ergebnisse geladen werden
-	private DefaultTableModel searchtable_model = new DefaultTableModel();
-	private JTable searchtable = new JTable(searchtable_model);
-	//Scrollpanel in das die Tabelle geladen wird
-	private JScrollPane scroll_searchtable = new JScrollPane(searchtable);
+	//Liste in der die Ergebnisse geladen werden
+	private DefaultListModel<T> searchlist_model = new DefaultListModel<T>();
+	private JList searchlist= new JList(searchlist_model);
 
 	// Suchfelde
 	protected JTextField t_search = new JTextField(10);
@@ -40,7 +46,7 @@ public class SearchTab extends JPanel {
 	 * Konstruktor
 	 * @param sk
 	 */
-	public SearchTab(Searchable sk, String name) {
+	public SearchTab(Searchable<T> sk, String name) {
 		
 		this.name = name;
 		this.searchKey = sk;
@@ -53,34 +59,45 @@ public class SearchTab extends JPanel {
 		northPane.add(b_search);
 
         b_search.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
-                List<String> res = searchKey.searchFor(t_search.getText());
-                for (String k: res){
-                    String[] data = new String[4];
-                    data[0]=k;
-                    searchtable_model.addRow(data);
+                searchlist_model.clear();
+                List<T> res = searchKey.searchFor(t_search.getText());
+                for (T k: res){
+                    searchlist_model.addElement(k);
                 }
             }
         });
 		
 		add(northPane, BorderLayout.NORTH);
-		
+        if (sk.getRenderer()!=null)
+            searchlist.setCellRenderer(sk.getRenderer());
 
-		// Ergebnisanzeige:
-		//Der Tabelle Spalten hinzufuegen
-		searchtable_model.addColumn("Titel");
-		searchtable_model.addColumn("Zeit");
-		searchtable_model.addColumn("Interpret");
-		searchtable_model.addColumn("Album");
 
-		//Spaltengroesse anpassen
-		searchtable.getColumnModel().getColumn(0).setPreferredWidth(600);
-		searchtable.getColumnModel().getColumn(1).setPreferredWidth(100);
-		searchtable.getColumnModel().getColumn(2).setPreferredWidth(250);
-		searchtable.getColumnModel().getColumn(3).setPreferredWidth(400);
-		
-		add(new JScrollPane(searchtable), BorderLayout.CENTER);
+        searchlist.addMouseListener(new MouseListener() {
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount()==2){
+                    T val = (T) searchlist.getSelectedValue();
+                    ContentController c = searchKey.getChangeController(val);
+                    //TODO ContentController c anzeigen
+                }
+            }
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+		add(new JScrollPane(searchlist), BorderLayout.CENTER);
 	}
 	
 	public void setSearchText(String searchText) {

@@ -4,24 +4,40 @@ import de.glurak.data.Genre;
 import de.glurak.data.Medium;
 import de.glurak.database.DBSearch;
 import de.glurak.frontend.SessionThing;
+import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.content.search.Searchable;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rnr on 06.03.14.
+ * @author Entscheider
  */
-public class MusicSearch implements Searchable {
-    @Override
-    public List<String> searchFor(String s) {
+public class MusicSearch implements Searchable<Medium> {
+    public List<Medium> searchFor(String s) {
         DBSearch db = new DBSearch(SessionThing.getInstance().getDatabase());
         List<Medium> g =db.searchForMusicByTitle(s);
-        List<String> res = new ArrayList<String>();
+        return g;
+    }
 
-        for (Medium ss : g){
-            res.add(ss.getTitel());
-        }
-        return res;
+    public ListCellRenderer<Medium> getRenderer() {
+        return new ListCellRenderer<Medium>() {
+            public Component getListCellRendererComponent(JList<? extends Medium> list, Medium value, int index, boolean isSelected, boolean cellHasFocus) {
+                JPanel res = new JPanel();
+                if (isSelected)
+                    res.setBackground(Color.GRAY);
+                res.setLayout(new BorderLayout());
+                JLabel l = new JLabel();
+                l.setText(value.getTitel());
+                res.add(l,BorderLayout.CENTER);
+                return res;
+            }
+        };
+    }
+
+    public ContentController getChangeController(Medium field) {
+        return null;
     }
 }

@@ -5,14 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,7 +24,7 @@ public class SplashScreen extends JFrame {
         setBounds(x, y, width, height);
 
         JLabel image = new JLabel(Query.APPLICATION_NAME, new ImageIcon(Query.SPLASHSCREEN_IMAGE), JLabel.LEFT);
-        Font boldFont = new Font("Gungsuh", Font.BOLD, 18);
+        Font boldFont = new Font("Papyrus", Font.BOLD, 18);
         image.setFont(boldFont);
         
         
