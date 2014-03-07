@@ -37,7 +37,7 @@ public class DBSearch {
         return q1.getResultList();
     }
 
-    public List<User> searchForMusicByUsername(String name){
+    public List<User> searchForUserByUsername(String name){
         TypedQuery<User> q1 = em.createQuery(
                 "SELECT k FROM User k WHERE UPPER(k.username) Like UPPER('%"+name+"%')" , User.class);
         //q1.setParameter("n",g);
@@ -46,7 +46,7 @@ public class DBSearch {
 
     public List<Playlist> searchPlaylistByName(String name){
             TypedQuery<Playlist> q1 = em.createQuery(
-                    "SELECT k FROM User k WHERE UPPER(k.name) Like UPPER('%"+name+"%')", Playlist.class);
+                    "SELECT k FROM Playlist k WHERE UPPER(k.name) Like UPPER('%"+name+"%')", Playlist.class);
             //q1.setParameter("n",g);
             return q1.getResultList();
     }
