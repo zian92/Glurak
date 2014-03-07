@@ -14,20 +14,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rnr on 06.03.14.
+ * @author Entscheider
  */
 public class LabelSearch implements Searchable<LabelProfile> {
-    @Override
+
     public List<LabelProfile> searchFor(String s) {
         DBSearch db = new DBSearch(SessionThing.getInstance().getDatabase());
         List<LabelProfile> g =db.searchLabelByName(s);
         return g;
     }
 
-    @Override
     public ListCellRenderer<LabelProfile> getRenderer() {
         return new ListCellRenderer<LabelProfile>() {
-            @Override
             public Component getListCellRendererComponent(JList<? extends LabelProfile> list, LabelProfile value, int index, boolean isSelected, boolean cellHasFocus) {
                 JPanel res = new JPanel();
                 if (isSelected)
@@ -41,7 +39,6 @@ public class LabelSearch implements Searchable<LabelProfile> {
         };
     }
 
-    @Override
     public ContentController getChangeController(LabelProfile field) {
         return null;
     }

@@ -19,6 +19,10 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * @author Entscheider
+ * @param <T> Generik der Anzeigedaten
+ */
 public class SearchTab<T> extends JPanel {
 
 	private JPanel pan_searchview;
@@ -71,7 +75,6 @@ public class SearchTab<T> extends JPanel {
 
 
         searchlist.addMouseListener(new MouseListener() {
-            @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount()==2){
                     T val = (T) searchlist.getSelectedValue();
@@ -79,23 +82,18 @@ public class SearchTab<T> extends JPanel {
                     //TODO ContentController c anzeigen
                 }
             }
-
-            @Override
             public void mousePressed(MouseEvent e) {
 
             }
 
-            @Override
             public void mouseReleased(MouseEvent e) {
 
             }
 
-            @Override
             public void mouseEntered(MouseEvent e) {
 
             }
 
-            @Override
             public void mouseExited(MouseEvent e) {
 
             }

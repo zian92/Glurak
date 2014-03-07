@@ -14,20 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rnr on 06.03.14.
+ *@author Entscheider
  */
 public class UserSearch implements Searchable<User> {
-    @Override
     public List<User> searchFor(String s) {
         DBSearch db = new DBSearch(SessionThing.getInstance().getDatabase());
         List<User> g =db.searchForMusicByUsername(s);
         return g;
     }
 
-    @Override
     public ListCellRenderer<User> getRenderer() {
         return new ListCellRenderer<User>() {
-            @Override
             public Component getListCellRendererComponent(JList<? extends User> list, User value, int index, boolean isSelected, boolean cellHasFocus) {
                 JPanel res = new JPanel();
                 if (isSelected)
@@ -44,7 +41,6 @@ public class UserSearch implements Searchable<User> {
         };
     }
 
-    @Override
     public ContentController getChangeController(User field) {
         return null;
     }

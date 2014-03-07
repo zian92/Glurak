@@ -12,20 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rnr on 06.03.14.
+ * @author Entscheider.
  */
 public class GenreSearch implements Searchable<Genre> {
-    @Override
     public List<Genre> searchFor(String s) {
         DBSearch db = new DBSearch(SessionThing.getInstance().getDatabase());
         List<Genre> g =db.searchForGenre(s);
         return g;
     }
 
-    @Override
     public ListCellRenderer<Genre> getRenderer() {
         return new ListCellRenderer<Genre>() {
-            @Override
             public Component getListCellRendererComponent(JList<? extends Genre> list, Genre value, int index, boolean isSelected, boolean cellHasFocus) {
                 JPanel res = new JPanel();
                 res.setLayout(new BorderLayout());
@@ -44,7 +41,6 @@ public class GenreSearch implements Searchable<Genre> {
         };
     }
 
-    @Override
     public ContentController getChangeController(Genre field) {
         return null;
     }

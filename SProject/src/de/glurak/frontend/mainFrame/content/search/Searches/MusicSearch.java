@@ -13,20 +13,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rnr on 06.03.14.
+ * @author Entscheider
  */
 public class MusicSearch implements Searchable<Medium> {
-    @Override
     public List<Medium> searchFor(String s) {
         DBSearch db = new DBSearch(SessionThing.getInstance().getDatabase());
         List<Medium> g =db.searchForMusicByTitle(s);
         return g;
     }
 
-    @Override
     public ListCellRenderer<Medium> getRenderer() {
         return new ListCellRenderer<Medium>() {
-            @Override
             public Component getListCellRendererComponent(JList<? extends Medium> list, Medium value, int index, boolean isSelected, boolean cellHasFocus) {
                 JPanel res = new JPanel();
                 if (isSelected)

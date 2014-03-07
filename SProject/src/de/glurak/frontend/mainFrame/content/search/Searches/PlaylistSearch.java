@@ -13,20 +13,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rnr on 06.03.14.
+ * @author Entscheider
  */
 public class PlaylistSearch implements Searchable<Playlist> {
-    @Override
     public List<Playlist> searchFor(String s) {
         DBSearch db = new DBSearch(SessionThing.getInstance().getDatabase());
         List<Playlist> g =db.searchPlaylistByName(s);
         return g;
     }
 
-    @Override
     public ListCellRenderer<Playlist> getRenderer() {
         return new ListCellRenderer<Playlist>() {
-            @Override
             public Component getListCellRendererComponent(JList<? extends Playlist> list, Playlist value, int index, boolean isSelected, boolean cellHasFocus) {
                 JPanel res = new JPanel();
                 res.setLayout(new BorderLayout());
@@ -40,7 +37,6 @@ public class PlaylistSearch implements Searchable<Playlist> {
         };
     }
 
-    @Override
     public ContentController getChangeController(Playlist field) {
         return null;
     }
