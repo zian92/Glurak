@@ -21,7 +21,7 @@ public class LoginVController implements ActionListener, WindowListener {
 
     private LoginView 				startLoginScreen;
     private LoginSLiderController 	con_slider;
-    private java.util.Timer 		timer_slider; 
+    private java.util.Timer 		timer_slider;
 
     public LoginVController(String viewTitel) {
         // build the view
@@ -59,7 +59,7 @@ public class LoginVController implements ActionListener, WindowListener {
         if (u == null) return false;
 
         try {
-            if (!u.checkPassword(password)) return false;
+            if (password==null||!u.checkPassword(password)) return false;
         } catch (NoSuchAlgorithmException e) {
             session.handleException(e);
             return false;
@@ -77,7 +77,7 @@ public class LoginVController implements ActionListener, WindowListener {
                 JOptionPane.showMessageDialog(startLoginScreen, "Login failed. Check Username and Password.");
                 return;
             }
-            
+
             startLoginScreen.dispose();
             MainFrameVController mainController = new MainFrameVController();
         } else if (e.getActionCommand().equals("registrate")) {
@@ -108,7 +108,7 @@ public class LoginVController implements ActionListener, WindowListener {
                 }
             }
         };
-        
+
         timer_slider.schedule(action, 1000, 4500);
     }
 

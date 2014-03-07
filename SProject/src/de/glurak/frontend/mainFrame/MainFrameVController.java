@@ -65,31 +65,40 @@ public class MainFrameVController implements Observer{
 		view.getNavigation().add(navigationController.getView());
 	}
 
+    /**
+     * Diese Funktion wird aufgerufen, falls ein Obersable Objekt updatet
+     * @param o das Observable Objekt
+     * @param arg der neue ContentController mit den neuen View.
+     *            Falls null und der aktuelle Contentcontroller von Typ NextContent ist,
+     *            wird sein nächstes Content angezeigt.
+     */
+    public void update(Observable o, Object arg) {
+        view.getContent().removeAll();
 
-	// View Anpassen
-	public void update(Observable o, Object arg) {
-		view.getContent().removeAll();
-		
-		// Woher kommt das Update?
-		if (o.equals(headerController)) {
-			SearchVController tmp = new SearchVController();
-			contentController = tmp;
-			tmp.getView().setAllText(headerController.getSearchKey());
-			
-		} else if (o.equals(navigationController)){
-			contentController = navigationController.getContentController();
-			
-		} else if (o.equals(contentController)) {
-			contentController = ((NextContent) contentController).getNextContent();
-		}
-		
-		
-		if (contentController instanceof Observable) {
-			((Observable) contentController).addObserver(this);
-		}
-		view.getContent().add(contentController.getView());
-		view.getContent().repaint();
-		view.getContent().revalidate();
-	}
+        // Woher kommt das Update?
+        if (o.equals(headerController)) {
+            SearchVController tmp = new SearchVController();
+            contentController = tmp;
+            tmp.getView().setAllText(headerController.getSearchKey());
+
+        } else if (o.equals(navigationController)){
+            contentController = navigationController.getContentController();
+
+        } else if (o.equals(contentController)) {
+            if (arg != null)
+                contentController=(ContentController) arg;
+            else if (contentController instanceof NextContent)
+                contentController = ((NextContent) contentController).getNextContent();
+            else return;
+        }  else return;
+
+
+        if (contentController instanceof Observable) {
+            ((Observable) contentController).addObserver(this);
+        }
+        view.getContent().add(contentController.getView());
+        view.getContent().repaint();
+        view.getContent().revalidate();
+    }
 	
 }
