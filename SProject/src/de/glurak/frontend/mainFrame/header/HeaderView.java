@@ -67,6 +67,10 @@ public class HeaderView extends JPanel{
 		return b_search;
 	}
 	
+	public JButton getLogoutButton() {
+		return b_logout;
+	}
+	
 
 	/**
 	 * Erzeugt die ProfileView und zeigt sie an.
