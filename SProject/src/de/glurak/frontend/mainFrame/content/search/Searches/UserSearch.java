@@ -42,6 +42,7 @@ public class UserSearch implements Searchable<User> {
     }
 
     public ContentController getChangeController(User field) {
-        return null;
+        ContentController c = new ProfileVController(field);
+        return c;
     }
 }

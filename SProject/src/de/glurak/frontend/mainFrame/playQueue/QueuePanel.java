@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 import de.glurak.Query;
 import de.glurak.data.Medium;
 import de.glurak.data.Playlist;
+import de.glurak.data.Playqueue;
 
 /**
  * Gui-Panel für die gerade zu spielende Playlist
@@ -35,21 +36,21 @@ public class QueuePanel extends JPanel{
 	private JTable[]		mediumTableArray;
 	private JLabel[]		mediumLabelArray;
 	private JPanel			firstPanel;
-	private Playlist 		playlist;
+	private Playqueue 		playqueue;
 	private JScrollPane scrollbar;
 	private Image 			currentIcon;
 	private Image			standardIcon;
 	
 	/**
-	 * @param playlist die abzuspielende Playlist
+	 * @param playlist die abzuspielende Playqueue
 	 */
-	public QueuePanel (Playlist playlist){
+	public QueuePanel (Playqueue playqueue){
 		super();
 		currentIcon = scaleImage(Query.FOLDER_PICTURE_ICONS+"playQueueIconCurrent.jpg",80,80);
 		standardIcon= scaleImage(Query.FOLDER_PICTURE_ICONS+"playQueueIcon.jpg",80,80);
 		
 		
-		initComponents(playlist);		
+		initComponents(playqueue);		
 		
 	}
 	
@@ -61,36 +62,45 @@ public class QueuePanel extends JPanel{
 		this.mediumPanelArray = mediumArray;
 	}
 
-	public Playlist getPlaylist() {
-		return playlist;
+	public Playqueue getPlayqueue() {
+		return playqueue;
 	}
 
-	public void setPlaylist(Playlist playlist) {
-		this.playlist = playlist;
+	public void setPlayqueue(Playqueue playqueue) {
+		this.playqueue = playqueue;
 	}
 	/**
-	 * initialisiert View f�r die angegebene Playlist
+	 * initialisiert View f�r die angegebene Playqueue
 	 */
-	public void initComponents(Playlist playlist){
+	public void initComponents(Playqueue playqueue){
 		this.removeAll();
-		setPlaylist(playlist);
+		setPlayqueue(playqueue);
 		firstPanel= new JPanel();
-		firstPanel.setLayout(new GridLayout(1,getPlaylist().getMediumList().size()));
-		mediumPanelArray = new JPanel[getPlaylist().getMediumList().size()];
-		mediumTableArray= new JTable[getPlaylist().getMediumList().size()];
-		mediumLabelArray= new JLabel[getPlaylist().getMediumList().size()];
+		firstPanel.setLayout(new GridLayout(1,getPlayqueue().getPlaylist().getMediumList().size()));
+		mediumPanelArray = new JPanel[getPlayqueue().getPlaylist().getMediumList().size()];
+		mediumTableArray= new JTable[getPlayqueue().getPlaylist().getMediumList().size()];
+		mediumLabelArray= new JLabel[getPlayqueue().getPlaylist().getMediumList().size()];
 			
 		this.setLayout(new BorderLayout());
 		this.setBackground(Color.GRAY);
 
-		for(int i=0;i<getPlaylist().getMediumList().size();i++){
+		for(int i=0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
 			mediumPanelArray[i]	= new JPanel();
-			mediumLabelArray[i] = new JLabel(getPlaylist().getMediumList().get(i).getTitel());
+			mediumLabelArray[i] = new JLabel(getPlayqueue().getPlaylist().getMediumList().get(i).getTitel());
 			firstPanel.add(mediumPanelArray[i]);
 			this.add(firstPanel,BorderLayout.CENTER);
 			
 		}
 		resetButton();
+		/*
+		String[][] rowData={{"Titel",getPlayqueue().getPlaylist().getMediumList().get(i).getTitel()},{"Hates","0"},{"Likes","0"}};
+		String[] columns={"",""};
+		mediumTableArray[i] =new JTable(rowData,columns){
+			 public boolean isCellEditable(int x, int y) {
+		           return false;}
+		       };
+		mediumTableArray[i].setPreferredSize(new Dimension(100,100));
+		*/
 	
 	}
 	
@@ -99,28 +109,20 @@ public class QueuePanel extends JPanel{
 	 */
 	public void resetButton(){
 		JLabel icon;
-		for(int i=0;i<getPlaylist().getMediumList().size();i++){
+		for(int i=0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
 			mediumPanelArray[i].setPreferredSize(new Dimension(80,80));
 			mediumPanelArray[i].removeAll();
 			mediumPanelArray[i].add(mediumLabelArray[i]);
-			if(getPlaylist().getMediumList().get(i).equals(getPlaylist().getCurrent())){
+			if(getPlayqueue().getPlaylist().getMediumList().get(i).equals(getPlayqueue().getCurrent())){
 				icon= new JLabel(new ImageIcon(currentIcon));
 			}else{
 				icon=new JLabel(new ImageIcon(standardIcon));
 			}
 			mediumPanelArray[i].add(icon);
 			this.validate();
-		/*
-			String[][] rowData={{"Titel",getPlaylist().getMediumList().get(i).getTitel()},{"Hates","0"},{"Likes","0"}};
-			String[] columns={"",""};
-			mediumTableArray[i] =new JTable(rowData,columns){
-				 public boolean isCellEditable(int x, int y) {
-			           return false;}
-			       };
-			mediumTableArray[i].setPreferredSize(new Dimension(100,100));
-			*/
+		
 			
-		}
+			}
 		}
 	
 	public JScrollPane getScrollbar() {
