@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Suche für einen User
  *@author Entscheider
  */
 public class UserSearch implements Searchable<User> {
@@ -42,6 +43,7 @@ public class UserSearch implements Searchable<User> {
     }
 
     public ContentController getChangeController(User field) {
-        return null;
+        ContentController c = new ProfileVController(field);
+        return c;
     }
 }

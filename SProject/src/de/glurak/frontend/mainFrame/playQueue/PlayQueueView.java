@@ -10,7 +10,7 @@ import javax.swing.JSlider;
 import javax.swing.ScrollPaneLayout;
 
 import de.glurak.data.Medium;
-import de.glurak.data.Playlist;
+import de.glurak.data.Playqueue;
 
 /**
  * Gui für den MediaPlayer, mit ControllPanel(Play/Stop,Next/Prev) && QueueView
@@ -33,19 +33,19 @@ public class PlayQueueView extends JPanel{
 		
 	}
 	/**
-	 * @param playlist die abzuspielende Playlist
+	 * @param Playqueue die abzuspielende Playqueue
 	 * @param current  das gerade abgespielte Medium
 	 */
-	public PlayQueueView (Playlist playlist){
+	public PlayQueueView (Playqueue playqueue){
 		super();
 		positionChange = false;
-		initComponents(playlist);
+		initComponents(playqueue);
 	
 	}
 	/**
-	 * initialisiert View f�r die angegebene Playlist
+	 * initialisiert View f�r die angegebene Playqueue
 	 */
-	public void initComponents(Playlist playlist){
+	public void initComponents(Playqueue playqueue){
 		
 		this.setLayout(new BorderLayout());
 		
@@ -62,8 +62,8 @@ public class PlayQueueView extends JPanel{
 		getControllPanel().add(getNextButton(),BorderLayout.EAST);
 		getControllPanel().add(getPreviousButton(),BorderLayout.WEST);
 		
-		if(playlist!=null){
-			initQueueView(playlist);}
+		if(playqueue!=null){
+			initQueueView(playqueue);}
 		
 		
 		
@@ -74,14 +74,14 @@ public class PlayQueueView extends JPanel{
 	
 	/**
 	 * Initialisiert QueueView(Scrollbar+Panels)
-	 * @param playlist die abzuspielende Playlist
+	 * @param Playqueue die abzuspielende Playqueue
 	 */
-	public void initQueueView(Playlist playlist){
+	public void initQueueView(Playqueue playqueue){
 		if(getQueuePanel()==null){
-		setQueuePanel(new QueuePanel(playlist));
+		setQueuePanel(new QueuePanel(playqueue));
 		this.add(getQueuePanel());}
 		else {
-			getQueuePanel().initComponents(playlist);
+			getQueuePanel().initComponents(playqueue);
 		}
 		scrollbar = new JScrollPane(getQueuePanel().getFirstPanel(),JScrollPane.VERTICAL_SCROLLBAR_NEVER,   
 	        	JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
