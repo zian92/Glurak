@@ -16,35 +16,50 @@ public class HeaderView extends JPanel{
 	private JTextField t_search;
 	// Button für die Sucheingabe 
 	private JButton b_search;
+	private JButton b_logout;
 	// Panel des Headers
-	private JPanel pan_header;	
+	private JPanel pan_header;
+	private JPanel pan_logout;
 	
 	/**
 	 * Constructor
 	 */
 	public HeaderView(){
 		
+setLayout(new GridLayout(1,2,600,0));
+		
 		// Initialisierung des Panels
-		pan_header = new JPanel(new BorderLayout());
-		pan_header.setSize(1024,50);
+		pan_header = new JPanel();
+		pan_header.setSize(512,50);
 		
 		// Initialisierung des Textfeldes
 		t_search = new JTextField();
 		t_search.setText(" Sucheingabe ");
-		t_search.setPreferredSize(new Dimension(85,20));
+		t_search.setSize(85,20);
 		t_search.setBackground(Color.LIGHT_GRAY);
 		t_search.setForeground(Color.blue);
 		
-		pan_header.add(t_search, BorderLayout.CENTER);
+		pan_header.add(t_search);
 		
 		// Initialisierung des Suchbuttons
 		b_search = new JButton("Suchen");
 		b_search.setBackground(Color.black);
 		b_search.setForeground(Color.white);
-		pan_header.add(b_search, BorderLayout.EAST);
+		
+		pan_header.add(b_search);
+		
+		b_logout = new JButton("Logout");
+		b_logout.setBackground(Color.black);
+		b_logout.setForeground(Color.white);
+		
+		pan_logout = new JPanel();
+		pan_logout.setSize(512, 50);
+		pan_logout.add(b_logout);
 		
 		// Hinzufügen des Panels zur ContentPane
-		add(pan_header);		
+		add(pan_header);
+		add(pan_logout);
+		
 		setVisible(true);
 		
 	}
