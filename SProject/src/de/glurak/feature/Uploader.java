@@ -64,6 +64,13 @@ public class Uploader {
         }
     }
 
+    /**
+     * speichert eine datei
+     * 
+     * @param file
+     * @param artistPath
+     * @return
+     */
     private File saveFile(File file, String artistPath) {
         File path = null;
         this.createFolders(new String[] { artistPath, });

@@ -3,7 +3,6 @@ package de.glurak;
 import java.security.NoSuchAlgorithmException;
 
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import de.glurak.data.Album;
@@ -88,12 +87,12 @@ public class Glurak {
         m.setMyGenre(db.genreByTitle(Query.INITIALE_GENRE[2]));
         m.setTitel("Pink Fluffy Unicorns");
         a.getMediumList().add(m);
-        
+
         m.setFileName(Query.FOLDER_MUSIC + "Go Far Kid.mp3");
         m.setMyGenre(db.genreByTitle(Query.INITIALE_GENRE[2]));
         m.setTitel("Go Far Kid");
         a.getMediumList().add(m);
-        
+
         m.setFileName(Query.FOLDER_MUSIC + "Pokemon Theme.mp3");
         m.setMyGenre(db.genreByTitle(Query.INITIALE_GENRE[2]));
         m.setTitel("Pokemon Theme");
