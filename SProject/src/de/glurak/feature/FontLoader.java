@@ -38,8 +38,7 @@ public class FontLoader {
      * @throws FileNotFoundException
      */
     public Font loadFontFromFile(String splashscreenFont) throws FileNotFoundException, FontFormatException, IOException {
-        Font font = null;
-        font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(Query.SPLASHSCREEN_FONT));// .createFont(Font.TRUETYPE_FONT, getClass().getResource(Query.SPLASHSCREEN_FONT).openStream());
+        Font font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(Query.SPLASHSCREEN_FONT));
         genv.registerFont(font);
         return font;
     }
