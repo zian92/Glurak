@@ -34,6 +34,7 @@ public class UploadView extends JPanel {
 	protected JTextField t_artist = new JTextField(20);
 	protected JTextField t_title = new JTextField(20);
 	protected JTextField t_album = new JTextField(20);
+	protected JTextField t_file = new JTextField(20);
 	//Dropdownmenue fuer die Genres
 	protected JComboBox<String> d_genre;
 	
@@ -46,10 +47,11 @@ public class UploadView extends JPanel {
 		
 		//Initialiserung der Panels
 		JPanel pan_buttons = new JPanel(new FlowLayout());
-		JPanel pan_info = new JPanel(new GridLayout(5, 1, 10, 15));
+		JPanel pan_info = new JPanel(new GridLayout(6, 1, 10, 15));
 		
 		//Initialisierung der Labels
 		JLabel l_upload = new JLabel("Wählen sie eine Musikdatei aus: ");
+		JLabel l_file = new JLabel("Ausgewählte Datei: ");
 		JLabel l_artist = new JLabel("Interpret: ");
 		JLabel l_title = new JLabel("Songtitel: ");
 		JLabel l_genre = new JLabel("Genre: ");
@@ -71,8 +73,6 @@ public class UploadView extends JPanel {
 		d_genre = new JComboBox(genrelist);
 				
 		//Infopanel zusammenfuegen
-		pan_info.add(l_upload);
-		pan_info.add(b_choosefile);
 		pan_info.add(l_artist);
 		pan_info.add(t_artist);
 		pan_info.add(l_title);
@@ -81,6 +81,10 @@ public class UploadView extends JPanel {
 		pan_info.add(d_genre);
 		pan_info.add(l_album);
 		pan_info.add(t_album);
+		pan_info.add(l_upload);
+		pan_info.add(b_choosefile);
+		pan_info.add(l_file);
+		pan_info.add(t_file);
 		
 		//Buttonpanel zusammenfuegen
 		pan_buttons.add(b_upload);

@@ -5,14 +5,18 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.io.File;
 
 import de.glurak.feature.Uploader;
+import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 
 public class UploadVController implements ActionListener, ContentController{
 
 	private UploadView upview;
 	private Uploader uploader;
+	private File music_file;
+	private SessionThing session;
 	
 	public UploadVController(){
 		upview = new UploadView();
@@ -24,19 +28,32 @@ public class UploadVController implements ActionListener, ContentController{
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource() == upview.b_choosefile){
 			uploader = Uploader.getInstance();
-			uploader.selectMusic(upview);
+			music_file = new File(uploader.selectSingleMusic(upview), upview.t_artist.getText()+upview.t_album.getText()+upview.t_title.getText());
 		}else if(ae.getSource() == upview.b_upload){
 			if((upview.t_title.getText().isEmpty()) || (upview.t_artist.getText().isEmpty()) || (upview.t_album.getText().isEmpty())){
                 JOptionPane.showMessageDialog(upview, "Bitte füllen sie alle Felder aus, um das Medium hochzuladen!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
-			}else{
+			}else if((music_file == null)){
+				JOptionPane.showMessageDialog(upview, "Bitte wählen sie eine Datei aus, die hochgeladen werden soll!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
+			}else
+			{
 				//TODO Was soll passieren wenn man upload drueckt?
+				//uploader.saveFile(music_file);
 			}
 		}else if(ae.getSource() == upview.b_cancel){
-			//TODO Was soll bei abbrechen passieren? Ist abbrechen noetig?
-			upview.t_title.setText("");
-			upview.t_artist.setText("");
-			upview.t_album.setText("");
-			upview.d_genre.setSelectedIndex(0);
+			if(music_file == null){
+				upview.t_file.setText("");
+				upview.t_title.setText("");
+				upview.t_artist.setText("");
+				upview.t_album.setText("");
+				upview.d_genre.setSelectedIndex(0);
+			}else{
+				music_file.delete();
+				upview.t_file.setText("");
+				upview.t_title.setText("");
+				upview.t_artist.setText("");
+				upview.t_album.setText("");
+				upview.d_genre.setSelectedIndex(0);
+			}
 		}
 	}
 	
