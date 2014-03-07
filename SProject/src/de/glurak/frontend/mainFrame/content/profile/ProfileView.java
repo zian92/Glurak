@@ -192,6 +192,7 @@ public class ProfileView extends JPanel{
 		pan_topplaylists.add(l_top5, e);
 		
 		// Playlist buttons hinzufügen
+		System.out.println("PV - 195 - Top5list length = " + top5Playlists.length );
 		for (int i = 0; i < top5Playlists.length; i++){
 			
 			e.gridx = 0;
