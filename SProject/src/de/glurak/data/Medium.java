@@ -44,11 +44,12 @@ public class Medium implements Serializable,Hateable {
 	 * Diese Klasse repr"asentiert ein Medium
 	 * @author MxBox
 	 */
-	public Medium(long Id , String Titel, String File, User Owner){
+	public Medium(long Id , String Titel, String File, User owner){
 		this.id = Id;
 		setTitel(Titel);
 		setFileName(File);
-		
+		if (owner!=null)
+			setOwner(owner);
 	}
 	
 	// Hibernate benoetigt leeren Konstruktor

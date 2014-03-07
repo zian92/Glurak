@@ -47,7 +47,8 @@ public class PlaylistEditView extends JPanel{
 		tab_media = new JTable(tabmod_address);
 		tab_media.setFillsViewportHeight(true);
 		tab_media.setBackground(FrontendColors.DARK_GREY);
-		tab_media.setFont(Query.VERDANA.deriveFont(64f));
+		tab_media.setFont(Query.VERDANA.deriveFont(12f));
+		tab_media.setForeground(Color.WHITE);
 		
 		JPanel pan_header = new JPanel(new GridBagLayout());
 		GridBagConstraints constr = new GridBagConstraints();
@@ -111,12 +112,15 @@ public class PlaylistEditView extends JPanel{
 		lab_playlistname.setText(plRef.getName());
 		lab_itemCount.setText("Songs: " + plRef.getMediumList().size());
 		if (plRef.getMediumList().size() > 0){
+			
 			for (int i = 0; i <plRef.getMediumList().size(); i++){
 				String[] newEntrie = new String[2];
-				newEntrie[0] = plRef.getName();
-				newEntrie[1] = plRef.getOwner().getUsername();
+				newEntrie[0] = plRef.getMediumList().get(i).getTitel();
+				newEntrie[1] = plRef.getMediumList().get(i).getOwner().getUsername();
+				//newEntrie[1] = "niemand";
 				tabmod_address.addRow(newEntrie);
 			}
+			
 		}
 		
 	}

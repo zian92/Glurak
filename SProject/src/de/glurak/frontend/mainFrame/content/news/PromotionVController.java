@@ -87,7 +87,7 @@ public class PromotionVController extends Observable implements ContentControlle
 		// Creating dummy-Objects for testing 
 		Album a1 = new Album();
 		Album a2 = new Album();
-		Medium m1 = new Medium(13, "Song 2", null, new User());
+		Medium m1 = new Medium(13, "Song 2", null, null);
 		
 		a1.setName("This is It");
 		a2.setName("Album dummy");

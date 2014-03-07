@@ -15,6 +15,7 @@ import javax.swing.border.SoftBevelBorder;
 
 import de.glurak.data.Medium;
 import de.glurak.data.Playlist;
+import de.glurak.data.User.ListenerProfile;
 import de.glurak.data.User.User;
 import de.glurak.feature.SliderPanel;
 import de.glurak.frontend.SessionThing;
@@ -70,6 +71,28 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 	public void setNextContent(ContentController nextContent) {
 		this.nextContent = nextContent;
 	}
+	  /* ====================================================================================================
+     *											 Test-Functions
+     * ====================================================================================================
+     */
+	private Playlist createTestPlaylist(){
+		// neuer Test Owner
+		User u1 = new User();
+		u1.setUsername("Horst");
+		u1.setProfile(new ListenerProfile());
+		// neue Test Medien
+		Medium m1 = new Medium(900, "PokeTheme", "", u1);
+		Medium m2 = new Medium(600, "Pokemon Endingtheme","", u1);
+		// neue Playlist
+		Playlist p = new Playlist();
+		p.setName("Pokemon");
+		p.addMedium(m1);
+		p.addMedium(m2);
+		
+		return p;
+	}
+	
+	
     /* ====================================================================================================
      *											 Action-Handling
      * ====================================================================================================
@@ -83,15 +106,10 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 	    		view.prevPage();
 	    		
 	    	}else if(e.getActionCommand().equals("newList")){
-	    		User u1 = new User();
-	    		u1.setUsername("TestUser m");
-	    		Medium m1 = new Medium(900, "PokeTheme", null, u1);
 	    		
-	    		Playlist p = new Playlist();
-	    		p.setName("Pokemon");
-	    		
-	    		
-	    		nextContent = new PlaylistEditVController(p, this);
+	    		Playlist p = createTestPlaylist();
+	    		    		
+	    		nextContent = new PlaylistEditVController(null, this);
 				setChanged();
 				notifyObservers();
 	    		
