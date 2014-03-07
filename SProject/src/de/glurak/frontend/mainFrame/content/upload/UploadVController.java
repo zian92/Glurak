@@ -31,6 +31,7 @@ public class UploadVController implements ActionListener, ContentController {
         if (ae.getSource() == upview.b_choosefile) {
             uploader = Uploader.getInstance();
             music_file = uploader.selectSingleMusic(upview);
+            upview.t_file.setText(music_file.getName());
         } else
             if (ae.getSource() == upview.b_upload) {
                 if ((upview.t_title.getText().isEmpty()) || (upview.t_artist.getText().isEmpty()) || (upview.t_album.getText().isEmpty())) {

@@ -227,8 +227,10 @@ public class ProfileView extends JPanel{
 		t_lastname.setEditable(edit);
 		
 		l_birthdate = new JLabel("Geburtstag:");
-		t_birthdate = new JTextField(((ListenerProfile) user.getProfile()).getBirthdate());
-		t_birthdate.setEditable(false);
+        t_birthdate = new JTextField();
+        if (user.getProfile() instanceof  ListenerProfile)
+            t_birthdate.setText(((ListenerProfile) user.getProfile()).getBirthdate());
+        t_birthdate.setEditable(false);
 		
 		l_email = new JLabel("Email:");
 		t_email = new JTextField(user.getProfile().getEmail());
