@@ -47,6 +47,12 @@ public class UploadVController implements ActionListener, ContentController {
                         musicFile.setMyGenre(session.getDatabase().genreByTitle((String) upview.d_genre.getSelectedItem()));
                         // TODO Album!
                         uploader.saveMusic(new Medium[] { musicFile, }, "");
+                        music_file=null;
+                        upview.t_file.setText("");
+                        upview.t_title.setText("");
+                        upview.t_artist.setText("");
+                        upview.t_album.setText("");
+                        upview.d_genre.setSelectedIndex(0);
                     }
             } else
                 if (ae.getSource() == upview.b_cancel) {
@@ -57,7 +63,7 @@ public class UploadVController implements ActionListener, ContentController {
                         upview.t_album.setText("");
                         upview.d_genre.setSelectedIndex(0);
                     } else {
-                        music_file.delete();
+                        music_file=null;
                         upview.t_file.setText("");
                         upview.t_title.setText("");
                         upview.t_artist.setText("");
