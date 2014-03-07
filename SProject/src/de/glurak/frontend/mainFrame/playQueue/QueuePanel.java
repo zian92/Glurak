@@ -109,7 +109,8 @@ public class QueuePanel extends JPanel{
 				icon=new JLabel(new ImageIcon(standardIcon));
 			}
 			mediumPanelArray[i].add(icon);
-		
+			this.validate();
+		/*
 			String[][] rowData={{"Titel",getPlaylist().getMediumList().get(i).getTitel()},{"Hates","0"},{"Likes","0"}};
 			String[] columns={"",""};
 			mediumTableArray[i] =new JTable(rowData,columns){
@@ -117,7 +118,7 @@ public class QueuePanel extends JPanel{
 			           return false;}
 			       };
 			mediumTableArray[i].setPreferredSize(new Dimension(100,100));
-			
+			*/
 			
 		}
 		}
