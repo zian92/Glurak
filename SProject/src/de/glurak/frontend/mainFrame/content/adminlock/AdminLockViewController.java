@@ -21,7 +21,6 @@ public class AdminLockViewController extends Observable implements ContentContro
     public JComponent getView() {
         return view;
     }
-
     public void actionPerformed(ActionEvent e) {
         if (view.getSelectedMedium()==null) return;
         if (e.getActionCommand().equals("lock")){
@@ -29,5 +28,6 @@ public class AdminLockViewController extends Observable implements ContentContro
         }else if (e.getActionCommand().equals("unlock")){
             view.getSelectedMedium().setLocked(false);
         }
+        view.search();
     }
 }

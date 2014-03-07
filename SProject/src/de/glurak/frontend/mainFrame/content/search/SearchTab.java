@@ -63,12 +63,7 @@ public class SearchTab<T> extends JPanel {
 
         b_search.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                searchlist_model.clear();
-                if (searchKey==null) return;
-                List<T> res = searchKey.searchFor(t_search.getText());
-                for (T k: res){
-                    searchlist_model.addElement(k);
-                }
+                search();
             }
         });
 		
@@ -77,6 +72,15 @@ public class SearchTab<T> extends JPanel {
             searchlist.setCellRenderer(sk.getRenderer());
 		add(new JScrollPane(searchlist), BorderLayout.CENTER);
 	}
+
+    public void search(){
+        searchlist_model.clear();
+        if (searchKey==null) return;
+        List<T> res = searchKey.searchFor(t_search.getText());
+        for (T k: res){
+            searchlist_model.addElement(k);
+        }
+    }
 
     public T getSelectedItem(){
         T res = ((T) searchlist.getSelectedValue());
@@ -102,7 +106,10 @@ public class SearchTab<T> extends JPanel {
 	public String getName() {
 		return name;
 	}
-	
+
+    public void clearResult(){
+        searchlist_model.clear();
+    }
 	/* public static void main(String [] args) {
 		
 		SearchTab t = new SearchTab(null);
