@@ -133,7 +133,7 @@ public class PromotionVController extends Observable implements ContentControlle
 		for (int pos = 0; pos < sMax; pos++){
 				for (int j = 0; j < q; j++){
 					if (newsList.size() <= (pos+(j*sMax))) break;
-					promPan.getSLiderAtPos(pos).addSliderComponent(newsList.get(pos+(j*sMax)).getLayeredPane());
+					promPan.getSLiderAtPos(pos).addSliderComponent(newsList.get(pos+(j*sMax)).getView());
 			}
 		} 
 		startTimer();

@@ -19,8 +19,9 @@ import de.glurak.frontend.registration.RegistrationVController;
 
 public class LoginVController implements ActionListener, WindowListener {
 
-    private LoginView startLoginScreen;
-    private LoginSLiderController con_slider;
+    private LoginView 				startLoginScreen;
+    private LoginSLiderController 	con_slider;
+    private java.util.Timer 		timer_slider; 
 
     public LoginVController(String viewTitel) {
         // build the view
@@ -71,11 +72,12 @@ public class LoginVController implements ActionListener, WindowListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("login") || e.getActionCommand().equals("OK")) {
-
-            if (!authenticate(startLoginScreen.getUsername(), startLoginScreen.getPassword())) {
+        	timer_slider.cancel();
+        	if (!authenticate(startLoginScreen.getUsername(), startLoginScreen.getPassword())) {
                 JOptionPane.showMessageDialog(startLoginScreen, "Login failed. Check Username and Password.");
                 return;
             }
+            
             startLoginScreen.dispose();
             MainFrameVController mainController = new MainFrameVController();
         } else if (e.getActionCommand().equals("registrate")) {
@@ -97,6 +99,7 @@ public class LoginVController implements ActionListener, WindowListener {
     }
 
     public void windowOpened(WindowEvent e) {
+    	timer_slider = new java.util.Timer();
         java.util.TimerTask action = new java.util.TimerTask() {
             @Override
             public void run() {
@@ -105,8 +108,8 @@ public class LoginVController implements ActionListener, WindowListener {
                 }
             }
         };
-        java.util.Timer ankurbler = new java.util.Timer();
-        ankurbler.schedule(action, 1000, 5000);
+        
+        timer_slider.schedule(action, 1000, 4500);
     }
 
     public void windowActivated(WindowEvent e) {

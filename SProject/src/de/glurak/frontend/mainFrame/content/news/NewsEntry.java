@@ -21,6 +21,7 @@ import de.glurak.data.Hateable;
 import de.glurak.data.Medium;
 import de.glurak.data.User.Label;
 import de.glurak.data.User.User;
+import de.glurak.feature.IconLoader;
 import de.glurak.frontend.mainFrame.ContentController;
 
 //public class NewsEntry extends JLayeredPane {
@@ -74,7 +75,8 @@ public class NewsEntry extends Observable {
         // initialize components
         hateTogepi = h;
         newController = newContent;
-        mainPicture = new JLabel(new ImageIcon(scaleImage(imgFilename, panWidth, panHeight)));
+       
+        mainPicture = new JLabel(new IconLoader(panWidth, panHeight, imgFilename).getIcon());
         mainPicture.setBounds(0, 0, panWidth, panHeight);
         ;
         /*
@@ -86,19 +88,6 @@ public class NewsEntry extends Observable {
         textSpace.setFont(new Font("Verdana", Font.BOLD, 22));
         // build NewsEntry
         bt_like = new JButton();
-        /*
-        bt_like.setBackground(Color.BLUE);
-		try {
-			 BufferedImage img = ImageIO.read(new File(Query.FOLDER_PICTURE_ICONS + "sp.png"));
-			Image scaledImg = img.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-			 bt_like.setIcon(new ImageIcon(scaledImg ));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
-        
-        
        
         bt_hate = new JButton("H");
         bt_like.setBounds(panWidth - 2 * 35, panHeight - 35, 30, 30);
@@ -123,6 +112,7 @@ public class NewsEntry extends Observable {
      * @param h
      * @return Skalliertes Bild oder skalliertes Defaultbild
      */
+    /*
     private Image scaleImage(String filename, int w, int h) {
         Image scaledImg = null;
         if (filename != null) {
@@ -137,9 +127,9 @@ public class NewsEntry extends Observable {
             scaledImg = new BufferedImage(w, h, BufferedImage.TYPE_BYTE_GRAY);
         }
         return scaledImg;
-    }
+    } */
 
-    public JLayeredPane getLayeredPane() {
+    public JLayeredPane getView() {
         return this.layeredPane;
     }
 }

@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.LayoutManager;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -25,7 +26,9 @@ import javax.swing.JTable;
 import de.glurak.FrontendColors;
 import de.glurak.Query;
 import de.glurak.data.Playlist;
+import de.glurak.feature.IconLoader;
 import de.glurak.feature.SliderPanel;
+
 
 /**
  * In der dieser View wird eine erstellte Playlist von einem User angezeigt. Die Playlist besteht aus Musikdateien.
@@ -35,18 +38,18 @@ import de.glurak.feature.SliderPanel;
  */
 public class PlaylistView extends JPanel {
     
-	private JTable jT;
     private JLabel lab_name;
     
-	private JPanel 		pan_buttons, pan_lowButtons;
+	private JPanel 		pan_header, pan_lowButtons;
 	private SliderPanel pan_content;
 	private ImageIcon 	ico_playList;
 	private JButton 	bt_new, bt_edit, bt_next, bt_prev;
 	private List<SmartPage> pageArray = new ArrayList<SmartPage>();	
-	private List<JLabel> IconArray = new ArrayList<JLabel>();	
+	private List<PlaylistLabel> IconArray = new ArrayList<PlaylistLabel>();	
 	private int currentPage = -1;
 	private ActionListener actionRef;
 	private MouseListener mouseRef;
+	
     /**
      * Konstruktor
      */
@@ -60,10 +63,10 @@ public class PlaylistView extends JPanel {
     	lab_name.setForeground(Color.white);
     	
     	// Buttonpanel for the main functions of this view
-    	pan_buttons = new JPanel(new FlowLayout());
+    	pan_header = new JPanel(new FlowLayout());
     	//pan_buttons.setPreferredSize(new Dimension(600, 80));
-    	pan_buttons.setBounds(0, 10, 600, 80);
-    	pan_buttons.setBackground(Color.BLACK);
+    	pan_header.setBounds(0, 10, 600, 80);
+    	pan_header.setBackground(Color.BLACK);
     	
         // Buttonpanel for the navigation within this Panel
     	pan_lowButtons = new JPanel(new BorderLayout());
@@ -78,8 +81,8 @@ public class PlaylistView extends JPanel {
     	bt_edit.setActionCommand("editList");
     	bt_edit.addActionListener(actionRef);
     	
-    	pan_buttons.add(bt_new);
-    	pan_buttons.add(bt_edit);
+    	pan_header.add(bt_new);
+    	pan_header.add(bt_edit);
     	
     	// Navigation Buttons
     	bt_next = new JButton("next");
@@ -89,47 +92,29 @@ public class PlaylistView extends JPanel {
     	bt_prev.setActionCommand("prevSlide");
     	bt_prev.addActionListener(actionRef);
     	    	
-    	// Linking all the components together
+       	pan_content = new SliderPanel();
+    	pan_content.setPreferredSize(new Dimension(600,300));
+    	
+    	//Load default playlist icon
+    	ico_playList = new IconLoader(50, 50, Query.FOLDER_PICTURE_ICONS + "pll.png").getIcon();
+		
+		//create the first Page of the PlaylistView
+		SmartPage jp = new SmartPage();
+    	jp.setBackground(FrontendColors.DARK_GREY); 
+    	pageArray.add(jp);
+   		pan_content.addSliderComponent(pageArray.get(pageArray.size()-1));
+   		currentPage = 0;
+   		
+   		// Linking all the components together
     	pan_lowButtons.add(bt_next, BorderLayout.EAST);
     	pan_lowButtons.add(bt_prev, BorderLayout.WEST);
     	pan_lowButtons.add(lab_name, BorderLayout.CENTER);
+   		pan_lowButtons.setVisible(false);
     	
-    	pan_content = new SliderPanel();
-    	pan_content.setPreferredSize(new Dimension(600,300));
-    	
-    	
-    	// creating a test environment
-    	
-    	BufferedImage BGImage = null;
-		try {
-			BGImage = ImageIO.read(new File(Query.FOLDER_PICTURE_ICONS + "pll.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Image img =  BGImage.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
-		ico_playList = new ImageIcon(img);
-
-		SmartPage jp = new SmartPage();
-    	jp.setPreferredSize(new Dimension(50, 50));
-    	jp.setBackground(FrontendColors.DARK_GREY); 
-    	pageArray.add(jp);
-    	SmartPage jp2 = new SmartPage();
-    	jp2.setPreferredSize(new Dimension(50, 50));
-    	jp2.setBackground(Color.BLUE);
-    	pageArray.add(jp2);
-    	SmartPage jp3 = new SmartPage();
-    	jp3.setPreferredSize(new Dimension(50, 50));
-    	jp3.setBackground(Color.MAGENTA);
-    	pageArray.add(jp3);
-    
-    	for (int i =0; i < pageArray.size(); i++)
-    		pan_content.addSliderComponent(pageArray.get(i));
-    	
-    	add(pan_buttons, BorderLayout.NORTH);
+    	add(pan_header, BorderLayout.NORTH);
     	add(pan_content, BorderLayout.CENTER);
     	add(pan_lowButtons, BorderLayout.SOUTH);
-    	currentPage = 0;
+    	
     	setVisible(true);
     }
 
@@ -149,77 +134,142 @@ public class PlaylistView extends JPanel {
   			if (currentPage < 0)
 			currentPage = pan_content.getItemCount();
 		}	
+    }
+    
+    public void removeEmptyPage(){
     	//pan_content.removeSliderCompinent(contentPanArray.get(contentPanArray.size()-1));
     	//contentPanArray.remove(contentPanArray.size()-1);
     }
     
     /**
-     * Erzeugt und positioniert ein Panel, das die übergebene Playist repräsentiert
+     * Erzeugt und positioniert ein Icon, das die übergebene Playist repräsentiert
      * @param p Playlistverweis
      */
     public void addPlaylist(Playlist p){
-    	selectPageForAdd();
-    	JLabel icon = new JLabel(ico_playList);
+    	int page = currentPage;
+    	if (pageFull(page)){
+    		//createNewPage();
+    
+    		page = selectPageForAdd();
+    	}
+    	
+    	PlaylistLabel icon = new PlaylistLabel(ico_playList);
     	icon.setForeground(Color.WHITE);
     	icon.setFont(new Font("Verdana", Font.BOLD, 13));
     	icon.setText(p.getName());
+    	icon.setPlaylistID(p.getID());
     	icon.setHorizontalTextPosition(JLabel.CENTER);
     	icon.setVerticalTextPosition(JLabel.BOTTOM);
     	icon.setPreferredSize(new Dimension(120	,120));
     	icon.setVisible(true);
     	icon.addMouseListener(mouseRef);
-    	IconArray.add(icon);
-    	placeIcon(icon);
     	
+    	IconArray.add(icon);
+    	placeIcon(icon, page);
     }
     
-    private void selectPageForAdd(){
-    	if (!(pageArray.get(currentPage).getItemCount() < 24)){
-    		nextPage();
-    		selectPageForAdd();
+    /**
+     * Plaziert das übergebene Icon auf dem Panel.
+     * @param icon Das aufbereitete Label, welches ein Icon und den Playlistnamen enthält.
+     * @param page Der Seitenindex der Seite, auf der das Icon plaziert wird, fall es nicht die aktuelle sein soll.
+     */
+    private void placeIcon(JLabel icon, int page){
+    	pageArray.get(page).addItem(IconArray.get(IconArray.size()-1 ), BorderLayout.CENTER );
+    	pan_content.refresh();
+    }
+    
+    
+    /**
+     * Erschaft eine neue Page und fügt diese dem Panel hinzu
+     */
+    private void createNewPage(){
+       	SmartPage jp = new SmartPage();
+    	jp.setBackground(FrontendColors.DARK_GREY);
+    	pageArray.add(jp);
+   		pan_content.addSliderComponent(pageArray.get(pageArray.size()-1));
+   		if (pageArray.size() == 2)
+    		pan_lowButtons.setVisible(true);
+    }
+    
+    /**
+     * Liefert die Koordinate der ersten nicht vollen Seite.
+     * Falls die letzte existierende Seite voll ist, wird eine neue erzeugt.
+     * @inv Die gegenwärtige Seite ist voll
+     */
+    private int selectPageForAdd(){
+    	
+    	int tempPage = currentPage;
+    	// getItemCount counts fromm zero, so +1 is needed for the correct amount of items
+    	int maxPages = pan_content.getItemCount()+1;
+    	
+    	// if the current page is not the last page,
+    	for (int c = 0; c < maxPages; c++){
+    	
+    		if (!pageFull(c)){
+    			tempPage = c;
+    			break;
+    		}
+    		// to compare indices maxPage is reduced again
+    		if (c == maxPages-1){
+    			createNewPage();
+    			tempPage = pan_content.getItemCount();
+    		}
+    	}
+    	return tempPage;
+    }
+    
+    public void setPan_Content(SliderPanel sp){
+    	pan_content = sp;
+    	pan_content.refresh();
+    }
+    
+    
+    private boolean pageFull(int page){
+    	if (pageArray.get(page).getItemCount() < 24){
+    		return false;
+    	}else{
+    		return true;
     	}
     }
     
-    private void placeIcon(JLabel icon){
-    	
-    	pageArray.get(currentPage).addItem(IconArray.get(IconArray.size()-1 ), BorderLayout.CENTER );
-    	pan_content.refresh();
-    	lab_name.setText("" + pageArray.get(currentPage).getItemCount());
+    private boolean pageEmpty(int page){
+    	if (pageArray.get(page).getItemCount() < 1){
+    		return false;
+    	}else{
+    		return true;
+    	}
     }
     
     public JLabel getTextLabel(){
     	return lab_name;
     }
     
-    public PlaylistView(JTable jT) {
-        this.jT = jT;
-       // this.playlistName = new JLabel("Playlist test");
-        this.createAndShowView();
-    }
     
-    
-    /**
-     * Erzeugt die Playlistview und zeigt sie an.
-     */
-    private void createAndShowView() {
-       // this.add(playlistName);
-        this.add(jT);
+    public class PlaylistLabel extends JLabel{
+    	private long ID = 0;
+    	public PlaylistLabel(ImageIcon i){
+    		super(i);
+    	}
+    	
+    	public void setPlaylistID(long id){
+    		this.ID = id;
+    	}
+    	
+    	public long getPlaylistID(){
+    		return ID;
+    	}
     }
-
-    public JTable getjT() {
-        return jT;
-    }
-
-    public void setjT(JTable jT) {
-        this.jT = jT;
-    }
-    
     private class SmartPage extends JPanel{
     	
     	private int itemCount = 0;
     	
     	public SmartPage(){
     		super();
+    		itemCount = 0;
+    	}
+    	
+    	public SmartPage(LayoutManager layout){
+    		super(layout);
     		itemCount = 0;
     	}
     	
