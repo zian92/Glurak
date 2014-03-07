@@ -28,7 +28,7 @@ public class UploadVController implements ActionListener, ContentController{
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource() == upview.b_choosefile){
 			uploader = Uploader.getInstance();
-			music_file = new File(uploader.selectSingleMusic(upview), upview.t_artist.getText()+upview.t_album.getText()+upview.t_title.getText());
+			music_file = uploader.selectSingleMusic(upview);
 		}else if(ae.getSource() == upview.b_upload){
 			if((upview.t_title.getText().isEmpty()) || (upview.t_artist.getText().isEmpty()) || (upview.t_album.getText().isEmpty())){
                 JOptionPane.showMessageDialog(upview, "Bitte füllen sie alle Felder aus, um das Medium hochzuladen!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
