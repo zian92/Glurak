@@ -71,13 +71,14 @@ public class QueuePanel extends JPanel{
 		mediumPanelArray = new JPanel[getPlayqueue().getPlaylist().getMediumList().size()];
 		mediumTableArray= new JTable[getPlayqueue().getPlaylist().getMediumList().size()];
 		mediumLabelArray= new JLabel[getPlayqueue().getPlaylist().getMediumList().size()];
-			
+		
 		this.setLayout(new BorderLayout());
 		this.setBackground(Color.GRAY);
 
 		for(int i=0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
 			mediumPanelArray[i]	= new JPanel();
 			mediumLabelArray[i] = new JLabel(getPlayqueue().getPlaylist().getMediumList().get(i).getTitel());
+			mediumPanelArray[i].setBackground(Color.WHITE);
 			firstPanel.add(mediumPanelArray[i]);
 			this.add(firstPanel,BorderLayout.CENTER);
 			
