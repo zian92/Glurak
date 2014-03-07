@@ -1,21 +1,16 @@
 package de.glurak.frontend.mainFrame.content.profile;
 
 import java.awt.event.*;
+import java.util.List;
 import java.util.Observable;
-
 import javax.swing.*;
 
-import org.hibernate.Session;
-
-import de.glurak.data.User.ListenerProfile;
-import de.glurak.data.User.Profile;
+import de.glurak.data.Playlist;
 import de.glurak.data.User.User;
-import de.glurak.data.User.UserProfile;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.NextContent;
 import de.glurak.frontend.mainFrame.content.message.MessageVController;
-import de.glurak.frontend.mainFrame.content.playlist.PlaylistVController;
 import de.glurak.frontend.mainFrame.content.profile.ProfileEditVController;
 
 /**
@@ -26,17 +21,12 @@ import de.glurak.frontend.mainFrame.content.profile.ProfileEditVController;
 public class ProfileVController extends Observable implements ActionListener, ContentController, NextContent {
 	
 	private ProfileView profileview;
-	private ListenerProfile profile;
 	private ContentController nextContent;
 	private User user;
 	private boolean own;
 	
-	/**
-	 * Constructor
-	 * @param own der Nutzer der angezeigt wird. Falls null der aktuelel User
-	 * @param anzPlaylists <= 5, falls ein User mehr Playlisten hat sind diese über den "More"-Button verfügbar.
-	 */
-	public ProfileVController(User user, int anzPlaylists){
+
+	public ProfileVController (User user) {
 		
 		// parameter überprüfen
 		if (user==null) {
@@ -52,7 +42,8 @@ public class ProfileVController extends Observable implements ActionListener, Co
 			}
 		}
 		
-		profileview = new ProfileView(this.user, anzPlaylists, false);
+		Playlist[] top5 = getTopFiveHatedPlaylists();
+		profileview = new ProfileView(this.user, top5, false);
 		
 		// Hinzufügen der ActionListener
 		if (own) {
@@ -64,24 +55,63 @@ public class ProfileVController extends Observable implements ActionListener, Co
 		}
 	}
 	
-	public ProfileVController(User own) {
-		this(own,0);
+	/**
+	 * Holt aus den eigenen Playlists die 5 mit den meisten Hates
+	 * @return Playlist[] max size 5
+	 */
+	private Playlist[] getTopFiveHatedPlaylists() {
+		List<Playlist> myPlaylists = this.user.getMyPlaylists();
+		Playlist temp = null;
+		
+		// Playlists nach most hates sortieren
+		for (int i=0; i<myPlaylists.size(); i++) // bubble sort outer loop
+        {
+            for (int j=0; j < myPlaylists.size()-j; j++) {
+                if (myPlaylists.get(j).hateCount() > myPlaylists.get(j+1).hateCount())
+                {
+                    temp = myPlaylists.get(j);
+                    myPlaylists.set(j,myPlaylists.get(j+1) );
+                    myPlaylists.set(j+1, temp);
+                }
+            }
+        }
+		Playlist[] returnArray = new Playlist[3];
+		
+		// die 5 top lists in returnArray schreiben
+		for (int i=0;i<myPlaylists.size();i++) {
+			returnArray[i] = myPlaylists.get(i);
+		}
+		
+		returnArray[0] = new Playlist(100, "Swag");
+		returnArray[1] = new Playlist(101, "Glurak");
+		returnArray[2] = new Playlist(103, "Yolo");
+		
+		return returnArray;
 	}
+
 	
 	public void actionPerformed(ActionEvent e){
 		Object obj = e.getSource();
 		
 		if (obj == profileview.b_message){
 			nextContent = new MessageVController();
+			((MessageVController) nextContent).setMessage(this.user.getUsername(), "");
 			setChanged();
 			notifyObservers();
 		} else if (obj == profileview.b_follow){
-			SessionThing.getInstance().getSessionUser().follow(this.user);
-			System.out.println(SessionThing.getInstance().getSessionUser().getFollowing().size());
+			if (!SessionThing.getInstance().getSessionUser().getFollowing().contains(this.user)) { 
+				SessionThing.getInstance().getSessionUser().follow(this.user);
+			}
 		} else if (obj == profileview.b_edit){
-			nextContent = new ProfileEditVController(this.user);
+			nextContent = new ProfileEditVController(this.user, getTopFiveHatedPlaylists());
 			setChanged();
 			notifyObservers();
+		} else {
+			for (int i=0;i<getTopFiveHatedPlaylists().length;i++) {
+				if (obj == profileview.getB_playlistArray()[i]) {
+					System.out.println(i);
+				}
+			}
 		}
 	}
 

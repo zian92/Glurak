@@ -6,7 +6,7 @@ import java.util.Observable;
 
 import javax.swing.*;
 
-import de.glurak.data.User.Profile;
+import de.glurak.data.Playlist;
 import de.glurak.data.User.User;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.NextContent;
@@ -22,23 +22,24 @@ public class ProfileEditVController extends Observable implements ActionListener
 	private ContentController nextContent;
 	private User user;
 	
-	public ProfileEditVController(User user){
+	public ProfileEditVController(User user, Playlist[] top5Playlists){
 		
 		this.user = user;
-		profileEditView = new ProfileView(user, 0,  true);
+		profileEditView = new ProfileView(user, top5Playlists, true);
 		
 		// Setzen der ActionListener
 		profileEditView.b_edit.addActionListener(this);
-//		profileEditView.b_uploadpic.addActionListener(this);
+		profileEditView.b_upload.addActionListener(this);
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent e){
 		Object obj = e.getSource();
 		String password = profileEditView.t_password.getText();
 		String passwordConfirm = profileEditView.t_passwordConfirm.getText();
 		
-		if (obj == profileEditView.b_edit){
+		if (obj == profileEditView.b_edit) {
 			try {
 				if (!password.isEmpty() && password.equals(passwordConfirm)) {
 						user.setPassword(password);
@@ -51,6 +52,7 @@ public class ProfileEditVController extends Observable implements ActionListener
 			} catch (NoSuchAlgorithmException e1) {
 				e1.printStackTrace();
 			}
+			
 			user.getProfile().setFirstname(profileEditView.t_firstname.getText());
 			user.getProfile().setLastname(profileEditView.t_lastname.getText());
 			user.getProfile().setEmail(profileEditView.t_email.getText());
@@ -58,10 +60,9 @@ public class ProfileEditVController extends Observable implements ActionListener
 			nextContent = new ProfileVController(null);
 			setChanged();
 			notifyObservers();
-		} 
-//		else if (obj == profileEditView.b_uploadpic){
-//			// TODO
-//		}
+		} else if (obj == profileEditView.b_upload){
+			System.out.println("Uplaod");
+		}
 	}
 
 	public JComponent getView() {
