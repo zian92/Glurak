@@ -13,7 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.SoftBevelBorder;
 
+import de.glurak.data.Medium;
 import de.glurak.data.Playlist;
+import de.glurak.data.User.User;
 import de.glurak.feature.SliderPanel;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
@@ -81,13 +83,17 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 	    		view.prevPage();
 	    		
 	    	}else if(e.getActionCommand().equals("newList")){
+	    		User u1 = new User();
+	    		u1.setUsername("TestUser m");
+	    		Medium m1 = new Medium(900, "PokeTheme", null, u1);
+	    		
 	    		Playlist p = new Playlist();
 	    		p.setName("Pokemon");
+	    		
 	    		
 	    		nextContent = new PlaylistEditVController(p, this);
 				setChanged();
 				notifyObservers();
-	    		
 	    		
 	    		//view.setPan_Content( (SliderPanel) contr_edit.getEditView(p));
 	    		//view.add(contr_edit.getEditView(p));
