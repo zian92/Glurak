@@ -1,7 +1,5 @@
 package de.glurak.frontend.mainFrame.playQueue;
 
-import java.awt.Component;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -12,14 +10,9 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
-import de.glurak.Query;
-import de.glurak.data.Medium;
-import de.glurak.data.Playlist;
 import de.glurak.data.Playqueue;
 import de.glurak.feature.sound.PlayerController;
 import de.vdheide.mp3.MP3Properties;
@@ -41,19 +34,24 @@ public class PlayQueueViewController {
     private final static int 	FINISHED_BY_END = 4;
     private ActionListener		a;
     private MouseListener		m;
+    private static PlayQueueViewController instance= null;
 	
 	
-    
+    public static PlayQueueViewController getInstance(){
+		if(instance==null){
+			instance = new PlayQueueViewController();
+		}   	
+    	return instance;  	
+    }
     
     
     
 	/**Konstrukter mit Initialisierung der Listener
 	 * @param playlist abzuspielende Playlist
 	 */
-	public PlayQueueViewController (Playqueue playqueue) {
-		view = new PlayQueueView(playqueue);
+	private PlayQueueViewController () {
+		view = new PlayQueueView(null);
 		player = new PlayerController();
-		this.setPlayqueue(playqueue);
 		
 		a = new ActionListener() {
 			
@@ -119,7 +117,7 @@ public class PlayQueueViewController {
 			public void mouseReleased(MouseEvent e){
     				for(int i = 0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
     					if(e.getSource()==view.getQueuePanel().getMediumPanelArray()[i]){
-    						if (e.getClickCount() >= 2) { 	
+    						if (e.getButton() == 1) { 	
     							getPlayqueue().setCurrent(i);
     							view.getQueuePanel().resetButton();
     							if (player.isPaused()||player.isPlaying()){
@@ -127,13 +125,13 @@ public class PlayQueueViewController {
 							
     							playNew(0);
     							view.getQueuePanel().resetButton();
-    						}/*else{
-    							
-    							
+    						}
+    						/*else{
+
     							view.getQueuePanel().showInformations(i);
     							
-    						}*/
-    			
+    						}
+    						*/
     					}
     				}
     		
@@ -148,16 +146,10 @@ public class PlayQueueViewController {
 		view.getPreviousButton().addActionListener(a);
 		if(getPlayqueue()!=null){	
 			for(int i = 0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
-				//view.getPlayQueueButton()[i].addActionListener(a);
 				view.getQueuePanel().getMediumPanelArray()[i].addMouseListener(m);
 			}
 		}
 	}
-	
-	public PlayQueueViewController () {
-		this(null);
-	}
-	
 	/**
 	 * Fügt Listener für Veränderungen beim PausablePlayer hinzu
 	 */
