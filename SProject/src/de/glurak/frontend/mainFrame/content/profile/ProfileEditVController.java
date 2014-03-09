@@ -1,13 +1,19 @@
 package de.glurak.frontend.mainFrame.content.profile;
 
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Observable;
 
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 
 import de.glurak.data.Playlist;
 import de.glurak.data.User.User;
+import de.glurak.feature.Uploader;
+import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.NextContent;
 
@@ -61,7 +67,13 @@ public class ProfileEditVController extends Observable implements ActionListener
 			setChanged();
 			notifyObservers();
 		} else if (obj == profileEditView.b_upload){
-			System.out.println("Uplaod");
+			Uploader u = Uploader.getInstance();
+			File file = u.selectSinglePicture(this.profileEditView);
+			try {
+                u.saveProfilePicture(file);
+            } catch (IOException e1) {
+                JOptionPane.showMessageDialog(this.profileEditView, "Bitte versuch es mit einer anderen Datei.", "Fehler", JOptionPane.ERROR_MESSAGE);
+            }
 		}
 	}
 

@@ -18,7 +18,7 @@ import de.glurak.data.Playqueue;
  *
  */
 public class PlayQueueView extends JPanel{
-	private JButton 	playButton;
+	protected JButton 	playButton;
 	private JButton 	nextButton;
 	private JButton 	previousButton;
 	private EJSlider 	positionBar;

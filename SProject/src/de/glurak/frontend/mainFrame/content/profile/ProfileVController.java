@@ -29,7 +29,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
 	public ProfileVController (User user) {
 		
 		// parameter überprüfen
-		if (user==null) {
+		if (user==null || user==SessionThing.getInstance().getSessionUser()) {
 			this.user = SessionThing.getInstance().getSessionUser();
 			own = true;
 		} else {

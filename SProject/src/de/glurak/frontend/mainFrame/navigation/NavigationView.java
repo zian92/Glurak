@@ -48,6 +48,7 @@ public class NavigationView extends JPanel{
 		JPanel northPanel = new JPanel();
         northPanel.setLayout(new BorderLayout());
 		userPicture = new JLabel(profilPicture);
+		userPicture.setPreferredSize(new Dimension(200,200));
 		profilePicture.add(userPicture);
         northPanel.add(userPicture,BorderLayout.CENTER);
 

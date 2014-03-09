@@ -80,6 +80,7 @@ public class Playlist implements Serializable,Hateable{
 		this(id, name, null);
 	}
 	
+	
 
 	public void add(int index, Medium medium) {
 		this.getMediumList().add(index, medium);
