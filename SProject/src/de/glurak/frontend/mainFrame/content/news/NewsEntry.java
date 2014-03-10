@@ -27,109 +27,64 @@ import de.glurak.frontend.mainFrame.ContentController;
 //public class NewsEntry extends JLayeredPane {
 public class NewsEntry extends Observable {
 
-    private JLayeredPane layeredPane;
-    private JLabel mainPicture;
-    private JLabel ownerPicture;
-    private JLabel textSpace;
-    private Hateable hateTogepi;
-    private JPanel newContent;
-    private JButton bt_like, bt_hate;
-    private ContentController newController;
-    private int panWidth = 200;
-    private int panHeight = 180;
-    private int ownerIconWidth = 80;
-    private int ownerIconHeight = 80;
 
-    /**
-     * 
-     * 
-     * @param mainImage
-     *            The image displayed on the Slider
-     * @param owner
-     *            A reference to the owner of this entry
-     * @param message
-     *            A short text, that can be displayed
-     */
+    private String fullPicturePathName;
+    private String message;
+    private int flag = 0;
+    private Hateable source;
     
     public NewsEntry(Medium source) {
         // TODO: implement Album img
         //this( source.getPictureFilename(), null, "Your Song", source);
-        this(Query.FOLDER_PICTURE_ICONS + "musicfile.jpg", null, "Your Song", source);
+        this(Query.FOLDER_PICTURE_ICONS + "musicfile.jpg", "Your Song", source);
+        flag = 1;
+
     }
     public NewsEntry(Album source) {
         // TODO: implement Album img
-        this(source.getFilename(), null, source.getName(), source);
+        this(source.getFilename(), source.getName(), source);
+        flag = 2;
     }
 
     public NewsEntry(User source) {
         // TODO: implement User img
-        this(source.getProfile().getPictureFileNameOrDefaultPictureName(), null, source.getProfile().getFirstname(), source);
+        this(source.getProfile().getPictureFileNameOrDefaultPictureName(), source.getProfile().getFirstname(), source);
+        flag = 3;
     }
 
     public NewsEntry(Label source) {
-        this(null, null, source.getProfile().getName(), source);
+        this(null, source.getProfile().getName(), source);
+        flag = 4;
     }
 
-    public NewsEntry(String imgFilename, ContentController newContent, String message, Hateable h) {
-        layeredPane = new JLayeredPane();
-        // initialize components
-        hateTogepi = h;
-        newController = newContent;
-       
-        mainPicture = new JLabel(new IconLoader(panWidth, panHeight, imgFilename).getIcon());
-        mainPicture.setBounds(0, 0, panWidth, panHeight);
-        ;
-        /*
-         * JFrame f = new JFrame(); f.getContentPane().setLayout(new BorderLayout()); f.getContentPane().add(mainPicture,BorderLayout.CENTER); f.setVisible(true); /* ownerPicture = new JLabel(new ImageIcon(sclaeImage( owner.getProfileImage() , ownerIconWidth, ownerIconHeight)))
-         */
-        textSpace = new JLabel(message);
-        textSpace.setBounds(8, 5, panWidth, 30);
-        textSpace.setForeground(Color.WHITE);
-        textSpace.setFont(new Font("Verdana", Font.BOLD, 22));
-        // build NewsEntry
-        bt_like = new JButton();
-       
-        bt_hate = new JButton("H");
-        bt_like.setBounds(panWidth - 2 * 35, panHeight - 35, 30, 30);
-        bt_hate.setBounds(panWidth - 35, panHeight - 35, 30, 30);
-
-        layeredPane.setBounds(0, 0, panWidth, panHeight);
-
-        layeredPane.add(mainPicture, JLayeredPane.DEFAULT_LAYER, 0);
-        // TODO: add User Picture
-        layeredPane.add(textSpace, JLayeredPane.PALETTE_LAYER, 0);
-        layeredPane.add(bt_like, JLayeredPane.PALETTE_LAYER, 0);
-        layeredPane.add(bt_hate, JLayeredPane.PALETTE_LAYER, 0);
-        layeredPane.setVisible(true);
+    public NewsEntry(String imgFilename, String message, Hateable h) {
+        this.fullPicturePathName = imgFilename;
+        this.message = message;
+        this.source = h;
+        //TODO: link Hateble to this newsEntry or manage the Hate-Forwarding within the viewController that uses this Entry
     }
 
+    public String getPictureName(){
+    	return fullPicturePathName;
+    }
+    
+    public String getMessage(){
+    	return message;
+    }
+    
+    public Hateable getSource(){
+    	return source;
+    }
+    
     /**
-     * 
-     * 
-     * @param filename
-     *            Vollqualifizierter Dateiname oder null für DefaultImage
-     * @param w
-     * @param h
-     * @return Skalliertes Bild oder skalliertes Defaultbild
+     * Liefert den Typflag des NewsEntry Source.
+     *  Flag = 1: Typ Medium
+     *  Flag = 2: Typ Album
+     *  Flag = 3: Typ User
+     *  Flag = 4: Typ 	 
+     * @return
      */
-    /*
-    private Image scaleImage(String filename, int w, int h) {
-        Image scaledImg = null;
-        if (filename != null) {
-            try {
-                BufferedImage img = ImageIO.read(new File(filename));
-                scaledImg = img.getScaledInstance(w, h, Image.SCALE_SMOOTH);
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        } else {
-            scaledImg = new BufferedImage(w, h, BufferedImage.TYPE_BYTE_GRAY);
-        }
-        return scaledImg;
-    } */
-
-    public JLayeredPane getView() {
-        return this.layeredPane;
+    public int getType(){
+    	return flag;
     }
 }
