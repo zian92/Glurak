@@ -44,12 +44,6 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
         initfillView();
     }
 
-    private JTable fillTable() {
-        Object[][] o = { { "sadf", "asdf", "asdf" }, { "sadf", "asdf", "asdf" }, { "sadf", "asdf", "asdf" } };
-        JTable j = new JTable(o, tableHeader);
-        return j;
-    }
-
     public JComponent getView() {
         return view;
     }
