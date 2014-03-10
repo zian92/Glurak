@@ -71,7 +71,8 @@ public class FollowerVController  extends Observable implements MouseListener, A
 	}
 
 	public void reload() {
-		// TODO Auto-generated method stub
+		List<User> list = SessionThing.getInstance().getSessionUser().getFollowing();
+		view.fillView(list);
 		
 	}
 

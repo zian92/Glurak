@@ -37,7 +37,12 @@ public class FollowerView extends JPanel {
     	//parent.add(child, constr);
 	}
 	
+	/**
+	 * Plaziert ein Labelelement, welches den übergebenen Follower repraesentiert
+	 * @param favo Der übergebene Follower
+	 */
 	public void addFollower(User favo){
+		
 		JLabel icon = new JLabel(new IconLoader(200, 200, favo.getProfile().getPictureFileNameOrDefaultPictureName()).getIcon());
 		
 		icon.setForeground(Color.WHITE);
@@ -48,10 +53,16 @@ public class FollowerView extends JPanel {
     	icon.setPreferredSize(new Dimension(200	,200));
     	icon.setVisible(true);
     	icon.addMouseListener(mRef);
-		
+		pan_content.add(icon, favoCount);
 		pan_content.add(icon);
 		favoCount++;	
 		
+	}
+	
+	public void removeFollower(){
+		pan_content.remove(favoCount);
+		favoCount--;
+		pan_content.repaint();
 	}
 	
     public void fillView(List<User> list){
@@ -62,9 +73,9 @@ public class FollowerView extends JPanel {
     		addFollower(list.get(i));
     	}
     }
-    
+    /*
     public void refreshView(List<User> list){
     	addFollower(list.get(list.size()-1));
     }
-	
+	*/
 }
