@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author Entscheider
  */
 @Entity
-public class ArtistProfile extends ListenerProfile implements Serializable{
+public class ArtistProfile extends ListenerProfile implements Serializable, Comparable<ArtistProfile> {
 
     @ManyToOne
     private LabelProfile myLabel;
@@ -46,4 +46,11 @@ public class ArtistProfile extends ListenerProfile implements Serializable{
     public String[] myRights() {
         return Rights.ARTIST_RIGHTS;
     }
+
+	public int compareTo(ArtistProfile a) {
+		Integer myHates = this.belongTo().hateCount();
+		Integer hates = a.belongTo().hateCount();
+		
+		return myHates.compareTo(hates);
+	}
 }

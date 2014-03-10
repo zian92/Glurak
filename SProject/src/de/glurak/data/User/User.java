@@ -15,7 +15,7 @@ import java.util.List;
  * Date: 25.01.2014
  */
 @Entity
-public class User extends Reachable implements Serializable{
+public class User extends Reachable implements Serializable, Comparable<User>{
 
     private String username="";
     private String passwordHash="";
@@ -128,4 +128,15 @@ public class User extends Reachable implements Serializable{
             return profile.getPictureFileNameOrDefaultPictureName();
         return null;
     }
+
+
+
+	public int compareTo(User u) {
+		Integer myHates = this.hateCount();
+		Integer hates = u.hateCount();
+		
+		return myHates.compareTo(hates);
+	}
+
+
 }

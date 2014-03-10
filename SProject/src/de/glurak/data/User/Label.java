@@ -3,6 +3,8 @@ package de.glurak.data.User;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,4 +73,5 @@ public class Label extends Reachable implements Serializable {
             return profile.getPictureFileNameOrDefaultPictureName();
         return null;
     }
+
 }
