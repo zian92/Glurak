@@ -68,7 +68,7 @@ public class PlayQueueViewController {
 						playNew(view.getPositionBar().getValue());
 					} else if (player.isPlaying()) {
 								player.pause();
-								view.playButton.setText("Play   ");
+								view.playButton.setText("Play    ");
 					} else {
 						playNew(view.getPositionBar().getValue());
 					}
@@ -134,9 +134,8 @@ public class PlayQueueViewController {
 							if(e.getSource()==view.getQueuePanel().getMediumPanelArray()[i]){ 
     								getPlayqueue().setCurrent(i);
     								view.getQueuePanel().resetButton();
-    								if (player.isPaused()||player.isPlaying()){
-    									player.stop();}
-							
+    								if (player.isPaused() || player.isPlaying())
+    									player.stop();
     								playNew(0);
     								view.getQueuePanel().resetButton();
     							}
@@ -210,7 +209,8 @@ public class PlayQueueViewController {
 
 						if(player.getPlayer().getPlayerStatus()==FINISHED_BY_END){
 							getPlayqueue().getNext();
-							player.stop();
+							if(player.isPlaying()||player.isPaused()){
+							player.stop();}
 							playNew(0);
 							view.getQueuePanel().resetButton();
 						}
@@ -297,6 +297,8 @@ public class PlayQueueViewController {
 	 */
 	public void playNew(int time){
 		if(getPlayqueue()!=null){
+			if (player.isPaused() || player.isPlaying()){
+				player.stop();}
 			view.playButton.setText("Pause");
 		player.play(getPlayqueue().getCurrent().getFileName(),time);
 		File file = new File(getPlayqueue().getCurrent().getFileName());
@@ -314,6 +316,15 @@ public class PlayQueueViewController {
 		addPlayerListener();
 		
 		}
+	}
+	public void stop(){
+		if(player==null){
+			
+		}else{
+			if(player.isPaused()||player.isPlaying()){
+				player.stop();}
+		}
+			
 	}
 
 }
