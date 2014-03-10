@@ -30,12 +30,13 @@ public class NavigationVController extends Observable {
 	private ContentController contentController;
 	private PromotionVController promotionVController;
     private Map<String,ContentController> map;
+    private User user;
 	
 	/**
 	 * Konstruktor
 	 */
 	public NavigationVController(ContentController promoVContr){
-		
+		this.user=SessionThing.getInstance().getSessionUser();
         map = new HashMap<String, ContentController>();
 		promotionVController = (PromotionVController) promoVContr;
 		
@@ -45,12 +46,10 @@ public class NavigationVController extends Observable {
                 String name = e.getActionCommand();
                 ContentController c;
                 
-                if (name=="Profil"){
-                	c = new ProfileVController(null);
-                }else if(name=="News"){
-                	c = new PromotionVController();
-                }else {
-                	c = map.get(name);	
+                if (name=="Profil") {
+                	c = new ProfileVController(user);
+                } else {
+                	c = map.get(name);
                 }
                 
                 setContentController(c);

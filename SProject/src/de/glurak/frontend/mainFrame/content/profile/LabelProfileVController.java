@@ -3,6 +3,8 @@ package de.glurak.frontend.mainFrame.content.profile;
 import java.awt.event.*;
 import javax.swing.*;
 
+import de.glurak.data.User.Label;
+import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.content.message.ApplicationVController;
 import de.glurak.frontend.mainFrame.content.playlist.PlaylistVController;
@@ -19,38 +21,14 @@ public class LabelProfileVController implements ContentController, ActionListene
     private LabelProfileView labelProfileView;
 
     /**
-     * Constructor     TODO: DYNMAISCH BESTIMMEN!!!
-     * @param artist Greift ein Künstler auf das Profil zu?
-     * @param labelManager Greift ein LabelManager auf das Profil zu?
-     * @param anzArtists <= 10
-     * @param anzPlaylists <= 5, falls mehr als 5 Playlisten existieren, sind diese über den "More"-Button verfügbar
+     *
+     * @param l
      */
-    public LabelProfileVController(boolean artist, boolean labelManager, int anzArtists, int anzPlaylists){
+    public LabelProfileVController(Label l){
 
-        labelProfileView = new LabelProfileView(artist, labelManager, anzArtists, anzPlaylists);
+        labelProfileView = new LabelProfileView(SessionThing.getInstance().getSessionUser(),l,this);
 
-        // Hinzufügen der ActionListener
-        labelProfileView.b_moreplaylists.addActionListener(this);
-        if (artist){
-            labelProfileView.b_apply.addActionListener(this);
-            labelProfileView.b_follow.addActionListener(this);
-        }
-        else{
-
-            if (labelManager){
-                labelProfileView.b_edit.addActionListener(this);
-            }
-            else{
-                labelProfileView.b_follow.addActionListener(this);
-            }
-        }
-
-        // Daten in die Textfelder schreiben
-
-        labelProfileView.t_labelname.setText("");
-        for (int i = 1; i <= anzArtists; i++){
-            labelProfileView.t_kuenstler[i].setText("Test");
-        }
+        labelProfileView.reload();
 
     }
 

@@ -30,13 +30,14 @@ public class ProfileVController extends Observable implements ActionListener, Co
 	public ProfileVController (User user) {
 		
 		// parameter überprüfen
-		if (user==null || user==SessionThing.getInstance().getSessionUser()) {
+		if (user==null) {
 			this.user = SessionThing.getInstance().getSessionUser();
 			own = true;
 		} else {
 			// überprüfen ob es das eigene Profil ist
 			if (user==SessionThing.getInstance().getSessionUser()) {
 				own = true;
+				this.user = user;
 			} else {
 				own = false;
 				this.user = user;
@@ -89,7 +90,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
 				SessionThing.getInstance().getSessionUser().follow(this.user);
 			}
 		} else if (obj == profileview.b_edit){
-			nextContent = new ProfileEditVController();
+			nextContent = new ProfileEditVController(this.user);
 			setChanged();
 			notifyObservers();
 		} else {

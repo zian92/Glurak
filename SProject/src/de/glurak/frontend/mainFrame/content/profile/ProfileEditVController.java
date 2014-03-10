@@ -32,12 +32,17 @@ public class ProfileEditVController extends Observable implements ActionListener
 		return picChanged;
 	}
 
-	public ProfileEditVController(){
+	public ProfileEditVController(User user){
 		
-		this.user = SessionThing.getInstance().getSessionUser();
+		if (user==null || user==SessionThing.getInstance().getSessionUser()) {
+			this.user = SessionThing.getInstance().getSessionUser();
+		} else {
+			this.user = user;
+		}
+		
 		List<Playlist> top5Playlists = new ProfileVController(this.user).getTopFiveHatedPlaylists();
 		
-		profileEditView = new ProfileView(user, top5Playlists, true);
+		profileEditView = new ProfileView(this.user, top5Playlists, true);
 		
 		// Setzen der ActionListener
 		profileEditView.b_edit.addActionListener(this);

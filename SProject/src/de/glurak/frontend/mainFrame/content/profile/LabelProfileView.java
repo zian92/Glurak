@@ -1,11 +1,18 @@
 package de.glurak.frontend.mainFrame.content.profile;
 
+import java.util.List;
+import de.glurak.data.User.ArtistProfile;
+import de.glurak.data.User.Label;
+import de.glurak.data.User.Rights;
+import de.glurak.data.User.User;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -29,6 +36,8 @@ public class LabelProfileView extends JPanel{
 		protected JPanel pan_picture;
 		private JPanel pan_profiledata;
 		private JPanel pan_playlists;
+
+        private Label l;
 		
 		// Buttons
 		protected JButton b_apply;
@@ -48,12 +57,15 @@ public class LabelProfileView extends JPanel{
 		
 		/**
 		 * Constructor
-		 * @param artist Greift ein Artist auf das Profil zu?
-		 * @param labelManager Greift ein Labelmanager auf das Profil zu?
-		 * @param anzArtists <= 10
-		 * @param anzPlaylists <= 5 bei mehr als 5 klicke "More"-Button
 		 */
-		public LabelProfileView(boolean artist, boolean labelManager, int anzArtists, int anzPlaylists){
+		public LabelProfileView(User u, Label l,ActionListener listener){
+            this.l=l;
+            int anzPlaylists=0;
+            if (l!=null)
+                anzPlaylists=l.getMyPlaylists().size();
+            int anzArtists=0;
+            if (l!=null)
+                anzArtists=l.getProfile().getMyartists().size();
 			
 			// Initialisieren Panel pan_profileview
 			pan_labelprofileview = new JPanel(new GridBagLayout());
@@ -87,13 +99,15 @@ public class LabelProfileView extends JPanel{
 				pan_profilepic.add(pan_picture, d);
 				
 			    // Initialisieren der Buttons b_apply, b_follow, b_edit
-				if (labelManager){  // Falls aus der Sicht des LabelManagers auf das LabelProfile zugegriffen wird.
+				if (u!=null&&u.getProfile().roleName().equals("LabelManager")){  // Falls aus der Sicht des LabelManagers auf das LabelProfile zugegriffen wird.
 				
 			    	d.gridx = 0;
 					d.gridy = 1;
 					d.gridheight = 1;
 					d.gridwidth = 2;
 					b_edit = new JButton("Bearbeiten");
+                    if (listener!=null)
+                        b_edit.addActionListener(listener);
 					b_edit.setBorder(BorderFactory.createLineBorder(Color.white));
 					b_edit.setBackground(Color.black);
 					b_edit.setForeground(Color.white);
@@ -102,12 +116,14 @@ public class LabelProfileView extends JPanel{
 				}
 				else{      
 					
-					if (artist){    // Falls aus der Sicht des Künstlers auf das LabelProfile zugegriffen wird.
+					if (u!=null&&u.getProfile().hasRight(Rights.APPLICATION_TO_LABEL)){    // Falls aus der Sicht des Künstlers auf das LabelProfile zugegriffen wird.
 						d.gridx = 0;
 						d.gridy = 1;
 						d.gridheight = 1;
 						d.gridwidth = 1;
 						b_apply = new JButton("Bewerben");
+                        if (b_apply!=null)
+                            b_apply.addActionListener(listener);
 						b_apply.setBorder(BorderFactory.createLineBorder(Color.white));
 						b_apply.setBackground(Color.black);
 						b_apply.setForeground(Color.white);
@@ -118,6 +134,8 @@ public class LabelProfileView extends JPanel{
 						d.gridheight = 1;
 						d.gridwidth = 1;
 						b_follow = new JButton("Follow");
+                        if (b_follow!=null)
+                            b_follow.addActionListener(listener);
 						b_follow.setBorder(BorderFactory.createLineBorder(Color.white));
 						b_follow.setBackground(Color.black);
 						b_follow.setForeground(Color.white);
@@ -149,7 +167,7 @@ public class LabelProfileView extends JPanel{
 				l_playlist = new JLabel[5];
 				t_playlist = new JTextField[5];
 				
-				for (int i = 1; i <= anzPlaylists; i++){
+				for (int i = 0; i < anzPlaylists; i++){
 					
 					// Labels und Textfelder hinzufügen
 					e.gridx = 0;
@@ -182,6 +200,8 @@ public class LabelProfileView extends JPanel{
 				e.gridheight = 1;
 				e.gridwidth = 2;
 				b_moreplaylists = new JButton("mehr");
+                if (listener !=null)
+                    b_moreplaylists.addActionListener(listener);
 				b_moreplaylists.setBorder(BorderFactory.createLineBorder(Color.white));
 				b_moreplaylists.setBackground(Color.black);
 				b_moreplaylists.setForeground(Color.white);
@@ -220,7 +240,7 @@ public class LabelProfileView extends JPanel{
 				t_kuenstler = new JTextField[10];
 				l_kuenstler = new JLabel[10];
 				
-				for (int i = 1; i <= anzArtists; i++){
+				for (int i = 0; i < anzArtists; i++){
 
 					// Label und Textfelder hinzufügen
 					f.gridx = 0;
@@ -288,7 +308,7 @@ public class LabelProfileView extends JPanel{
 	    labelprofile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//Registrationview in das Frame laden
-		JComponent newContentPane = new LabelProfileView(false, false, 4, 2);
+		JComponent newContentPane = new LabelProfileView(null,null,null);
         newContentPane.setOpaque(true);
         labelprofile.setContentPane(newContentPane);
         
@@ -304,6 +324,18 @@ public class LabelProfileView extends JPanel{
 		labelprofile.pack();
 		labelprofile.setVisible(true);
 	}
+
+    public void reload(){
+        reloadArtistList();
+        t_labelname.setText(l.getProfile().getName());
+    }
+
+    public void reloadArtistList(){
+         List<ArtistProfile> artists=l.getProfile().getMyartists();
+        for (int i=0; i< artists.size();i++){
+           t_kuenstler[i].setText(artists.get(i).getFirstname()+" "+ artists.get(i).getLastname());
+        }
+    }
 	
 	public static void main(String[] args){
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
