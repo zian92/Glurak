@@ -84,6 +84,7 @@ public class MainFrameVController implements Observer{
             
             if (headerController.getLogout()) {
             	this.view.dispose();
+            	PlayQueueViewController.getInstance().stop();
     			LoginVController logControll = new LoginVController(Query.APPLICATION_NAME);
     			
             }

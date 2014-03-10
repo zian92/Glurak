@@ -9,6 +9,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
@@ -33,10 +34,12 @@ public class PlayQueueViewController {
 	private PlayerController 	player;
 	private Playqueue 			playqueue;
 	private PlayQueueView 		view;
-	private long 				duration;
+	private float				duration;
+	private float 				bitrate=0;
     private final static int 	FINISHED_BY_END = 4;
     private ActionListener		a;
     private MouseListener		m;
+    private boolean				propertiesBoolean;
     private static PlayQueueViewController instance= null;
 	
 	
@@ -65,12 +68,13 @@ public class PlayQueueViewController {
 				if (src == view.getPlayButton()) {
 					if (player.isPaused()) {
 
-						playNew(view.getPositionBar().getValue());
+						player.resume();
+						view.playButton.setText("Pause");
 					} else if (player.isPlaying()) {
 								player.pause();
 								view.playButton.setText("Play    ");
 					} else {
-						playNew(view.getPositionBar().getValue());
+						playNew(0);
 					}
 				} else if (src == view.getNextButton()) {
 					getPlayqueue().getNext();
@@ -114,7 +118,7 @@ public class PlayQueueViewController {
 					}
 				}
 				
-				if(!view.isPositionChange()&&!view.getPositionBar().getValueIsAdjusting()){
+				if(propertiesBoolean&&!view.isPositionChange()&&!view.getPositionBar().getValueIsAdjusting()){
 					if(player.isPlaying()||player.isPaused()){
 						player.stop();
 						playNew(view.getPositionBar().getValue());
@@ -202,7 +206,8 @@ public class PlayQueueViewController {
 			public void propertyChange(PropertyChangeEvent evt) {
 				if(!view.getPositionBar().getValueIsAdjusting()&&getPlayqueue()!=null){
 				if(evt.getPropertyName()=="actualFrame"){
-					view.changePositionBar((Integer) evt.getNewValue());
+					if(propertiesBoolean){
+					view.changePositionBar((Integer) evt.getNewValue());}
 					
 				}else
 					if(player.getPlayer()!=null){//
@@ -303,16 +308,41 @@ public class PlayQueueViewController {
 		player.play(getPlayqueue().getCurrent().getFileName(),time);
 		File file = new File(getPlayqueue().getCurrent().getFileName());
 		MP3Properties properties = null;
+		propertiesBoolean=true;
 		try {
-			properties = new MP3Properties(file);
+			properties 	= new MP3Properties(file);
+			duration	= properties.getLength();
+			BigDecimal bigOne = new BigDecimal(128);
+			BigDecimal bigBitrate = new BigDecimal(properties.getBitrate());
+			bitrate		=(bigOne.divide(bigBitrate)).floatValue();
+			System.out.println(bitrate);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		} catch (NoMP3FrameException e1) {
 			e1.printStackTrace();
 		}
-		duration= properties.getLength();		
-		view.setPositionBar(new JSlider(0,(int)((duration*1000/26)/(128/properties.getBitrate())),time));
-		view.getPositionBar().validate();
+		 catch(ArithmeticException e2){
+			propertiesBoolean=false;
+			System.out.println("Eigenschaften nicht lesbar");
+		 }
+		if(bitrate==0){propertiesBoolean=false; System.out.println("Eigenschaften nicht lesbar");}
+		if(propertiesBoolean) {
+			float maximum;
+			if (bitrate >= 1) {
+				maximum=(duration*1000/26)/(bitrate);
+				//System.out.println(maximum);
+			} else {
+				maximum=(duration*1000/26);
+				
+			}
+			
+			view.setPositionBar(new JSlider(0,(int)(maximum),time));
+			view.getPositionBar().validate();
+		}
+		else{
+			view.setPositionBar(new JSlider(0,0,0));
+			view.getPositionBar().validate();
+		}
 		addPlayerListener();
 		
 		}
