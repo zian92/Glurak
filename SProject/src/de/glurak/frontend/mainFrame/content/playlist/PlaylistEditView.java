@@ -24,7 +24,7 @@ import de.glurak.data.Playlist;
 public class PlaylistEditView extends JPanel{
 	
 	private JLabel 				lab_itemCount, lab_;
-    private JTextField			field_name;
+    protected JTextField		field_name;
 	private JTable 				tab_media;
 	private String[] 			columnNames = {" Titel ", "Künstler"};
 	private DefaultTableModel 	tabmod_address;
