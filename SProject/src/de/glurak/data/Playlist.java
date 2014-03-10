@@ -11,7 +11,7 @@ import javax.persistence.*;
  *
  */
 @Entity
-public class Playlist implements Serializable,Hateable{
+public class Playlist implements Serializable, Hateable, Comparable<Playlist>{
 
     @ManyToMany
     @JoinTable(
@@ -151,4 +151,11 @@ public class Playlist implements Serializable,Hateable{
     public List<User> getLiker() {
         return liker;
     }
+
+	public int compareTo(Playlist o) {
+		Integer myHates = this.hateCount();
+		Integer hates = o.hateCount();
+		
+		return myHates.compareTo(hates);
+	}
 }

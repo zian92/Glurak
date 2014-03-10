@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Observable;
 
 import javax.swing.JComponent;
@@ -28,7 +29,7 @@ public class ProfileEditVController extends Observable implements ActionListener
 	private ContentController nextContent;
 	private User user;
 	
-	public ProfileEditVController(User user, Playlist[] top5Playlists){
+	public ProfileEditVController(User user, List<Playlist> top5Playlists){
 		
 		this.user = user;
 		profileEditView = new ProfileView(user, top5Playlists, true);

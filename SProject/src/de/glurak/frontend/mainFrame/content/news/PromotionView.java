@@ -24,12 +24,12 @@ public class PromotionView extends JPanel {
 	private List<SliderPanel> sliderPanArray = new ArrayList<SliderPanel>();	
 	
 	/**
-	 * Erzeugt ein Panel der Größe preferedSize. 
-	 * Füllt dieses mit Slidern der Größe preferedSliderSize. 
-	 * Anzahl der Slider wird in abhängigkeit von der Größe dynamisch berechnet
+	 * Erzeugt ein Panel der Groesse preferedSize. 
+	 * Faellt dieses mit Slidern der Groesse preferedSliderSize. 
+	 * Anzahl der Slider wird in abhängigkeit von der Groesse dynamisch berechnet
 	 *  
-	 * @param preferedSize Größe dieses Panels
-	 * @param preferedSliderSize Größe der einzelnen Slider
+	 * @param preferedSize Groesse dieses Panels
+	 * @param preferedSliderSize Groesse der einzelnen Slider
 	 * @author MxB
 	 */
 	public PromotionView(Dimension preferedSize, Dimension preferedSliderSize){
