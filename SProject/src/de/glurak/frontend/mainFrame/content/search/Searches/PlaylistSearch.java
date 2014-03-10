@@ -2,6 +2,7 @@ package de.glurak.frontend.mainFrame.content.search.Searches;
 
 import de.glurak.data.Genre;
 import de.glurak.data.Playlist;
+import de.glurak.data.User.User;
 import de.glurak.database.DBSearch;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
@@ -33,7 +34,8 @@ public class PlaylistSearch implements Searchable<Playlist> {
                 JLabel l = new JLabel();
                 l.setText(value.getName());
                 JLabel lUsername = new JLabel();
-                lUsername.setText("Von: "+value.getOwner().getUsername());
+                if (value.getOwner() instanceof User)
+                  lUsername.setText("Von: " + ((User) value.getOwner()).getUsername());
                 res.add(l, BorderLayout.CENTER);
                 res.add(lUsername, BorderLayout.SOUTH);
                 return res;

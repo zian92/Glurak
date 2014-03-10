@@ -43,7 +43,7 @@ public class LabelSearch implements Searchable<LabelProfile> {
 
     public ContentController getChangeController(LabelProfile field) {
         //return new LabelProfileVController(/*field*/);
-        return new LabelProfileVController(true,true,1,1);
+        return new LabelProfileVController(field.getMyLabel());
     }
 
     public void otherDoubleClickAction(LabelProfile value) {
