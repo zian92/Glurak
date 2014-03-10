@@ -110,7 +110,7 @@ public class MainFrameVController implements Observer{
             			
             			navigationController.addObserver(this);
             			
-            			contentController = new ProfileEditVController();
+            			contentController = new ProfileEditVController(null);
             		}
             		else {
             			contentController = ((NextContent) contentController).getNextContent();
