@@ -6,9 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 import javax.swing.*;
-
-import org.hibernate.mapping.Collection;
-
 import de.glurak.data.Playlist;
 import de.glurak.data.User.User;
 import de.glurak.frontend.SessionThing;
@@ -96,11 +93,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
 			setChanged();
 			notifyObservers();
 		} else {
-//			for (int i=0;i<getTopFiveHatedPlaylists().length;i++) {
-//				if (obj == profileview.getB_playlistArray()[i]) {
-//					System.out.println(i);
-//				}
-//			}
+			
 		}
 	}
 
