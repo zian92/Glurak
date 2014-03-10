@@ -10,6 +10,7 @@ import java.util.Observable;
 import javax.swing.JComponent;
 
 import de.glurak.data.Playlist;
+import de.glurak.data.User.Rights;
 import de.glurak.data.User.User;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
@@ -55,7 +56,12 @@ public class ProfileVController extends Observable implements ActionListener, Co
 		else{
 			profileview.b_follow.addActionListener(this);
 			profileview.b_message.addActionListener(this);
-			profileview.b_block.addActionListener(this);
+		}
+		if (own && session.getSessionUser().getProfile().hasRight(Rights.LOCK_OTHER_USER)) {
+		    profileview.b_block.setVisible(false);
+		} else {
+		    profileview.b_block.addActionListener(this);
+		    profileview.b_block.setVisible(true);
 		}
 		
 		for (int i=0;i<profileview.b_playlistArray.length; i++) {
@@ -85,15 +91,16 @@ public class ProfileVController extends Observable implements ActionListener, Co
 	}
 
 	
-	public void actionPerformed(ActionEvent e){
-		Object obj = e.getSource();
-		
-		if (obj == profileview.b_message){
-			nextContent = new MessageVController();
-			((MessageVController) nextContent).setMessage(this.user.getUsername(), "");
-			setChanged();
-			notifyObservers();
-		} else if (obj == profileview.b_follow){
+    public void actionPerformed(ActionEvent e) {
+        Object obj = e.getSource();
+
+        if (obj == profileview.b_message) {
+            nextContent = new MessageVController();
+            ((MessageVController) nextContent).setMessage(this.user.getUsername(), "");
+            setChanged();
+            notifyObservers();
+        } else
+            if (obj == profileview.b_follow) {
                 if (!session.getSessionUser().getFollowing().contains(this.user)) {
                     // follow
                     session.getSessionUser().follow(this.user);
@@ -103,33 +110,32 @@ public class ProfileVController extends Observable implements ActionListener, Co
                     session.getSessionUser().getFollowing().remove(this.user);
                     this.profileview.setFollowButtonToFollow();
                 }
-			
-		} else if (obj == profileview.b_edit){
-			nextContent = new ProfileEditVController(this.user);
-			setChanged();
+            } else
+                if (obj == profileview.b_edit) {
+                    nextContent = new ProfileEditVController(this.user);
+                    setChanged();
                     notifyObservers();
                 } else
                     if (obj == profileview.b_block) {
                         if (user.isLocked()) {
-                        // sperren
-                            user.setLocked(true);
-                            this.profileview.setBlockButtontToBock();
-                        } else {
                             // entsperren
                             user.setLocked(false);
                             this.profileview.setBlockButtonToUnblock();
+                        } else {
+                            // sperren
+                            user.setLocked(true);
+                            this.profileview.setBlockButtontToBock();
                         }
                     } else {
                         for (int i = 0; i < profileview.b_playlistArray.length; i++) {
-				if (obj == profileview.b_playlistArray[i]) {
-					nextContent = new PlaylistEditVController(getTopFiveHatedPlaylists().get(i), this);
-					setChanged();
-					notifyObservers();
-				}
-				
-			}
-		}
-	}
+                            if (obj == profileview.b_playlistArray[i]) {
+                                nextContent = new PlaylistEditVController(getTopFiveHatedPlaylists().get(i), this);
+                                setChanged();
+                                notifyObservers();
+                            }
+                        }
+                    }
+    }
 
 	public JComponent getView() {
 		return profileview;
