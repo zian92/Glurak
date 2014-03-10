@@ -88,7 +88,7 @@ public class RegistrationView extends JPanel{
         add(l_note, BorderLayout.NORTH);
 
         //Dropdownmenue fuer das Herkunftsland anlegen
-        String[] countries = new String[] {"", "Belgium", "China", "D√§nemark", "Deutschland", "England", "Finnland",
+        String[] countries = new String[] {"", "Belgium", "China", "D‰nemark", "Deutschland", "England", "Finnland",
                 "Frankreich", "Irland", "Italien", "Japan", "Luxemburg", "Niederlande", "Norwegen", "√ñsterreich",
                 "Polen", "Portugal", "Russland", "Schweden", "Schweiz", "Spanien", "Tschechien", "Vereinigte Staaten",
                 "anderes Land"};
@@ -132,7 +132,7 @@ public class RegistrationView extends JPanel{
 
     private JPanel getGenderRadio(){
         //Initialisierung der Radionbuttons
-        r_gender_m = new JRadioButton("m√§nnlich");
+        r_gender_m = new JRadioButton("m‰nnlich");
         r_gender_f = new JRadioButton("weiblich");
 
         //Die Radiobuttons gruppieren
