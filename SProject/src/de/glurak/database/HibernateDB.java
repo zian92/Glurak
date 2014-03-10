@@ -227,13 +227,10 @@ public class HibernateDB {
 
     /**
      * Speichert die Daten ins Dateisystem
-     * Unbedingt aufrufen, falls beendet wird!!!
      */
     public void save(){
         em.getTransaction().begin();
         em.getTransaction().commit();
-        em.close();
-        emf.close();
     }
 
     /**
@@ -300,5 +297,29 @@ public class HibernateDB {
         p.addAnnouncement(an);
         if (tr==null)
             em.getTransaction().commit();
+    }
+
+    public void addNewsEntry(NewsEntry entry, EntityTransaction tr){
+        if (tr==null)
+            em.getTransaction().begin();
+        em.persist(entry);
+        if (tr == null)
+            em.getTransaction().commit();
+    }
+
+    public List<NewsEntry> getAllEntries(){
+        TypedQuery<NewsEntry> q1 = em.createQuery(
+                "SELECT k FROM NewsEntry k", NewsEntry.class);
+        return q1.getResultList();
+    }
+
+    /**
+     * Speichert und schließt die Datenbank
+     * Unbedingt aufrufen, falls beendet wird!!!
+     */
+    public void close(){
+        save();
+        em.close();
+        emf.close();
     }
 }

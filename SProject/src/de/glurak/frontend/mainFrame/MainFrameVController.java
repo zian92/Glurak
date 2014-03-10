@@ -82,7 +82,10 @@ public class MainFrameVController implements Observer{
             contentController = tmp;
             tmp.getView().setAllText(headerController.getSearchKey());
             
+            // Logout-Button geklickt?
             if (headerController.getLogout()) {
+//            	this.playerController.stop();
+//            	this.playerController.getView().;
             	this.view.dispose();
     			LoginVController logControll = new LoginVController(Query.APPLICATION_NAME);
     			

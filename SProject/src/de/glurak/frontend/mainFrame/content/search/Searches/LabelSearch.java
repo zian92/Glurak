@@ -6,6 +6,7 @@ import de.glurak.data.User.LabelProfile;
 import de.glurak.database.DBSearch;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
+import de.glurak.frontend.mainFrame.content.profile.LabelProfileVController;
 import de.glurak.frontend.mainFrame.content.search.Searchable;
 
 import javax.swing.*;
@@ -41,7 +42,8 @@ public class LabelSearch implements Searchable<LabelProfile> {
     }
 
     public ContentController getChangeController(LabelProfile field) {
-        return null;
+        //return new LabelProfileVController(/*field*/);
+        return new LabelProfileVController(true,true,1,1);
     }
 
     public void otherDoubleClickAction(LabelProfile value) {
