@@ -1,12 +1,7 @@
 package de.glurak.frontend.mainFrame.content.profile;
 
-import java.awt.event.*;
-import javax.swing.*;
-
-import de.glurak.frontend.mainFrame.ContentController;
-import de.glurak.frontend.mainFrame.content.message.ApplicationVController;
-import de.glurak.frontend.mainFrame.content.playlist.PlaylistVController;
-import de.glurak.frontend.mainFrame.content.profile.ProfileEditVController;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Diese Klasse stellt dem LabelProfileView die Funktionalität zur Verfügung.

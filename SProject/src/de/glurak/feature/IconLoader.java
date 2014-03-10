@@ -8,8 +8,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-import de.glurak.Query;
-
 public class IconLoader  {
 	private ImageIcon icon;
 
