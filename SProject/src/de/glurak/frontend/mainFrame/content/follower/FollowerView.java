@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import de.glurak.FrontendColors;
 import de.glurak.data.Playlist;
 import de.glurak.data.User.User;
 import de.glurak.feature.IconLoader;
@@ -28,6 +29,7 @@ public class FollowerView extends JPanel {
 		super();
 		this.mRef = m;
 		this.setPreferredSize(new Dimension(600,500));
+		this.setBackground(FrontendColors.DARK_GREY);
 		this.setLayout(new BorderLayout());
 		JScrollPane pan_scroll = new JScrollPane();
 		// TODO: Dynamisches wachsen bei hinzufügen

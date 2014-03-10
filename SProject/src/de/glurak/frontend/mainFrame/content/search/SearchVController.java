@@ -38,4 +38,9 @@ public class SearchVController extends Observable implements  ContentController 
         this.setChanged();
         this.notifyObservers(c);
     }
+
+	public void reload() {
+		// TODO Auto-generated method stub
+		
+	}
 }

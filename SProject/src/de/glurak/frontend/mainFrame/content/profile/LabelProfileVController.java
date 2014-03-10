@@ -110,8 +110,14 @@ public class LabelProfileVController extends Observable implements ContentContro
         return view;
     }
 
+<<<<<<< HEAD
 	public ContentController getNextContent() {
 		// TODO Auto-generated method stub
 		return null;
+=======
+	public void reload() {
+		// TODO Auto-generated method stub
+		
+>>>>>>> 6dce62db1d45dd3aaf175090c679856086de3554
 	}
 }

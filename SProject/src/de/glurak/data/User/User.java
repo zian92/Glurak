@@ -1,9 +1,9 @@
 package de.glurak.data.User;
-import de.glurak.data.NotEnoughRightException;
-import de.glurak.data.Playlist;
 
-import java.io.Serializable;
+import de.glurak.data.NotEnoughRightException;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -17,8 +17,8 @@ import java.util.List;
 @Entity
 public class User extends Reachable implements Serializable, Comparable<User>{
 
-    private String username;
-    private String passwordHash;
+    private String username="";
+    private String passwordHash="";
 
     private boolean isLocked;
 
@@ -33,6 +33,8 @@ public class User extends Reachable implements Serializable, Comparable<User>{
     private List<User> following;
 
     public User(){
+        super();
+        profile=null;
         following=new ArrayList<User>();
         isLocked=false;
     }

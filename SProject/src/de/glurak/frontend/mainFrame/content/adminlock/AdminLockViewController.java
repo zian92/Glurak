@@ -30,4 +30,9 @@ public class AdminLockViewController extends Observable implements ContentContro
         }
         view.search();
     }
+
+	public void reload() {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -2,6 +2,7 @@ package de.glurak.frontend.mainFrame.content.message;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -29,15 +30,18 @@ public class MessageView extends JPanel {
      * @param actionl der Listener für die Knöpfe im MessageViewWriter, null für keinen
      * @param listl der Listener falls in der Liste was selektiert wurd. null für keinen
      */
-    public MessageView(ActionListener actionl, ListSelectionListener listl){
+    public MessageView(ActionListener actionl, ListSelectionListener listl, MouseListener mousel){
         writer = new MessageViewWriter(actionl);
+        writer.addMouseListener(mousel);
         setLayout(new BorderLayout());
         add(writer, BorderLayout.SOUTH);
         list = new MessageViewList();
+        list.addMouseListener(mousel);
         initModel();
         if (listl!=null)
             list.addListSelectionListener(listl);
         list.setModel(model);
+        
         add(new JScrollPane(list), BorderLayout.CENTER);
     }
 
@@ -79,5 +83,17 @@ public class MessageView extends JPanel {
      */
     public void setEnteredMessage(Message m){
         writer.setMessage(m);
+    }
+    
+    public MessageViewWriter getWriter(){
+    	return writer;
+    }
+    
+    public MessageViewList getList(){
+    	return list;
+    }
+    
+    public DefaultListModel<Message> getModel(){
+    	return model;
     }
 }

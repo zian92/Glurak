@@ -1,10 +1,14 @@
 package de.glurak.data.User;
+
 import de.glurak.data.Announcement;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
 /**
  *  Oberklasse von ein Profil, das angesehen werden kann. Z.B. Label Profil oder User Profil
  * @author Entscheider
