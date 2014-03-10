@@ -8,6 +8,7 @@ import de.glurak.Query;
 import de.glurak.data.Medium;
 import de.glurak.data.Playlist;
 import de.glurak.data.Playqueue;
+import de.glurak.frontend.login.LoginVController;
 import de.glurak.frontend.mainFrame.content.news.PromotionVController;
 import de.glurak.frontend.mainFrame.content.search.SearchVController;
 import de.glurak.frontend.mainFrame.header.HeaderVController;
@@ -81,6 +82,12 @@ public class MainFrameVController implements Observer{
             SearchVController tmp = new SearchVController();
             contentController = tmp;
             tmp.getView().setAllText(headerController.getSearchKey());
+            
+            if (headerController.getLogout()) {
+            	this.view.dispose();
+    			LoginVController logControll = new LoginVController(Query.APPLICATION_NAME);
+    			
+            }
 
         } else if (o.equals(navigationController)){
             contentController = navigationController.getContentController();
