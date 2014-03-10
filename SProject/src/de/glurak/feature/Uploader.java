@@ -116,6 +116,7 @@ public class Uploader {
         File newPath = new File(path + "profile" + (picture.getName().substring(picture.getName().lastIndexOf("."))));
         Files.copy(Paths.get(picture.getPath()), Paths.get(newPath.getPath()), StandardCopyOption.REPLACE_EXISTING);
         session.getSessionUser().getProfile().setPictureFileName(newPath.getPath());
+        session.getDatabase().save();
     }
 
     /**

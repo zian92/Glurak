@@ -47,8 +47,10 @@ public class NavigationVController extends Observable {
                 
                 if (name=="Profil"){
                 	c = new ProfileVController(null);
-                } else {
-                	c = map.get(name);
+                }else if(name=="News"){
+                	c = new PromotionVController();
+                }else {
+                	c = map.get(name);	
                 }
                 
                 setContentController(c);
