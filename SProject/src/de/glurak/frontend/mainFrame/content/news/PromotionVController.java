@@ -3,38 +3,26 @@ package de.glurak.frontend.mainFrame.content.news;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
-
-import org.hibernate.property.Getter;
-
-import de.glurak.Query;
 import de.glurak.data.Album;
 import de.glurak.data.Medium;
+import de.glurak.data.NewsEntry;
 import de.glurak.data.User.ListenerProfile;
 import de.glurak.data.User.User;
 import de.glurak.feature.IconLoader;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
-import de.glurak.frontend.mainFrame.NextContent;
-import de.glurak.frontend.mainFrame.content.playlist.PlaylistEditVController;
 import de.glurak.frontend.mainFrame.content.profile.ProfileVController;
 
 
@@ -106,8 +94,6 @@ public class PromotionVController extends Observable implements ContentControlle
 		a1.setName("This is It");
 		a2.setName("Album dummy");
 		
-		
-		
 		User u1 = new User();
 		u1.setUsername("TestUser m");
 		ListenerProfile pu1 = new ListenerProfile();
@@ -121,6 +107,13 @@ public class PromotionVController extends Observable implements ContentControlle
 		pu2.setFirstname(u2.getUsername());
 		pu2.setFemale(true);
 		u2.setProfile(pu2);
+		
+		
+		List<NewsEntry> newsEntrylist = SessionThing.getInstance().getDatabase().getAllEntries();
+		
+		for (int j = 0; j < newsEntrylist.size(); j++){
+			newsList.add(buildEntryView(200, 180, newsEntrylist.get(j)));
+		}
 		
 		//User testU = SessionThing.getInstance().getDatabase().getUserByUsername("LeTest");
 		
@@ -173,7 +166,7 @@ public class PromotionVController extends Observable implements ContentControlle
 	 */
 	public JComponent buildEntryView(int width, int height, NewsEntry n){
 		JLayeredPane pan_content = new JLayeredPane();
-		JLabel lab_pic = new JLabel(new IconLoader(width, height, n.getPictureName()).getIcon());
+		JLabel lab_pic = new JLabel(new IconLoader(width, height, n.getPicturePathName()).getIcon());
 		JLabel lab_text = new JLabel(n.getMessage());
 		    
 	    JButton bt_like = new JButton();
@@ -245,7 +238,6 @@ public class PromotionVController extends Observable implements ContentControlle
 			if (e.getActionCommand().equals("likeNews")){
 				news.getSource().like(SessionThing.getInstance().getSessionUser());
 			}else if (e.getActionCommand().equals("hateNews")){
-				System.out.println("Hate " + news.getPictureName() );
 				news.getSource().hate(SessionThing.getInstance().getSessionUser());
 			}
 		}
