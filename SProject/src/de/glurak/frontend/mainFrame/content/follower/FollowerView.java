@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import de.glurak.FrontendColors;
 import de.glurak.data.Playlist;
 import de.glurak.data.User.User;
 import de.glurak.feature.IconLoader;
@@ -28,6 +29,7 @@ public class FollowerView extends JPanel {
 		super();
 		this.mRef = m;
 		this.setPreferredSize(new Dimension(600,500));
+		this.setBackground(FrontendColors.DARK_GREY);
 		this.setLayout(new BorderLayout());
 		JScrollPane pan_scroll = new JScrollPane();
 		// TODO: Dynamisches wachsen bei hinzufügen
@@ -35,9 +37,15 @@ public class FollowerView extends JPanel {
     	//parent.add(child, constr);
 	}
 	
+	/**
+	 * Plaziert ein Labelelement, welches den übergebenen Follower repraesentiert
+	 * @param favo Der übergebene Follower
+	 */
 	public void addFollower(User favo){
-		JLabel icon = new JLabel(new IconLoader(200, 200, favo.getProfile().getPictureFileNameOrDefaultPictureName()).getIcon());
 		
+		//JLabel icon = new JLabel(new IconLoader(200, 200, favo.getProfile().getPictureFileNameOrDefaultPictureName()).getIcon());
+		JLabel icon = new JLabel("Hallo");
+		icon.setBackground(Color.green);
 		icon.setForeground(Color.WHITE);
     	icon.setFont(new Font("Verdana", Font.BOLD, 13));
     	icon.setText(favo.getUsername());
@@ -46,10 +54,23 @@ public class FollowerView extends JPanel {
     	icon.setPreferredSize(new Dimension(200	,200));
     	icon.setVisible(true);
     	icon.addMouseListener(mRef);
-		
-		pan_content.add(icon);
+		pan_content.add(icon, BorderLayout.CENTER);
+		refresh();
+		System.out.println("FV - 57 - added a followerpanel");
+		//pan_content.add(icon);
 		favoCount++;	
 		
+	}
+	
+	public void refresh(){
+		pan_content.revalidate();
+		pan_content.repaint();
+	}
+	
+	public void removeFollower(){
+		pan_content.remove(favoCount);
+		favoCount--;
+		pan_content.repaint();
 	}
 	
     public void fillView(List<User> list){
@@ -60,9 +81,9 @@ public class FollowerView extends JPanel {
     		addFollower(list.get(i));
     	}
     }
-    
+    /*
     public void refreshView(List<User> list){
     	addFollower(list.get(list.size()-1));
     }
-	
+	*/
 }

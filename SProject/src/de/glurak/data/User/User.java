@@ -1,9 +1,9 @@
 package de.glurak.data.User;
-import de.glurak.data.NotEnoughRightException;
-import de.glurak.data.Playlist;
 
-import java.io.Serializable;
+import de.glurak.data.NotEnoughRightException;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -15,10 +15,10 @@ import java.util.List;
  * Date: 25.01.2014
  */
 @Entity
-public class User extends Reachable implements Serializable{
+public class User extends Reachable implements Serializable, Comparable<User>{
 
-    private String username;
-    private String passwordHash;
+    private String username="";
+    private String passwordHash="";
 
     private boolean isLocked;
 
@@ -33,6 +33,8 @@ public class User extends Reachable implements Serializable{
     private List<User> following;
 
     public User(){
+        super();
+        profile=null;
         following=new ArrayList<User>();
         isLocked=false;
     }
@@ -126,4 +128,15 @@ public class User extends Reachable implements Serializable{
             return profile.getPictureFileNameOrDefaultPictureName();
         return null;
     }
+
+
+
+	public int compareTo(User u) {
+		Integer myHates = this.hateCount();
+		Integer hates = u.hateCount();
+		
+		return myHates.compareTo(hates);
+	}
+
+
 }

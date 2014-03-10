@@ -1,9 +1,10 @@
 package de.glurak.data.User;
 
-import javax.persistence.*;
-
 import de.glurak.Query;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class LabelProfile extends Profile implements Serializable{
     private List<ArtistProfile> myartists;
     //Noch mehr Attribute ?
 
-    @OneToOne(mappedBy = "profile")
+    @OneToOne(mappedBy = "profile_label")
     private Label myLabel;
     private String labelImageFilename;
 
@@ -30,6 +31,7 @@ public class LabelProfile extends Profile implements Serializable{
 
 
     public LabelProfile(){
+        super();
         myartists=new ArrayList<ArtistProfile>();
     }
     /**
@@ -84,11 +86,11 @@ public class LabelProfile extends Profile implements Serializable{
 
     @Override
     public String getPictureFileNameOrDefaultPictureName(){
-    	if (pictureFileName.isEmpty()){
-    		return (Query.FOLDER_PICTURE_ICONS + "userf.jpg");
-  		
-    	}
-    	return pictureFileName;
+        if (pictureFileName.isEmpty()){
+            return (Query.FOLDER_PICTURE_ICONS + "userf.jpg");
+
+        }
+        return pictureFileName;
     }
 
     public List<ArtistProfile> getMyartists() {
@@ -100,12 +102,12 @@ public class LabelProfile extends Profile implements Serializable{
     }
 
 
-	public String getLabelImageFilename() {
-		return labelImageFilename;
-	}
+    public String getLabelImageFilename() {
+        return labelImageFilename;
+    }
 
 
-	public void setLabelImageFilename(String labelImageFilename) {
-		this.labelImageFilename = labelImageFilename;
-	}
+    public void setLabelImageFilename(String labelImageFilename) {
+        this.labelImageFilename = labelImageFilename;
+    }
 }

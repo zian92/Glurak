@@ -1,15 +1,22 @@
 package de.glurak.data.User;
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 /**
  * Das Profil eines Artisten
  * @author Entscheider
  */
 @Entity
-public class ArtistProfile extends ListenerProfile implements Serializable{
+public class ArtistProfile extends ListenerProfile implements Serializable, Comparable<ArtistProfile> {
 
     @ManyToOne
     private LabelProfile myLabel;
+
+    public ArtistProfile(){
+        super();
+        myLabel=null;
+    }
 
     public LabelProfile getMyLabel() {
         return myLabel;
@@ -39,4 +46,11 @@ public class ArtistProfile extends ListenerProfile implements Serializable{
     public String[] myRights() {
         return Rights.ARTIST_RIGHTS;
     }
+
+	public int compareTo(ArtistProfile a) {
+		Integer myHates = this.belongTo().hateCount();
+		Integer hates = a.belongTo().hateCount();
+		
+		return myHates.compareTo(hates);
+	}
 }

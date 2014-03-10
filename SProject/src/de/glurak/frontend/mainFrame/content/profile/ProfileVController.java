@@ -1,11 +1,14 @@
 package de.glurak.frontend.mainFrame.content.profile;
 
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
-import javax.swing.*;
+
+import javax.swing.JComponent;
+
 import de.glurak.data.Playlist;
 import de.glurak.data.User.User;
 import de.glurak.frontend.SessionThing;
@@ -13,7 +16,6 @@ import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.NextContent;
 import de.glurak.frontend.mainFrame.content.message.MessageVController;
 import de.glurak.frontend.mainFrame.content.playlist.PlaylistEditVController;
-import de.glurak.frontend.mainFrame.content.profile.ProfileEditVController;
 
 /**
  * Diese Klasse stellt dem ProfileView die Funktionalität zur Verfügung.
@@ -26,17 +28,16 @@ public class ProfileVController extends Observable implements ActionListener, Co
 	private ContentController nextContent;
 	private User user;
 	private boolean own;
-	
-
+	private SessionThing session;
 	public ProfileVController (User user) {
-		
+		session=SessionThing.getInstance();
 		// parameter überprüfen
 		if (user==null) {
-			this.user = SessionThing.getInstance().getSessionUser();
+			this.user = session.getSessionUser();
 			own = true;
 		} else {
 			// überprüfen ob es das eigene Profil ist
-			if (user==SessionThing.getInstance().getSessionUser()) {
+			if (user==session.getSessionUser()) {
 				own = true;
 				this.user = user;
 			} else {
@@ -54,6 +55,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
 		else{
 			profileview.b_follow.addActionListener(this);
 			profileview.b_message.addActionListener(this);
+			profileview.b_block.addActionListener(this);
 		}
 		
 		for (int i=0;i<profileview.b_playlistArray.length; i++) {
@@ -92,18 +94,34 @@ public class ProfileVController extends Observable implements ActionListener, Co
 			setChanged();
 			notifyObservers();
 		} else if (obj == profileview.b_follow){
-			if (!SessionThing.getInstance().getSessionUser().getFollowing().contains(this.user)) { 
-				SessionThing.getInstance().getSessionUser().follow(this.user);
-			}
+                if (!session.getSessionUser().getFollowing().contains(this.user)) {
+                    // follow
+                    session.getSessionUser().follow(this.user);
+                    this.profileview.setFollowButtonToUnfollow();
+                } else {
+                    // unfollow
+                    session.getSessionUser().getFollowing().remove(this.user);
+                    this.profileview.setFollowButtonToFollow();
+                }
+			
 		} else if (obj == profileview.b_edit){
 			nextContent = new ProfileEditVController(this.user);
 			setChanged();
-			notifyObservers();
-		} else {
-			System.out.println("SWAAAAAAg");
-			for (int i=0;i<profileview.b_playlistArray.length; i++) {
+                    notifyObservers();
+                } else
+                    if (obj == profileview.b_block) {
+                        if (user.isLocked()) {
+                        // sperren
+                            user.setLocked(true);
+                            this.profileview.setBlockButtontToBock();
+                        } else {
+                            // entsperren
+                            user.setLocked(false);
+                            this.profileview.setBlockButtonToUnblock();
+                        }
+                    } else {
+                        for (int i = 0; i < profileview.b_playlistArray.length; i++) {
 				if (obj == profileview.b_playlistArray[i]) {
-					System.out.println("YOLOLOLO");
 					nextContent = new PlaylistEditVController(getTopFiveHatedPlaylists().get(i), this);
 					setChanged();
 					notifyObservers();
@@ -123,6 +141,11 @@ public class ProfileVController extends Observable implements ActionListener, Co
 
 	public void setNextContent(ContentController nextContent) {
 		this.nextContent = nextContent;
+	}
+
+	public void reload() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

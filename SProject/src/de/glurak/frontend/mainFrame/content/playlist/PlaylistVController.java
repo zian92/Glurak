@@ -44,12 +44,6 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
         initfillView();
     }
 
-    private JTable fillTable() {
-        Object[][] o = { { "sadf", "asdf", "asdf" }, { "sadf", "asdf", "asdf" }, { "sadf", "asdf", "asdf" } };
-        JTable j = new JTable(o, tableHeader);
-        return j;
-    }
-
     public JComponent getView() {
         return view;
     }
@@ -83,7 +77,7 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 		List<Playlist> list = SessionThing.getInstance().getSessionUser().getMyPlaylists();
 		view.refreshView(list);
 	}
-	
+
 	  /* ====================================================================================================
      *											 Test-Functions
      * ====================================================================================================
@@ -97,10 +91,10 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 			u1.setUsername("Horst");
 			u1.setProfile(new ListenerProfile());
 			// neue Test Medien
-			Medium m1 = new Medium(900, "PokeTheme", "", u1);
-			Medium m2 = new Medium(600, "Pokemon Endingtheme","", u1);
+			Medium m1 = new Medium( "PokeTheme", "", u1);
+			Medium m2 = new Medium( "Pokemon Endingtheme","", u1);
 			// neue Playlist
-			
+
 			p.setName("Pokemon");
 			p.addMedium(m1);
 			p.addMedium(m2);
@@ -110,8 +104,8 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 			u2.setUsername("Maya");
 			u2.setProfile(new ListenerProfile());
 			// neue Test Medien
-			Medium m21 = new Medium(900, "PonySong", "", u2);
-			Medium m22 = new Medium(600, "Stiupid PonySong","", u2);
+			Medium m21 = new Medium( "PonySong", "", u2);
+			Medium m22 = new Medium( "Stiupid PonySong","", u2);
 			// neue Playlist
 			p.setName("Pony Tales");
 			p.addMedium(m21);
@@ -121,8 +115,8 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 			p = null;
 			break;
 		}
-	
-		
+
+
 		return p;
 	}
 
@@ -203,6 +197,11 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 	}
 
 	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void reload() {
 		// TODO Auto-generated method stub
 		
 	}

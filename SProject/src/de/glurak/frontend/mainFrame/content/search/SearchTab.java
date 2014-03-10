@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Entscheider
  * @param <T> Generik der Anzeigedaten
  */
-public class SearchTab<T> extends JPanel {
+public class SearchTab<T> extends JPanel implements MouseListener {
 
 	private JPanel pan_searchview;
 	private JPanel pan_advancedSearch;
@@ -37,6 +37,7 @@ public class SearchTab<T> extends JPanel {
 
 	// Suchfelde
 	protected JTextField t_search = new JTextField(10);
+	
 
 	// Button zur Suche
 	protected JButton b_search = new JButton("Suchen!");
@@ -60,12 +61,17 @@ public class SearchTab<T> extends JPanel {
 		northPane.add(new JLabel("Suche"));
 		northPane.add(t_search);
 		northPane.add(b_search);
+		
+		t_search.addMouseListener(this);
 
-        b_search.addActionListener(new ActionListener() {
+		ActionListener actionlistener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 search();
             }
-        });
+        };
+		
+        b_search.addActionListener(actionlistener);
+        t_search.addActionListener(actionlistener);
 		
 		add(northPane, BorderLayout.NORTH);
         if (sk !=null && sk.getRenderer()!=null)
@@ -122,6 +128,30 @@ public class SearchTab<T> extends JPanel {
 		
 		
 	} */
+
+	public void mouseClicked(MouseEvent me) {
+		// Bei Klick ins Textfeld wird dessen Inhalt gelöscht
+		if (me.getSource() == t_search) {
+			t_search.setText("");
+		}
+		
+	}
+
+	public void mouseEntered(MouseEvent arg0) {
+		
+	}
+
+	public void mouseExited(MouseEvent arg0) {
+		
+	}
+
+	public void mousePressed(MouseEvent arg0) {
+		
+	}
+
+	public void mouseReleased(MouseEvent arg0) {
+		
+	}
 }
 
 

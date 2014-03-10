@@ -1,7 +1,8 @@
 package de.glurak.data.User;
 
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 /**
  * Das Profil eines LabelManagers
@@ -9,8 +10,13 @@ import java.io.Serializable;
  */
 @Entity
 public class LabelManagerProfile extends ListenerProfile implements Serializable {
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     private Label myLabel;
+
+    public LabelManagerProfile(){
+        super();
+        myLabel=null;
+    }
 
     public Label getMyLabel() {
         return myLabel;

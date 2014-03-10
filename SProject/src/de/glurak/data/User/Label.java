@@ -15,22 +15,24 @@ import java.util.List;
 @Entity
 public class Label extends Reachable implements Serializable {
     @OneToOne
-    private LabelProfile profile;
+    private LabelProfile profile_label;
 
     @OneToMany(mappedBy = "myLabel")
     private List<LabelManagerProfile> manager;
 
     public Label(){
+        super();
+        profile_label=null;
         manager= new ArrayList<LabelManagerProfile>();
     }
 
     public LabelProfile getProfile() {
-        return profile;
+        return profile_label;
     }
 
     public void setProfile(LabelProfile profile) {
-        if (this.profile==profile) return;
-        this.profile = profile;
+        if (this.profile_label==profile) return;
+        this.profile_label = profile;
         profile.setLabel(this);
     }
 
@@ -65,8 +67,8 @@ public class Label extends Reachable implements Serializable {
 
     @Override
     public String entryPicture() {
-        if (profile!=null)
-            return profile.getPictureFileNameOrDefaultPictureName();
+        if (profile_label!=null)
+            return profile_label.getPictureFileNameOrDefaultPictureName();
         return null;
     }
 }

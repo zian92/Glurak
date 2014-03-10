@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author Entscheider
  */
 @Entity
-abstract public class EntryObject implements Serializable, Hateable{
+abstract public class EntryObject implements Hateable{
     @Id
     @GeneratedValue
     protected long id;

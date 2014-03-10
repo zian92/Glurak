@@ -37,7 +37,7 @@ public class Playlist extends EntryObject implements Serializable, Hateable, Com
     private List<User> liker;
 
     @ManyToOne
-    private Reachable owner;
+    private Reachable owner_of_playlist;
 
 
 	private String name;
@@ -46,13 +46,11 @@ public class Playlist extends EntryObject implements Serializable, Hateable, Com
 	/**
 	 * Konstruktor 
 	 * Index wird mit 0 initiated
-	 * @param id 
 	 * @param name
 	 * @param playlist  to copy
 	 */
-	public Playlist (long id,String name, Playlist playlist) {
+	public Playlist (String name, Playlist playlist) {
         this();
-        this.id=id;
 		this.setName(name);
 		this.index = 0;
 		if (playlist != null) {
@@ -71,11 +69,10 @@ public class Playlist extends EntryObject implements Serializable, Hateable, Com
 
 	/**
 	 * Konstruktor
-	 * @param id
 	 * @param name
 	 */
-	public Playlist (long id,String name) {
-		this(id, name, null);
+	public Playlist (String name) {
+		this( name, null);
 	}
 	
 	
@@ -102,14 +99,14 @@ public class Playlist extends EntryObject implements Serializable, Hateable, Com
 
 
     public Reachable getOwner() {
-        return owner;
+        return owner_of_playlist;
     }
 
     public void setOwner(Reachable owner) {
         if (owner instanceof User)
             NotEnoughRightException.throwIfNot((User)owner, Rights.MANAGE_PLAYLIST);
-        if (this.owner==owner) return;
-        this.owner = owner;
+        if (this.owner_of_playlist==owner) return;
+        this.owner_of_playlist = owner;
         owner.addPlaylist(this);
     }
 

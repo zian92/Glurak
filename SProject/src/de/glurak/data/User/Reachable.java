@@ -1,11 +1,10 @@
 package de.glurak.data.User;
 
-import javax.persistence.*;
-
 import de.glurak.data.EntryObject;
 import de.glurak.data.Hateable;
 import de.glurak.data.Playlist;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,7 @@ abstract public class Reachable extends EntryObject implements Serializable, Hat
     private List<User> liker;
 
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner_of_playlist")
     protected List<Playlist> myPlaylists;
 
 

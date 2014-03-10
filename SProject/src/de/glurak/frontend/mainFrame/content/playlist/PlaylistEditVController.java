@@ -77,6 +77,11 @@ public class PlaylistEditVController extends Observable implements ActionListene
 		
 	}
 
+	public void reload() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 }
