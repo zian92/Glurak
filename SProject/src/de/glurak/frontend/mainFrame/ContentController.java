@@ -6,4 +6,5 @@ public interface ContentController {
 
 	public JComponent getView();
 	
+	public void reload();
 }

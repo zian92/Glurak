@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import de.glurak.data.Medium;
+import de.glurak.data.NewsEntry;
 import de.glurak.feature.Uploader;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
@@ -52,6 +53,11 @@ public class UploadVController implements ActionListener, ContentController {
                         musicFile.setMyGenre(session.getDatabase().genreByTitle((String) upview.d_genre.getSelectedItem()));
 
                         session.getDatabase().registrateMedium(musicFile, null);
+                        
+                        //Create new NewsEntry
+                        NewsEntry entry = new NewsEntry(musicFile);
+                        session.getDatabase().addNewsEntry(entry, null);
+                        
                         // TODO Album!
                         uploader.saveMusic(new Medium[] { musicFile, }, "");
                         music_file=null;
@@ -83,5 +89,10 @@ public class UploadVController implements ActionListener, ContentController {
     public JPanel getView() {
         return upview;
     }
+
+	public void reload() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

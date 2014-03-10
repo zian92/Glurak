@@ -101,4 +101,9 @@ public class ProfileEditVController extends Observable implements ActionListener
 		return nextContent;
 	}
 
+	public void reload() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

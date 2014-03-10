@@ -50,4 +50,9 @@ public class LabelProfileVController implements ContentController, ActionListene
     public JComponent getView() {
         return labelProfileView;
     }
+
+	public void reload() {
+		// TODO Auto-generated method stub
+		
+	}
 }

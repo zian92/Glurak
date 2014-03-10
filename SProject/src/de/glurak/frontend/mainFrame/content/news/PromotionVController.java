@@ -44,6 +44,9 @@ public class PromotionVController extends Observable implements ContentControlle
 	private Dimension slidePaneDim = new Dimension(200, 180);
 	private Dimension promPanelDim = new Dimension(810, 560);
 	
+	private boolean bool_timerstart;
+	private java.util.Timer time_slider;
+	private java.util.TimerTask timTask_slide;
 	//private int picDim = slidePaneDim.width;
 
 	/**
@@ -93,17 +96,7 @@ public class PromotionVController extends Observable implements ContentControlle
 			newsList.add(buildEntryView(200, 180, newsEntrylist.get(j)));
 		}
 		// Distribute the Entries to the Sliders on Screen
-		int sMax = promPan.getSliderCount();
-		int q = newsList.size()/sMax;
-		if (sMax*q<newsList.size()){
-			q=q+1;
-		}
-		for (int pos = 0; pos < sMax; pos++){
-				for (int j = 0; j < q; j++){
-					if (newsList.size() <= (pos+(j*sMax))) break;
-					promPan.getSLiderAtPos(pos).addSliderComponent(newsList.get(pos+(j*sMax)));
-			}
-		} 
+		fillSliders();
 		// Start the SLiding-task
 		startTimer();
 	}
@@ -119,6 +112,7 @@ public class PromotionVController extends Observable implements ContentControlle
 	public JComponent buildEntryView(int width, int height, NewsEntry n){
 		JLayeredPane pan_content = new JLayeredPane();
 		JLabel lab_pic = new JLabel();
+		
 		if (n.getSource().entryPicture() == null){
 			lab_pic.setIcon(new IconLoader(width, height, Query.FOLDER_PICTURE_ICONS + "musicfile.jpg").getIcon());
 		}else {
@@ -158,14 +152,23 @@ public class PromotionVController extends Observable implements ContentControlle
 		return pan_content;
 	}
 	
-	
+	private void pauseResumeTimer(){
+		if(bool_timerstart){
+			time_slider.cancel();
+		}else {
+			time_slider = new java.util.Timer();
+			time_slider.schedule(timTask_slide, 1000, 2000);
+		}
+		bool_timerstart = !bool_timerstart;
+	}
 	
 	/**
 	 * TestTimerTask for testing the sliding behaviour
 	 * Will be reworked in the final version
 	 */
 	private void startTimer(){
-		java.util.TimerTask action = new java.util.TimerTask() {
+		
+		 timTask_slide = new java.util.TimerTask() {
 			@Override
 			public void run() {
 				int j = 0 + (int)(Math.random()*promPan.getSliderCount()); 
@@ -178,11 +181,57 @@ public class PromotionVController extends Observable implements ContentControlle
 				}
 			}
 		};
-		java.util.Timer ankurbler = new java.util.Timer();
-		ankurbler.schedule(action, 1000, 2000);
+		time_slider = new java.util.Timer();
+		time_slider.schedule(timTask_slide, 1000, 2000);
+		bool_timerstart = true;
 	}
 	
+	private void cleanSliders(){
+		int sMax = promPan.getSliderCount();
+		int q = newsList.size()/sMax;
+		if (sMax*q<newsList.size()){
+			q=q+1;
+		}
+		for (int pos = 0; pos < sMax; pos++){
+				for (int j = 0; j < q; j++){
+					if (newsList.size() <= (pos+(j*sMax))) break;
+					promPan.getSLiderAtPos(pos).removeSliderCompinent((newsList.get(pos+(j*sMax))));
+			}
+		} 
+		for (int j = 0; j< newsList.size(); j++){
+			newsList.remove(j);
+		}
+		
+	}
 	
+	private void fillSliders(){
+		List<NewsEntry> newsEntrylist = SessionThing.getInstance().getDatabase().getAllEntries();
+		for (int j = 0; j < newsEntrylist.size(); j++){
+			newsList.add(buildEntryView(200, 180, newsEntrylist.get(j)));
+		}
+		
+		int sMax = promPan.getSliderCount();
+		int q = newsList.size()/sMax;
+		if (sMax*q<newsList.size()){
+			q=q+1;
+		}
+		for (int pos = 0; pos < sMax; pos++){
+				for (int j = 0; j < q; j++){
+					if (newsList.size() <= (pos+(j*sMax))) break;
+					promPan.getSLiderAtPos(pos).addSliderComponent((newsList.get(pos+(j*sMax))));
+			}
+		} 
+	}
+	
+	public void reload() {
+		// TODO Auto-generated method stub
+		//pauseResumeTimer();
+		cleanSliders();
+		fillSliders();
+		//pauseResumeTimer();
+	}
+	
+
 	
 //==============================================================================================================
 //									ACTION HANDLING
@@ -205,17 +254,13 @@ public class PromotionVController extends Observable implements ContentControlle
 
 		public void mouseClicked(MouseEvent e) {
 			if (news.getSource() instanceof Medium){
-				System.out.println("PVC - 252 - Ich bin ein Medium");
-			}else if(news.getSource() instanceof Album){
-				System.out.println("PVC - 252 - Ich bin ein Album");
 				
-			}else if(news.getSource() instanceof User){
-			
+			}else if(news.getSource() instanceof Album){
+				
+			}else if(news.getSource() instanceof User){		
 				nextContent =  new ProfileVController( (User) news.getSource() );
 				setChanged();
 				notifyObservers(nextContent);
-				
-				System.out.println("PVC - 252 - Ich bin ein User");
 			}
 		}
 
@@ -241,9 +286,6 @@ public class PromotionVController extends Observable implements ContentControlle
 		
 	}
 
-public ContentController getNextContent() {
-	// TODO Auto-generated method stub
-	return null;
-}
+
 	
 }
