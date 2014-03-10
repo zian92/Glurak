@@ -64,11 +64,10 @@ public class PlayQueueViewController {
 				Object src = e.getSource();
 				if (src == view.getPlayButton()) {
 					if (player.isPaused()) {
-						player.resume();
+						playNew(view.getPositionBar().getValue());
 					}  else if (player.isPlaying()) {
-								player.pause();
+						player.pause();
 					} else {
-						
 						playNew(view.getPositionBar().getValue());
 					}
 				} else if (src == view.getNextButton()) {
@@ -84,6 +83,13 @@ public class PlayQueueViewController {
 						player.stop();
 					playNew(0);
 					view.getQueuePanel().resetButton();
+		
+				}
+				else if (src == view.getClearButton()) {
+					setPlayqueue(null);
+					view.getPositionBar().setValue(0);
+						player.stop();
+					refresh();
 		
 				}
 			
@@ -118,10 +124,12 @@ public class PlayQueueViewController {
 		
 		m= new MouseAdapter(){
 			public void mouseReleased(MouseEvent e){
-    				for(int i = 0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
-    					if(e.getSource()==view.getQueuePanel().getMediumPanelArray()[i]){
-    						if (e.getButton() == 1) { 
-    							if(e.getClickCount()>=2){
+				if(getPlayqueue()!=null){
+					//LinksDoppelKlick
+					if (e.getButton() == 1 &&e.getClickCount()==2) {
+						for(int i = 0;i<getPlayqueue().size();i++){
+							//Medium in der Playqueue angeklickt
+							if(e.getSource()==view.getQueuePanel().getMediumPanelArray()[i]){ 
     								getPlayqueue().setCurrent(i);
     								view.getQueuePanel().resetButton();
     								if (player.isPaused()||player.isPlaying()){
@@ -131,33 +139,50 @@ public class PlayQueueViewController {
     								view.getQueuePanel().resetButton();
     							}
     						}
-    						else{
-    							
-    							if(!getPlayqueue().isCurrent(i)){
-    								getPlayqueue().removeMedium(getPlayqueue().getPlaylist().getMediumList().get(i));
-    							}
-    							else{
+					}
+    				else{
+    					//Rechtsklick
+    					if (e.getButton()==3){
+    							//Playqueue wird leer
+    							if(getPlayqueue().size()==1){
+    								setPlayqueue(null);
+    								view.getPositionBar().setValue(0);
+    								if(player.isPaused()||player.isPlaying()){
+    									player.stop();}
+    								refresh();
+        							
+        						}//Playqueue nicht leer
+    							else{    							
+    								for(int i = 0;i<getPlayqueue().size();i++){
+    									if(e.getSource()==view.getQueuePanel().getMediumPanelArray()[i]){ 
+    										if(!getPlayqueue().isCurrent(i)){
+    											getPlayqueue().removeMedium(getPlayqueue().getPlaylist().getMediumList().get(i));
+    										}
+    							else{ // aktuelles Medium wird entfernt
     								if (player.isPaused()||player.isPlaying()){
     									player.stop();}	
     								getPlayqueue().removeMedium(getPlayqueue().getPlaylist().getMediumList().get(i));
     								playNew(0);
     								}
-    								
+    							
     							}
-    							System.out.println(getPlayqueue());	
-    							refresh();
+    								}	
+    								refresh();
+    							}
+    						
     				
     						}
     				}
     		
     			}
-			
+			}
 		};
 		
 		view.getPositionBar().addChangeListener(c);
 		view.getPlayButton().addActionListener(a);
 		view.getNextButton().addActionListener(a);
 		view.getPreviousButton().addActionListener(a);
+		view.getClearButton().addActionListener(a);
 		if(getPlayqueue()!=null){	
 			view.getQueuePanel().addMouseListener(m);
 			for(int i = 0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
@@ -174,21 +199,23 @@ public class PlayQueueViewController {
 		new PropertyChangeListener() {
 			
 			public void propertyChange(PropertyChangeEvent evt) {
-				if(!view.getPositionBar().getValueIsAdjusting()){
+				if(!view.getPositionBar().getValueIsAdjusting()&&getPlayqueue()!=null){
 				if(evt.getPropertyName()=="actualFrame"){
 					view.changePositionBar((Integer) evt.getNewValue());
 					
 				}else
-				if(player.getPlayer().getPlayerStatus()==FINISHED_BY_END){
-					
-					getPlayqueue().getNext();
-						player.stop();
-						playNew(0);
-					view.getQueuePanel().resetButton();
+					if(player.getPlayer()!=null){//
+
+						if(player.getPlayer().getPlayerStatus()==FINISHED_BY_END){
+							getPlayqueue().getNext();
+							player.stop();
+							playNew(0);
+							view.getQueuePanel().resetButton();
+						}
+					}
 				}
-			}
-			}		
-            });
+		}		
+     });
 	}
 	
 	/**reagiert auf neue Playlist
@@ -211,7 +238,8 @@ public class PlayQueueViewController {
 			setPlayqueue(new Playqueue(pl));
 		}
 		else{
-			getPlayqueue().add(medium);				
+			if(!getPlayqueue().getPlaylist().getMediumList().contains(medium)){
+			getPlayqueue().add(medium);	}
 		}
 		refresh();
 	}
@@ -220,9 +248,9 @@ public class PlayQueueViewController {
 	 * reagiert intern au Änderungen der Playlist
 	 */
 	private void refresh() {
-		
+		view.initQueueView(getPlayqueue());
 		if(getPlayqueue()!=null){
-			view.initQueueView(getPlayqueue());
+			
 			for(int i = 0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
 				view.getQueuePanel().getMediumPanelArray()[i].addMouseListener(m);
 			}
@@ -266,7 +294,7 @@ public class PlayQueueViewController {
 	 * @param time Frame bei dem er starten soll
 	 */
 	public void playNew(int time){
-		
+		if(getPlayqueue()!=null){
 		player.play(getPlayqueue().getCurrent().getFileName(),time);
 		File file = new File(getPlayqueue().getCurrent().getFileName());
 		MP3Properties properties = null;
@@ -282,7 +310,7 @@ public class PlayQueueViewController {
 		view.getPositionBar().validate();
 		addPlayerListener();
 		
-		
+		}
 	}
 
 }

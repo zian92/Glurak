@@ -21,6 +21,7 @@ public class PlayQueueView extends JPanel{
 	private JButton 	playButton;
 	private JButton 	nextButton;
 	private JButton 	previousButton;
+	private JButton		clearButton;
 	private EJSlider 	positionBar;
 	private JPanel		controllPanel;
 	private QueuePanel	queuePanel;
@@ -52,6 +53,7 @@ public class PlayQueueView extends JPanel{
 		setPlayButton(new JButton("Play"));
 		setNextButton(new JButton("=>"));
 		setPreviousButton(new JButton("<="));
+		setClearButton(new JButton("Clear"));
 		positionBar = new EJSlider(0,0,0);
 		positionBar.setOrientation(JSlider.HORIZONTAL);
 		positionBar.setExtent(0);
@@ -61,6 +63,7 @@ public class PlayQueueView extends JPanel{
 		getControllPanel().add(getPlayButton(),BorderLayout.CENTER);
 		getControllPanel().add(getNextButton(),BorderLayout.EAST);
 		getControllPanel().add(getPreviousButton(),BorderLayout.WEST);
+		getControllPanel().add(getClearButton(),BorderLayout.SOUTH);
 		
 		
 		
@@ -76,7 +79,7 @@ public class PlayQueueView extends JPanel{
 	public void initQueueView(Playqueue playqueue){
 		if(getQueuePanel()==null){
 		setQueuePanel(new QueuePanel(playqueue));
-		this.add(getQueuePanel());}
+		this.add(getQueuePanel(),BorderLayout.CENTER);}
 		else {
 			getQueuePanel().initComponents(playqueue);
 		}
@@ -86,7 +89,7 @@ public class PlayQueueView extends JPanel{
 		getQueuePanel().add(scrollbar);
 		this.validate();
 	}
-	
+		
 	public JButton getPlayButton() {
 		return playButton;
 	}
@@ -154,6 +157,12 @@ public class PlayQueueView extends JPanel{
 	}
 	public void setPositionChange(boolean positionChange) {
 		this.positionChange = positionChange;
+	}
+	public JButton getClearButton() {
+		return clearButton;
+	}
+	public void setClearButton(JButton clearButton) {
+		this.clearButton = clearButton;
 	}
 	
 	

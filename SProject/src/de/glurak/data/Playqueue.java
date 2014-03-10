@@ -34,16 +34,30 @@ public class Playqueue {
 		return(this.index==index);
 	}
 	
+	/**Löscht Medium aus der PlayQueue und verschiebt Index des CurrentMedium
+	 *
+	 * @param medium zu löschendes Medium
+	 */
 	public void removeMedium(Medium medium){
-		/*if(medium==getCurrent()){
-			this.index= (index)%this.getPlaylist().getMediumList().size();	
+		int i=index;
+		if(getPlaylist().getMediumList().indexOf(medium)<index){
+			i=index-1;
 			
+		}else{
+			if(medium==getCurrent()&&medium==getPlaylist().getMediumList().get(getPlaylist().getMediumList().size()-1)){
+				i=0;
+			}
 		}
-		*/
-		getPlaylist().getMediumList().remove(medium);	
-		System.out.println(index);
-	}
 		
+		getPlaylist().getMediumList().remove(medium);	
+		
+		index=i;
+	}
+	
+	public int size(){
+		
+		return getPlaylist().getMediumList().size();
+	}
 	 
 		
 	

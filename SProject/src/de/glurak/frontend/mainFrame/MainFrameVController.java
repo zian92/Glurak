@@ -50,7 +50,7 @@ public class MainFrameVController implements Observer{
 		// andere Controller laden
 		contentController = new PromotionVController();
 		PlayQueueViewController.getInstance();
-		PlayQueueViewController.getInstance().refresh(new Playqueue(pl));
+		//PlayQueueViewController.getInstance().refresh(new Playqueue(pl));
 		headerController= new HeaderVController();
 		navigationController = new NavigationVController(contentController);
 		
