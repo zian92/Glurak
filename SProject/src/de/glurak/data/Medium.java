@@ -45,6 +45,7 @@ public class Medium implements Serializable,Hateable {
 	 * @author MxBox
 	 */
 	public Medium(long Id , String Titel, String File, User owner){
+        this();
 		this.id = Id;
 		setTitel(Titel);
 		setFileName(File);
