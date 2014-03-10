@@ -2,6 +2,8 @@ package de.glurak.frontend.mainFrame.content.message;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -20,7 +22,7 @@ import de.glurak.frontend.mainFrame.ContentController;
  * @author Simon
  * 
  */
-public class MessageVController implements ActionListener, ContentController {
+public class MessageVController implements ActionListener, ContentController, MouseListener {
 
     private MessageView messview;
     private String errorMsgBoxName = "Fehlermeldung";
@@ -39,7 +41,7 @@ public class MessageVController implements ActionListener, ContentController {
                 }
             }
         };
-        messview = new MessageView(this, s);
+        messview = new MessageView(this, s, this);
     }
 
     public void setMessage(String receiver, String message){
@@ -96,6 +98,33 @@ public class MessageVController implements ActionListener, ContentController {
     }
 
 	public void reload() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mouseClicked(MouseEvent e) {
+		if(e.getClickCount() == 2){
+			String receiver = messview.getList().getSelectedValue().getSender().getUsername();
+			messview.getWriter().t_receiver.setText(receiver);
+		}
+	}
+
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
