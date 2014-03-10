@@ -32,7 +32,10 @@ public class PlaylistSearch implements Searchable<Playlist> {
                     res.setBackground(Color.GRAY);
                 JLabel l = new JLabel();
                 l.setText(value.getName());
+                JLabel lUsername = new JLabel();
+                lUsername.setText("Von: "+value.getOwner().getUsername());
                 res.add(l, BorderLayout.CENTER);
+                res.add(lUsername, BorderLayout.SOUTH);
                 return res;
             }
         };
