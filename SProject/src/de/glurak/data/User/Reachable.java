@@ -31,7 +31,7 @@ abstract public class Reachable extends EntryObject implements Serializable, Hat
     private List<User> liker;
 
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner_of_playlist")
     protected List<Playlist> myPlaylists;
 
 

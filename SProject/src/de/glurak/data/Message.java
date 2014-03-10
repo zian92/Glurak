@@ -20,7 +20,6 @@ public class Message implements Serializable{
 	private Reachable receiver;
     @Id
     @GeneratedValue
-    @Column(name="ID")
 	private long id;
 
     boolean isApplication;
