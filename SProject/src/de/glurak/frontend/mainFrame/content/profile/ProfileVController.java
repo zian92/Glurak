@@ -1,9 +1,13 @@
 package de.glurak.frontend.mainFrame.content.profile;
 
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 import javax.swing.*;
+
+import org.hibernate.mapping.Collection;
 
 import de.glurak.data.Playlist;
 import de.glurak.data.User.User;
@@ -42,8 +46,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
 			}
 		}
 		
-		Playlist[] top5 = getTopFiveHatedPlaylists();
-		profileview = new ProfileView(this.user, top5, false);
+		profileview = new ProfileView(this.user, getTopFiveHatedPlaylists(), false);
 		
 		// Hinzufügen der ActionListener
 		if (own) {
@@ -59,37 +62,20 @@ public class ProfileVController extends Observable implements ActionListener, Co
 	 * Holt aus den eigenen Playlists die 5 mit den meisten Hates
 	 * @return Playlist[] max size 5
 	 */
-	private Playlist[] getTopFiveHatedPlaylists() {
+	private List<Playlist> getTopFiveHatedPlaylists() {
 		List<Playlist> myPlaylists = this.user.getMyPlaylists();
-		Playlist temp = null;
 		
-		// Playlists nach most hates sortieren
-		for (int i=0; i<myPlaylists.size(); i++) // bubble sort outer loop
-        {
-            for (int j=0; j < myPlaylists.size()-j; j++) {
-                if (myPlaylists.get(j).hateCount() > myPlaylists.get(j+1).hateCount())
-                {
-                    temp = myPlaylists.get(j);
-                    myPlaylists.set(j,myPlaylists.get(j+1) );
-                    myPlaylists.set(j+1, temp);
-                }
-            }
-        }
-		Playlist[] returnArray;
+		Collections.sort(myPlaylists);
 		
-		// die 5 top lists in returnArray schreiben
-		if ( myPlaylists.size() < 5){
-			returnArray = new Playlist[myPlaylists.size()];
-			for (int i=0;i<myPlaylists.size();i++) {
-				returnArray[i] = myPlaylists.get(i);
-			}
-		}else {
-			returnArray = new Playlist[5];
-			for (int i=0;i<5;i++) {
-				returnArray[i] = myPlaylists.get(i);
+		List<Playlist> returnList = new ArrayList<Playlist>();
+		
+		for (int i=0; i<myPlaylists.size(); i++) {
+			if (myPlaylists.get(i)!= null) {
+				returnList.add(myPlaylists.get(i));
 			}
 		}
-		return returnArray;
+		
+		return returnList;
 	}
 
 	
@@ -110,11 +96,11 @@ public class ProfileVController extends Observable implements ActionListener, Co
 			setChanged();
 			notifyObservers();
 		} else {
-			for (int i=0;i<getTopFiveHatedPlaylists().length;i++) {
-				if (obj == profileview.getB_playlistArray()[i]) {
-					System.out.println(i);
-				}
-			}
+//			for (int i=0;i<getTopFiveHatedPlaylists().length;i++) {
+//				if (obj == profileview.getB_playlistArray()[i]) {
+//					System.out.println(i);
+//				}
+//			}
 		}
 	}
 

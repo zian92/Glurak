@@ -3,7 +3,6 @@ package de.glurak;
 import java.security.NoSuchAlgorithmException;
 
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import de.glurak.data.Album;
@@ -29,8 +28,8 @@ public class Glurak {
         LoginVController logControll = new LoginVController(Query.APPLICATION_NAME);
     }
 
-    public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
-        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException, NoSuchAlgorithmException {
+        // UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 splash = new SplashScreen();
@@ -56,7 +55,7 @@ public class Glurak {
         });
     }
 
-    private void initialisiereDB(HibernateDB db) {
+    private void initialisiereDB(HibernateDB db) throws NoSuchAlgorithmException {
         Genre baseGenre = db.addGenre("Ohne Genre", null, null);
         for (int i = 0; i < Query.INITIALE_GENRE.length; i++) {
             db.addGenre(Query.INITIALE_GENRE[i], baseGenre, null);
@@ -65,11 +64,7 @@ public class Glurak {
         // userA
         User userA = new User();
         userA.setUsername("Olaf");
-        try {
-            userA.setPassword("olaf");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
+        userA.setPassword("olaf");
         db.registrateUser(userA, null);
         AdminProfile profileA = new AdminProfile();
         db.registrateProfile(profileA, null);
@@ -80,12 +75,14 @@ public class Glurak {
 
         // UserB
         User userB = new User();
+        userB.setPassword("creator");
         userB.setUsername("Creator");
         db.registrateUser(userB, null);
         ListenerProfile profileB = new ListenerProfile();
         db.registrateProfile(profileB, null);
         profileB.setFemale(true);
         profileB.setFirstname("Emma");
+        profileB.setLastname("Statibo");
         profileB.setUser(userB);
 
         // musik

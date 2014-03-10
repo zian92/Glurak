@@ -33,6 +33,7 @@ public class PlayerController {
 	public PlayerController () {
 		isPaused = false;
 		isPlaying = false;
+		
 	}
 	/**
 	 * Startet Dateiwiedergabe

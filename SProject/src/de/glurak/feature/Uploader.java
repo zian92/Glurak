@@ -165,7 +165,7 @@ public class Uploader {
      *            Den Besitzer des Fensters
      * @return
      */
-    public File selectSingleMusic(Component comp) {
+    public File selectSingleMusic(Component comp) throws Exception {
         return this.selectFiles(comp, Query.SUPPORTED_MUSIC_TYPES, JFileChooser.FILES_ONLY, false)[0];
     }
 
@@ -186,9 +186,13 @@ public class Uploader {
         File[] files = null;
         int result = chooser.showOpenDialog(comp);
         if (result == JFileChooser.APPROVE_OPTION) {
-            files = chooser.getSelectedFiles();
-            if (files.length == 0) {
-                files = new File[] { chooser.getSelectedFile(), };
+            try {
+                files = chooser.getSelectedFiles();
+                if (files.length == 0) {
+                    files = new File[] { chooser.getSelectedFile(), };
+                }
+            } catch (Exception e) {
+                return new File[0];
             }
         } else
             if (result == JFileChooser.CANCEL_OPTION) {

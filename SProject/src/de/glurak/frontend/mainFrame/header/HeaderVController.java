@@ -8,6 +8,8 @@ import java.util.Observable;
 
 import javax.swing.JComponent;
 
+import de.glurak.Query;
+import de.glurak.frontend.login.LoginVController;
 import de.glurak.frontend.mainFrame.content.search.SearchVController;
 
 public class HeaderVController extends Observable implements ActionListener, MouseListener{
@@ -15,6 +17,8 @@ public class HeaderVController extends Observable implements ActionListener, Mou
 	private HeaderView headview;
 	// Der Suchbegriff, der in die Suchmaske des Headers eingegeben wird
 	private String searchKey;
+	// Wird auf true gesetzt, wenn logout-Button bet‰tigt wurde
+	private boolean logout = false;
 	/**
 	 * Konstruktor
 	 */
@@ -37,9 +41,15 @@ public class HeaderVController extends Observable implements ActionListener, Mou
 		
 		// Logout-Button bet√§tigt?
 		if (e.getSource() == headview.getLogoutButton()) {
-			
+			setChanged();
+			logout = true;
+			notifyObservers();
 		}
 		
+	}
+	
+	public boolean getLogout() {
+		return logout;
 	}
 
 	public JComponent getView() {

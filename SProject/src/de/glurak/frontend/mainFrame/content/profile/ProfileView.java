@@ -5,10 +5,12 @@ import javax.swing.*;
 import de.glurak.FrontendColors;
 import de.glurak.data.Playlist;
 import de.glurak.data.User.ListenerProfile;
+import de.glurak.data.User.Rights;
 import de.glurak.data.User.User;
 import de.glurak.feature.IconLoader;
 import de.glurak.frontend.SessionThing;
 import java.awt.*;
+import java.util.List;
 
 /**
  * Die ProfileView zeigt dem User ein Profil an.
@@ -75,7 +77,7 @@ public class ProfileView extends JPanel{
 	 * @param own Wird das eigene Profil angezeigt oder ein anderes?
 	 * @param anzPlaylists <= 5, falls ein User mehr Playlisten hat, sind diese über den "More"-Button verfügbar.
 	 */
-	public ProfileView(User user, Playlist[] top5Playlists, boolean edit){
+	public ProfileView(User user, List<Playlist> top5Playlists, boolean edit){
 		if (user==null) {
 			this.user = SessionThing.getInstance().getSessionUser();
 		}
@@ -159,7 +161,7 @@ public class ProfileView extends JPanel{
 		    b_follow = new JButton("Follow");
 		    pan_profilepic.add(b_follow, d);
 		    
-		    if (SessionThing.getInstance().getSessionUser().getProfile().roleName().equals("Admin")) {
+		    if (SessionThing.getInstance().getSessionUser().getProfile().hasRight(Rights.LOCK_OTHER_USER)) {
 	
 		    	d.gridx = 3;
 			    d.gridy = 1;
@@ -181,7 +183,7 @@ public class ProfileView extends JPanel{
 		e.fill = GridBagConstraints.HORIZONTAL;
 		e.insets = new Insets(2,2,2,2);	
 		
-		b_playlistArray = new JButton[top5Playlists.length];
+		b_playlistArray = new JButton[top5Playlists.size()];
 		
 		// Label hinzufügen
 		JLabel l_top5 = new JLabel("Deine Top 5 most hated Playlists:");
@@ -192,7 +194,7 @@ public class ProfileView extends JPanel{
 		pan_topplaylists.add(l_top5, e);
 		
 		// Playlist buttons hinzufügen
-		for (int i = 0; i < top5Playlists.length; i++){
+		for (int i = 0; i < top5Playlists.size(); i++){
 			
 			e.gridx = 0;
 			e.gridy = i+1;
@@ -200,7 +202,7 @@ public class ProfileView extends JPanel{
 
 		    e.gridwidth = 2;
 		    e.gridheight = 1;
-			b_playlistArray[i] = new JButton(top5Playlists[i].getName());
+			b_playlistArray[i] = new JButton(top5Playlists.get(i).getName());
 			pan_topplaylists.add(b_playlistArray[i], e);
 		}
 	
@@ -374,8 +376,6 @@ public class ProfileView extends JPanel{
 		setVisible(true);
 		
 	}
-
-
 
 
 	public JPanel getPan_profileview() {
