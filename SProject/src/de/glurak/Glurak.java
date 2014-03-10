@@ -54,7 +54,7 @@ public class Glurak {
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
-                SessionThing.getInstance().getDatabase().save();
+                SessionThing.getInstance().getDatabase().close();
             }
         });
     }
@@ -101,6 +101,7 @@ public class Glurak {
         m.setTitel("Pink Fluffy Unicorns");
         db.registrateMedium(m, null);
         a.getMediumList().add(m);
+        m.setOwner(userB);
 
         m = new Medium();
         m.setFileName(Query.FOLDER_MUSIC + "Go Far Kid.mp3");
@@ -108,6 +109,7 @@ public class Glurak {
         m.setTitel("Go Far Kid");
         db.registrateMedium(m, null);
         a.getMediumList().add(m);
+        m.setOwner(userB);
 
         m = new Medium();
         m.setFileName(Query.FOLDER_MUSIC + "Pokemon Theme.mp3");
@@ -115,6 +117,7 @@ public class Glurak {
         m.setTitel("Pokemon Theme");
         db.registrateMedium(m, null);
         a.getMediumList().add(m);
+        m.setOwner(userB);
         // register Medien
         db.addPlaylist(a, null);
 

@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import de.glurak.data.Playlist;
 import de.glurak.data.User.User;
 import de.glurak.feature.Uploader;
+import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.NextContent;
 
@@ -25,10 +26,17 @@ public class ProfileEditVController extends Observable implements ActionListener
 	private ProfileView profileEditView;
 	private ContentController nextContent;
 	private User user;
+	private boolean picChanged;
 	
-	public ProfileEditVController(User user, List<Playlist> top5Playlists){
+	public boolean isPicChanged() {
+		return picChanged;
+	}
+
+	public ProfileEditVController(){
 		
-		this.user = user;
+		this.user = SessionThing.getInstance().getSessionUser();
+		List<Playlist> top5Playlists = new ProfileVController(this.user).getTopFiveHatedPlaylists();
+		
 		profileEditView = new ProfileView(user, top5Playlists, true);
 		
 		// Setzen der ActionListener
@@ -36,7 +44,7 @@ public class ProfileEditVController extends Observable implements ActionListener
 		profileEditView.b_upload.addActionListener(this);
 		
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent e){
 		Object obj = e.getSource();
@@ -72,6 +80,11 @@ public class ProfileEditVController extends Observable implements ActionListener
             } catch (IOException e1) {
                 JOptionPane.showMessageDialog(this.profileEditView, "Bitte versuch es mit einer anderen Datei.", "Fehler", JOptionPane.ERROR_MESSAGE);
             }
+			this.picChanged = true;
+			this.profileEditView.repaint();
+			this.profileEditView.revalidate();
+			setChanged();
+			notifyObservers();
 		}
 	}
 

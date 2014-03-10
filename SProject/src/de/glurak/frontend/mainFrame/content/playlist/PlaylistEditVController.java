@@ -2,6 +2,8 @@ package de.glurak.frontend.mainFrame.content.playlist;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.FocusEvent;
 import java.util.Observable;
 
 import javax.swing.JComponent;
@@ -12,7 +14,7 @@ import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.NextContent;
 
-public class PlaylistEditVController extends Observable implements ActionListener, ContentController, NextContent{
+public class PlaylistEditVController extends Observable implements ActionListener, ContentController, NextContent, FocusListener{
 
 	private PlaylistEditView playeditview;
 	private ContentController nextContent;
@@ -22,6 +24,7 @@ public class PlaylistEditVController extends Observable implements ActionListene
 	public PlaylistEditVController(Playlist p, ContentController c){
 		playeditview = new PlaylistEditView(this);
 		playeditview.setPlaylist(p);
+		playeditview.field_name.addFocusListener(this);
 		nextContent = c;
 	}
 	
@@ -63,6 +66,15 @@ public class PlaylistEditVController extends Observable implements ActionListene
 				
 			}
 		}
+	}
+
+	public void focusGained(FocusEvent e) {
+		playeditview.field_name.selectAll();
+	}
+
+	public void focusLost(FocusEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
