@@ -57,7 +57,7 @@ public class NavigationVController extends Observable {
         }
 
         view = new NavigationView(a,username,getProfileImage(imgFilename));
-        addController(new ProfileVController(null), "Profil",null);
+        addController(new ProfileVController(SessionThing.getInstance().getSessionUser()), "Profil",null);
         addController(new PlaylistVController(),"Playlist", Rights.MANAGE_PLAYLIST);
         addController(promotionVController,"News",null);
         addController(new MessageVController(),"Nachrichten",Rights.DO_MESSAGE);

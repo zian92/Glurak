@@ -73,6 +73,17 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 	public void setNextContent(ContentController nextContent) {
 		this.nextContent = nextContent;
 	}
+	
+	public void initfillView(){
+		List<Playlist> list = SessionThing.getInstance().getSessionUser().getMyPlaylists();
+		view.fillView(list);
+	}
+	
+	public void refreshView(){
+		List<Playlist> list = SessionThing.getInstance().getSessionUser().getMyPlaylists();
+		view.refreshView(list);
+	}
+	
 	  /* ====================================================================================================
      *											 Test-Functions
      * ====================================================================================================
@@ -114,18 +125,7 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 		
 		return p;
 	}
-	
-	
-	public void initfillView(){
-		List<Playlist> list = SessionThing.getInstance().getSessionUser().getMyPlaylists();
-		view.fillView(list);
-	}
-	
-	public void refreshView(){
-		List<Playlist> list = SessionThing.getInstance().getSessionUser().getMyPlaylists();
-		view.refreshView(list);
-	}
-	
+
     /* ====================================================================================================
      *											 Action-Handling
      * ====================================================================================================
