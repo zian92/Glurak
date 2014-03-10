@@ -3,6 +3,7 @@ package de.glurak;
 import java.security.NoSuchAlgorithmException;
 
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import de.glurak.data.Album;
@@ -32,7 +33,7 @@ public class Glurak {
     }
 
     public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException, NoSuchAlgorithmException {
-        // UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    	UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 splash = new SplashScreen();
