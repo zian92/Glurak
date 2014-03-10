@@ -82,6 +82,7 @@ public class Glurak {
         db.registrateProfile(profileB, null);
         profileB.setFemale(true);
         profileB.setFirstname("Emma");
+        profileB.setLastname("Statibo");
         profileB.setUser(userB);
 
         // musik

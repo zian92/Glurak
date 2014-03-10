@@ -66,14 +66,9 @@ public class PlayQueueViewController {
 					if (player.isPaused()) {
 
 						playNew(view.getPositionBar().getValue());
-					}  else if (player.isPlaying()) {
-						player.pause();
-
-						player.resume();
-						view.playButton.setText("Pause");
-					}  else if (player.isPlaying()) {
+					} else if (player.isPlaying()) {
 								player.pause();
-								view.playButton.setText("Play");
+								view.playButton.setText("Play   ");
 					} else {
 						playNew(view.getPositionBar().getValue());
 					}
@@ -302,6 +297,7 @@ public class PlayQueueViewController {
 	 */
 	public void playNew(int time){
 		if(getPlayqueue()!=null){
+			view.playButton.setText("Pause");
 		player.play(getPlayqueue().getCurrent().getFileName(),time);
 		File file = new File(getPlayqueue().getCurrent().getFileName());
 		MP3Properties properties = null;
