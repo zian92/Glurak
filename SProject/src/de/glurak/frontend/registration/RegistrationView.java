@@ -95,15 +95,15 @@ public class RegistrationView extends JPanel{
         d_homecountry = new JComboBox(countries);
 
         //Inputsachen
-        pan_input.add(addAEntry("Username:", t_username));
-        pan_input.add(addAEntry("Password:", t_password));
+        pan_input.add(addAEntry("Benutzername:", t_username));
+        pan_input.add(addAEntry("Passwort:", t_password));
 
-        pan_input.add(addAEntry("Password wiederholen:", t_password_2));
+        pan_input.add(addAEntry("Passwort wiederholen:", t_password_2));
         pan_input.add(addAEntry("Mail-Addresse:", t_mailaddr));
         pan_input.add(addAEntry("Vorname:", t_prename));
         pan_input.add(addAEntry("Nachname:", t_surname));
         pan_input.add(addAEntry("Geburtsdatum:", birthdayPanel()));
-        pan_input.add(addAEntry("Addresse:", t_addr));
+        pan_input.add(addAEntry("Adresse:", t_addr));
         pan_input.add(addAEntry("Herkunfsland:", d_homecountry));
         pan_input.add(addAEntry("Geschlecht:", getGenderRadio()));
 

@@ -75,7 +75,7 @@ public class LoginView extends JFrame{
         if (listener != null)
             bt_register.addActionListener(listener);
 		
-		JLabel l_name 		= new JLabel("Name", JLabel.LEFT);
+		JLabel l_name 		= new JLabel("Benutzername", JLabel.LEFT);
 		JLabel l_passwort 	= new JLabel("Passwort", JLabel.LEFT);
 		l_name.setForeground(Color.WHITE);
 		l_passwort.setForeground(Color.WHITE);

@@ -15,7 +15,7 @@ import de.glurak.data.Medium;
 import de.glurak.frontend.SessionThing;
 
 /**
- * Uploader stellt Funktionen zum hochladen von Bild- und Musikdateien bereit. Die erlaubten Datentypen sind genauer in de.glurak.Qery spezifiziert.
+ * Uploader stellt Funktionen zum hochladen von Bild- und Musikdateien bereit. Die erlaubten Datentypen sind genauer in de.glurak.Qery spezifiziert. Gleichzeitig werden medien in einer Ordnerstruktur verwaltet.
  * 
  * @author Jonas
  */
@@ -29,6 +29,11 @@ public class Uploader {
         this.createFolders(Query.FOLDERS);
     }
 
+    /**
+     * erstllt die uebergebenen Pfade, falls sie nciht bereits existieren.
+     * 
+     * @param folders
+     */
     private void createFolders(String[] folders) {
         for (String s : folders) {
             File dir = new File(s);
@@ -95,15 +100,15 @@ public class Uploader {
     /**
      * Speichert die uebergebene Bilddatei im Profilordner.
      * 
-     * @param pic
+     * @param picture
      * @return
      * @throws IOException
      */
-    public void saveProfilePicture(File pic) throws IOException {
-        String path = Query.FOLDER_PICTURE_PROFILE + SessionThing.getInstance().getSessionUser().getUsername();
+    public void saveProfilePicture(File picture) throws IOException {
+        String path = Query.FOLDER_PICTURE_PROFILE + SessionThing.getInstance().getSessionUser().getUsername() + "/";
         this.createFolders(new String[] { path, });
-        File newPath = new File(path + "/profile" + (pic.getName().substring(pic.getName().lastIndexOf("."))));
-        this.savePic(pic, newPath.getPath());
+        File newPath = new File(path + "profile" + (picture.getName().substring(picture.getName().lastIndexOf("."))));
+        Files.copy(Paths.get(picture.getPath()), Paths.get(newPath.getPath()), StandardCopyOption.REPLACE_EXISTING);
         SessionThing.getInstance().getSessionUser().getProfile().setPictureFileName(newPath.getPath());
     }
 
@@ -114,8 +119,9 @@ public class Uploader {
      * @return
      * @throws IOException
      */
-    public void saveAlbumCover(File picture) throws IOException {
-        this.savePic(picture, Query.FOLDER_PICTURE_COVER);
+    public void saveAlbumCover(File picture, String albumName) throws IOException {
+        String path = Query.FOLDER_PICTURE_COVER + albumName + "/";
+        this.saveFile(picture, path);
     }
 
     /**
@@ -125,24 +131,9 @@ public class Uploader {
      * @return
      * @throws IOException
      */
-    public void saveSlider(File picture) throws IOException {
-        this.savePic(picture, Query.FOLDER_PICTURE_SLIDER);
-    }
-
-    /**
-     * Interne Funktion zum Bilder speichern.
-     * 
-     * @param pic
-     * @param picPath
-     * @return
-     * @throws IOException
-     */
-    private void savePic(File pic, String picPath) throws IOException {
-        System.out.println("pic: " + pic.getPath());
-        System.out.println(pic.exists());
-        System.out.println("f: " + picPath);
-
-        Files.copy(Paths.get(pic.getPath()), Paths.get(picPath), StandardCopyOption.REPLACE_EXISTING);
+    public void saveSliderPicture(File picture) throws IOException {
+        String path = Query.FOLDER_PICTURE_SLIDER + SessionThing.getInstance().getSessionUser().getUsername() + "/";
+        this.saveFile(picture, path);
     }
 
     /**

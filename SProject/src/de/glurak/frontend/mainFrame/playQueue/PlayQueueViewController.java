@@ -64,9 +64,17 @@ public class PlayQueueViewController {
 				Object src = e.getSource();
 				if (src == view.getPlayButton()) {
 					if (player.isPaused()) {
+<<<<<<< HEAD
 						playNew(view.getPositionBar().getValue());
 					}  else if (player.isPlaying()) {
 						player.pause();
+=======
+						player.resume();
+						view.playButton.setText("Pause");
+					}  else if (player.isPlaying()) {
+								player.pause();
+								view.playButton.setText("Play");
+>>>>>>> f2b69a3e92baadb16b0f686fc6ed73dc9ec7b6c0
 					} else {
 						playNew(view.getPositionBar().getValue());
 					}
