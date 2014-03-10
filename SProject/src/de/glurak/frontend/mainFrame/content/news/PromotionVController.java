@@ -80,68 +80,17 @@ public class PromotionVController extends Observable implements ContentControlle
 	
 	/**
 	 * Initialisiert die PanelSliderElemente mit Inhalten aus
-	 * der newsList des eingeloggten Benutzers.  
+	 * einer NewsList, die in der Datenbank gespeichert ist.
+	 * TODO: Mehrere NewsListen (eigene, globale, etc)
 	 */
 	private void initNewsEntries(){
-		
-		//TODO: Get Items from newsList of current User
-		
-		// Creating dummy-Objects for testing 
-		Album a1 = new Album();
-		Album a2 = new Album();
-		Medium m1 = new Medium(13, "Song 2", null, null);
-		
-		a1.setName("This is It");
-		a2.setName("Album dummy");
-		
-		User u1 = new User();
-		u1.setUsername("TestUser m");
-		ListenerProfile pu1 = new ListenerProfile();
-		pu1.setFirstname(u1.getUsername());
-		pu1.setFemale(false);
-		u1.setProfile(pu1);
-		
-		User u2 = new User();
-		u2.setUsername("TestUser f");
-		ListenerProfile pu2 = new ListenerProfile();
-		pu2.setFirstname(u2.getUsername());
-		pu2.setFemale(true);
-		u2.setProfile(pu2);
-		
-		
+		// Get the NewsList from Database
 		List<NewsEntry> newsEntrylist = SessionThing.getInstance().getDatabase().getAllEntries();
-		
+		//Build ViewElements for every Entry in the Newslist
 		for (int j = 0; j < newsEntrylist.size(); j++){
 			newsList.add(buildEntryView(200, 180, newsEntrylist.get(j)));
 		}
-		
-		//User testU = SessionThing.getInstance().getDatabase().getUserByUsername("LeTest");
-		
-		//newsList.add(buildEntryView(200, 180, new NewsEntry(testU)));
-		/*
-		newsList.add(buildEntryView(200, 180, new NewsEntry(a2)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(u1)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(m1)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(a2)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(m1)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(a2)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(u2)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(a1)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(u1)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(m1)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(a2)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(m1)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(a2)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(u2)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(u1)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(m1)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(a2)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(m1)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(a2)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(u2)));
-		newsList.add(buildEntryView(200, 180, new NewsEntry(u1)));
-		*/
-		// Fill every SLider with Content from NewsList
+		// Distribute the Entries to the Sliders on Screen
 		int sMax = promPan.getSliderCount();
 		int q = newsList.size()/sMax;
 		if (sMax*q<newsList.size()){
@@ -153,6 +102,7 @@ public class PromotionVController extends Observable implements ContentControlle
 					promPan.getSLiderAtPos(pos).addSliderComponent(newsList.get(pos+(j*sMax)));
 			}
 		} 
+		// Start the SLiding-task
 		startTimer();
 	}
 	
