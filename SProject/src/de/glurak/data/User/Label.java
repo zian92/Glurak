@@ -21,6 +21,8 @@ public class Label extends Reachable implements Serializable {
     private List<LabelManagerProfile> manager;
 
     public Label(){
+        super();
+        profile=null;
         manager= new ArrayList<LabelManagerProfile>();
     }
 

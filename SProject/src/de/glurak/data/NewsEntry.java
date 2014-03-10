@@ -28,7 +28,7 @@ public class NewsEntry implements Serializable {
     private User owner;
 
     public NewsEntry(Medium source) {
-        this("Your Song", source);
+        this(source.getTitel(), source);
 
     }
     public NewsEntry(Album source) {
@@ -36,11 +36,11 @@ public class NewsEntry implements Serializable {
     }
 
     public NewsEntry(User source) {
-        this(source.getProfile().getFirstname(), source);
+        this(source.getUsername(), source);
     }
 
     public NewsEntry(Label source) {
-        this(null,  source);
+        this(source.getProfile().getName(),  source);
     }
     
     public NewsEntry(String message, EntryObject h) {

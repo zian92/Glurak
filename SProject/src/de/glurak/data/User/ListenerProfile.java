@@ -1,9 +1,7 @@
 package de.glurak.data.User;
 
-import de.glurak.data.Playlist;
-import java.util.List;
+import javax.persistence.Entity;
 import java.io.Serializable;
-import javax.persistence.*;
 
 /**
  * Das Profil eines Listener

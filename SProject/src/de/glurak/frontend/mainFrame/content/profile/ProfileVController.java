@@ -125,4 +125,9 @@ public class ProfileVController extends Observable implements ActionListener, Co
 		this.nextContent = nextContent;
 	}
 
+	public void reload() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

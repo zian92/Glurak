@@ -207,4 +207,9 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 		
 	}
 
+	public void reload() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
