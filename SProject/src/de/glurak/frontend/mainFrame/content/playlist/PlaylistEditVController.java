@@ -56,12 +56,13 @@ public class PlaylistEditVController extends Observable implements ActionListene
 					npl.setName(playeditview.getPlaylistName());
 					npl.setOwner(SessionThing.getInstance().getSessionUser());
 					SessionThing.getInstance().getDatabase().addPlaylist(npl, null);
+					
 					if (nextContent instanceof PlaylistVController){
 						((PlaylistVController) nextContent).refreshView();
 					}
 					
 					setChanged();
-					notifyObservers();
+					notifyObservers(nextContent);
 				}
 				
 			}

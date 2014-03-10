@@ -154,7 +154,8 @@ public class PlaylistView extends JPanel {
     }
     
     public void refreshView(List<Playlist> list){
-    	addPlaylist(list.get(list.size()-1));
+    	if (list.size() != 0)
+    		addPlaylist(list.get(list.size()-1));
     }
     
     public void removeEmptyPage(){

@@ -36,6 +36,9 @@ public class FollowerVController  extends Observable implements MouseListener, A
 		return null;
 	}
 
+    
+    
+	
 	public JComponent getView() {
 		return view;
 	}
@@ -71,9 +74,9 @@ public class FollowerVController  extends Observable implements MouseListener, A
 	}
 
 	public void reload() {
+		view.cleanView();
 		List<User> list = SessionThing.getInstance().getSessionUser().getFollowing();
 		view.fillView(list);
-		System.out.println("FVC - 76 - filled FollowerList");
 	}
 
 }
