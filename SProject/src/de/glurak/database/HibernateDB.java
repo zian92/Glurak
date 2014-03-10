@@ -104,7 +104,7 @@ public class HibernateDB {
      */
     public boolean hasUser(String username){
         TypedQuery<User> q1 = em.createQuery(
-                "SELECT k FROM User k WHERE k.username = :n", User.class);
+                "SELECT k FROM User k WHERE UPPER(k.username) = UPPER(:n)", User.class);
         q1.setParameter("n",username);
         List<User> res = q1.getResultList();
         return res.size() > 0;

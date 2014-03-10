@@ -63,7 +63,7 @@ public class MessageVController implements ActionListener, ContentController {
             JOptionPane.showMessageDialog(messview, "Dieser Empfänger existiert nicht. Bitte geben sie einen existierenden Empfänger an!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        if (session.getSessionUser().getUsername().equals(u.getUsername())) {
+        if (session.getSessionUser().getUsername().toUpperCase().equals(u.getUsername().toUpperCase())) {
             JOptionPane.showMessageDialog(messview, "Du kannst dir nicht selber eine Nachricht schreiben. Bitte geben sie einen anderen Empfänger an!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
             return false;
         }
