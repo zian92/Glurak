@@ -120,11 +120,11 @@ public class ProfileVController extends Observable implements ActionListener, Co
                         if (user.isLocked()) {
                             // entsperren
                             user.setLocked(false);
-                            this.profileview.setBlockButtonToUnblock();
+                            this.profileview.setBlockButtontToBock();
                         } else {
                             // sperren
                             user.setLocked(true);
-                            this.profileview.setBlockButtontToBock();
+                            this.profileview.setBlockButtonToUnblock();
                         }
                     } else {
                         for (int i = 0; i < profileview.b_playlistArray.length; i++) {
