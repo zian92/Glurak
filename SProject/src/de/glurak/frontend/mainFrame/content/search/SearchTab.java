@@ -127,6 +127,7 @@ public class SearchTab<T> extends JPanel implements MouseListener {
 	} */
 
 	public void mouseClicked(MouseEvent me) {
+		// Bei Klick ins Textfeld wird dessen Inhalt gelöscht
 		if (me.getSource() == t_search) {
 			t_search.setText("");
 		}
@@ -134,22 +135,18 @@ public class SearchTab<T> extends JPanel implements MouseListener {
 	}
 
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 }
