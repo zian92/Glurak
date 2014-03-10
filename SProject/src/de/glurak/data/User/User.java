@@ -1,9 +1,9 @@
 package de.glurak.data.User;
-import de.glurak.data.NotEnoughRightException;
-import de.glurak.data.Playlist;
 
-import java.io.Serializable;
+import de.glurak.data.NotEnoughRightException;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;

@@ -1,7 +1,8 @@
 package de.glurak.data.User;
 
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 /**
  * Das Profil eines LabelManagers

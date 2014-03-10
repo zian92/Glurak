@@ -1,11 +1,10 @@
 package de.glurak.data.User;
 
-import javax.persistence.*;
-
 import de.glurak.data.EntryObject;
 import de.glurak.data.Hateable;
 import de.glurak.data.Playlist;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
