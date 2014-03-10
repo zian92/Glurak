@@ -7,9 +7,9 @@ import java.util.Observer;
 import de.glurak.Query;
 import de.glurak.data.Medium;
 import de.glurak.data.Playlist;
-import de.glurak.data.Playqueue;
 import de.glurak.frontend.login.LoginVController;
 import de.glurak.frontend.mainFrame.content.news.PromotionVController;
+import de.glurak.frontend.mainFrame.content.profile.ProfileEditVController;
 import de.glurak.frontend.mainFrame.content.search.SearchVController;
 import de.glurak.frontend.mainFrame.header.HeaderVController;
 import de.glurak.frontend.mainFrame.navigation.NavigationVController;
@@ -92,10 +92,30 @@ public class MainFrameVController implements Observer{
             contentController = navigationController.getContentController();
 
         } else if (o.equals(contentController)) {
-            if (arg != null)
+            if (arg != null) {
                 contentController=(ContentController) arg;
-            else if (contentController instanceof NextContent)
-                contentController = ((NextContent) contentController).getNextContent();
+            }
+            else if (contentController instanceof NextContent) {
+            	if (contentController instanceof ProfileEditVController) {
+            		if (((ProfileEditVController) contentController).isPicChanged()) {
+            			view.getNavigation().removeAll();
+            			view.getNavigation().repaint();
+            			view.getNavigation().revalidate();
+
+            			navigationController = new NavigationVController(new PromotionVController());
+            			view.getNavigation().add(navigationController.getView());
+            			
+            			navigationController.addObserver(this);
+            			
+            			contentController = new ProfileEditVController();
+            		}
+            		else {
+            			contentController = ((NextContent) contentController).getNextContent();
+            		}
+            	} else {
+            		contentController = ((NextContent) contentController).getNextContent();
+            	}
+            }
             else return;
         }  else return;
 
