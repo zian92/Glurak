@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Entscheider
  * @param <T> Generik der Anzeigedaten
  */
-public class SearchTab<T> extends JPanel {
+public class SearchTab<T> extends JPanel implements MouseListener {
 
 	private JPanel pan_searchview;
 	private JPanel pan_advancedSearch;
@@ -37,6 +37,7 @@ public class SearchTab<T> extends JPanel {
 
 	// Suchfelde
 	protected JTextField t_search = new JTextField(10);
+	
 
 	// Button zur Suche
 	protected JButton b_search = new JButton("Suchen!");
@@ -60,6 +61,8 @@ public class SearchTab<T> extends JPanel {
 		northPane.add(new JLabel("Suche"));
 		northPane.add(t_search);
 		northPane.add(b_search);
+		
+		t_search.addMouseListener(this);
 
         b_search.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -122,6 +125,33 @@ public class SearchTab<T> extends JPanel {
 		
 		
 	} */
+
+	public void mouseClicked(MouseEvent me) {
+		if (me.getSource() == t_search) {
+			t_search.setText("");
+		}
+		
+	}
+
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 
