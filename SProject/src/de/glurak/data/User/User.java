@@ -16,8 +16,6 @@ import java.util.List;
  */
 @Entity
 public class User extends Reachable implements Serializable{
-	
-
 
     private String username;
     private String passwordHash;
@@ -26,9 +24,6 @@ public class User extends Reachable implements Serializable{
 
     @OneToOne
     private UserProfile profile;
-
-    @OneToMany(mappedBy = "owner")
-    protected List<Playlist> myPlaylists;
 
     @ManyToMany
     @JoinTable(
@@ -40,8 +35,9 @@ public class User extends Reachable implements Serializable{
     public User(){
         following=new ArrayList<User>();
         isLocked=false;
-        myPlaylists=new ArrayList<Playlist>();
     }
+
+
 
 	public void setUsername(String username){
 		this.username = username;
@@ -103,20 +99,6 @@ public class User extends Reachable implements Serializable{
             profile.setUser(this);
     }
 
-    public List<Playlist> getMyPlaylists() {
-        return myPlaylists;
-    }
-
-    public void setMyPlaylists(List<Playlist> myPlaylists) {
-        this.myPlaylists = myPlaylists;
-    }
-
-    public void addPlaylist(Playlist pl){
-        if (myPlaylists.contains(pl)) return;
-        myPlaylists.add(pl);
-        pl.setOwner(this);
-    }
-
     /**
      * Gibt die Liste aller Benutzer an, die dieser hier favorisiert
      * @return die Liste aller favorisierter Benutzer
@@ -138,4 +120,10 @@ public class User extends Reachable implements Serializable{
         this.following.add(who);
     }
 
+    @Override
+    public String entryPicture() {
+        if (profile!=null)
+            return profile.getPictureFileNameOrDefaultPictureName();
+        return null;
+    }
 }

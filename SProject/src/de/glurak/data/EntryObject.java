@@ -14,6 +14,12 @@ abstract public class EntryObject implements Serializable, Hateable{
     @GeneratedValue
     protected long id;
 
+    /**
+     * Gibt das Bild zurück, dass beim NewsEntry angezgeit wird.
+     * @return der Pfad des Bildes , null falls kein Bild
+     */
+    abstract public String entryPicture();
+
     public long getId(){
         return id;
     }

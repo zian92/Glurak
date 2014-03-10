@@ -55,6 +55,7 @@ public class NewsEntry implements Serializable {
         message = new String();
     }
 
+
     public User getOwner() {
         return owner;
     }

@@ -1,5 +1,6 @@
 package de.glurak.data;
 
+import de.glurak.data.User.Reachable;
 import de.glurak.data.User.Rights;
 import de.glurak.data.User.User;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class Playlist extends EntryObject implements Serializable, Hateable, Com
     private List<User> liker;
 
     @ManyToOne
-    private User owner;
+    private Reachable owner;
 
 
 	private String name;
@@ -100,12 +101,13 @@ public class Playlist extends EntryObject implements Serializable, Hateable, Com
 	}
 
 
-    public User getOwner() {
+    public Reachable getOwner() {
         return owner;
     }
 
-    public void setOwner(User owner) {
-        NotEnoughRightException.throwIfNot(owner, Rights.MANAGE_PLAYLIST);
+    public void setOwner(Reachable owner) {
+        if (owner instanceof User)
+            NotEnoughRightException.throwIfNot((User)owner, Rights.MANAGE_PLAYLIST);
         if (this.owner==owner) return;
         this.owner = owner;
         owner.addPlaylist(this);
@@ -152,4 +154,9 @@ public class Playlist extends EntryObject implements Serializable, Hateable, Com
 		
 		return myHates.compareTo(hates);
 	}
+
+    @Override
+    public String entryPicture() {
+        return null;
+    }
 }
