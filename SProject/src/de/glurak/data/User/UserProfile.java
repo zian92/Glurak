@@ -21,6 +21,10 @@ public abstract class UserProfile extends Profile implements Serializable {
     protected boolean isFemale;
     protected String country;
 
+    public UserProfile(){
+        super();
+    }
+
     /**
      * Soll in den Unterklassen implementiert werden. Gibt die Rechte zurück die ein Nutzer mit diesem Profil besitzt
      * 

@@ -17,8 +17,8 @@ import java.util.List;
 @Entity
 public class User extends Reachable implements Serializable{
 
-    private String username;
-    private String passwordHash;
+    private String username="";
+    private String passwordHash="";
 
     private boolean isLocked;
 
@@ -33,6 +33,8 @@ public class User extends Reachable implements Serializable{
     private List<User> following;
 
     public User(){
+        super();
+        profile=null;
         following=new ArrayList<User>();
         isLocked=false;
     }

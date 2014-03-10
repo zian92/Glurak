@@ -30,6 +30,7 @@ public class LabelProfile extends Profile implements Serializable{
 
 
     public LabelProfile(){
+        super();
         myartists=new ArrayList<ArtistProfile>();
     }
     /**

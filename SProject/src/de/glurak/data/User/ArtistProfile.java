@@ -11,6 +11,11 @@ public class ArtistProfile extends ListenerProfile implements Serializable{
     @ManyToOne
     private LabelProfile myLabel;
 
+    public ArtistProfile(){
+        super();
+        myLabel=null;
+    }
+
     public LabelProfile getMyLabel() {
         return myLabel;
     }
