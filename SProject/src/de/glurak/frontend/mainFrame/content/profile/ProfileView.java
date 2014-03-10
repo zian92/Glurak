@@ -5,6 +5,7 @@ import javax.swing.*;
 import de.glurak.FrontendColors;
 import de.glurak.data.Playlist;
 import de.glurak.data.User.ListenerProfile;
+import de.glurak.data.User.Rights;
 import de.glurak.data.User.User;
 import de.glurak.feature.IconLoader;
 import de.glurak.frontend.SessionThing;
@@ -159,7 +160,7 @@ public class ProfileView extends JPanel{
 		    b_follow = new JButton("Follow");
 		    pan_profilepic.add(b_follow, d);
 		    
-		    if (SessionThing.getInstance().getSessionUser().getProfile().roleName().equals("Admin")) {
+		    if (SessionThing.getInstance().getSessionUser().getProfile().hasRight(Rights.LOCK_OTHER_USER)) {
 	
 		    	d.gridx = 3;
 			    d.gridy = 1;

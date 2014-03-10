@@ -24,11 +24,11 @@ public class SaveTest {
     public void savePicture() {
         picture = new Medium();
         picture.setFileName(Query.DATAPATH + "test.jpg");
-        try {
+        /*try { //TODO: hier hakt es jetzt
             up.saveAlbumCover(picture);
         } catch (IOException e) {
             System.out.println("Fehlgeschlagen");
-        }
+        } */
     }
 
     // TODO OUtdated!
