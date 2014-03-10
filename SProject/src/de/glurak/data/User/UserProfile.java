@@ -4,6 +4,7 @@ import de.glurak.data.Announcement;
 import de.glurak.Query;
 import de.glurak.data.NotEnoughRightException;
 
+import java.io.File;
 import java.io.Serializable;
 
 import javax.persistence.*;
@@ -107,13 +108,12 @@ public abstract class UserProfile extends Profile implements Serializable {
 
     @Override
     public String getPictureFileNameOrDefaultPictureName() {
-        if (pictureFileName.isEmpty()) {
+        if (pictureFileName.isEmpty() || !new File(pictureFileName).exists()) {
             if (isFemale) {
                 return (Query.FOLDER_PICTURE_ICONS + "userf.jpg");
             } else {
                 return (Query.FOLDER_PICTURE_ICONS + "userm.jpg");
             }
-
         }
         return pictureFileName;
     }

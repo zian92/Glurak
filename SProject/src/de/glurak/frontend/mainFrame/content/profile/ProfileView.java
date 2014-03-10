@@ -62,7 +62,7 @@ public class ProfileView extends JPanel{
 	
 	// User
 	private User user;
-	private JButton[] b_playlistArray;
+	protected JButton[] b_playlistArray;
 	
 	
 	
@@ -203,6 +203,9 @@ public class ProfileView extends JPanel{
 		    e.gridwidth = 2;
 		    e.gridheight = 1;
 			b_playlistArray[i] = new JButton(top5Playlists.get(i).getName());
+			if (edit) {
+				b_playlistArray[i].setEnabled(false);
+			}
 			pan_topplaylists.add(b_playlistArray[i], e);
 		}
 	
