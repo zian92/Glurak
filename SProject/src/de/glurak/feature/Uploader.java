@@ -12,6 +12,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import de.glurak.Query;
 import de.glurak.data.Medium;
+import de.glurak.database.HibernateDB;
 import de.glurak.frontend.SessionThing;
 
 /**
@@ -21,12 +22,16 @@ import de.glurak.frontend.SessionThing;
  */
 public class Uploader {
     private static Uploader instance = null;
+    private SessionThing session;
+    private HibernateDB db;
 
     /**
      * Erstellt ein Object vom Typ Uploader. Dabei wird ueberprueft ob die benoetigte ordnerstruktur existiert und ggf. erstellt.
      */
     private Uploader() {
         this.createFolders(Query.FOLDERS);
+        session = SessionThing.getInstance();
+        db = session.getDatabase();
     }
 
     /**
@@ -62,12 +67,13 @@ public class Uploader {
      * @return
      * @throws IOException
      */
-    public void saveMusic(Medium[] medien, String albumName) {
+    public Medium[] saveMusic(Medium[] medien, String albumName) {
         File[] files = this.getFileArrayFromMedium(medien);
         for (int i = 0; i < files.length; i++) {
             String artistPath = Query.FOLDER_MUSIC + medien[i].getOwner().getUsername() + "/" + albumName + "/";
             medien[i].setFileName(this.saveFile(new File(medien[i].getFileName()), artistPath).getPath());
         }
+        return medien;
     }
 
     /**
@@ -105,11 +111,12 @@ public class Uploader {
      * @throws IOException
      */
     public void saveProfilePicture(File picture) throws IOException {
-        String path = Query.FOLDER_PICTURE_PROFILE + SessionThing.getInstance().getSessionUser().getUsername() + "/";
+        String path = Query.FOLDER_PICTURE_PROFILE + session.getSessionUser().getUsername() + "/";
         this.createFolders(new String[] { path, });
         File newPath = new File(path + "profile" + (picture.getName().substring(picture.getName().lastIndexOf("."))));
         Files.copy(Paths.get(picture.getPath()), Paths.get(newPath.getPath()), StandardCopyOption.REPLACE_EXISTING);
-        SessionThing.getInstance().getSessionUser().getProfile().setPictureFileName(newPath.getPath());
+        session.getSessionUser().getProfile().setPictureFileName(newPath.getPath());
+        session.getDatabase().save();
     }
 
     /**
@@ -119,9 +126,9 @@ public class Uploader {
      * @return
      * @throws IOException
      */
-    public void saveAlbumCover(File picture, String albumName) throws IOException {
+    public File saveAlbumCover(File picture, String albumName) throws IOException {
         String path = Query.FOLDER_PICTURE_COVER + albumName + "/";
-        this.saveFile(picture, path);
+        return this.saveFile(picture, path);
     }
 
     /**
@@ -131,9 +138,9 @@ public class Uploader {
      * @return
      * @throws IOException
      */
-    public void saveSliderPicture(File picture) throws IOException {
-        String path = Query.FOLDER_PICTURE_SLIDER + SessionThing.getInstance().getSessionUser().getUsername() + "/";
-        this.saveFile(picture, path);
+    public File saveSliderPicture(File picture) throws IOException {
+        String path = Query.FOLDER_PICTURE_SLIDER + session.getSessionUser().getUsername() + "/";
+        return this.saveFile(picture, path);
     }
 
     /**

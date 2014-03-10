@@ -1,6 +1,7 @@
 package de.glurak.data;
 
 import de.glurak.Query;
+import de.glurak.data.User.Reachable;
 import de.glurak.data.User.Rights;
 import de.glurak.data.User.User;
 
@@ -44,8 +45,14 @@ public class Album extends Playlist implements Serializable {
 	}
 
     @Override
-    public void setOwner(User owner) {
-        NotEnoughRightException.throwIfNot(owner, Rights.MANAGE_ALBUM);
+    public void setOwner(Reachable owner) {
+        if (owner instanceof User)
+         NotEnoughRightException.throwIfNot((User) owner, Rights.MANAGE_ALBUM);
         super.setOwner(owner);
+    }
+
+    @Override
+    public String entryPicture() {
+        return filename;
     }
 }

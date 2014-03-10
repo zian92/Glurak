@@ -12,6 +12,7 @@ import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.NextContent;
 import de.glurak.frontend.mainFrame.content.message.MessageVController;
+import de.glurak.frontend.mainFrame.content.playlist.PlaylistEditVController;
 import de.glurak.frontend.mainFrame.content.profile.ProfileEditVController;
 
 /**
@@ -30,13 +31,14 @@ public class ProfileVController extends Observable implements ActionListener, Co
 	public ProfileVController (User user) {
 		
 		// parameter überprüfen
-		if (user==null || user==SessionThing.getInstance().getSessionUser()) {
+		if (user==null) {
 			this.user = SessionThing.getInstance().getSessionUser();
 			own = true;
 		} else {
 			// überprüfen ob es das eigene Profil ist
 			if (user==SessionThing.getInstance().getSessionUser()) {
 				own = true;
+				this.user = user;
 			} else {
 				own = false;
 				this.user = user;
@@ -53,13 +55,18 @@ public class ProfileVController extends Observable implements ActionListener, Co
 			profileview.b_follow.addActionListener(this);
 			profileview.b_message.addActionListener(this);
 		}
+		
+		for (int i=0;i<profileview.b_playlistArray.length; i++) {
+			profileview.b_playlistArray[i].addActionListener(this);
+		}
+		
 	}
 	
 	/**
 	 * Holt aus den eigenen Playlists die 5 mit den meisten Hates
 	 * @return Playlist[] max size 5
 	 */
-	private List<Playlist> getTopFiveHatedPlaylists() {
+	public List<Playlist> getTopFiveHatedPlaylists() {
 		List<Playlist> myPlaylists = this.user.getMyPlaylists();
 		
 		Collections.sort(myPlaylists);
@@ -89,11 +96,20 @@ public class ProfileVController extends Observable implements ActionListener, Co
 				SessionThing.getInstance().getSessionUser().follow(this.user);
 			}
 		} else if (obj == profileview.b_edit){
-			nextContent = new ProfileEditVController(this.user, getTopFiveHatedPlaylists());
+			nextContent = new ProfileEditVController(this.user);
 			setChanged();
 			notifyObservers();
 		} else {
-			
+			System.out.println("SWAAAAAAg");
+			for (int i=0;i<profileview.b_playlistArray.length; i++) {
+				if (obj == profileview.b_playlistArray[i]) {
+					System.out.println("YOLOLOLO");
+					nextContent = new PlaylistEditVController(getTopFiveHatedPlaylists().get(i), this);
+					setChanged();
+					notifyObservers();
+				}
+				
+			}
 		}
 	}
 

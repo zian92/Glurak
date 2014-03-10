@@ -1,8 +1,11 @@
 package de.glurak.data;
 
+import java.io.Serializable;
 import java.util.List;
 
 import de.glurak.data.User.User;
+
+import javax.persistence.Entity;
 
 /**
  * Das Interface stellt Methoden zum Bewerten anderer User (ausser Admin) sowie Medien bzw
@@ -11,7 +14,8 @@ import de.glurak.data.User.User;
  *
  */
 
-public interface Hateable {
+//@Entity
+public interface Hateable extends Serializable {
 	
 	/**
 	 * Gibt einen Negativpunkt im Hate-Count.

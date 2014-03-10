@@ -1,5 +1,6 @@
 package de.glurak.frontend.registration;
 
+import de.glurak.data.NewsEntry;
 import de.glurak.data.User.User;
 import de.glurak.data.User.UserProfile;
 import de.glurak.frontend.SessionThing;
@@ -8,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.FocusEvent;
+
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
 
@@ -47,7 +49,11 @@ public class RegistrationVController implements ActionListener, FocusListener{
                 s.getDatabase().registrateProfile(tmp, null);
                 u.setProfile(tmp);
                 s.getDatabase().registrateUser(u,null);
-
+               
+                // Build a new Entry
+                NewsEntry entry = new NewsEntry(u);
+                s.getDatabase().addNewsEntry(entry, null);
+                
                 regview.setVisible(false);
             }
 			catch (NumberFormatException nmf){

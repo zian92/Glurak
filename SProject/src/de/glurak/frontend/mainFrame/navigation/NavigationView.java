@@ -11,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
+import de.glurak.data.User.User;
+import de.glurak.feature.IconLoader;
+
 
 /**
  * In der Navigationview werden das Profilbild des Users und seine Funktionen,
@@ -23,6 +26,7 @@ public class NavigationView extends JPanel{
 	private JPanel profilePicture, buttonPanel;
 	private JLabel userPicture, userName;
     private ActionListener l;
+    private User user;
 	
 	/**
 	 * Konstruktor
@@ -30,9 +34,9 @@ public class NavigationView extends JPanel{
      * @param username der Benutzername der angezeigt werden soll
      * @param profilPicture das Bild das angezeigt werden soll
 	 */
-	public NavigationView(ActionListener l, String username, ImageIcon profilPicture){
+	public NavigationView(ActionListener l, String username, User user){
         this.l=l;
-
+        this.user = user;
 		
 		buttonPanel = new JPanel();
 		
@@ -47,8 +51,7 @@ public class NavigationView extends JPanel{
 
 		JPanel northPanel = new JPanel();
         northPanel.setLayout(new BorderLayout());
-		userPicture = new JLabel(profilPicture);
-		userPicture.setPreferredSize(new Dimension(200,200));
+		userPicture = new JLabel(new IconLoader(200, 200, user.getProfile().getPictureFileNameOrDefaultPictureName()).getIcon());
 		profilePicture.add(userPicture);
         northPanel.add(userPicture,BorderLayout.CENTER);
 
@@ -63,6 +66,14 @@ public class NavigationView extends JPanel{
 
 	}
 
+	public void updatePic() {
+//		System.out.println("ASDASDSD");
+//		profilePicture.removeAll();
+//		JLabel lala = new JLabel(new IconLoader(200, 200, user.getProfile().getPictureFileNameOrDefaultPictureName()).getIcon());
+//		profilePicture.add(lala);
+//		this.repaint();
+//		this.revalidate();
+	}
     public void addButton(String name){
         JButton b = new JButton(name);
         b.setActionCommand(name);

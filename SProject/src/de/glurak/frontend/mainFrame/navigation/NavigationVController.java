@@ -30,11 +30,13 @@ public class NavigationVController extends Observable {
 	private ContentController contentController;
 	private PromotionVController promotionVController;
     private Map<String,ContentController> map;
+    private User user;
 	
 	/**
 	 * Konstruktor
 	 */
 	public NavigationVController(ContentController promoVContr){
+		this.user=SessionThing.getInstance().getSessionUser();
         map = new HashMap<String, ContentController>();
 		promotionVController = (PromotionVController) promoVContr;
 		
@@ -44,8 +46,8 @@ public class NavigationVController extends Observable {
                 String name = e.getActionCommand();
                 ContentController c;
                 
-                if (name=="Profil"){
-                	c = new ProfileVController(null);
+                if (name=="Profil") {
+                	c = new ProfileVController(user);
                 } else {
                 	c = map.get(name);
                 }
@@ -62,7 +64,7 @@ public class NavigationVController extends Observable {
         username=u.getUsername();
         
 
-        view = new NavigationView(a,username,getProfileImage(imgFilename));
+        view = new NavigationView(a,username,u);
         addController(new ProfileVController(SessionThing.getInstance().getSessionUser()), "Profil",null);
         addController(new PlaylistVController(),"Playlist", Rights.MANAGE_PLAYLIST);
         addController(promotionVController,"News",null);
@@ -71,16 +73,6 @@ public class NavigationVController extends Observable {
         addController(new AdminLockViewController(),"Medium sperren",Rights.LOCK_OTHER_MEDIEN);
 	}
 
-    public ImageIcon getProfileImage(String imgFileName){
-        BufferedImage img = null;
-        try {
-            img = ImageIO.read(new File(imgFileName));
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return new ImageIcon(img);
-    }
 
     /**
      * Fügt einen Button im View hinzu mit allen Callback

@@ -1,5 +1,6 @@
 package de.glurak.data;
 
+import de.glurak.data.User.Reachable;
 import de.glurak.data.User.Rights;
 import de.glurak.data.User.User;
 import java.util.ArrayList;
@@ -11,13 +12,13 @@ import javax.persistence.*;
  *
  */
 @Entity
-public class Playlist implements Serializable, Hateable, Comparable<Playlist>{
+public class Playlist extends EntryObject implements Serializable, Hateable, Comparable<Playlist>{
 
     @ManyToMany
     @JoinTable(
             name="PLAYLIST_SONGS",
-            joinColumns={@JoinColumn(name="PLAYLIST_ID", referencedColumnName="ID")},
-            inverseJoinColumns={@JoinColumn(name="MEDIUM_ID", referencedColumnName="ID")})
+            joinColumns={@JoinColumn(name="PLAYLIST_ID")},
+            inverseJoinColumns={@JoinColumn(name="MEDIUM_ID")})
 	private List<Medium> mediumList;
     @Transient
     private int index;
@@ -36,13 +37,10 @@ public class Playlist implements Serializable, Hateable, Comparable<Playlist>{
     private List<User> liker;
 
     @ManyToOne
-    private User owner;
+    private Reachable owner;
 
 
 	private String name;
-    @Id
-    @GeneratedValue
-	private long id;
 	
 
 	/**
@@ -101,17 +99,15 @@ public class Playlist implements Serializable, Hateable, Comparable<Playlist>{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public long getID() {
-		return id;
-	}
 
-    public User getOwner() {
+
+    public Reachable getOwner() {
         return owner;
     }
 
-    public void setOwner(User owner) {
-        NotEnoughRightException.throwIfNot(owner, Rights.MANAGE_PLAYLIST);
+    public void setOwner(Reachable owner) {
+        if (owner instanceof User)
+            NotEnoughRightException.throwIfNot((User)owner, Rights.MANAGE_PLAYLIST);
         if (this.owner==owner) return;
         this.owner = owner;
         owner.addPlaylist(this);
@@ -158,4 +154,9 @@ public class Playlist implements Serializable, Hateable, Comparable<Playlist>{
 		
 		return myHates.compareTo(hates);
 	}
+
+    @Override
+    public String entryPicture() {
+        return null;
+    }
 }

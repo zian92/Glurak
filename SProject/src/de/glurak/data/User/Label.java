@@ -62,4 +62,11 @@ public class Label extends Reachable implements Serializable {
     public void setManager(List<LabelManagerProfile> manager) {
         this.manager = manager;
     }
+
+    @Override
+    public String entryPicture() {
+        if (profile!=null)
+            return profile.getPictureFileNameOrDefaultPictureName();
+        return null;
+    }
 }

@@ -3,12 +3,16 @@ package de.glurak;
 import java.security.NoSuchAlgorithmException;
 
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import de.glurak.data.Album;
 import de.glurak.data.Genre;
 import de.glurak.data.Medium;
 import de.glurak.data.User.AdminProfile;
+import de.glurak.data.User.ArtistProfile;
+import de.glurak.data.User.Label;
+import de.glurak.data.User.LabelProfile;
 import de.glurak.data.User.ListenerProfile;
 import de.glurak.data.User.User;
 import de.glurak.database.HibernateDB;
@@ -29,7 +33,7 @@ public class Glurak {
     }
 
     public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException, NoSuchAlgorithmException {
-        // UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    	UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 splash = new SplashScreen();
@@ -50,7 +54,7 @@ public class Glurak {
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
-                SessionThing.getInstance().getDatabase().save();
+                SessionThing.getInstance().getDatabase().close();
             }
         });
     }
@@ -78,7 +82,7 @@ public class Glurak {
         userB.setPassword("creator");
         userB.setUsername("Creator");
         db.registrateUser(userB, null);
-        ListenerProfile profileB = new ListenerProfile();
+        ArtistProfile profileB = new ArtistProfile();
         db.registrateProfile(profileB, null);
         profileB.setFemale(true);
         profileB.setFirstname("Emma");
@@ -97,6 +101,7 @@ public class Glurak {
         m.setTitel("Pink Fluffy Unicorns");
         db.registrateMedium(m, null);
         a.getMediumList().add(m);
+        m.setOwner(userB);
 
         m = new Medium();
         m.setFileName(Query.FOLDER_MUSIC + "Go Far Kid.mp3");
@@ -104,6 +109,7 @@ public class Glurak {
         m.setTitel("Go Far Kid");
         db.registrateMedium(m, null);
         a.getMediumList().add(m);
+        m.setOwner(userB);
 
         m = new Medium();
         m.setFileName(Query.FOLDER_MUSIC + "Pokemon Theme.mp3");
@@ -111,7 +117,17 @@ public class Glurak {
         m.setTitel("Pokemon Theme");
         db.registrateMedium(m, null);
         a.getMediumList().add(m);
+        m.setOwner(userB);
         // register Medien
         db.addPlaylist(a, null);
+
+        // Label Profil
+        Label l = new Label();
+        db.registrateReachable(l, null);
+        LabelProfile lp = new LabelProfile();
+        db.registrateProfile(lp, null);
+        lp.setLabel(l);
+        lp.addArtist(profileB);
+        lp.setName("Label from Hell");
     }
 }

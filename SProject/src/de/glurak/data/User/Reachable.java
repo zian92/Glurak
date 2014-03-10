@@ -2,7 +2,9 @@ package de.glurak.data.User;
 
 import javax.persistence.*;
 
+import de.glurak.data.EntryObject;
 import de.glurak.data.Hateable;
+import de.glurak.data.Playlist;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,11 +16,7 @@ import java.util.List;
  * @author Entscheider
  */
 @Entity
-abstract public class Reachable  implements Serializable, Hateable{
-   
-	@Id
-    @GeneratedValue
-    private long id;
+abstract public class Reachable extends EntryObject implements Serializable, Hateable{
 
     @ManyToMany
     @JoinTable(
@@ -34,14 +32,31 @@ abstract public class Reachable  implements Serializable, Hateable{
     private List<User> liker;
 
 
+    @OneToMany(mappedBy = "owner")
+    protected List<Playlist> myPlaylists;
+
+
     public Reachable(){
         hater=new ArrayList<User>();
         liker=new ArrayList<User>();
+        myPlaylists=new ArrayList<Playlist>();
     }
 
     abstract public Profile getProfile();
 
-    public long getId(){return id;}
+    public List<Playlist> getMyPlaylists() {
+        return myPlaylists;
+    }
+
+    public void setMyPlaylists(List<Playlist> myPlaylists) {
+        this.myPlaylists = myPlaylists;
+    }
+
+    public void addPlaylist(Playlist pl){
+        if (myPlaylists.contains(pl)) return;
+        myPlaylists.add(pl);
+        pl.setOwner(this);
+    }
 
     public void hate(User hater) {
         this.hater.add(hater);
