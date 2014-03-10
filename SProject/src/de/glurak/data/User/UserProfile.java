@@ -1,16 +1,16 @@
 package de.glurak.data.User;
 
-import de.glurak.data.Announcement;
 import de.glurak.Query;
+import de.glurak.data.Announcement;
 import de.glurak.data.NotEnoughRightException;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import java.io.Serializable;
-
-import javax.persistence.*;
 
 /**
  * Oberklasse aller Profile eines Benutzers
- * 
+ *
  * @author Entscheider
  */
 @Entity
@@ -21,9 +21,13 @@ public abstract class UserProfile extends Profile implements Serializable {
     protected boolean isFemale;
     protected String country;
 
+    public UserProfile(){
+        super();
+    }
+
     /**
      * Soll in den Unterklassen implementiert werden. Gibt die Rechte zurück die ein Nutzer mit diesem Profil besitzt
-     * 
+     *
      * @return die Rechte des Nutzer des Profils
      */
     public abstract String[] myRights();
@@ -33,7 +37,7 @@ public abstract class UserProfile extends Profile implements Serializable {
 
     /**
      * Prüft ob der Benutzer das Recht right besitzt
-     * 
+     *
      * @param right
      *            das zu überprüfende Recht
      * @return true, falls Recht besitzt, sonst false
@@ -109,6 +113,7 @@ public abstract class UserProfile extends Profile implements Serializable {
             } else {
                 return (Query.FOLDER_PICTURE_ICONS + "userm.jpg");
             }
+
         }
         return pictureFileName;
     }

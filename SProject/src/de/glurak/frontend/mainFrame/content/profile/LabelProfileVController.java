@@ -19,31 +19,32 @@ import de.glurak.frontend.mainFrame.content.profile.ProfileEditVController;
 public class LabelProfileVController implements ContentController, ActionListener{
 
     private LabelProfileView labelProfileView;
+    private Label label;
 
     /**
      *
      * @param l
      */
-    public LabelProfileVController(Label l){
+    public LabelProfileVController(Label label){
 
-        labelProfileView = new LabelProfileView(SessionThing.getInstance().getSessionUser(),l,this);
+        labelProfileView = new LabelProfileView(label);
 
-        labelProfileView.reload();
+        
 
     }
 
     public void actionPerformed(ActionEvent e){
         Object obj = e.getSource();
 
-        if (obj == labelProfileView.b_follow){
-
-        } else if (obj == labelProfileView.b_moreplaylists){
-            //		setContentController(new PlaylistVController());
-        } else if (obj == labelProfileView.b_edit){
-            // 		setContentController(new ProfileEditVController());
-        } else if (obj == labelProfileView.b_apply){
-            //  	setContentController(new ApplicationVController());
-        }
+//        if (obj == labelProfileView.b_follow){
+//
+//        } else if (obj == labelProfileView.b_moreplaylists){
+//            //		setContentController(new PlaylistVController());
+//        } else if (obj == labelProfileView.b_edit){
+//            // 		setContentController(new ProfileEditVController());
+//        } else if (obj == labelProfileView.b_apply){
+//            //  	setContentController(new ApplicationVController());
+//        }
 
     }
     public JComponent getView() {

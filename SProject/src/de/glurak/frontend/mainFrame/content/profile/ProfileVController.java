@@ -12,6 +12,7 @@ import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.NextContent;
 import de.glurak.frontend.mainFrame.content.message.MessageVController;
+import de.glurak.frontend.mainFrame.content.playlist.PlaylistEditVController;
 import de.glurak.frontend.mainFrame.content.profile.ProfileEditVController;
 
 /**
@@ -54,6 +55,11 @@ public class ProfileVController extends Observable implements ActionListener, Co
 			profileview.b_follow.addActionListener(this);
 			profileview.b_message.addActionListener(this);
 		}
+		
+		for (int i=0;i<profileview.b_playlistArray.length; i++) {
+			profileview.b_playlistArray[i].addActionListener(this);
+		}
+		
 	}
 	
 	/**
@@ -94,7 +100,16 @@ public class ProfileVController extends Observable implements ActionListener, Co
 			setChanged();
 			notifyObservers();
 		} else {
-			
+			System.out.println("SWAAAAAAg");
+			for (int i=0;i<profileview.b_playlistArray.length; i++) {
+				if (obj == profileview.b_playlistArray[i]) {
+					System.out.println("YOLOLOLO");
+					nextContent = new PlaylistEditVController(getTopFiveHatedPlaylists().get(i), this);
+					setChanged();
+					notifyObservers();
+				}
+				
+			}
 		}
 	}
 
