@@ -17,6 +17,7 @@ import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.NextContent;
 import de.glurak.frontend.mainFrame.content.message.ApplicationVController;
+import de.glurak.frontend.mainFrame.content.playlist.AlbumVController;
 import de.glurak.frontend.mainFrame.content.playlist.PlaylistEditVController;
 import de.glurak.frontend.mainFrame.content.playlist.PlaylistVController;
 import de.glurak.frontend.mainFrame.content.profile.ProfileEditVController;
@@ -39,7 +40,6 @@ public class LabelProfileVController extends Observable implements ContentContro
      */
     public LabelProfileVController(Label label){
     	this.label = label;
-    	
     	
         view = new LabelProfileView(label, getTop5Albums(), getTop5Artists());
 
@@ -67,7 +67,14 @@ public class LabelProfileVController extends Observable implements ContentContro
 					setChanged();
 					notifyObservers();
 				}
-				
+			}
+        	
+        	for (int i=0;i<view.getB_playlistArray().length; i++) {
+				if (obj == view.getB_playlistArray()[i]) {
+					nextContent = new AlbumVController((Album) getTop5Albums().get(i),this);
+					setChanged();
+					notifyObservers();
+				}
 			}
         }
         
