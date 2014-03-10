@@ -17,6 +17,7 @@ public class HeaderVController extends Observable implements ActionListener, Mou
 	private HeaderView headview;
 	// Der Suchbegriff, der in die Suchmaske des Headers eingegeben wird
 	private String searchKey;
+	// Wird auf true gesetzt, wenn logout-Button betätigt wurde
 	private boolean logout = false;
 	/**
 	 * Konstruktor
