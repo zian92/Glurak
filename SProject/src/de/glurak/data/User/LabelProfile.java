@@ -13,7 +13,7 @@ import java.util.List;
  * @author Entscheider
  */
 @Entity
-public class LabelProfile extends Profile implements Serializable{
+public class LabelProfile extends Profile implements Serializable {
 
     @OneToMany(mappedBy = "myLabel")
     private List<ArtistProfile> myartists;

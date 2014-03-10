@@ -100,10 +100,8 @@ public class ProfileVController extends Observable implements ActionListener, Co
 			setChanged();
 			notifyObservers();
 		} else {
-			System.out.println("SWAAAAAAg");
 			for (int i=0;i<profileview.b_playlistArray.length; i++) {
 				if (obj == profileview.b_playlistArray[i]) {
-					System.out.println("YOLOLOLO");
 					nextContent = new PlaylistEditVController(getTopFiveHatedPlaylists().get(i), this);
 					setChanged();
 					notifyObservers();
