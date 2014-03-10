@@ -7,6 +7,7 @@ import de.glurak.data.Playlist;
 import de.glurak.data.User.Label;
 import de.glurak.data.User.LabelProfile;
 import de.glurak.data.User.User;
+import de.glurak.data.User.UserProfile;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -53,6 +54,22 @@ public class DBSearch {
                 "SELECT k FROM User k WHERE UPPER(k.username) Like UPPER('%"+name+"%')" , User.class);
         //q1.setParameter("n",g);
         return q1.getResultList();
+    }
+
+    public List<UserProfile> searchForProfileByName(String firstname){
+        TypedQuery<UserProfile> q1 = em.createQuery("SELECT k FROM UserProfile k WHERE UPPER(CONCAT(k.firstname,' ',k.lastname)) Like UPPER('%"+firstname+"%')" , UserProfile.class);
+        return q1.getResultList();
+    }
+
+    public List<User> searchUserBySomething(String something){
+        List<User> l = searchForUserByUsername(something);
+        List<UserProfile> other = searchForProfileByName(something);
+        List<User> other_user = new ArrayList<User>();
+        for (UserProfile prof: other){
+            other_user.add(prof.belongTo());
+        }
+        l.addAll(other_user);
+        return l;
     }
 
     public List<Playlist> searchPlaylistByName(String name){

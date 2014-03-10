@@ -18,7 +18,7 @@ import java.util.List;
 public class UserSearch implements Searchable<User> {
     public List<User> searchFor(String s) {
         DBSearch db = new DBSearch(SessionThing.getInstance().getDatabase());
-        List<User> g =db.searchForUserByUsername(s);
+        List<User> g =db.searchUserBySomething(s);
         return g;
     }
 
