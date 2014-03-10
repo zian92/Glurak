@@ -27,7 +27,8 @@ import de.glurak.frontend.SessionThing;
  * Date: 26.02.2014
  */
 public class ProfileView extends JPanel{
-
+    private SessionThing session = SessionThing.getInstance();
+    
 	// Panels
 	private JPanel pan_profileview;
 	private JPanel pan_profilepic;
@@ -91,7 +92,7 @@ public class ProfileView extends JPanel{
 	 */
 	public ProfileView(User user, List<Playlist> top5Playlists, boolean edit){
 		if (user==null) {
-			this.user = SessionThing.getInstance().getSessionUser();
+			this.user = session.getSessionUser();
 		}
 		this.user = user;
 		
@@ -136,7 +137,7 @@ public class ProfileView extends JPanel{
 	
 	    // Initialisieren der Buttons b_message, b_follow, b_edit
 		
-		if (user== SessionThing.getInstance().getSessionUser()){  // Falls das eigene Profil angezeigt werden soll, nur b_edit anzeigen
+		if (user== session.getSessionUser()){  // Falls das eigene Profil angezeigt werden soll, nur b_edit anzeigen
 			if (edit) {
 				b_edit = new JButton("Save");
 				b_upload = new JButton("Bild ändern");
@@ -172,14 +173,14 @@ public class ProfileView extends JPanel{
 		    d.gridheight = 1;
 		    b_follow = new JButton("");
 		    pan_profilepic.add(b_follow, d);
-            if (SessionThing.getInstance().getSessionUser().getFollowing().contains(SessionThing.getInstance().getSessionUser())) {
-                this.setFollowButtonToFollow();
-            } else {
+            if (session.getSessionUser().getFollowing().contains(user)) {
                 this.setFollowButtonToUnfollow();
+            } else {
+                this.setFollowButtonToFollow();
             }
         }
 		    
-		    if (SessionThing.getInstance().getSessionUser().getProfile().hasRight(Rights.LOCK_OTHER_USER)) {
+		    if (session.getSessionUser().getProfile().hasRight(Rights.LOCK_OTHER_USER)) {
 	
 		    	d.gridx = 3;
 			    d.gridy = 1;

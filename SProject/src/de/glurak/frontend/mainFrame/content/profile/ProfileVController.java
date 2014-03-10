@@ -93,10 +93,16 @@ public class ProfileVController extends Observable implements ActionListener, Co
 			setChanged();
 			notifyObservers();
 		} else if (obj == profileview.b_follow){
-			if (!session.getSessionUser().getFollowing().contains(this.user)) { 
-				session.getSessionUser().follow(this.user);
-				this.profileview.setFollowButtonToUnfollow();
-			}
+                if (!session.getSessionUser().getFollowing().contains(this.user)) {
+                    // follow
+                    session.getSessionUser().follow(this.user);
+                    this.profileview.setFollowButtonToUnfollow();
+                } else {
+                    // unfollow
+                    session.getSessionUser().getFollowing().remove(this.user);
+                    this.profileview.setFollowButtonToFollow();
+                }
+			
 		} else if (obj == profileview.b_edit){
 			nextContent = new ProfileEditVController(this.user);
 			setChanged();
