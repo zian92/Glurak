@@ -9,6 +9,9 @@ import de.glurak.data.Album;
 import de.glurak.data.Genre;
 import de.glurak.data.Medium;
 import de.glurak.data.User.AdminProfile;
+import de.glurak.data.User.ArtistProfile;
+import de.glurak.data.User.Label;
+import de.glurak.data.User.LabelProfile;
 import de.glurak.data.User.ListenerProfile;
 import de.glurak.data.User.User;
 import de.glurak.database.HibernateDB;
@@ -78,7 +81,7 @@ public class Glurak {
         userB.setPassword("creator");
         userB.setUsername("Creator");
         db.registrateUser(userB, null);
-        ListenerProfile profileB = new ListenerProfile();
+        ArtistProfile profileB = new ArtistProfile();
         db.registrateProfile(profileB, null);
         profileB.setFemale(true);
         profileB.setFirstname("Emma");
@@ -113,5 +116,14 @@ public class Glurak {
         a.getMediumList().add(m);
         // register Medien
         db.addPlaylist(a, null);
+
+        // Label Profil
+        Label l = new Label();
+        db.registrateReachable(l, null);
+        LabelProfile lp = new LabelProfile();
+        db.registrateProfile(lp, null);
+        lp.setLabel(l);
+        lp.addArtist(profileB);
+        lp.setName("Label from Hell");
     }
 }
