@@ -59,7 +59,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
 	 * Holt aus den eigenen Playlists die 5 mit den meisten Hates
 	 * @return Playlist[] max size 5
 	 */
-	private List<Playlist> getTopFiveHatedPlaylists() {
+	public List<Playlist> getTopFiveHatedPlaylists() {
 		List<Playlist> myPlaylists = this.user.getMyPlaylists();
 		
 		Collections.sort(myPlaylists);
@@ -89,7 +89,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
 				SessionThing.getInstance().getSessionUser().follow(this.user);
 			}
 		} else if (obj == profileview.b_edit){
-			nextContent = new ProfileEditVController(this.user, getTopFiveHatedPlaylists());
+			nextContent = new ProfileEditVController();
 			setChanged();
 			notifyObservers();
 		} else {

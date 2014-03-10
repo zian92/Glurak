@@ -35,6 +35,7 @@ public class NavigationVController extends Observable {
 	 * Konstruktor
 	 */
 	public NavigationVController(ContentController promoVContr){
+		
         map = new HashMap<String, ContentController>();
 		promotionVController = (PromotionVController) promoVContr;
 		
@@ -62,7 +63,7 @@ public class NavigationVController extends Observable {
         username=u.getUsername();
         
 
-        view = new NavigationView(a,username,getProfileImage(imgFilename));
+        view = new NavigationView(a,username,u);
         addController(new ProfileVController(SessionThing.getInstance().getSessionUser()), "Profil",null);
         addController(new PlaylistVController(),"Playlist", Rights.MANAGE_PLAYLIST);
         addController(promotionVController,"News",null);
@@ -71,16 +72,6 @@ public class NavigationVController extends Observable {
         addController(new AdminLockViewController(),"Medium sperren",Rights.LOCK_OTHER_MEDIEN);
 	}
 
-    public ImageIcon getProfileImage(String imgFileName){
-        BufferedImage img = null;
-        try {
-            img = ImageIO.read(new File(imgFileName));
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return new ImageIcon(img);
-    }
 
     /**
      * Fügt einen Button im View hinzu mit allen Callback
