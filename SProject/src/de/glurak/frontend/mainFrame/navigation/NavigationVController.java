@@ -42,19 +42,25 @@ public class NavigationVController extends Observable {
 			
 			public void actionPerformed(ActionEvent e) {
                 String name = e.getActionCommand();
-                ContentController c = map.get(name);
+                ContentController c;
+                
+                if (name=="Profil"){
+                	c = new ProfileVController(null);
+                } else {
+                	c = map.get(name);
+                }
+                
                 setContentController(c);
 			}
 		};
+		
+		
         User u = SessionThing.getInstance().getSessionUser();
+        
         String imgFilename, username;
-        if (u==null){
-            imgFilename= Query.FOLDER_PICTURE_ICONS+"userm.jpg";
-            username="Olaf";
-        }else{
-            imgFilename = u.getProfile().getPictureFileNameOrDefaultPictureName();
-            username=u.getUsername();
-        }
+        imgFilename = u.getProfile().getPictureFileNameOrDefaultPictureName();
+        username=u.getUsername();
+        
 
         view = new NavigationView(a,username,getProfileImage(imgFilename));
         addController(new ProfileVController(SessionThing.getInstance().getSessionUser()), "Profil",null);

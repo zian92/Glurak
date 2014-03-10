@@ -23,7 +23,6 @@ public class MainFrameVController implements Observer{
 
 	private MainFrameView view;
 	private HeaderVController headerController;
-	private PlayQueueViewController playerController;
 	private NavigationVController navigationController;
 	private ContentController contentController;
 	
