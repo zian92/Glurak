@@ -50,7 +50,7 @@ public class PlayQueueView extends JPanel{
 		
 		this.setLayout(new BorderLayout());
 		
-		setPlayButton(new JButton("Play"));
+		setPlayButton(new JButton("Play    "));
 		setNextButton(new JButton("=>"));
 		setPreviousButton(new JButton("<="));
 		setClearButton(new JButton("Clear"));

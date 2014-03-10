@@ -87,6 +87,7 @@ public class MainFrameVController implements Observer{
 //           	this.playerController.stop();
 //            	this.playerController.getView().;
             	this.view.dispose();
+            	PlayQueueViewController.getInstance().stop();
     			LoginVController logControll = new LoginVController(Query.APPLICATION_NAME);
     			
             }
