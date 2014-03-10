@@ -33,6 +33,9 @@ import de.glurak.data.User.User;
 import de.glurak.feature.IconLoader;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
+import de.glurak.frontend.mainFrame.NextContent;
+import de.glurak.frontend.mainFrame.content.playlist.PlaylistEditVController;
+import de.glurak.frontend.mainFrame.content.profile.ProfileVController;
 
 
 /**
@@ -46,7 +49,7 @@ public class PromotionVController extends Observable implements ContentControlle
 	private List<JLabel> imageLabelList = new ArrayList<JLabel>();
 	
 	private List<JComponent>newsList = new ArrayList<JComponent>();
-	
+	private ContentController nextContent;
 	private PromotionView promPan;
 	private Dimension slidePaneDim = new Dimension(200, 180);
 	private Dimension promPanelDim = new Dimension(810, 560);
@@ -60,12 +63,11 @@ public class PromotionVController extends Observable implements ContentControlle
 	 */
 	public PromotionVController() {
 		promPan = new PromotionView(promPanelDim, slidePaneDim);
-		
 		initNewsEntries();
 	}
 	
 	public JComponent getView(){ return promPan; }
-		
+	/*	
 	public void addContentTo(int sliderPos, String filename){
 		
 		//test if filename == ""
@@ -86,6 +88,7 @@ public class PromotionVController extends Observable implements ContentControlle
 		promPan.getSLiderAtPos(sliderPos).refresh();
 
 	}
+	*/
 	
 	/**
 	 * Initialisiert die PanelSliderElemente mit Inhalten aus
@@ -103,6 +106,8 @@ public class PromotionVController extends Observable implements ContentControlle
 		a1.setName("This is It");
 		a2.setName("Album dummy");
 		
+		
+		
 		User u1 = new User();
 		u1.setUsername("TestUser m");
 		ListenerProfile pu1 = new ListenerProfile();
@@ -117,9 +122,10 @@ public class PromotionVController extends Observable implements ContentControlle
 		pu2.setFemale(true);
 		u2.setProfile(pu2);
 		
+		//User testU = SessionThing.getInstance().getDatabase().getUserByUsername("LeTest");
 		
-		newsList.add(buildEntryView(200, 180, new NewsEntry(a1)));
-
+		//newsList.add(buildEntryView(200, 180, new NewsEntry(testU)));
+		/*
 		newsList.add(buildEntryView(200, 180, new NewsEntry(a2)));
 		newsList.add(buildEntryView(200, 180, new NewsEntry(u1)));
 		newsList.add(buildEntryView(200, 180, new NewsEntry(m1)));
@@ -141,7 +147,7 @@ public class PromotionVController extends Observable implements ContentControlle
 		newsList.add(buildEntryView(200, 180, new NewsEntry(a2)));
 		newsList.add(buildEntryView(200, 180, new NewsEntry(u2)));
 		newsList.add(buildEntryView(200, 180, new NewsEntry(u1)));
-		
+		*/
 		// Fill every SLider with Content from NewsList
 		int sMax = promPan.getSliderCount();
 		int q = newsList.size()/sMax;
@@ -156,7 +162,7 @@ public class PromotionVController extends Observable implements ContentControlle
 		} 
 		startTimer();
 	}
-
+	
 	/**
 	 * Erzeugt einen Sichtbaren NewsEntry-Eintrag samt Interfacekommponenten
 	 * 
@@ -228,8 +234,6 @@ public class PromotionVController extends Observable implements ContentControlle
 //									ACTION HANDLING
 //==============================================================================================================
 
-
-	
 	private class NewsAction implements ActionListener, MouseListener{
 		
 		private NewsEntry news;
@@ -244,7 +248,6 @@ public class PromotionVController extends Observable implements ContentControlle
 				System.out.println("Hate " + news.getPictureName() );
 				news.getSource().hate(SessionThing.getInstance().getSessionUser());
 			}
-			
 		}
 
 		public void mouseClicked(MouseEvent e) {
@@ -252,7 +255,13 @@ public class PromotionVController extends Observable implements ContentControlle
 				System.out.println("PVC - 252 - Ich bin ein Medium");
 			}else if(news.getSource() instanceof Album){
 				System.out.println("PVC - 252 - Ich bin ein Album");
+				
 			}else if(news.getSource() instanceof User){
+			
+				nextContent =  new ProfileVController( (User) news.getSource() );
+				setChanged();
+				notifyObservers(nextContent);
+				
 				System.out.println("PVC - 252 - Ich bin ein User");
 			}
 		}
@@ -278,5 +287,10 @@ public class PromotionVController extends Observable implements ContentControlle
 		}
 		
 	}
+
+public ContentController getNextContent() {
+	// TODO Auto-generated method stub
+	return null;
+}
 	
 }
