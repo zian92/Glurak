@@ -61,11 +61,14 @@ public class SearchTab<T> extends JPanel {
 		northPane.add(t_search);
 		northPane.add(b_search);
 
-        b_search.addActionListener(new ActionListener() {
+		ActionListener actionlistener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 search();
             }
-        });
+        };
+		
+        b_search.addActionListener(actionlistener);
+        t_search.addActionListener(actionlistener);
 		
 		add(northPane, BorderLayout.NORTH);
         if (sk !=null && sk.getRenderer()!=null)
