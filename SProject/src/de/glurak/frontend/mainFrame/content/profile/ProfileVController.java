@@ -106,9 +106,18 @@ public class ProfileVController extends Observable implements ActionListener, Co
 		} else if (obj == profileview.b_edit){
 			nextContent = new ProfileEditVController(this.user);
 			setChanged();
-			notifyObservers();
-		} else {
-			for (int i=0;i<profileview.b_playlistArray.length; i++) {
+                    notifyObservers();
+                } else
+                    if (obj == profileview.b_block) {
+                        if (user.isLocked()) {
+                            user.setLocked(false);
+                            this.profileview.setBlockButtontToBock();
+                        } else {
+                            user.setLocked(true);
+                            this.profileview.setBlockButtonToUnblock();
+                        }
+                    } else {
+                        for (int i = 0; i < profileview.b_playlistArray.length; i++) {
 				if (obj == profileview.b_playlistArray[i]) {
 					nextContent = new PlaylistEditVController(getTopFiveHatedPlaylists().get(i), this);
 					setChanged();

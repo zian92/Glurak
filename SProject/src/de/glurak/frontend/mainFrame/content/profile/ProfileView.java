@@ -76,7 +76,9 @@ public class ProfileView extends JPanel{
 	
 	// Strings
     private final String unfollow = "Unfollow";
-    private final String follow ="Follow";
+    private final String follow = "Follow";
+    private final String block = "Sperren";
+    private final String unblock = "Entsperren";
 
 	
 	
@@ -171,12 +173,10 @@ public class ProfileView extends JPanel{
 		    d.gridy = 1;
 		    d.gridwidth = 1;
 		    d.gridheight = 1;
-		    b_follow = new JButton("");
-		    pan_profilepic.add(b_follow, d);
+            b_follow = new JButton(follow);
+            pan_profilepic.add(b_follow, d);
             if (session.getSessionUser().getFollowing().contains(user)) {
                 this.setFollowButtonToUnfollow();
-            } else {
-                this.setFollowButtonToFollow();
             }
         }
 		    
@@ -187,6 +187,9 @@ public class ProfileView extends JPanel{
 			    d.gridwidth = 1;
 			    d.gridheight = 1;
 			    b_block = new JButton("Sperren");
+			    if(this.user.isLocked()){
+			        this.setBlockButtonToUnblock();
+			    }
 			    pan_profilepic.add(b_block, d);
 		    }
 		
@@ -398,14 +401,22 @@ public class ProfileView extends JPanel{
 		setVisible(true);
 		
 	}
-	
-	public void setFollowButtonToFollow(){
-	    this.b_follow.setText(follow);
-	}
-	
-	public void setFollowButtonToUnfollow(){
-	    this.b_follow.setText(unfollow);
-	}
+
+    public void setBlockButtontToBock() {
+        this.b_block.setText(block);
+    }
+
+    public void setBlockButtonToUnblock() {
+        this.b_block.setText(unblock);
+    }
+
+    public void setFollowButtonToFollow() {
+        this.b_follow.setText(follow);
+    }
+
+    public void setFollowButtonToUnfollow() {
+        this.b_follow.setText(unfollow);
+    }
 
     public JPanel getPan_profileview() {
         return pan_profileview;

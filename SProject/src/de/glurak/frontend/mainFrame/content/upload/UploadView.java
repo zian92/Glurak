@@ -50,8 +50,8 @@ public class UploadView extends JPanel {
 		JPanel pan_info = new JPanel(new GridLayout(6, 1, 10, 15));
 		
 		//Initialisierung der Labels
-		JLabel l_upload = new JLabel("W‰hlen sie eine Musikdatei aus: ");
-		JLabel l_file = new JLabel("Ausgew‰hlte Datei: ");
+		JLabel l_upload = new JLabel("W√§hlen sie eine Musikdatei aus: ");
+		JLabel l_file = new JLabel("Ausgew√§hlte Datei: ");
 		JLabel l_artist = new JLabel("Interpret: ");
 		JLabel l_title = new JLabel("Songtitel: ");
 		JLabel l_genre = new JLabel("Genre: ");
@@ -60,7 +60,7 @@ public class UploadView extends JPanel {
 		//Initialisierung der Buttons
 		b_upload = new JButton("Upload");
 		b_cancel = new JButton("Abbrechen");
-		b_choosefile = new JButton("Datei ausw‰hlen...");
+		b_choosefile = new JButton("Datei ausw√§hlen...");
 		
 		//Initialisierung des Dropdownmenue
 		SessionThing session =  SessionThing.getInstance();
