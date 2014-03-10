@@ -5,8 +5,6 @@ import javax.swing.*;
 import de.glurak.FrontendColors;
 import de.glurak.data.Playlist;
 import de.glurak.data.User.ArtistProfile;
-import de.glurak.data.User.ListenerProfile;
-import de.glurak.data.User.Rights;
 import de.glurak.data.User.User;
 import de.glurak.feature.IconLoader;
 import de.glurak.frontend.SessionThing;
@@ -51,47 +49,13 @@ public class LabelProfileView extends JPanel{
 	protected JTextField[] t_playlist;
 	
 	// Label-Array für die Playlisten
-	private JLabel[] l_playlist;
 	
 	// User
 	private User user;
 	private JButton[] b_playlistArray;
+
 	private JButton[] b_artistArray;
 	
-	
-	
-	
-	
-	
-
-
-
-
-	public JButton[] getB_artistArray() {
-		return b_artistArray;
-	}
-
-
-
-
-
-
-
-
-
-
-	public void setB_artistArray(JButton[] b_artistArray) {
-		this.b_artistArray = b_artistArray;
-	}
-
-
-
-
-
-
-
-
-
 
 	/**
 	 * Constructor
@@ -102,7 +66,6 @@ public class LabelProfileView extends JPanel{
 		if (user==null) {
 			this.user = SessionThing.getInstance().getSessionUser();
 		}
-		this.user = user;
 		
 		
 		// Initialisieren Panel pan_profileviewW
@@ -143,7 +106,6 @@ public class LabelProfileView extends JPanel{
 		l_labelPic = new JLabel(new IconLoader(200, 200, label.getProfile().getPictureFileNameOrDefaultPictureName()).getIcon());
 		pan_picture.add(l_labelPic);
 	
-		
 	
 		// Initialisieren Panel pan_topplaylists
 		pan_topplaylists = new JPanel(new GridBagLayout());	
@@ -247,6 +209,21 @@ public class LabelProfileView extends JPanel{
 		add(pan_profileview);		
 		setVisible(true);
 		
+	}
+	
+	public JButton[] getB_artistArray() {
+		return b_artistArray;
+	}
+	public void setB_artistArray(JButton[] b_artistArray) {
+		this.b_artistArray = b_artistArray;
+	}
+	
+	public JButton[] getB_playlistArray() {
+		return b_playlistArray;
+	}
+
+	public void setB_playlistArray(JButton[] b_playlistArray) {
+		this.b_playlistArray = b_playlistArray;
 	}
 
 }
