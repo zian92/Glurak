@@ -55,6 +55,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
 		else{
 			profileview.b_follow.addActionListener(this);
 			profileview.b_message.addActionListener(this);
+			profileview.b_block.addActionListener(this);
 		}
 		
 		for (int i=0;i<profileview.b_playlistArray.length; i++) {
@@ -110,10 +111,12 @@ public class ProfileVController extends Observable implements ActionListener, Co
                 } else
                     if (obj == profileview.b_block) {
                         if (user.isLocked()) {
-                            user.setLocked(false);
+                        // sperren
+                            user.setLocked(true);
                             this.profileview.setBlockButtontToBock();
                         } else {
-                            user.setLocked(true);
+                            // entsperren
+                            user.setLocked(false);
                             this.profileview.setBlockButtonToUnblock();
                         }
                     } else {
