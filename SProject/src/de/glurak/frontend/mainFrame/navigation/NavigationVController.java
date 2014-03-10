@@ -50,7 +50,9 @@ public class NavigationVController extends Observable {
                 	c = new ProfileVController(user);
                 } else {
                 	c = map.get(name);
+                	c.reload();
                 }
+                
                 
                 setContentController(c);
 			}

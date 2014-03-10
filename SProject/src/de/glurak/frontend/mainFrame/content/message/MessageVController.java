@@ -95,4 +95,9 @@ public class MessageVController implements ActionListener, ContentController {
         return messview;
     }
 
+	public void reload() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
