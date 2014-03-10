@@ -53,7 +53,7 @@ public class Glurak {
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
-                SessionThing.getInstance().getDatabase().save();
+                SessionThing.getInstance().getDatabase().close();
             }
         });
     }
