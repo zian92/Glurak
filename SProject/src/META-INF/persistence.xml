@@ -20,6 +20,8 @@
     <class>de.glurak.data.User.Label</class>
     <class>de.glurak.data.Announcement</class>
     <class>de.glurak.data.Album</class>
+    <class>de.glurak.data.EntryObject</class>
+    <class>de.glurak.data.NewsEntry</class>
     <class>de.glurak.data.User.Reachable</class>
     <class>de.glurak.data.User.UserProfile</class>
 

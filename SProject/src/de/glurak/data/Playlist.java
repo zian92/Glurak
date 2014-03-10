@@ -11,13 +11,13 @@ import javax.persistence.*;
  *
  */
 @Entity
-public class Playlist implements Serializable, Hateable, Comparable<Playlist>{
+public class Playlist extends EntryObject implements Serializable, Hateable, Comparable<Playlist>{
 
     @ManyToMany
     @JoinTable(
             name="PLAYLIST_SONGS",
-            joinColumns={@JoinColumn(name="PLAYLIST_ID", referencedColumnName="ID")},
-            inverseJoinColumns={@JoinColumn(name="MEDIUM_ID", referencedColumnName="ID")})
+            joinColumns={@JoinColumn(name="PLAYLIST_ID")},
+            inverseJoinColumns={@JoinColumn(name="MEDIUM_ID")})
 	private List<Medium> mediumList;
     @Transient
     private int index;
@@ -40,9 +40,6 @@ public class Playlist implements Serializable, Hateable, Comparable<Playlist>{
 
 
 	private String name;
-    @Id
-    @GeneratedValue
-	private long id;
 	
 
 	/**
@@ -101,10 +98,7 @@ public class Playlist implements Serializable, Hateable, Comparable<Playlist>{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public long getID() {
-		return id;
-	}
+
 
     public User getOwner() {
         return owner;

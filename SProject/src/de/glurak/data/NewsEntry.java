@@ -21,7 +21,7 @@ public class NewsEntry implements Serializable {
     private String message;
     private Timestamp created;
     @ManyToOne
-    private Hateable source;
+    private EntryObject source;
     @ManyToOne
     private User owner;
 
@@ -43,11 +43,11 @@ public class NewsEntry implements Serializable {
         this.owner = owner;
     }
 
-    public Hateable getSource() {
+    public EntryObject getSource() {
         return source;
     }
 
-    public void setSource(Hateable source) {
+    public void setSource(EntryObject source) {
         this.source = source;
     }
 

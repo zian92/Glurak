@@ -2,6 +2,7 @@ package de.glurak.data.User;
 
 import javax.persistence.*;
 
+import de.glurak.data.EntryObject;
 import de.glurak.data.Hateable;
 
 import java.io.Serializable;
@@ -14,11 +15,7 @@ import java.util.List;
  * @author Entscheider
  */
 @Entity
-abstract public class Reachable  implements Serializable, Hateable{
-   
-	@Id
-    @GeneratedValue
-    private long id;
+abstract public class Reachable extends EntryObject implements Serializable, Hateable{
 
     @ManyToMany
     @JoinTable(
@@ -40,8 +37,6 @@ abstract public class Reachable  implements Serializable, Hateable{
     }
 
     abstract public Profile getProfile();
-
-    public long getId(){return id;}
 
     public void hate(User hater) {
         this.hater.add(hater);

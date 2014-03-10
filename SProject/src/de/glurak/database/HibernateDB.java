@@ -301,4 +301,18 @@ public class HibernateDB {
         if (tr==null)
             em.getTransaction().commit();
     }
+
+    public void addNewsEntry(NewsEntry entry, EntityTransaction tr){
+        if (tr==null)
+            em.getTransaction().begin();
+        em.persist(entry);
+        if (tr == null)
+            em.getTransaction().commit();
+    }
+
+    public List<NewsEntry> getAllEntries(){
+        TypedQuery<NewsEntry> q1 = em.createQuery(
+                "SELECT k FROM NewsEntry k", NewsEntry.class);
+        return q1.getResultList();
+    }
 }
