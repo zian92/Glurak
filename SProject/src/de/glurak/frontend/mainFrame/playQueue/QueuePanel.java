@@ -24,11 +24,8 @@ import de.glurak.feature.IconLoader;
 public class QueuePanel extends JPanel{
 	
 	private	JPanel[] 		mediumPanelArray;
-	private JTable[]		mediumTableArray;
-	private JLabel[]		mediumLabelArray;
 	private JPanel			firstPanel;
 	private Playqueue 		playqueue;
-	private JScrollPane scrollbar;
 	private ImageIcon 			currentIcon;
 	private ImageIcon			standardIcon;
 	
@@ -37,8 +34,8 @@ public class QueuePanel extends JPanel{
 	 */
 	public QueuePanel (Playqueue playqueue){
 		super();
-		currentIcon = new IconLoader(80,80,Query.FOLDER_PICTURE_ICONS+"playQueueIconCurrent.jpg").getIcon();
-		standardIcon= new IconLoader(80,80,Query.FOLDER_PICTURE_ICONS+"playQueueIcon.jpg").getIcon();
+		currentIcon = new IconLoader(70,70,Query.FOLDER_PICTURE_ICONS+"playQueueIconCurrent.jpg").getIcon();
+		standardIcon= new IconLoader(70,70,Query.FOLDER_PICTURE_ICONS+"playQueueIcon.jpg").getIcon();
 		
 		
 		initComponents(playqueue);		
@@ -65,37 +62,29 @@ public class QueuePanel extends JPanel{
 	 */
 	public void initComponents(Playqueue playqueue){
 		this.removeAll();
+		if(playqueue!=null){
 		setPlayqueue(playqueue);
 		firstPanel= new JPanel();
 		firstPanel.setLayout(new GridLayout(1,getPlayqueue().getPlaylist().getMediumList().size()));
 		mediumPanelArray = new JPanel[getPlayqueue().getPlaylist().getMediumList().size()];
-		mediumTableArray= new JTable[getPlayqueue().getPlaylist().getMediumList().size()];
-		mediumLabelArray= new JLabel[getPlayqueue().getPlaylist().getMediumList().size()];
 		
 		this.setLayout(new BorderLayout());
 		this.setBackground(Color.GRAY);
 
 		for(int i=0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
-			mediumPanelArray[i]	= new JPanel();
-			mediumLabelArray[i] = new JLabel(getPlayqueue().getPlaylist().getMediumList().get(i).getTitel());
+			mediumPanelArray[i]	= new JPanel(new BorderLayout());
 			mediumPanelArray[i].setBackground(Color.WHITE);
 			firstPanel.add(mediumPanelArray[i]);
-			this.add(firstPanel,BorderLayout.CENTER);
-			
-			/*String[][] rowData={{"Titel",getPlayqueue().getPlaylist().getMediumList().get(i).getTitel()},{"Hates","0"},{"Likes","0"}};
-			String[] columns={"",""};
-			mediumTableArray[i] =new JTable(rowData,columns){
-				 public boolean isCellEditable(int x, int y) {
-			           return false;}
-			       };
-			mediumTableArray[i].setPreferredSize(new Dimension(100,100));
-			*/
+			this.add(firstPanel,BorderLayout.NORTH);
 		}
 		resetButton();
 		
-		
-		
-	
+		}else{
+		for(int i=0;i<mediumPanelArray.length;i++){
+			mediumPanelArray[i].removeAll();
+			mediumPanelArray[i].validate();
+		}
+		}
 	}
 	
 	/** 
@@ -104,33 +93,27 @@ public class QueuePanel extends JPanel{
 	public void resetButton(){
 		JLabel icon;
 		for(int i=0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
-			mediumPanelArray[i].setPreferredSize(new Dimension(80,80));
 			mediumPanelArray[i].removeAll();
 			if(getPlayqueue().getPlaylist().getMediumList().get(i).equals(getPlayqueue().getCurrent())){
 				icon= new JLabel(currentIcon);
 			}else{
 				icon=new JLabel(standardIcon);
 			}
-			mediumPanelArray[i].add(icon);
-			mediumPanelArray[i].add(mediumLabelArray[i]);
-			this.validate();
-		
+			icon.setText(getPlayqueue().getPlaylist().getMediumList().get(i).getTitel());
+			icon.setHorizontalTextPosition(JLabel.CENTER);
+	    	icon.setVerticalTextPosition(JLabel.TOP);
+	    	icon.setPreferredSize(new Dimension(120	,120));
+			mediumPanelArray[i].add(icon,BorderLayout.NORTH);
 			
+			this.validate();
 			}
+			firstPanel.validate();
 		}
 	
-	public JScrollPane getScrollbar() {
-		return scrollbar;
-	}
 	public JPanel getFirstPanel(){
 		return firstPanel;
 	}
 	
-	public void setScrollbar(JScrollPane scrollbar) {
-		this.scrollbar = scrollbar;
-	}
-
-
 	public ImageIcon getCurrentIcon() {
 		return currentIcon;
 	}
@@ -147,17 +130,5 @@ public class QueuePanel extends JPanel{
 		this.standardIcon = standardIcon;
 	}
 
-	public void showInformations(int i) {
-	
-		if(mediumPanelArray[i].getComponent(1)==mediumTableArray[i]){
-			mediumPanelArray[i].remove(mediumTableArray[i]);
-			mediumPanelArray[i].add(mediumLabelArray[i]);
-			
-		}else{
-		mediumPanelArray[i].remove(mediumLabelArray[i]);
-		mediumPanelArray[i].add(mediumTableArray[i]);}
-		
-		this.validate();
-	}
 	
 }
