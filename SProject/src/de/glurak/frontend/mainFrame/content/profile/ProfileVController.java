@@ -57,7 +57,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
 			profileview.b_follow.addActionListener(this);
 			profileview.b_message.addActionListener(this);
 		}
-		if (own && session.getSessionUser().getProfile().hasRight(Rights.LOCK_OTHER_USER)) {
+		if (own && !session.getSessionUser().getProfile().hasRight(Rights.LOCK_OTHER_USER)) {
 		    profileview.b_block.setVisible(false);
 		} else {
 		    profileview.b_block.addActionListener(this);

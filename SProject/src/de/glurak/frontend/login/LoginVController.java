@@ -50,8 +50,9 @@ public class LoginVController implements ActionListener, WindowListener {
      * @param password das Password
      * @return true falls alle Angaben korrekt, false sonst
      * @author Entscheider
+     * @throws Exception 
      */
-    public boolean authenticate(String username, String password) {
+    public boolean authenticate(String username, String password) throws NumberFormatException {
 
         SessionThing session = SessionThing.getInstance();
         User u = session.getDatabase().getUserByUsername(username);
@@ -63,7 +64,7 @@ public class LoginVController implements ActionListener, WindowListener {
             session.handleException(e);
             return false;
         }
-        if (u.isLocked()) return false;
+        if (u.isLocked()) throw new NumberFormatException();
 
         session.setSessionUser(u);
 
@@ -72,12 +73,16 @@ public class LoginVController implements ActionListener, WindowListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("login") || e.getActionCommand().equals("OK")) {
-        	timer_slider.cancel();
-        	if (!authenticate(startLoginScreen.getUsername(), startLoginScreen.getPassword())) {
-                JOptionPane.showMessageDialog(startLoginScreen, "Login failed. Check Username and Password.");
+            timer_slider.cancel();
+            try {
+                if (!authenticate(startLoginScreen.getUsername(), startLoginScreen.getPassword())) {
+                    JOptionPane.showMessageDialog(startLoginScreen, "Login failed. Check Username and Password.");
+                    return;
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(startLoginScreen, "Dieser Nutzer ist gesperrt!!");
                 return;
             }
-
             startLoginScreen.dispose();
             MainFrameVController mainController = new MainFrameVController();
         } else if (e.getActionCommand().equals("registrate")) {
