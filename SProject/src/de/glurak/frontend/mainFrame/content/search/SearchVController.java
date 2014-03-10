@@ -30,6 +30,10 @@ public class SearchVController extends Observable implements  ContentController 
 		return searchview;
 	}
 
+    public void searchAll(){
+        searchview.searchAll();
+    }
+
     public void gotNewController(ContentController c) {
         this.setChanged();
         this.notifyObservers(c);

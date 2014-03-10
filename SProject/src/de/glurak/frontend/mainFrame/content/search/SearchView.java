@@ -77,6 +77,12 @@ public class SearchView extends JPanel{
 
     }
 
+    public void searchAll(){
+        for (SearchTab s : tabs){
+            s.search();
+        }
+    }
+
     public <T> void addEntry(SearchTab<T> s){
        tabs.add(s);
        pane.add(s);
