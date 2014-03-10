@@ -33,24 +33,12 @@ public class MainFrameVController implements Observer{
 	public MainFrameVController(){
 		// view anlegen
 		view = new MainFrameView();
-		
-		
-		// test daten für den Player
-			LinkedList<Medium> mediumList= new LinkedList<Medium>();
-			Playlist pl= new Playlist();
-			pl.setMediumList(mediumList);
-			Medium m1 = new Medium("Go Far Kid",Query.FOLDER_MUSIC+"Go Far Kid.mp3", null);
-			Medium m2 = new Medium("Pokemon Theme",Query.FOLDER_MUSIC+"Pokemon Theme.mp3", null);
-			Medium m3 = new Medium("PinkFluffyUnicorns",Query.FOLDER_MUSIC+"Pink Fluffy Unicorns.mp3", null);
-
-			pl.getMediumList().add(m1);
-			pl.getMediumList().add(m2);
-			pl.getMediumList().add(m3);
-				
+	
 		
 		// andere Controller laden
 		contentController = new PromotionVController();
 		PlayQueueViewController.getInstance();
+		PlayQueueViewController.getInstance().setMainController(this);
 		//PlayQueueViewController.getInstance().refresh(new Playqueue(pl));
 		headerController= new HeaderVController();
 		navigationController = new NavigationVController(contentController);
@@ -58,6 +46,7 @@ public class MainFrameVController implements Observer{
 		// Observer hinzufügen
 		navigationController.addObserver(this);
 		headerController.addObserver(this);
+		PlayQueueViewController.getInstance().addObserver(this);
 		((Observable) contentController).addObserver(this);
 		
 		// Views anhängen
@@ -82,21 +71,22 @@ public class MainFrameVController implements Observer{
             SearchVController tmp = new SearchVController();
             contentController = tmp;
             tmp.getView().setAllText(headerController.getSearchKey());
-            tmp.searchAll();
             
             // Logout-Button geklickt?
             if (headerController.getLogout()) {
 //           	this.playerController.stop();
 //            	this.playerController.getView().;
             	this.view.dispose();
-                PlayQueueViewController.getInstance().stop();
-                SessionThing.getInstance().setSessionUser(null);
-                LoginVController logControll = new LoginVController(Query.APPLICATION_NAME);
-
+            	SessionThing.getInstance().setSessionUser(null);
+    			LoginVController logControll = new LoginVController(Query.APPLICATION_NAME);
+    			
             }
 
         } else if (o.equals(navigationController)){
             contentController = navigationController.getContentController();
+
+        } else if (o.equals(PlayQueueViewController.getInstance())){
+            contentController = PlayQueueViewController.getInstance().getContentController();
 
         } else if (o.equals(contentController)) {
             if (arg != null) {
@@ -134,5 +124,9 @@ public class MainFrameVController implements Observer{
         view.getContent().repaint();
         view.getContent().revalidate();
     }
+
+	public ContentController getContentController() {
+		return contentController;
+	}
 	
 }

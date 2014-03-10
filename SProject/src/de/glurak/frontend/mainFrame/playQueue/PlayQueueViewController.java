@@ -10,6 +10,7 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Observable;
 
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
@@ -19,6 +20,9 @@ import de.glurak.data.Medium;
 import de.glurak.data.Playlist;
 import de.glurak.data.Playqueue;
 import de.glurak.feature.sound.PlayerController;
+import de.glurak.frontend.mainFrame.ContentController;
+import de.glurak.frontend.mainFrame.MainFrameVController;
+import de.glurak.frontend.mainFrame.content.playlist.PlaylistEditVController;
 import de.vdheide.mp3.MP3Properties;
 import de.vdheide.mp3.NoMP3FrameException;
 
@@ -29,7 +33,7 @@ import de.vdheide.mp3.NoMP3FrameException;
  * @author MMÜhlenjost,Zengo
  *
  */
-public class PlayQueueViewController {
+public class PlayQueueViewController extends Observable{
 	
 	private PlayerController 	player;
 	private Playqueue 			playqueue;
@@ -40,6 +44,8 @@ public class PlayQueueViewController {
     private ActionListener		a;
     private MouseListener		m;
     private boolean				propertiesBoolean;
+	private ContentController contentController;
+	private MainFrameVController mainController;
     private static PlayQueueViewController instance= null;
 	
 	
@@ -98,6 +104,9 @@ public class PlayQueueViewController {
 					player.stop();
 					refresh();
 		
+				}
+				else if (src== view.getSaveButton()) {
+					setContentController(new PlaylistEditVController(getPlayqueue().getPlaylist(), mainController.getContentController()));
 				}
 			
 			}
@@ -189,6 +198,8 @@ public class PlayQueueViewController {
 		view.getNextButton().addActionListener(a);
 		view.getPreviousButton().addActionListener(a);
 		view.getClearButton().addActionListener(a);
+		view.getSaveButton().addActionListener(a);
+		
 		if(getPlayqueue()!=null){	
 			view.getQueuePanel().addMouseListener(m);
 			for(int i = 0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
@@ -196,6 +207,23 @@ public class PlayQueueViewController {
 			}
 		}
 	}
+	
+	public ContentController getContentController(){
+		
+		return contentController;
+	}
+	
+	public void setContentController (ContentController contentController){
+		
+		this.contentController = contentController;
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void setMainController(MainFrameVController mainController){
+		this.mainController =mainController;
+	}
+	
 	/**
 	 * Fügt Listener für Veränderungen beim PausablePlayer hinzu
 	 */

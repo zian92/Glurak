@@ -3,6 +3,7 @@ package de.glurak.frontend.mainFrame.content.follower;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -29,12 +30,13 @@ public class FollowerView extends JPanel {
 		super();
 		this.mRef = m;
 		this.setPreferredSize(new Dimension(600,500));
-		this.setBackground(FrontendColors.DARK_GREY);
+		setBackground(FrontendColors.DARK_GREY);
 		this.setLayout(new BorderLayout());
 		JScrollPane pan_scroll = new JScrollPane();
 		// TODO: Dynamisches wachsen bei hinzufügen
-		pan_content = new JPanel(new GridLayout(4,5));
-    	//parent.add(child, constr);
+		pan_content = new JPanel(new FlowLayout());
+		pan_content.setBackground(FrontendColors.DARK_GREY);
+    	add(pan_content, BorderLayout.CENTER);
 	}
 	
 	/**
@@ -43,23 +45,27 @@ public class FollowerView extends JPanel {
 	 */
 	public void addFollower(User favo){
 		
-		//JLabel icon = new JLabel(new IconLoader(200, 200, favo.getProfile().getPictureFileNameOrDefaultPictureName()).getIcon());
-		JLabel icon = new JLabel("Hallo");
+		JLabel icon = new JLabel(new IconLoader(190, 180, favo.getProfile().getPictureFileNameOrDefaultPictureName()).getIcon());
+		//JLabel icon = new JLabel("Hallo");
 		icon.setBackground(Color.green);
 		icon.setForeground(Color.WHITE);
     	icon.setFont(new Font("Verdana", Font.BOLD, 13));
-    	icon.setText(favo.getUsername());
+    	//icon.setText(favo.getUsername());
+    	icon.setText("TestText");
     	icon.setHorizontalTextPosition(JLabel.CENTER);
     	icon.setVerticalTextPosition(JLabel.BOTTOM);
     	icon.setPreferredSize(new Dimension(200	,200));
     	icon.setVisible(true);
     	icon.addMouseListener(mRef);
 		pan_content.add(icon, BorderLayout.CENTER);
-		refresh();
 		System.out.println("FV - 57 - added a followerpanel");
 		//pan_content.add(icon);
 		favoCount++;	
 		
+	}
+	
+	public void cleanView(){
+		pan_content.removeAll();
 	}
 	
 	public void refresh(){
@@ -80,10 +86,6 @@ public class FollowerView extends JPanel {
     		
     		addFollower(list.get(i));
     	}
+    	refresh();
     }
-    /*
-    public void refreshView(List<User> list){
-    	addFollower(list.get(list.size()-1));
-    }
-	*/
-}
+   }

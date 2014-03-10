@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.FocusEvent;
-import java.awt.event.MouseListener;
 import java.util.Observable;
 
 import javax.swing.JComponent;
@@ -20,7 +19,7 @@ import de.glurak.frontend.mainFrame.NextContent;
  * @author Christopher Distelkämper
  * Date: 10.03.2014
  */
-public class AlbumVController extends Observable implements MouseListener, ActionListener, ContentController, NextContent{
+public class AlbumVController extends Observable implements ActionListener, ContentController, NextContent{
 
 	private AlbumView albumview;
 	private ContentController nextContent;
@@ -30,7 +29,8 @@ public class AlbumVController extends Observable implements MouseListener, Actio
 	public AlbumVController(Album p, ContentController c){
 		albumview = new AlbumView(this);
 		albumview.setAlbum(p);
-		albumview.field_name.addFocusListener(this);
+	//	albumview.field_name.addFocusListener(this);
+		albumview.field_name.addFocusListener(null);
 		nextContent = c;
 	}
 	
@@ -68,7 +68,7 @@ public class AlbumVController extends Observable implements MouseListener, Actio
 						npl.setOwner(SessionThing.getInstance().getSessionUser());
 						SessionThing.getInstance().getDatabase().addPlaylist(npl, null);
 						if (nextContent instanceof AlbumVController){
-							((AlbumVController) nextContent).refreshView();
+						//	((AlbumVController) nextContent).refreshView();
 						}
 					
 						setChanged();
