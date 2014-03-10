@@ -12,7 +12,9 @@ import de.glurak.data.User.UserProfile;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Entscheider
@@ -76,7 +78,7 @@ public class DBSearch {
      */
     public List<User> searchForUserByUsername(String name){
         TypedQuery<User> q1 = em.createQuery(
-                "SELECT k FROM User k WHERE UPPER(k.username) Like UPPER('%"+name+"%')" , User.class);
+                "SELECT k FROM User k WHERE UPPER(k.username) Like UPPER('%" + name + "%')", User.class);
         //q1.setParameter("n",g);
         return q1.getResultList();
     }
@@ -87,7 +89,7 @@ public class DBSearch {
      * @return die gefundenden Userprofile
      */
     public List<UserProfile> searchForProfileByName(String name){
-        TypedQuery<UserProfile> q1 = em.createQuery("SELECT k FROM UserProfile k WHERE UPPER(CONCAT(k.firstname,' ',k.lastname)) Like UPPER('%"+name+"%')" , UserProfile.class);
+        TypedQuery<UserProfile> q1 = em.createQuery("SELECT k FROM UserProfile k WHERE UPPER(CONCAT(k.firstname,' ',k.lastname)) Like UPPER('%" + name + "%')", UserProfile.class);
         return q1.getResultList();
     }
 
@@ -99,13 +101,16 @@ public class DBSearch {
     public List<User> searchUserBySomething(String something){
         List<User> l = searchForUserByUsername(something);
         List<UserProfile> other = searchForProfileByName(something);
-        List<User> other_user = new ArrayList<User>();
+        Set<User> other_user = new HashSet<User>();
         for (UserProfile prof: other){
             if (prof.belongTo()!=null)
              other_user.add(prof.belongTo());
         }
+        other_user.addAll(l);
         l.addAll(other_user);
-        return l;
+        ArrayList<User> res = new ArrayList<User>();
+        res.addAll(other_user);
+        return res;
     }
 
     /**
