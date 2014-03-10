@@ -10,6 +10,7 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Observable;
 
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
@@ -19,6 +20,9 @@ import de.glurak.data.Medium;
 import de.glurak.data.Playlist;
 import de.glurak.data.Playqueue;
 import de.glurak.feature.sound.PlayerController;
+import de.glurak.frontend.mainFrame.ContentController;
+import de.glurak.frontend.mainFrame.MainFrameVController;
+import de.glurak.frontend.mainFrame.content.playlist.PlaylistEditVController;
 import de.vdheide.mp3.MP3Properties;
 import de.vdheide.mp3.NoMP3FrameException;
 
@@ -29,7 +33,7 @@ import de.vdheide.mp3.NoMP3FrameException;
  * @author MMÜhlenjost,Zengo
  *
  */
-public class PlayQueueViewController {
+public class PlayQueueViewController extends Observable{
 	
 	private PlayerController 	player;
 	private Playqueue 			playqueue;
@@ -40,6 +44,8 @@ public class PlayQueueViewController {
     private ActionListener		a;
     private MouseListener		m;
     private boolean				propertiesBoolean;
+	private ContentController contentController;
+	private MainFrameVController mainController;
     private static PlayQueueViewController instance= null;
 	
 	
@@ -65,28 +71,29 @@ public class PlayQueueViewController {
 		if(getPlayqueue()!=null){		
 			if(!view.getPositionBar().getValueIsAdjusting()){
 				Object src = e.getSource();
+				
 				if (src == view.getPlayButton()) {
-					if (player.isPaused()) {
-
+					if (player.isPaused()){
 						player.resume();
-						view.playButton.setText("Pause");
-					} else if (player.isPlaying()) {
+						view.playButton.setText("Pause");}
+					else if (player.isPlaying()) {
 								player.pause();
-								view.playButton.setText("Play    ");
-					} else {
+								view.playButton.setText("Play    ");}
+					else {
 						playNew(0);
 					}
+					
 				} else if (src == view.getNextButton()) {
 					getPlayqueue().getNext();
-					if (player.isPaused() || player.isPlaying())
-						player.stop();
+					player.pause();
+					player.stop();
 					playNew(0);
 					view.getQueuePanel().resetButton();
 					
 				} else if (src == view.getPreviousButton()) {
 					getPlayqueue().getPrevious();
-					if (player.isPaused() || player.isPlaying())
-						player.stop();
+					player.pause();
+					player.stop();
 					playNew(0);
 					view.getQueuePanel().resetButton();
 		
@@ -94,9 +101,12 @@ public class PlayQueueViewController {
 				else if (src == view.getClearButton()) {
 					setPlayqueue(null);
 					view.getPositionBar().setValue(0);
-						player.stop();
+					player.stop();
 					refresh();
 		
+				}
+				else if (src== view.getSaveButton()) {
+					setContentController(new PlaylistEditVController(getPlayqueue().getPlaylist(), mainController.getContentController()));
 				}
 			
 			}
@@ -120,7 +130,7 @@ public class PlayQueueViewController {
 				
 				if(propertiesBoolean&&!view.isPositionChange()&&!view.getPositionBar().getValueIsAdjusting()){
 					if(player.isPlaying()||player.isPaused()){
-						player.stop();
+						{player.stop();}
 						playNew(view.getPositionBar().getValue());
 				}
 				
@@ -188,6 +198,8 @@ public class PlayQueueViewController {
 		view.getNextButton().addActionListener(a);
 		view.getPreviousButton().addActionListener(a);
 		view.getClearButton().addActionListener(a);
+		view.getSaveButton().addActionListener(a);
+		
 		if(getPlayqueue()!=null){	
 			view.getQueuePanel().addMouseListener(m);
 			for(int i = 0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
@@ -195,15 +207,34 @@ public class PlayQueueViewController {
 			}
 		}
 	}
+	
+	public ContentController getContentController(){
+		
+		return contentController;
+	}
+	
+	public void setContentController (ContentController contentController){
+		
+		this.contentController = contentController;
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void setMainController(MainFrameVController mainController){
+		this.mainController =mainController;
+	}
+	
 	/**
 	 * Fügt Listener für Veränderungen beim PausablePlayer hinzu
 	 */
 	private void addPlayerListener() {
+		//player.getPlayer().removePropertyChangeListener(this);
 		player.getPlayer().addPropertyChangeListener(
 					
 		new PropertyChangeListener() {
 			
 			public void propertyChange(PropertyChangeEvent evt) {
+				
 				if(!view.getPositionBar().getValueIsAdjusting()&&getPlayqueue()!=null){
 				if(evt.getPropertyName()=="actualFrame"){
 					if(propertiesBoolean){
@@ -211,8 +242,8 @@ public class PlayQueueViewController {
 					
 				}else
 					if(player.getPlayer()!=null){//
-
-						if(player.getPlayer().getPlayerStatus()==FINISHED_BY_END){
+						
+					if(player.getPlayer().getPlayerStatus()==FINISHED_BY_END){
 							getPlayqueue().getNext();
 							if(player.isPlaying()||player.isPaused()){
 							player.stop();}
@@ -220,6 +251,7 @@ public class PlayQueueViewController {
 							view.getQueuePanel().resetButton();
 						}
 					}
+				
 				}
 		}		
      });
@@ -301,11 +333,11 @@ public class PlayQueueViewController {
 	 * @param time Frame bei dem er starten soll
 	 */
 	public void playNew(int time){
+		stop();
 		if(getPlayqueue()!=null){
-			if (player.isPaused() || player.isPlaying()){
-				player.stop();}
 			view.playButton.setText("Pause");
 		player.play(getPlayqueue().getCurrent().getFileName(),time);
+		
 		File file = new File(getPlayqueue().getCurrent().getFileName());
 		MP3Properties properties = null;
 		propertiesBoolean=true;
@@ -325,12 +357,11 @@ public class PlayQueueViewController {
 			propertiesBoolean=false;
 			System.out.println("Eigenschaften nicht lesbar");
 		 }
-		if(bitrate==0){propertiesBoolean=false; System.out.println("Eigenschaften nicht lesbar");}
+		if(bitrate==0){propertiesBoolean=false;}
 		if(propertiesBoolean) {
 			float maximum;
 			if (bitrate >= 1) {
 				maximum=(duration*1000/26)/(bitrate);
-				//System.out.println(maximum);
 			} else {
 				maximum=(duration*1000/26);
 				
@@ -344,15 +375,16 @@ public class PlayQueueViewController {
 			view.getPositionBar().validate();
 		}
 		addPlayerListener();
+			
 		
 		}
 	}
 	public void stop(){
 		if(player==null){
 			
-		}else{
-			if(player.isPaused()||player.isPlaying()){
-				player.stop();}
+		}else{ System.out.println("swag50");
+				if(player.isPaused()||player.isPlaying()){
+					player.stop();}
 		}
 			
 	}

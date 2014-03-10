@@ -57,13 +57,13 @@ public class LoginVController implements ActionListener, WindowListener {
         User u = session.getDatabase().getUserByUsername(username);
 
         if (u == null) return false;
-
         try {
-            if (password==null||!u.checkPassword(password)) return false;
+            if (password == null || !u.checkPassword(password)) return false;
         } catch (NoSuchAlgorithmException e) {
             session.handleException(e);
             return false;
         }
+        if (u.isLocked()) return false;
 
         session.setSessionUser(u);
 
