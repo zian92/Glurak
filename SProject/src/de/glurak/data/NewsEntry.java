@@ -20,7 +20,6 @@ public class NewsEntry implements Serializable {
     @Id
     @GeneratedValue
     private long id;
-    private String picturePathName;
     private String message;
     private Timestamp created;
     @ManyToOne
@@ -29,31 +28,30 @@ public class NewsEntry implements Serializable {
     private User owner;
 
     public NewsEntry(Medium source) {
-        this(Query.FOLDER_PICTURE_ICONS + "musicfile.jpg", "Your Song", source);
+        this("Your Song", source);
 
     }
     public NewsEntry(Album source) {
-        this(source.getFilename(), source.getName(), source);
+        this( source.getName(), source);
     }
 
     public NewsEntry(User source) {
-        this(source.getProfile().getPictureFileNameOrDefaultPictureName(), source.getProfile().getFirstname(), source);
+        this(source.getProfile().getFirstname(), source);
     }
 
     public NewsEntry(Label source) {
-        this(null, source.getProfile().getName(), source);    
+        this(null,  source);
     }
     
-    public NewsEntry(String imgFilename, String message, EntryObject h) {
-        this.picturePathName = imgFilename;
+    public NewsEntry(String message, EntryObject h) {
         this.message = message;
         this.source = h;
     }
     
     public NewsEntry(){
-        picturePathName= new String();
         message = new String();
     }
+
 
     public User getOwner() {
         return owner;
@@ -81,14 +79,6 @@ public class NewsEntry implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public String getPicturePathName() {
-        return picturePathName;
-    }
-
-    public void setPicturePathName(String picturePathName) {
-        this.picturePathName = picturePathName;
     }
 
     public Timestamp getCreated() {

@@ -140,4 +140,9 @@ public class Medium extends EntryObject implements Serializable,Hateable {
     public List<User> getLiker() {
         return liker;
     }
+
+    @Override
+    public String entryPicture() {
+        return null;
+    }
 }

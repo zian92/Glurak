@@ -109,7 +109,6 @@ public abstract class UserProfile extends Profile implements Serializable {
             } else {
                 return (Query.FOLDER_PICTURE_ICONS + "userm.jpg");
             }
-
         }
         return pictureFileName;
     }
