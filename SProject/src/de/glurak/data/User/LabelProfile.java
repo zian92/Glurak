@@ -14,13 +14,13 @@ import java.util.List;
  * @author Entscheider
  */
 @Entity
-public class LabelProfile extends Profile implements Serializable {
+public class LabelProfile extends Profile implements Serializable{
 
     @OneToMany(mappedBy = "myLabel")
     private List<ArtistProfile> myartists;
     //Noch mehr Attribute ?
 
-    @OneToOne(mappedBy = "profile")
+    @OneToOne(mappedBy = "profile_label")
     private Label myLabel;
     private String labelImageFilename;
 
@@ -86,11 +86,11 @@ public class LabelProfile extends Profile implements Serializable {
 
     @Override
     public String getPictureFileNameOrDefaultPictureName(){
-    	if (pictureFileName.isEmpty()){
-    		return (Query.FOLDER_PICTURE_ICONS + "userf.jpg");
-  		
-    	}
-    	return pictureFileName;
+        if (pictureFileName.isEmpty()){
+            return (Query.FOLDER_PICTURE_ICONS + "userf.jpg");
+
+        }
+        return pictureFileName;
     }
 
     public List<ArtistProfile> getMyartists() {
@@ -102,12 +102,12 @@ public class LabelProfile extends Profile implements Serializable {
     }
 
 
-	public String getLabelImageFilename() {
-		return labelImageFilename;
-	}
+    public String getLabelImageFilename() {
+        return labelImageFilename;
+    }
 
 
-	public void setLabelImageFilename(String labelImageFilename) {
-		this.labelImageFilename = labelImageFilename;
-	}
+    public void setLabelImageFilename(String labelImageFilename) {
+        this.labelImageFilename = labelImageFilename;
+    }
 }

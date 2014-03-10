@@ -89,16 +89,26 @@ public class PromotionVController extends Observable implements ContentControlle
 	 * TODO: Mehrere NewsListen (eigene, globale, etc)
 	 */
 	private void initNewsEntries(){
-		// Get the NewsList from Database
+		// Init NewsList
 		List<NewsEntry> newsEntrylist = SessionThing.getInstance().getDatabase().getAllEntries();
-		//Build ViewElements for every Entry in the Newslist
 		for (int j = 0; j < newsEntrylist.size(); j++){
 			newsList.add(buildEntryView(200, 180, newsEntrylist.get(j)));
 		}
 		// Distribute the Entries to the Sliders on Screen
-		fillSliders();
+		int sMax = promPan.getSliderCount();
+		int q = newsList.size()/sMax;
+		if (sMax*q<newsList.size()){
+			q=q+1;
+		}
+		for (int pos = 0; pos < sMax; pos++){
+				for (int j = 0; j < q; j++){
+					if (newsList.size() <= (pos+(j*sMax))) break;
+					promPan.getSLiderAtPos(pos).addSliderComponent((newsList.get(pos+(j*sMax))));
+			}
+		} 
 		// Start the SLiding-task
-		startTimer();
+		if (!bool_timerstart)
+			startTimer();
 	}
 	
 	/**
@@ -152,16 +162,6 @@ public class PromotionVController extends Observable implements ContentControlle
 		return pan_content;
 	}
 	
-	private void pauseResumeTimer(){
-		if(bool_timerstart){
-			time_slider.cancel();
-		}else {
-			time_slider = new java.util.Timer();
-			time_slider.schedule(timTask_slide, 1000, 2000);
-		}
-		bool_timerstart = !bool_timerstart;
-	}
-	
 	/**
 	 * TestTimerTask for testing the sliding behaviour
 	 * Will be reworked in the final version
@@ -204,31 +204,10 @@ public class PromotionVController extends Observable implements ContentControlle
 		
 	}
 	
-	private void fillSliders(){
-		List<NewsEntry> newsEntrylist = SessionThing.getInstance().getDatabase().getAllEntries();
-		for (int j = 0; j < newsEntrylist.size(); j++){
-			newsList.add(buildEntryView(200, 180, newsEntrylist.get(j)));
-		}
-		
-		int sMax = promPan.getSliderCount();
-		int q = newsList.size()/sMax;
-		if (sMax*q<newsList.size()){
-			q=q+1;
-		}
-		for (int pos = 0; pos < sMax; pos++){
-				for (int j = 0; j < q; j++){
-					if (newsList.size() <= (pos+(j*sMax))) break;
-					promPan.getSLiderAtPos(pos).addSliderComponent((newsList.get(pos+(j*sMax))));
-			}
-		} 
-	}
-	
 	public void reload() {
 		// TODO Auto-generated method stub
-		//pauseResumeTimer();
 		cleanSliders();
-		fillSliders();
-		//pauseResumeTimer();
+		initNewsEntries();
 	}
 	
 

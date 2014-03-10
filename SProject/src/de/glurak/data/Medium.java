@@ -40,9 +40,8 @@ public class Medium extends EntryObject implements Serializable,Hateable {
 	 * Diese Klasse repr"asentiert ein Medium
 	 * @author MxBox
 	 */
-	public Medium(long Id , String Titel, String File, User owner){
+	public Medium(String Titel, String File, User owner){
         this();
-		this.id = Id;
 		setTitel(Titel);
 		setFileName(File);
 		if (owner!=null)
