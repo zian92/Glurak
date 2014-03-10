@@ -15,6 +15,7 @@ import de.glurak.data.User.User;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.content.adminlock.AdminLockViewController;
+import de.glurak.frontend.mainFrame.content.follower.FollowerVController;
 import de.glurak.frontend.mainFrame.content.message.MessageVController;
 import de.glurak.frontend.mainFrame.content.news.PromotionVController;
 import de.glurak.frontend.mainFrame.content.playlist.PlaylistVController;
@@ -70,6 +71,7 @@ public class NavigationVController extends Observable {
         addController(new ProfileVController(SessionThing.getInstance().getSessionUser()), "Profil",null);
         addController(new PlaylistVController(),"Playlist", Rights.MANAGE_PLAYLIST);
         addController(promotionVController,"News",null);
+        addController(new FollowerVController(),"Follower", null);
         addController(new MessageVController(),"Nachrichten",Rights.DO_MESSAGE);
         addController(new UploadVController(),"Upload",Rights.MANAGE_OWN_MEDIEN);
         addController(new AdminLockViewController(),"Medium sperren",Rights.LOCK_OTHER_MEDIEN);
