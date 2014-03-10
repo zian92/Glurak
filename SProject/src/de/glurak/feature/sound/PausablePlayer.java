@@ -15,6 +15,7 @@ public class PausablePlayer {
     private final static int PAUSED = 2;
     private final static int FINISHED = 3;
     private final static int FINISHED_BY_END = 4;
+    private static PausablePlayer instance=null;
     private int actualFrame;
     
 
@@ -33,12 +34,6 @@ public class PausablePlayer {
         this.player = new AdvancedPlayer(inputStream);
       
     }
-
-    public PausablePlayer(final InputStream inputStream, final AudioDevice audioDevice) throws JavaLayerException {
-        this.player = new AdvancedPlayer(inputStream, audioDevice);
-       
-    }
-   
    
     /**
      * Starts playback (resumes if paused)
@@ -152,7 +147,6 @@ public class PausablePlayer {
                 }
             }
         }
-        setPlayerStatus(FINISHED_BY_END);
         close();
     }
 

@@ -45,10 +45,11 @@ public class PlayerController {
 	 */
 	public void play(String location,int time) {
 		if(player!=null){
-			player.stop();
-			player=null;
+			//player.setPlayerStatus(3);
+			player.close();
+			
 		}
-	
+		player=null;
 		try {
             FileInputStream input = new FileInputStream(location);
             player = new PausablePlayer(input);
@@ -111,13 +112,7 @@ public class PlayerController {
 		
 		return player;
 	}
-	public void close() {
-		if(player!=null){
-			player.setPlayerStatus(3);//Finisshed
-			player.close();	
-		}
-		
-	}
+	
 
 }
 
