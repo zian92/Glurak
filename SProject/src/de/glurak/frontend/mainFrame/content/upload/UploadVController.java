@@ -26,6 +26,8 @@ public class UploadVController implements ActionListener, ContentController {
         upview.b_cancel.addActionListener(this);
         upview.b_upload.addActionListener(this);
         session = SessionThing.getInstance();
+        upview.t_artist.setEditable(false);
+        upview.t_artist.setText(session.getSessionUser().getUsername());
     }
 
     public void actionPerformed(ActionEvent ae) {
