@@ -15,6 +15,8 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+
+import de.glurak.Query;
 import de.glurak.data.Album;
 import de.glurak.data.Medium;
 import de.glurak.data.NewsEntry;
@@ -117,10 +119,10 @@ public class PromotionVController extends Observable implements ContentControlle
 	public JComponent buildEntryView(int width, int height, NewsEntry n){
 		JLayeredPane pan_content = new JLayeredPane();
 		JLabel lab_pic = new JLabel();
-		if (){
-			lab_pic.setIcon(new IconLoader(width, height, n.getPicturePathName()).getIcon());
+		if (n.getSource().entryPicture() == null){
+			lab_pic.setIcon(new IconLoader(width, height, Query.FOLDER_PICTURE_ICONS + "musicfile.jpg").getIcon());
 		}else {
-			lab_pic.setIcon(new IconLoader(width, height, n.getPicturePathName()).getIcon());
+			lab_pic.setIcon(new IconLoader(width, height, n.getSource().entryPicture()).getIcon());
 		}
 		JLabel lab_text = new JLabel(n.getMessage());
 		    
