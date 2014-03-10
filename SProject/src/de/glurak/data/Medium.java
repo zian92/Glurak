@@ -8,7 +8,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-public class Medium implements Serializable,Hateable {
+public class Medium extends EntryObject implements Serializable,Hateable {
 
 	private String titel;
 	private String fileName;
@@ -33,10 +33,6 @@ public class Medium implements Serializable,Hateable {
 	private User owner;
 	//Diskutabel
 	//private boolean blocked;
-    @Id
-    @GeneratedValue
-    //@Column(name="ID")
-	private long id;
 
     boolean isLocked;
 	
@@ -84,9 +80,6 @@ public class Medium implements Serializable,Hateable {
 		this.fileName = fileName;
 	}
 
-	public long getId() {
-		return id;
-	}
 
 	public User getOwner() {
 		return owner;

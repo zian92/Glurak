@@ -7,14 +7,11 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Observable;
-
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
-
 import de.glurak.data.Playlist;
 import de.glurak.data.User.User;
 import de.glurak.feature.Uploader;
-import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.NextContent;
 

@@ -20,8 +20,8 @@ public class NewsEntry implements Serializable {
     private String picturePathName;
     private String message;
     private Timestamp created;
-    //@ManyToOne
-    //private Hateable source;
+    @ManyToOne
+    private EntryObject source;
     @ManyToOne
     private User owner;
 
@@ -42,15 +42,15 @@ public class NewsEntry implements Serializable {
     public void setOwner(User owner) {
         this.owner = owner;
     }
-/*
-    public Hateable getSource() {
+
+    public EntryObject getSource() {
         return source;
     }
 
-    public void setSource(Hateable source) {
+    public void setSource(EntryObject source) {
         this.source = source;
     }
-*/
+
     public String getMessage() {
         return message;
     }
