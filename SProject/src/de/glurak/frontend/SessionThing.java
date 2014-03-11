@@ -3,8 +3,6 @@ package de.glurak.frontend;
 import de.glurak.data.User.User;
 import de.glurak.database.HibernateDB;
 
-import java.security.NoSuchAlgorithmException;
-
 /**
  * Diese Klasse ist ein Singleton. Hier werden für eine Sitzung die Daten gespeichert,
  * die immer gebraucht werden
@@ -14,6 +12,11 @@ public class SessionThing {
     private User user;
     private static SessionThing instance=null;
     private HibernateDB db;
+
+    /**
+     * Gibt die Instanz zurück. Wenn nötig wird eine neue erzeugt.
+     * @return die Instanz
+     */
 
     private SessionThing(){
         db = new HibernateDB();
