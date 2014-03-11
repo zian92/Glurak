@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Observable;
 
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 
 import de.glurak.data.Playlist;
 import de.glurak.data.User.ArtistProfile;
@@ -50,7 +51,6 @@ public class ProfileVController extends Observable implements ActionListener, Co
 		}
 		
 		profileview = new ProfileView(this.user, getTopFiveHatedPlaylists(), false);
-		profileview.b_promote.addActionListener(this);
 		// Hinzufügen der ActionListener
 		if (own) {
 			profileview.b_edit.addActionListener(this);
@@ -128,6 +128,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
             session.getDatabase().registrateProfile(newProfile,null);
             user.setProfile(newProfile);
             session.getDatabase().removeProfile(oldProfile,null);
+            JOptionPane.showMessageDialog(profileview, "Der Benutzer wurde befördert!");
         } else
             if (obj == profileview.b_block) {
                 if (user.isLocked()) {
