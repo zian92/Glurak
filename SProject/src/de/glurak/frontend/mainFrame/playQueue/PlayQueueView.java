@@ -1,12 +1,15 @@
 package de.glurak.frontend.mainFrame.playQueue;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.ScrollPaneLayout;
+
 import de.glurak.data.Playqueue;
 
 /**
@@ -39,6 +42,7 @@ public class PlayQueueView extends JPanel{
 	 */
 	public PlayQueueView (Playqueue playqueue){
 		super();
+		this.setBackground(Color.BLUE);
 		positionChange = false;
 		initComponents(playqueue);
 	

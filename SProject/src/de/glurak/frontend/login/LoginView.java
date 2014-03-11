@@ -25,6 +25,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import de.glurak.Query;
+import de.glurak.feature.IconLoader;
 import de.glurak.feature.SliderPanel;
 
 public class LoginView extends JFrame{
@@ -49,8 +50,6 @@ public class LoginView extends JFrame{
      */
 	public LoginView(String Titel,ActionListener listener){
 		super(Titel);
-		
-		// set layout
 		setLayout(new BorderLayout());
 		
 		// create swing components
@@ -99,7 +98,7 @@ public class LoginView extends JFrame{
 		}
 		
 		// create layout constrains
-		pan_logframe.setBounds(600,150,400,320);
+		pan_logframe.setBounds(600,150,320,320);
 		//pan_logframe.setBackground(Color.lightGray);
 		pan_logframe.setBackground(panColor);
 		pan_logframe.setOpaque(true);
@@ -141,7 +140,8 @@ public class LoginView extends JFrame{
 		
         
 		content.add(pan_content, BorderLayout.CENTER);
-			
+		//this.setIconImage(new IconLoader(15,15,Query.ICON_LOGO).getpureImage());	
+		//System.out.println("LV - 144 - Iconimagepath =" + this.getIconImage().toString());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
 		Image icon = new ImageIcon(Query.FOLDER_PICTURE_ICONS+"hate.png").getImage();
