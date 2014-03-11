@@ -35,6 +35,7 @@ public class Rights {
                                     MAIL_SEND,FOLLOW_USER,DO_MESSAGE,GENRE_ADD,
                                     ANOUNCEMENTS_RIGHTS
                                 };
+    
     protected static final String[] ADMIN_RIGHTS={LISTEN_RIGHT,DO_MESSAGE,GENRE_ADD,ASSIGN_RIGHTS,LOCK_OTHER_USER,LOCK_OTHER_MEDIEN};
     protected static final String[] LABELMANAGER_RIGHTS={LISTEN_RIGHT,MANAGE_OTHER_USER,MANAGE_PLAYLIST,MANAGE_ALBUM,FOLLOW_USER,DO_MESSAGE,ANOUNCEMENTS_FOR_LABEL_RIGHTS,MANAGE_OTHER_MEDIEN};
 
