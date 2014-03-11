@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
@@ -27,10 +28,10 @@ public class PlaylistEditView extends JPanel{
     protected JTextField		field_name;
 	private JTable 				tab_media;
 	private String[] 			columnNames = {" Titel ", "Künstler"};
-	private DefaultTableModel 	tabmod_address;
+	private DefaultTableModel 	tabmod;
 	private String 				tableEntries[][];
 	
-	private JButton bt_cancle, bt_delete, bt_save;
+	private JButton bt_cancle, bt_delete,bt_import, bt_save;
 	
 	private Playlist 		plRef = null;
 	private ActionListener 	lisRef;
@@ -46,51 +47,55 @@ public class PlaylistEditView extends JPanel{
 		this.setLayout(new BorderLayout());
 		this.setPreferredSize(new Dimension(600,500));
 		
-		tabmod_address = new DefaultTableModel(tableEntries, columnNames);
-		tab_media = new JTable(tabmod_address);
+		tabmod = new DefaultTableModel(tableEntries, columnNames);
+		tab_media = new JTable(tabmod);
 		tab_media.setFillsViewportHeight(true);
 		tab_media.setBackground(FrontendColors.DARK_GREY);
 		tab_media.setFont(Query.VERDANA.deriveFont(12f));
 		tab_media.setForeground(Color.WHITE);
 		
-		JPanel pan_header = new JPanel(new GridBagLayout());
-		GridBagConstraints constr = new GridBagConstraints();
+		JPanel pan_header = new JPanel(new BorderLayout());
+		JPanel pan_buttons = new JPanel(new GridLayout(0,1));
+		JPanel pan_texts = new JPanel(new GridLayout(0,1));
+		//GridBagConstraints constr = new GridBagConstraints();
 		//constr.
 		pan_header.setBackground(Color.GREEN);
-		pan_header.setBounds(0, 0, 600, 150);
+		pan_header.setPreferredSize(new Dimension(600, 100));
 		
 	  	field_name = new JTextField("\"Name eingeben\" ", 15);
 	  	//field_name.set
 	  	field_name.setBackground(FrontendColors.DARK_GREY);
 	  	field_name.setForeground(Color.WHITE);
-	  //	field_name.setOpaque(false);
 	  	field_name.setBorder(null);
-
-    	//field_name.setForeground(Color.WHITE);
     	field_name.setFont(Query.VERDANA.deriveFont(28f));;
-		
-		
-		//lab_playlistname = new JLabel();
-    	//lab_playlistname.setForeground(Color.WHITE);
-    	//lab_playlistname.setFont(Query.VERDANA.deriveFont(24f));;
-    	
+		    	
     	lab_itemCount = new JLabel("Anzahl Songs: 0");
     	lab_itemCount.setForeground(Color.WHITE);
     	lab_itemCount.setFont(Query.VERDANA.deriveFont(12f));
-    	
-    	bt_cancle = new JButton(" Abbrechen ");
-    	bt_cancle.setActionCommand("cancel");
-    	bt_cancle.addActionListener(lisRef);
-    	
+    	pan_texts.add(field_name);
+    	pan_texts.add(lab_itemCount);
+    	pan_texts.setVisible(true);
+    	    	
     	bt_save = new JButton(" Speichern ");
     	bt_save.setActionCommand("save");
     	bt_save.addActionListener(lisRef);
-    	
+    	pan_buttons.add(bt_save);	
     	bt_delete = new JButton(" Löschen ");
     	bt_delete.setActionCommand("delete");
     	bt_delete.addActionListener(lisRef);
+    	pan_buttons.add(bt_delete);	
+    	bt_import = new JButton(" Importieren");
+    	bt_import.setActionCommand("import");
+    	bt_import.addActionListener(lisRef);
+    	pan_buttons.add(bt_import);	
+    	bt_cancle = new JButton(" Abbrechen ");
+    	bt_cancle.setActionCommand("cancel");
+    	bt_cancle.addActionListener(lisRef);
+    	pan_buttons.add(bt_cancle);	
     	
+    	pan_buttons.setVisible(true);
     	//pan_header.add(bt_cancle, BorderLayout.WEST);
+    	/*
     	constr.gridx = 0;
     	constr.gridy = 0;
     	pan_header.add(bt_save, constr);
@@ -107,6 +112,10 @@ public class PlaylistEditView extends JPanel{
     	constr.gridx = 1;
     	constr.gridy = 2;
     	pan_header.add(lab_itemCount, constr);
+    	*/
+    	pan_header.add(pan_buttons, BorderLayout.WEST);
+    	pan_header.add(pan_texts, BorderLayout.EAST);
+    	
        	pan_header.setVisible(true);
 		
 		JScrollPane pan_tab = new JScrollPane(tab_media);
@@ -140,7 +149,7 @@ public class PlaylistEditView extends JPanel{
 				newEntrie[0] = plRef.getMediumList().get(i).getTitel();
 				newEntrie[1] = plRef.getMediumList().get(i).getOwner().getUsername();
 				//newEntrie[1] = "niemand";
-				tabmod_address.addRow(newEntrie);
+				tabmod.addRow(newEntrie);
 			}
 			
 		}

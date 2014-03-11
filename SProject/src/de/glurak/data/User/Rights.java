@@ -13,6 +13,7 @@ public class Rights {
     public static final String MANAGE_ALBUM="album_manage";
     public static final String MANAGE_OTHER_USER="manage_other_user";
     public static final String LOCK_OTHER_USER="lock_other_user";
+    public static final String MANAGE_OTHER_MEDIEN="manage_other";
     //public static final String UNLOCK_OTHER_USER="unlock_other_user";
     public static final String LOCK_OTHER_MEDIEN="lock_medien";
     //public static final String UNLOCK_OTHER_MEDIEN="unlock_medien";
@@ -41,6 +42,6 @@ public class Rights {
                                     ANOUNCEMENTS_RIGHTS
                                 };
     protected static final String[] ADMIN_RIGHTS={LISTEN_RIGHT,DO_MESSAGE,GENRE_ADD,ASSIGN_RIGHTS,LOCK_OTHER_USER,LOCK_OTHER_MEDIEN};
-    protected static final String[] LABELMANAGER_RIGHTS={LISTEN_RIGHT,MANAGE_OTHER_USER,MANAGE_PLAYLIST,MANAGE_ALBUM,FOLLOW_USER,DO_MESSAGE,ANOUNCEMENTS_FOR_LABEL_RIGHTS};
+    protected static final String[] LABELMANAGER_RIGHTS={LISTEN_RIGHT,MANAGE_OTHER_USER,MANAGE_PLAYLIST,MANAGE_ALBUM,FOLLOW_USER,DO_MESSAGE,ANOUNCEMENTS_FOR_LABEL_RIGHTS,MANAGE_OTHER_MEDIEN};
 
 }
