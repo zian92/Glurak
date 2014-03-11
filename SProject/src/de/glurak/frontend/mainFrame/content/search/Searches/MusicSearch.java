@@ -48,7 +48,7 @@ public class MusicSearch implements Searchable<Medium> {
                 res.add(l,BorderLayout.CENTER);
                 JLabel interpret = new JLabel();
                 if (value.getOwner()!=null)
-                    interpret.setText("<html>Von: <i>"+value.getOwner().getUsername()+"</i></html>");
+                    interpret.setText("<html>Von: <i>"+value.getOwner().getUsername()+"</i>  Genre:<i>"+value.getMyGenre().getTitle()+"</i></html>");
                 res.add(interpret,BorderLayout.SOUTH);
                 return res;
             }
