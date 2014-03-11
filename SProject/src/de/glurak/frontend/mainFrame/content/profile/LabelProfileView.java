@@ -100,7 +100,12 @@ public class LabelProfileView extends JPanel{
 		h.gridy = 0;
 		h.gridwidth = 1;
 		h.gridheight = 1;
-	    t_labeldescription = new JTextArea("Hier Labelbeschreibung einfügen", 10, 50);
+		
+		String labelDescription = "Hier Labelbeschreibung einfügen!";
+		if (label.getProfile().getAddress() != null || label.getProfile().getAddress() != "") {
+			labelDescription = label.getProfile().getAddress();
+		}
+	    t_labeldescription = new JTextArea(labelDescription, 10, 50);
 	    t_labeldescription.setMaximumSize(new Dimension(350,200));
 	    t_labeldescription.setMinimumSize(new Dimension(350,200));
 	    t_labeldescription.setBackground(FrontendColors.DARK_GREY);
@@ -134,6 +139,13 @@ public class LabelProfileView extends JPanel{
 		d.gridheight = 1;
 	    b_application = new JButton("Bewerbung");
 	    pan_profilepic.add(b_application, d);
+	    
+	    b_edit = new JButton("Save");
+	    d.gridx = 1;
+		d.gridy = 1;
+		d.gridwidth = 1;
+		d.gridheight = 1;
+		pan_profilepic.add(b_edit, d);
 	
 	
 		// Initialisieren Panel pan_topplaylists
@@ -254,5 +266,15 @@ public class LabelProfileView extends JPanel{
 	public void setB_playlistArray(JButton[] b_playlistArray) {
 		this.b_playlistArray = b_playlistArray;
 	}
+
+	public JTextArea getT_labeldescription() {
+		return t_labeldescription;
+	}
+
+	public void setT_labeldescription(JTextArea t_labeldescription) {
+		this.t_labeldescription = t_labeldescription;
+	}
+	
+	
 
 }
