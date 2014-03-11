@@ -30,18 +30,14 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
  //   private PlaylistEditVController contr_edit;
     private ContentController nextContent;
     private Playlist pList;
-    private final String[] tableHeader = { "asdf", "sadf", "asdf", };
-    
     /**
      * Konstruktor
      */
     public PlaylistVController() {
         view = new PlaylistView(this,this);
-        //contr_edit = new PlaylistEditVController();
-        
-      //  view.setjT(this.fillTable());
+    
         view.setVisible(true);
-        initfillView();
+       initfillView();
     }
 
     public JComponent getView() {
@@ -54,10 +50,6 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 
     public void setPlaylist(Playlist pList) {
         this.pList = pList;
-    }
-
-    public String[] getTableheader() {
-        return tableHeader;
     }
     
 	public ContentController getNextContent() {
@@ -201,7 +193,7 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 	}
 
 	public void reload() {
-	
+		refreshView();
 		
 	}
 

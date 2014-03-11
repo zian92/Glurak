@@ -14,6 +14,7 @@ import javax.swing.JComboBox;
 
 import de.glurak.frontend.SessionThing;
 import de.glurak.data.Genre;
+import de.glurak.data.User.LabelManagerProfile;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -31,12 +32,12 @@ public class UploadView extends JPanel {
 	protected JButton b_cancel;
 	protected JButton b_choosefile;
 	//Textfelder
-	protected JTextField t_artist = new JTextField(20);
 	protected JTextField t_title = new JTextField(20);
 	protected JTextField t_album = new JTextField(20);
 	protected JTextField t_file = new JTextField(20);
-	//Dropdownmenue fuer die Genres
+	//Dropdownmenue fuer die Genres und Artistnamen
 	protected JComboBox<String> d_genre;
+	protected JComboBox<String> d_artist;
 	
 	/**
 	 * Konstruktor
@@ -62,7 +63,7 @@ public class UploadView extends JPanel {
 		b_cancel = new JButton("Abbrechen");
 		b_choosefile = new JButton("Datei auswählen...");
 		
-		//Initialisierung des Dropdownmenue
+		//Initialisierung des Dropdownmenue fuer Genre
 		SessionThing session =  SessionThing.getInstance();
 		List<Genre> genre = new ArrayList<Genre>();
 		genre = session.getDatabase().allGenres();
@@ -71,10 +72,24 @@ public class UploadView extends JPanel {
 			genrelist[i] = genre.get(i).getTitle();
 		}
 		d_genre = new JComboBox(genrelist);
+		
+		//Initialisierung des Dropdownmenue fuer Artistnamen
+		if(session.getSessionUser().getProfile().roleName().equals("LabelManager")){
+			LabelManagerProfile labelmanager = new LabelManagerProfile();
+			labelmanager = (LabelManagerProfile) session.getSessionUser().getProfile();
+			String[] artistlist = new  String[labelmanager.getMyLabel().getProfile().getMyartists().size()];
+			for(int i = 0; i < labelmanager.getMyLabel().getProfile().getMyartists().size(); i++){
+				artistlist[i] = labelmanager.getMyLabel().getProfile().getMyartists().get(i).belongTo().getUsername();
+				d_artist = new JComboBox(artistlist);
+			}
+        }else{
+        	String[] artistlist = new String[]{session.getSessionUser().getUsername()};
+        	d_artist = new JComboBox(artistlist);
+        }
 				
 		//Infopanel zusammenfuegen
 		pan_info.add(l_artist);
-		pan_info.add(t_artist);
+		pan_info.add(d_artist);
 		pan_info.add(l_title);
 		pan_info.add(t_title);
 		pan_info.add(l_genre);

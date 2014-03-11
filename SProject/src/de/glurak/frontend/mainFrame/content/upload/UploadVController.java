@@ -26,8 +26,6 @@ public class UploadVController implements ActionListener, ContentController {
         upview.b_cancel.addActionListener(this);
         upview.b_upload.addActionListener(this);
         session = SessionThing.getInstance();
-        upview.t_artist.setEditable(false);
-        upview.t_artist.setText(session.getSessionUser().getUsername());
     }
 
     public void actionPerformed(ActionEvent ae) {
@@ -42,7 +40,7 @@ public class UploadVController implements ActionListener, ContentController {
             }
         } else
             if (ae.getSource() == upview.b_upload) {
-                if ((upview.t_title.getText().isEmpty()) || (upview.t_artist.getText().isEmpty()) || (upview.t_album.getText().isEmpty())) {
+                if ((upview.t_title.getText().isEmpty()) || (upview.t_album.getText().isEmpty())) {
                     JOptionPane.showMessageDialog(upview, "Bitte füllen sie alle Felder aus, um das Medium hochzuladen!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
                 } else
                     if ((music_file == null)) {
@@ -51,7 +49,7 @@ public class UploadVController implements ActionListener, ContentController {
                         Medium musicFile = new Medium();
                         musicFile.setFileName(music_file.getAbsolutePath());
                         musicFile.setTitel(upview.t_title.getText());
-                        musicFile.setOwner(session.getSessionUser());
+                        musicFile.setOwner(session.getDatabase().getUserByUsername((String) upview.d_artist.getSelectedItem()));
                         musicFile.setMyGenre(session.getDatabase().genreByTitle((String) upview.d_genre.getSelectedItem()));
 
                         session.getDatabase().registrateMedium(musicFile, null);
@@ -65,7 +63,6 @@ public class UploadVController implements ActionListener, ContentController {
                         music_file=null;
                         upview.t_file.setText("");
                         upview.t_title.setText("");
-                        upview.t_artist.setText("");
                         upview.t_album.setText("");
                         upview.d_genre.setSelectedIndex(0);
                     }
@@ -74,14 +71,12 @@ public class UploadVController implements ActionListener, ContentController {
                     if (music_file == null) {
                         upview.t_file.setText("");
                         upview.t_title.setText("");
-                        upview.t_artist.setText("");
                         upview.t_album.setText("");
                         upview.d_genre.setSelectedIndex(0);
                     } else {
                         music_file=null;
                         upview.t_file.setText("");
                         upview.t_title.setText("");
-                        upview.t_artist.setText("");
                         upview.t_album.setText("");
                         upview.d_genre.setSelectedIndex(0);
                     }

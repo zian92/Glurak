@@ -35,6 +35,12 @@ public class LabelProfile extends Profile implements Serializable{
         super();
         myartists=new ArrayList<ArtistProfile>();
     }
+
+    @Override
+    String viewName() {
+        return getName();
+    }
+
     /**
      * Fügt einen Artist den Label hinzu
      * @param pro

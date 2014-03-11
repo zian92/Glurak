@@ -25,7 +25,7 @@ public class PlaylistEditVController extends Observable implements ActionListene
 		playeditview = new PlaylistEditView(this);
 		playeditview.setPlaylist(p);
 		playeditview.field_name.addFocusListener(this);
-		nextContent = c;
+		//nextContent = c;
 	}
 	
 	public JComponent getView(){
@@ -42,9 +42,10 @@ public class PlaylistEditVController extends Observable implements ActionListene
 	}
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("cancel")){
-			//nextContent = c;
+			nextContent = new PlaylistVController();
 			setChanged();
 			notifyObservers();
+			
 		}else if (e.getActionCommand().equals("save")){
 			if (!playeditview.NameAppropriate()){
 				JOptionPane.showMessageDialog(playeditview,"Ihr Playlistname ist unangemessen.","Fehlerhafte Eingabe",JOptionPane.ERROR_MESSAGE);
@@ -56,16 +57,21 @@ public class PlaylistEditVController extends Observable implements ActionListene
 					npl.setName(playeditview.getPlaylistName());
 					npl.setOwner(SessionThing.getInstance().getSessionUser());
 					SessionThing.getInstance().getDatabase().addPlaylist(npl, null);
-					
+					/*
 					if (nextContent instanceof PlaylistVController){
 						((PlaylistVController) nextContent).refreshView();
-					}
-					
+					}*/
+					nextContent = new PlaylistVController();
 					setChanged();
-					notifyObservers(nextContent);
+					notifyObservers();
 				}
 				
 			}
+		}else if(e.getActionCommand().equals("delete")){
+			SessionThing.getInstance().getDatabase().removePlaylist(playeditview.getPlaylist(), null);
+			nextContent = new PlaylistVController();
+			setChanged();
+			notifyObservers();
 		}
 	}
 
@@ -79,7 +85,7 @@ public class PlaylistEditVController extends Observable implements ActionListene
 	}
 
 	public void reload() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

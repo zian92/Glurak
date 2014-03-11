@@ -8,9 +8,20 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+import de.glurak.Query;
+
 public class IconLoader  {
+	
 	private ImageIcon icon;
 
+	/**
+	 * IconLoader mit leerem Konstruktor initialisiert alle benoetigten Icons 
+	 * mit festen Groessen. Sehr Rechenintensiv, daher nur beimStart ausfuehren.
+	 */
+	public IconLoader(){
+		//ICON_HATE = IconLoader(30,30,Query.FOLDER_PICTURE_ICONS + "hate.jpg");
+	}
+	
 	public IconLoader(int width, int height, String fullFilename){
 		BufferedImage BGImage = null;
 		try {
