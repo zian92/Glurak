@@ -2,6 +2,7 @@ package de.glurak.frontend.mainFrame.content.profile;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -109,6 +110,20 @@ public class ProfileView extends JPanel{
 		pan_likes = new JPanel(new GridBagLayout());
 		pan_likes.setPreferredSize(new Dimension(350,200));
 		pan_likes.setBackground(FrontendColors.DARK_GREY);
+		
+		
+		GridBagConstraints z = new GridBagConstraints();
+		z.fill = GridBagConstraints.HORIZONTAL;
+		z.insets = new Insets(2,2,2,2);	
+		
+		z.gridx = 0;
+		z.gridy = 1;
+		z.gridwidth = 1;
+		z.gridheight = 1;
+	    l_username = new JLabel(this.user.getUsername());
+	    l_username.setFont(new Font("Dialog", 0, 50));
+	    l_username.setForeground(Color.white);
+	    pan_likes.add(l_username, z);
 		
 		// Initialisieren Panel pan_profilepic
 		pan_profilepic = new JPanel(new GridBagLayout());
