@@ -46,7 +46,7 @@ public class ApplicationVController extends Observable implements ActionListener
                 JOptionPane.showMessageDialog(null, "Sie haben keine Nachricht eingegeben. Bitte schreiben sie zuerst ihre Nachricht!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
             } else {
                 db.createMessage(session.getSessionUser(), label, appliview.t_application.getText(), true, null);
-                JOptionPane.showMessageDialog(null, "Deine Nachricht wurde überstellt!", errorMsgBoxName, JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Deine Nachricht wurde überstellt!", "Erfolg", JOptionPane.WARNING_MESSAGE);
                 this.backToLabel();
             }
         } else {
