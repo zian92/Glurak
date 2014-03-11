@@ -35,7 +35,7 @@ public class HeaderView extends JPanel{
 		// Initialisierung des Textfeldes
 		t_search = new JTextField();
 		t_search.setText(" Sucheingabe ");
-		t_search.setPreferredSize(new Dimension(200,20));
+		t_search.setPreferredSize(new Dimension(200,25));
 		// t_search.setBackground(Color.LIGHT_GRAY);
 		// t_search.setForeground(Color.blue);
 		
