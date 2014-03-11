@@ -1,22 +1,5 @@
 package de.glurak.feature.sound;
-import java.awt.Container;
-import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Map;
-
-import javax.sound.sampled.AudioFileFormat;
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
-import de.vdheide.mp3.MP3Properties;
-
-import javazoom.jl.decoder.Decoder;
-import javazoom.jl.player.AudioDevice;
-import javazoom.jl.player.FactoryRegistry;
 
 /**
  * PlayerController für den PausablePlayer
@@ -45,7 +28,6 @@ public class PlayerController {
 	 */
 	public void play(String location,int time) {
 		if(player!=null){
-			//player.setPlayerStatus(3);
 			player.close();
 			
 		}

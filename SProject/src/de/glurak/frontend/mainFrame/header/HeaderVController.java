@@ -12,15 +12,22 @@ import de.glurak.Query;
 import de.glurak.frontend.login.LoginVController;
 import de.glurak.frontend.mainFrame.content.search.SearchVController;
 
+/**
+ * Repräsentiert einen HeaderVController,
+ * der dafür zuständig ist die Funktionalität für den Header bereit zu stellen
+ *
+ */
 public class HeaderVController extends Observable implements ActionListener, MouseListener{
 
 	private HeaderView headview;
 	// Der Suchbegriff, der in die Suchmaske des Headers eingegeben wird
 	private String searchKey;
-	// Wird auf true gesetzt, wenn logout-Button bet�tigt wurde
+	// Wird auf true gesetzt, wenn logout-Button bet�tigt wurde
 	private boolean logout = false;
+	
 	/**
 	 * Konstruktor
+	 * legt die View an und hängt ActionListener and view components
 	 */
 	public HeaderVController(){
 		setHeadview(new HeaderView());
@@ -48,22 +55,42 @@ public class HeaderVController extends Observable implements ActionListener, Mou
 		
 	}
 	
+	/**
+	 * Getter für Logout
+	 * @return boolean logout
+	 */
 	public boolean getLogout() {
 		return logout;
 	}
 
+	/**
+	 * Getter für View
+	 * @return JComponent view
+	 */
 	public JComponent getView() {
 		return headview;
 	}
 	
+	/**
+	 * Getter für SearchKey
+	 * @return String searchKey
+	 */
 	public String getSearchKey() {
 		return searchKey;
 	}
 	
+	/**
+	 * Setter für searchKey
+	 * @param searchKey
+	 */
 	public void setSearchKey(String searchKey) {
 		this.searchKey = searchKey;
 	}
 
+	/**
+	 * Setter für HeadView
+	 * @param headview
+	 */
 	public void setHeadview(HeaderView headview) {
 		this.headview = headview;
 	}

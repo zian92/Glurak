@@ -25,6 +25,9 @@ public abstract class Profile implements Serializable {
     @OneToMany(mappedBy = "belongsTo")
     protected List<Announcement> announcements;
 
+    /**
+     * Konstruktor
+     */
     public Profile(){
         announcements =new ArrayList<Announcement>();
     }
@@ -40,6 +43,12 @@ public abstract class Profile implements Serializable {
      * @return den Besitzer des Profils
      */
     abstract public Reachable belongTo();
+
+    /**
+     * Setzt den zurück, zu dem man gehört.
+     * @param r der neue Reachable, null fall kein
+     */
+    abstract public void setBelongsTo(Reachable r);
 
     /**
      * Gibt den Rollennamen des Profils zurück

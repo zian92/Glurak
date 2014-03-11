@@ -20,6 +20,9 @@ public class Label extends Reachable implements Serializable {
     @OneToMany(mappedBy = "myLabel")
     private List<LabelManagerProfile> manager;
 
+    /**
+     * Konstruktor
+     */
     public Label(){
         super();
         profile_label=null;

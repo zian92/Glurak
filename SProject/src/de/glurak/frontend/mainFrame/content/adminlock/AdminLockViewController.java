@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 
 /**
+ * Der Controller um Medien zu sperren
  * @author Entscheider
  */
 public class AdminLockViewController extends Observable implements ContentController, ActionListener{
@@ -32,7 +33,6 @@ public class AdminLockViewController extends Observable implements ContentContro
     }
 
 	public void reload() {
-		// TODO Auto-generated method stub
-		
+        view.search();
 	}
 }

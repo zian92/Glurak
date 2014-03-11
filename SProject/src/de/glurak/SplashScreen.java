@@ -16,8 +16,16 @@ import javax.swing.JPanel;
 
 import de.glurak.feature.FontLoader;
 
+/**
+ * erstellt einen Splashscreen der angezeigt werden kann
+ * 
+ * @author Jonas
+ * 
+ */
 public class SplashScreen extends JFrame {
-
+    /**
+     * der splashscreen wird erstellt und angezeigt
+     */
     public SplashScreen() {
         JPanel c = new JPanel(new BorderLayout());
         // Set the window's bounds, centering the window
@@ -55,6 +63,9 @@ public class SplashScreen extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * zerstört den Splashscreen
+     */
     public void hideSplashScreen() {
         setVisible(false);
         this.dispose();

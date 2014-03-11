@@ -31,6 +31,9 @@ public class LabelProfile extends Profile implements Serializable{
 
 
 
+    /**
+     * Konstruktor
+     */
     public LabelProfile(){
         super();
         myartists=new ArrayList<ArtistProfile>();
@@ -72,6 +75,14 @@ public class LabelProfile extends Profile implements Serializable{
     public Reachable belongTo() {
         return myLabel;
     }
+
+    @Override
+    public void setBelongsTo(Reachable r) {
+        if (r!=null && !(r instanceof Label)) return;
+        Label label = (Label) r;
+        setLabel(label);
+    }
+
 
     public void setLabel(Label l){
         if (l==myLabel) return;

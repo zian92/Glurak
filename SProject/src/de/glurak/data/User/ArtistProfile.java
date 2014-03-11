@@ -13,11 +13,33 @@ public class ArtistProfile extends ListenerProfile implements Serializable, Comp
     @ManyToOne
     private LabelProfile myLabel_profile;
 
+    /**
+     * Kosntruktor
+     */
     public ArtistProfile(){
         super();
         myLabel_profile =null;
     }
 
+    /**
+     * Artistprofile wird angelegt
+     * @param otherprof Listenerprofile, dass zum Artist werden soll
+     */
+    public ArtistProfile(ListenerProfile otherprof){
+        this.setLastname(otherprof.getLastname());
+        this.setBirthdate(otherprof.getBirthdate());
+        this.setFirstname(otherprof.getFirstname());
+        this.setAddress(otherprof.getAddress());
+        this.setEmail(otherprof.getEmail());
+        this.setCountry(otherprof.getCountry());
+        this.setFemale(otherprof.isFemale());
+        this.setHomecountry(otherprof.getHomecountry());
+        this.setPictureFileName(otherprof.getPictureFileName());
+    }
+
+    /**
+     * @return das Label in dem der Artist ist
+     */
     public LabelProfile getMyLabel() {
         return myLabel_profile;
     }
