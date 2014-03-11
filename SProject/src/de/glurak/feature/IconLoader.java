@@ -12,7 +12,8 @@ import de.glurak.Query;
 
 public class IconLoader  {
 	
-	private ImageIcon icon;
+	private ImageIcon 	icon;
+	private Image 		img;
 
 	/**
 	 * IconLoader mit leerem Konstruktor initialisiert alle benoetigten Icons 
@@ -30,12 +31,14 @@ public class IconLoader  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Image img =  BGImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		img =  BGImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(img);
 	}
 
 	public ImageIcon getIcon() {
 		return icon;
 	}
-	
+	public Image getpureImage() {
+		return img;
+	}
 }

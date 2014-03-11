@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -63,7 +64,8 @@ public class FollowerView extends JPanel {
 		
 		add(pan_header, BorderLayout.NORTH);
     	JScrollPane pan_scroll  = new JScrollPane(pan_content,   ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);    
-		add(pan_scroll, BorderLayout.CENTER);
+		pan_scroll.setBorder(BorderFactory.createEmptyBorder());
+    	add(pan_scroll, BorderLayout.CENTER);
 
 	}
 	

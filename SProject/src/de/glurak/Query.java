@@ -4,7 +4,7 @@ import java.awt.Font;
 
 public class Query {
 
-    public static final String APPLICATION_NAME = "Glurak Rules The World!";
+    public static final String APPLICATION_NAME = "HateTunes";
     public static final String ROOTPATH = "./";
     public static final String[] SUPPORTED_PICTURE_TYPES = { "png", "jpg", "bmp" };
     public static final String[] SUPPORTED_MUSIC_TYPES = { "mp3", };
@@ -22,7 +22,8 @@ public class Query {
     // specil files
     public static final String ICON_HATE = FOLDER_PICTURE_ICONS + "hate.png";
     public static final String ICON_LIKE = FOLDER_PICTURE_ICONS + "rock.png";
-    public static final String ICON_LOGO = FOLDER_PICTURE_ICONS + "rock.png";
+    public static final String ICON_LOGO = FOLDER_PICTURE_ICONS + "htlogo.png";
+    public static final String ICON_LOGOW = FOLDER_PICTURE_ICONS + "htlogoicon.png";
     public static final String ICON_LOGOICON = FOLDER_PICTURE_ICONS + "rock.png";
     public static final String SPLASHSCREEN_IMAGE = FOLDER_PICTURE_ICONS + "splash.gif";
     public static final String LOGIN_BACKGROUND = FOLDER_PICTURE_ICONS + "loginscreen.jpg";

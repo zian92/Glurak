@@ -64,7 +64,7 @@ public class NavigationVController extends Observable {
         addController(new ProfileVController(SessionThing.getInstance().getSessionUser()), "Profil", null);
         addController(new PlaylistVController(), "Playlist", Rights.MANAGE_PLAYLIST);
         addController(promotionVController, "News", null);
-        addController(new FollowerVController(), "Follower", null);
+        addController(new FollowerVController(), "Favoriten", null);
         addController(new MessageVController(), "Nachrichten", Rights.DO_MESSAGE);
         addController(new UploadVController(), "Upload", Rights.MANAGE_OWN_MEDIEN);
         addController(new UploadVController(), "Upload", Rights.MANAGE_OTHER_MEDIEN);
