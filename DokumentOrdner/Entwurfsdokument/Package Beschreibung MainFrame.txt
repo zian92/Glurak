@@ -1,0 +1,23 @@
+Package mainFrame
+
+Das mainFrame package ist für das Kontrollieren der Hauptansicht verantwortlich.
+Es besteht aus vier Klassen die im folgenden beschrieben werden.
+
+Der MainFrameVController enthält die Logik um die einzelnen Komponenten der MainFrameView zu erstellen und mit den nötigen Daten zu versorgen.
+Er initialisiert die MainFrameView, HeaderVController, NavigationVController, ContentController und PlayQueueViewController.
+Mithilfe des Observer/Observable Patterns fängt er Befehle zum ändern des Hauptbereiches ab und läd die View des entsprechenden ContenController in den Hauptbereich.
+
+Der HeaderVController ist für die obere Leiste verantwortlich, welche die Suche, Logoutbutton und das Logo enthält.
+
+Der NavigationVController ist für die Navigationsleiste links verantwortlich. Er enthält die Logik für die Navigationsbuttons, welche den neuen Content für den ContentController bestimmen. Wenn ein Navigationselement ein Event hervorruft gibt er den dadurch bestimmten Content an den MainFrameVController, mithilfe des Observer/Observable patterns weiter.
+
+Der ContentController ist ein Interface welches alle Controller implementieren, dessen views im Hauptbereich bereich angezeigt werden.
+
+Ein Beispiel für einen ContentController ist der ProfileVController.
+Dieser stellt alle nötigen Daten und View für das Anzeigen von Profilen zu verfügung.
+
+
+Der PlayQueueViewController ist für den Musikplayer verantwortlich.
+Er lädt den player und versorgt ihn mit der Playlist die abgespielt werden soll und organisiert Änderungen an der Playlist im Player.
+
+

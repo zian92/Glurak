@@ -94,7 +94,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
 		
 		List<Playlist> returnList = new ArrayList<Playlist>();
 		
-		for (int i=0; i<myPlaylists.size(); i++) {
+		for (int i=0; i<myPlaylists.size()&&i<5; i++) {
 			if (myPlaylists.get(i)!= null) {
 				returnList.add(myPlaylists.get(i));
 			}
