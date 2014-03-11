@@ -34,9 +34,9 @@ public class QueuePanel extends JPanel{
 	 */
 	public QueuePanel (Playqueue playqueue){
 		super();
-		currentIcon = new IconLoader(60,60,Query.FOLDER_PICTURE_ICONS+"playQueueIconCurrent.jpg").getIcon();
-		standardIcon= new IconLoader(60,60,Query.FOLDER_PICTURE_ICONS+"playQueueIcon.jpg").getIcon();
-		this.setPreferredSize(new Dimension(this.getMaximumSize().width,this.getMaximumSize().height));
+		currentIcon = new IconLoader(70,70,Query.FOLDER_PICTURE_ICONS+"playQueueIconCurrent.jpg").getIcon();
+		standardIcon= new IconLoader(70,70,Query.FOLDER_PICTURE_ICONS+"playQueueIcon.jpg").getIcon();
+		
 		
 		initComponents(playqueue);		
 		
