@@ -25,6 +25,11 @@ public abstract class UserProfile extends Profile implements Serializable {
         super();
     }
 
+    @Override
+    public String viewName() {
+        return firstname+ " "+lastname;
+    }
+
     /**
      * Soll in den Unterklassen implementiert werden. Gibt die Rechte zurück die ein Nutzer mit diesem Profil besitzt
      *

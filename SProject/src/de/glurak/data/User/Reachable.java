@@ -48,7 +48,11 @@ abstract public class Reachable extends EntryObject implements Serializable, Hat
     }
 
     public void removePlaylist(Playlist p){
-    	myPlaylists.remove(p);
+        if (myPlaylists.contains(p)){
+    	    myPlaylists.remove(p);
+            if (p.getOwner()==this)
+                p.setOwner(null);
+        }
     }
     
     public void setMyPlaylists(List<Playlist> myPlaylists) {

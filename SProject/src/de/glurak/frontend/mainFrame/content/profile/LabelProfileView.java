@@ -105,15 +105,14 @@ public class LabelProfileView extends JPanel{
 		if (label.getProfile().getAddress() != null || label.getProfile().getAddress() != "") {
 			labelDescription = label.getProfile().getAddress();
 		}
-	    t_labeldescription = new JTextArea(labelDescription, 10, 50);
+		
+	    t_labeldescription = new JTextArea(labelDescription, 10, 20);
 	    t_labeldescription.setMaximumSize(new Dimension(350,200));
 	    t_labeldescription.setMinimumSize(new Dimension(350,200));
 	    t_labeldescription.setBackground(FrontendColors.DARK_GREY);
 	    t_labeldescription.setForeground(Color.white);
 		t_labeldescription.setEditable(edit);
 	    pan_likes.add(t_labeldescription, h);
-		
-		
 		
 		// Layout-Restriktionen festlegen.
 		GridBagConstraints d = new GridBagConstraints();
@@ -133,21 +132,30 @@ public class LabelProfileView extends JPanel{
 		l_labelPic = new JLabel(new IconLoader(200, 200, label.getProfile().getPictureFileNameOrDefaultPictureName()).getIcon());
 		pan_picture.add(l_labelPic);
 		
-		d.gridx = 0;
-		d.gridy = 1;
-		d.gridwidth = 1;
-		d.gridheight = 1;
-	    b_application = new JButton("Bewerbung");
-	    pan_profilepic.add(b_application, d);
-	    
-	    b_edit = new JButton("Save");
-	    d.gridx = 1;
-		d.gridy = 1;
-		d.gridwidth = 1;
-		d.gridheight = 1;
-		pan_profilepic.add(b_edit, d);
-	
-	
+		if (!edit) {
+			d.gridx = 0;
+			d.gridy = 1;
+			d.gridwidth = 1;
+			d.gridheight = 1;
+		    b_application = new JButton("Bewerbung");
+		    pan_profilepic.add(b_application, d);
+			
+		} else {
+			b_edit = new JButton("Save");
+		    d.gridx = 0;
+			d.gridy = 1;
+			d.gridwidth = 1;
+			d.gridheight = 1;
+			pan_profilepic.add(b_edit, d);
+
+			d.gridx = 1;
+			d.gridy = 1;
+			d.gridwidth = 1;
+			d.gridheight = 1;
+			b_upload = new JButton("Bild ändern");
+			pan_profilepic.add(b_upload, d);
+		}
+		
 		// Initialisieren Panel pan_topplaylists
 		pan_topplaylists = new JPanel(new GridBagLayout());	
 		pan_topplaylists.setPreferredSize(new Dimension(200, 200));
