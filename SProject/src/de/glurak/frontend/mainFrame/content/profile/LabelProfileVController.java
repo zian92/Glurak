@@ -12,6 +12,7 @@ import de.glurak.data.Album;
 import de.glurak.data.Playlist;
 import de.glurak.data.User.ArtistProfile;
 import de.glurak.data.User.Label;
+import de.glurak.data.User.LabelManagerProfile;
 import de.glurak.data.User.User;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
@@ -40,9 +41,18 @@ public class LabelProfileVController extends Observable implements ContentContro
      */
     public LabelProfileVController(Label label){
     	this.label = label;
+    	boolean edit = false;
     	
-        view = new LabelProfileView(label, getTop5Albums(), getTop5Artists());
-
+    	System.out.println(label.getManager().size());
+    	// Überprüfen ob aktueller user LabelManager des Labels ist
+    	for (LabelManagerProfile m: label.getManager()) {
+    		System.out.println(m.getFirstname());
+    		if (SessionThing.getInstance().getSessionUser().equals(m.belongTo())) {
+    			edit = true;
+    		}
+    	}
+    	
+        view = new LabelProfileView(label, getTop5Albums(), getTop5Artists(), edit);
         
         for (int i=0;i<view.getB_artistArray().length; i++) {
         	view.getB_artistArray()[i].addActionListener(this);
@@ -114,8 +124,7 @@ public class LabelProfileVController extends Observable implements ContentContro
     }
 
 	public ContentController getNextContent() {
-		// TODO Auto-generated method stub
-		return null;
+		return nextContent;
 		
 	}
 	
