@@ -23,7 +23,7 @@ import de.glurak.frontend.SessionThing;
 
 /**
  * Die ProfileView zeigt dem User ein Profil an.
- * @author Christopher Distelkämper
+ * @author Christopher Distelkämper, Daniel Papoutzis
  * Date: 26.02.2014
  */
 public class ProfileView extends JPanel{
@@ -81,17 +81,12 @@ public class ProfileView extends JPanel{
     private final String block = "Sperren";
     private final String unblock = "Entsperren";
 
-	
-	
-	
-
-
-
 
 	/**
-	 * Constructor
-	 * @param own Wird das eigene Profil angezeigt oder ein anderes?
-	 * @param anzPlaylists <= 5, falls ein User mehr Playlisten hat, sind diese über den "More"-Button verfügbar.
+	 * Kontruktor, legt komponenten an
+	 * @param user user des anzuzeigenden Profils
+	 * @param top5Playlists seine top 5 hated playlist
+	 * @param edit hat der user die Rechte das Profil zu bearbeiten
 	 */
 	public ProfileView(User user, List<Playlist> top5Playlists, boolean edit){
 		if (user==null) {
@@ -416,260 +411,32 @@ public class ProfileView extends JPanel{
 		
 	}
 
+    /**
+     * Setter für BlockButtontToBock
+     */
     public void setBlockButtontToBock() {
         this.b_block.setText(block);
     }
 
+    /**
+     * Setter für BlockButtonToUnblock
+     */
     public void setBlockButtonToUnblock() {
         this.b_block.setText(unblock);
     }
 
+    /**
+     * Setter für FollowButtonToFollow
+     */
     public void setFollowButtonToFollow() {
         this.b_follow.setText(follow);
     }
 
+    /**
+     * Setter für FollowButtonToUnfollow
+     */
     public void setFollowButtonToUnfollow() {
         this.b_follow.setText(unfollow);
-    }
-
-    public JPanel getPan_profileview() {
-        return pan_profileview;
-    }
-
-    public void setPan_profileview(JPanel pan_profileview) {
-        this.pan_profileview = pan_profileview;
-    }
-
-    public JPanel getPan_profilepic() {
-        return pan_profilepic;
-    }
-
-    public void setPan_profilepic(JPanel pan_profilepic) {
-        this.pan_profilepic = pan_profilepic;
-    }
-
-    public JPanel getPan_picture() {
-        return pan_picture;
-    }
-
-    public void setPan_picture(JPanel pan_picture) {
-        this.pan_picture = pan_picture;
-    }
-
-    public JPanel getPan_profiledata() {
-        return pan_profiledata;
-    }
-
-    public void setPan_profiledata(JPanel pan_profiledata) {
-        this.pan_profiledata = pan_profiledata;
-    }
-
-    public JPanel getPan_topplaylists() {
-        return pan_topplaylists;
-    }
-
-    public void setPan_topplaylists(JPanel pan_topplaylists) {
-        this.pan_topplaylists = pan_topplaylists;
-    }
-
-    public JPanel getPan_likes() {
-        return pan_likes;
-    }
-
-    public void setPan_likes(JPanel pan_likes) {
-        this.pan_likes = pan_likes;
-    }
-
-    public JButton getB_message() {
-        return b_message;
-    }
-
-    public void setB_message(JButton b_message) {
-        this.b_message = b_message;
-    }
-
-    public JButton getB_follow() {
-        return b_follow;
-    }
-
-    public void setB_follow(JButton b_follow) {
-        this.b_follow = b_follow;
-    }
-
-    public JButton getB_edit() {
-        return b_edit;
-    }
-
-    public void setB_edit(JButton b_edit) {
-        this.b_edit = b_edit;
-    }
-
-    public JPasswordField getT_password() {
-        return t_password;
-    }
-
-    public void setT_password(JPasswordField t_password) {
-        this.t_password = t_password;
-    }
-
-    public JPasswordField getT_passwordConfirm() {
-        return t_passwordConfirm;
-    }
-
-    public void setT_passwordConfirm(JPasswordField t_passwordConfirm) {
-        this.t_passwordConfirm = t_passwordConfirm;
-    }
-
-    public JTextField getT_firstname() {
-        return t_firstname;
-    }
-
-    public void setT_firstname(JTextField t_firstname) {
-        this.t_firstname = t_firstname;
-    }
-
-    public JTextField getT_lastname() {
-        return t_lastname;
-    }
-
-    public void setT_lastname(JTextField t_lastname) {
-        this.t_lastname = t_lastname;
-    }
-
-    public JTextField getT_email() {
-        return t_email;
-    }
-
-    public void setT_email(JTextField t_email) {
-        this.t_email = t_email;
-    }
-
-    public JTextField getT_homecountry() {
-        return t_homecountry;
-    }
-
-    public void setT_homecountry(JTextField t_homecountry) {
-        this.t_homecountry = t_homecountry;
-    }
-
-    public JTextField getT_birthdate() {
-        return t_birthdate;
-    }
-
-    public void setT_birthdate(JTextField t_birthdate) {
-        this.t_birthdate = t_birthdate;
-    }
-
-    public JLabel getL_username() {
-        return l_username;
-    }
-
-    public void setL_username(JLabel l_username) {
-        this.l_username = l_username;
-    }
-
-    public JLabel getL_firstname() {
-        return l_firstname;
-    }
-
-    public void setL_firstname(JLabel l_firstname) {
-        this.l_firstname = l_firstname;
-    }
-
-    public JLabel getL_lastname() {
-        return l_lastname;
-    }
-
-    public void setL_lastname(JLabel l_lastname) {
-        this.l_lastname = l_lastname;
-    }
-
-    public JLabel getL_email() {
-        return l_email;
-    }
-
-    public void setL_email(JLabel l_email) {
-        this.l_email = l_email;
-    }
-
-    public JLabel getL_birthdate() {
-        return l_birthdate;
-    }
-
-    public void setL_birthdate(JLabel l_birthdate) {
-        this.l_birthdate = l_birthdate;
-    }
-
-    public JLabel getL_homecountry() {
-        return l_homecountry;
-    }
-
-    public void setL_homecountry(JLabel l_homecountry) {
-        this.l_homecountry = l_homecountry;
-    }
-
-    public JLabel getL_userPic() {
-        return l_userPic;
-    }
-
-    public void setL_userPic(JLabel l_userPic) {
-        this.l_userPic = l_userPic;
-    }
-
-    public JLabel getL_password() {
-        return l_password;
-    }
-
-    public void setL_password(JLabel l_password) {
-        this.l_password = l_password;
-    }
-
-    public JLabel getL_passwordConfirm() {
-        return l_passwordConfirm;
-    }
-
-    public void setL_passwordConfirm(JLabel l_passwordConfirm) {
-        this.l_passwordConfirm = l_passwordConfirm;
-    }
-
-    public JTextField[] getT_playlist() {
-        return t_playlist;
-    }
-
-    public void setT_playlist(JTextField[] t_playlist) {
-        this.t_playlist = t_playlist;
-    }
-
-    public JLabel[] getL_playlist() {
-        return l_playlist;
-    }
-
-    public void setL_playlist(JLabel[] l_playlist) {
-        this.l_playlist = l_playlist;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public JButton[] getB_playlistArray() {
-        return b_playlistArray;
-    }
-
-    public void setB_playlistArray(JButton[] b_playlistArray) {
-        this.b_playlistArray = b_playlistArray;
-    }
-
-    public JButton getB_upload() {
-        return b_upload;
-    }
-
-    public void setB_upload(JButton b_upload) {
-        this.b_upload = b_upload;
     }
 
 }

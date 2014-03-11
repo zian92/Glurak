@@ -17,8 +17,8 @@ import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.NextContent;
 
 /**
- * Diese Klasse stellt dem ProfileEditView die Funktionalität zur Verfügung.
- * @author Christopher Distelkämper		
+ * Diese Klasse stellt dem ProfileView die Funktionalität zum editieren zur Verfügung.
+ * @author Christopher Distelkämper, Daniel	Papoutzis
  * Date: 28.02.2014
  */
 public class ProfileEditVController extends Observable implements ActionListener, ContentController, NextContent {
@@ -27,11 +27,12 @@ public class ProfileEditVController extends Observable implements ActionListener
 	private ContentController nextContent;
 	private User user;
 	private boolean picChanged;
-	
-	public boolean isPicChanged() {
-		return picChanged;
-	}
 
+
+	/**
+	 * Konstruktor initialisiert die nöten komponenten
+	 * @param user der benutzer des zu editierenden Profils
+	 */
 	public ProfileEditVController(User user){
 		
 		if (user==null || user==SessionThing.getInstance().getSessionUser()) {
@@ -93,6 +94,16 @@ public class ProfileEditVController extends Observable implements ActionListener
 		}
 	}
 
+	
+	
+	/**
+	 * Getter für picChanged
+	 * @return boolean picChanged
+	 */
+	public boolean isPicChanged() {
+		return picChanged;
+	}
+	
 	public JComponent getView() {
 		return profileEditView;
 	}

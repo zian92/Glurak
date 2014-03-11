@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * Die ProfileView zeigt dem User ein Profil an.
- * @author Christopher Distelkämper
+ * @author Christopher Distelkämper, Daniel Ppaoutzis
  * Date: 26.02.2014
  */
 public class LabelProfileView extends JPanel{
@@ -58,10 +58,13 @@ public class LabelProfileView extends JPanel{
 	private JButton[] b_artistArray;
 	
 
+
 	/**
-	 * Constructor
-	 * @param own Wird das eigene Profil angezeigt oder ein anderes?
-	 * @param anzPlaylists <= 5, falls ein User mehr Playlisten hat, sind diese über den "More"-Button verfügbar.
+	 * Konstruktor legt view komponenten an
+	 * @param label das Label des anzuzeigenden LabelProfils
+	 * @param top5Albums die top 5 hated Alben des labels
+	 * @param top5Artists die top 5 hated Artists des labels
+	 * @param edit wird das Profil von einem LabelManager des Labels angesehen
 	 */
 	public LabelProfileView(de.glurak.data.User.Label label, List<Playlist> top5Albums, List<ArtistProfile> top5Artists, boolean edit){
 		if (user==null) {
@@ -259,28 +262,31 @@ public class LabelProfileView extends JPanel{
 		
 	}
 	
+	/**
+	 * Getter für b_artistArray
+	 * @return JButton artistArray
+	 */
 	public JButton[] getB_artistArray() {
 		return b_artistArray;
 	}
-	public void setB_artistArray(JButton[] b_artistArray) {
-		this.b_artistArray = b_artistArray;
-	}
 	
+	/**
+	 * Getter für b_playlistArray
+	 * @return JButton playlistArray
+	 */
 	public JButton[] getB_playlistArray() {
 		return b_playlistArray;
 	}
 
-	public void setB_playlistArray(JButton[] b_playlistArray) {
-		this.b_playlistArray = b_playlistArray;
-	}
-
+	/**
+	 * Getter für t_labeldescription
+	 * @return JButton labeldescription
+	 */
 	public JTextArea getT_labeldescription() {
 		return t_labeldescription;
 	}
 
-	public void setT_labeldescription(JTextArea t_labeldescription) {
-		this.t_labeldescription = t_labeldescription;
-	}
+
 	
 	
 
