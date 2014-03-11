@@ -43,8 +43,6 @@ public class LabelProfileVController extends Observable implements ContentContro
     	this.label = label;
     	boolean edit = false;
     	
-<<<<<<< HEAD
-    	System.out.println(label.getManager().size());
     	// Überprüfen ob aktueller user LabelManager des Labels ist
     	for (LabelManagerProfile m: label.getManager()) {
     		System.out.println(m.getFirstname());
@@ -54,10 +52,7 @@ public class LabelProfileVController extends Observable implements ContentContro
     	}
     	
         view = new LabelProfileView(label, getTop5Albums(), getTop5Artists(), edit);
-=======
-        view = new LabelProfileView(label, getTop5Albums(), getTop5Artists());
         view.b_application.addActionListener(this);
->>>>>>> 7880a8bbaa80b6defd9c31a21e32fc894dc315ab
         
         for (int i=0;i<view.getB_artistArray().length; i++) {
         	view.getB_artistArray()[i].addActionListener(this);
