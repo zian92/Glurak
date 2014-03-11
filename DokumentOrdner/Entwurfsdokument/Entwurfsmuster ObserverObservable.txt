@@ -1,0 +1,3 @@
+Entwurfsmuster Observer/Observable
+
+Das Entwurfmuster Observer/Observable haben wir verwendet um auf Änderungen von Objekten zu reagieren. So implementiert der MainFrameVController das Interface Observer und observiert alle Controller welche für Änderungen in der Hauptview zuständig sind. So erweitert z.B der NavigationVController das Observable und wird vom MainFrameVController beobachtet. Wenn nun auf der NavigationView ein Button aktiviert wird, gibt der NavigationVController bescheid, dass er sich geändert hat und alle Beobachter, in diesem fall der MainFramVController, rufen ihre update Methode auf um auf die entsprechende Änderung zu reagieren. 
