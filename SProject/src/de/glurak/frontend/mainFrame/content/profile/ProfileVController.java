@@ -10,6 +10,8 @@ import java.util.Observable;
 import javax.swing.JComponent;
 
 import de.glurak.data.Playlist;
+import de.glurak.data.User.ArtistProfile;
+import de.glurak.data.User.ListenerProfile;
 import de.glurak.data.User.Rights;
 import de.glurak.data.User.User;
 import de.glurak.frontend.SessionThing;
@@ -48,7 +50,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
 		}
 		
 		profileview = new ProfileView(this.user, getTopFiveHatedPlaylists(), false);
-		
+		profileview.b_promote.addActionListener(this);
 		// Hinzufügen der ActionListener
 		if (own) {
 			profileview.b_edit.addActionListener(this);
@@ -120,7 +122,12 @@ public class ProfileVController extends Observable implements ActionListener, Co
             setChanged();
             notifyObservers();
         } else if(obj == profileview.b_promote) {
-        	//TODO promote button e	e
+            ListenerProfile oldProfile=(ListenerProfile) user.getProfile();
+            oldProfile.setUser(null);
+            ArtistProfile newProfile = new ArtistProfile(oldProfile);
+            session.getDatabase().registrateProfile(newProfile,null);
+            user.setProfile(newProfile);
+            session.getDatabase().removeProfile(oldProfile,null);
         } else
             if (obj == profileview.b_block) {
                 if (user.isLocked()) {

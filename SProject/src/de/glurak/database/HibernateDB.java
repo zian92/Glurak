@@ -47,7 +47,7 @@ public class HibernateDB {
     public void registrateProfile(Profile p,EntityTransaction ac){
         if (ac==null)
             em.getTransaction().begin();
-         em.persist(p);
+        em.persist(p);
         if (ac==null)
             em.getTransaction().commit();
     }
@@ -60,7 +60,7 @@ public class HibernateDB {
     public LabelProfile labelProfileByName(String name){
         TypedQuery<LabelProfile> q1 = em.createQuery(
                 "SELECT k FROM LabelProfile k WHERE k.name = :n", LabelProfile.class);
-        q1.setParameter("n",name);
+        q1.setParameter("n", name);
         try{
             LabelProfile res = q1.getSingleResult();
             return res;
@@ -77,30 +77,26 @@ public class HibernateDB {
     public boolean hasLabelProfileWithName(String name){
         TypedQuery<LabelProfile> q1 = em.createQuery(
                 "SELECT k FROM LabelProfile k WHERE k.name = :n", LabelProfile.class);
-        q1.setParameter("n",name);
+        q1.setParameter("n", name);
         return q1.getResultList().size()>0;
     }
-/**
- * Registriert einen neuen Benutzer in der Datenbank
- * @param newUser der neue Benutzer
- * @param ac ac die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht
- */
+
     public void registrateUser(User newUser, EntityTransaction ac){
         registrateReachable(newUser,ac);
     }
 
     /**
      * Registiert ein neuen Reachable, also Label oder Benutzer
-     * @param newReachable der neue Reachable
+     * @param newUser der neue Reachable
      * @param ac die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht
      */
-    public void registrateReachable(Reachable newReachable, EntityTransaction ac){
+    public void registrateReachable(Reachable newUser, EntityTransaction ac){
         if (ac==null)
             em.getTransaction().begin();
-        if (newReachable.getProfile() != null){
-           registrateProfile(newReachable.getProfile(),ac==null?em.getTransaction():ac);
+        if (newUser.getProfile() != null){
+            registrateProfile(newUser.getProfile(),ac==null?em.getTransaction():ac);
         }
-        em.persist(newReachable);
+        em.persist(newUser);
         if (ac==null)
             em.getTransaction().commit();
     }
@@ -304,8 +300,8 @@ public class HibernateDB {
      * @param tr die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht.
      */
     public void addAnnouncement(Announcement an, Profile p, EntityTransaction tr){
-       if (tr==null)
-           em.getTransaction().begin();
+        if (tr==null)
+            em.getTransaction().begin();
         em.persist(an);
         p.addAnnouncement(an);
         if (tr==null)
@@ -345,6 +341,21 @@ public class HibernateDB {
             em.getTransaction().begin();
         l.setOwner(null);
         em.remove(l);
+        if (tr == null)
+            em.getTransaction().commit();
+    }
+
+    /**
+     * Entfernt ein Profil aus der Datenbank
+     * @param f  das Profile
+     * @param tr die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht.
+     */
+    public void removeProfile(Profile f, EntityTransaction tr){
+        if (tr==null)
+            em.getTransaction().begin();
+        if (f.belongTo()!=null)
+            f.setBelongsTo(null);
+        em.remove(f);
         if (tr == null)
             em.getTransaction().commit();
     }

@@ -19,6 +19,10 @@ public class SessionThing {
         db = new HibernateDB();
     }
 
+    /**
+     * Gibt die Instanz zurück. Wenn nötig wird eine neue erzeugt.
+     * @return die Instanz
+     */
     public static SessionThing getInstance(){
         if (instance==null){
             instance = new SessionThing();
@@ -51,6 +55,6 @@ public class SessionThing {
     }
 
     public void handleException(Exception exc){
-        //TODO: implement
+        exc.printStackTrace();
     }
 }
