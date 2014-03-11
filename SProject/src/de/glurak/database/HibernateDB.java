@@ -3,6 +3,8 @@ import de.glurak.data.*;
 import de.glurak.data.User.*;
 
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -316,6 +318,7 @@ public class HibernateDB {
     public void removePlaylist(Playlist l, EntityTransaction tr){
         if (tr==null)
             em.getTransaction().begin();
+        l.setMediumList(new ArrayList<Medium>());
         em.remove(l);
         if (tr == null)
             em.getTransaction().commit();

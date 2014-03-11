@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -32,6 +33,10 @@ public class PlaylistEditView extends JPanel{
 	private String 				tableEntries[][];
 	
 	private JButton bt_cancle, bt_delete,bt_import, bt_save;
+	private JPanel	pan_bground;
+	private JScrollPane pan_tab;
+	
+	private boolean bool_searchOp = false;
 	
 	private Playlist 		plRef = null;
 	private ActionListener 	lisRef;
@@ -60,7 +65,7 @@ public class PlaylistEditView extends JPanel{
 		//GridBagConstraints constr = new GridBagConstraints();
 		//constr.
 		pan_header.setBackground(Color.GREEN);
-		pan_header.setPreferredSize(new Dimension(600, 100));
+		pan_header.setPreferredSize(new Dimension(600, 80));
 		
 	  	field_name = new JTextField("\"Name eingeben\" ", 15);
 	  	//field_name.set
@@ -109,7 +114,7 @@ public class PlaylistEditView extends JPanel{
     	constr.gridy = 0;
     	constr.gridheight = 2;
     	pan_header.add(field_name, constr);
-    	constr.gridx = 1;
+    	constr.gridx = 1
     	constr.gridy = 2;
     	pan_header.add(lab_itemCount, constr);
     	*/
@@ -117,9 +122,9 @@ public class PlaylistEditView extends JPanel{
     	pan_header.add(pan_texts, BorderLayout.EAST);
     	
        	pan_header.setVisible(true);
-		
-		JScrollPane pan_tab = new JScrollPane(tab_media);
-       	
+		       	
+       	pan_tab = new JScrollPane(tab_media);
+   
 		this.add(pan_tab, BorderLayout.CENTER);
     	this.add(pan_header, BorderLayout.NORTH);
 
@@ -166,6 +171,26 @@ public class PlaylistEditView extends JPanel{
 	
 	public void refreshName(){
 		field_name.setText(" \"Name eingeben\" ");
+	}
+	
+	public void showSearchView(){
+		//if (!bool_searchOp){	
+			//pan_tab.setSize(pan_tab.getWidth()/2 -10 , pan_tab.getHeight());
+			JPanel p = new JPanel();
+			p.setPreferredSize(new Dimension(310, 420));
+			p.setBackground(Color.BLUE);
+			tab_media.add(p);
+			pan_tab.repaint();
+		//	bool_searchOp = !bool_searchOp;
+		//}else{
+		//	closeSearchView();
+	//	}
+
+	}
+	
+	public void closeSearchView(){
+		//pan_tab.setSize((pan_tab.getWidth()+10)*2, pan_tab.getHeight());
+		bool_searchOp = !bool_searchOp;
 	}
 	
 	/**
