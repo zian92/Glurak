@@ -79,6 +79,9 @@ public class SearchTab<T> extends JPanel implements MouseListener {
 		add(new JScrollPane(searchlist), BorderLayout.CENTER);
 	}
 
+    /**
+     * Lässt den Tab mit den Ihnalt des TextEdit suchen
+     */
     public void search(){
         searchlist_model.clear();
         if (searchKey==null) return;
@@ -88,6 +91,10 @@ public class SearchTab<T> extends JPanel implements MouseListener {
         }
     }
 
+    /**
+     * Gibt das selektierte Element zurück
+     * @return das selektierte Element
+     */
     public T getSelectedItem(){
         T res = ((T) searchlist.getSelectedValue());
         return res;
@@ -113,21 +120,12 @@ public class SearchTab<T> extends JPanel implements MouseListener {
 		return name;
 	}
 
+    /**
+     * Löscht alles Ergebnisse aus der Liste
+     */
     public void clearResult(){
         searchlist_model.clear();
     }
-	/* public static void main(String [] args) {
-		
-		SearchTab t = new SearchTab(null);
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setPreferredSize(new Dimension(600, 400));
-		frame.setContentPane(t);
-		frame.pack();
-		frame.setVisible(true);
-		
-		
-	} */
 
 	public void mouseClicked(MouseEvent me) {
 		// Bei Klick ins Textfeld wird dessen Inhalt gelöscht

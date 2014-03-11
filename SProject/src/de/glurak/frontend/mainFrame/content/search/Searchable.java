@@ -31,5 +31,9 @@ public interface Searchable<T> {
      */
     public ContentController getChangeController(T field);
 
+    /**
+     * Sonstige Aktion die bei einen Doppelklick auf einen Listelement durchgeführt wird
+     * @param value
+     */
     public void otherDoubleClickAction (T value);
 }
