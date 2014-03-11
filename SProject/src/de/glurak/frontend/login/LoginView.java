@@ -144,6 +144,8 @@ public class LoginView extends JFrame{
 			
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
+		Image icon = new ImageIcon(Query.FOLDER_PICTURE_ICONS+"hate.png").getImage();
+		this.setIconImage(icon);
 		setVisible(true);
 
 	}
