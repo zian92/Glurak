@@ -13,6 +13,11 @@ import de.glurak.feature.Uploader;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 
+/**
+ * Der Kontroller der Uploadview
+ * @author Simon
+ *
+ */
 public class UploadVController implements ActionListener, ContentController {
 
     private UploadView upview;
@@ -31,6 +36,9 @@ public class UploadVController implements ActionListener, ContentController {
         session = SessionThing.getInstance();
     }
 
+    /* (non-Javadoc)
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == upview.b_choosefile) {
             uploader = Uploader.getInstance();
@@ -89,10 +97,16 @@ public class UploadVController implements ActionListener, ContentController {
                 }
     }
 
+    /* (non-Javadoc)
+     * @see de.glurak.frontend.mainFrame.ContentController#getView()
+     */
     public JPanel getView() {
         return upview;
     }
 
+	/* (non-Javadoc)
+	 * @see de.glurak.frontend.mainFrame.ContentController#reload()
+	 */
 	public void reload() {
 		// TODO Auto-generated method stub
 		
