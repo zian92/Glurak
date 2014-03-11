@@ -74,6 +74,13 @@ public class NavigationView extends JPanel{
 //		this.repaint();
 //		this.revalidate();
 	}
+
+    /**
+     * Fügt einen Button in die Leiste hinzu.
+     * Er bekommt den Namen name und den ActionListener
+     * aus den Konstruktor.
+     * @param name der Name des Buttons.
+     */
     public void addButton(String name){
         JButton b = new JButton(name);
         b.setActionCommand(name);
