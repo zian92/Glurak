@@ -23,6 +23,9 @@ import de.glurak.Query;
 import de.glurak.data.User.User;
 import de.glurak.feature.IconLoader;
 
+/**
+ * Representiert die FollowerView
+ */
 public class FollowerView extends JPanel {
 	private int favoCount = 0, iconSize = 200;
 	private JPanel pan_content, pan_header;
@@ -30,6 +33,13 @@ public class FollowerView extends JPanel {
 	private MouseListener mRef;
 	private ActionListener aRef;
 	
+	/**
+	 * Konstruktor 
+	 * initialisiert view
+	 * 
+	 * @param a ActionListener
+	 * @param m MouseListener
+	 */
 	public FollowerView(ActionListener a, MouseListener m){
 		super();
 		this.mRef = m;
@@ -100,21 +110,34 @@ public class FollowerView extends JPanel {
 		favoCount++;
 	}
 	
+	/**
+	 * Entfernt alle elemente aus der View
+	 */
 	public void cleanView(){
 		pan_content.removeAll();
 	}
 	
+	/**
+	 * Aktualisiert die View
+	 */
 	public void refresh(){
 		pan_content.revalidate();
 		pan_content.repaint();
 	}
 	
+	/**
+	 * Entfernt follower aus der view
+	 */
 	public void removeFollower(){
 		pan_content.remove(favoCount);
 		favoCount--;
 		pan_content.repaint();
 	}
 	
+    /**
+     * Füllt die view mit den Followern
+     * @param list
+     */
     public void fillView(List<User> list){
     	int pl_count = list.size();
     	
