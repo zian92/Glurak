@@ -22,13 +22,13 @@ import static org.junit.Assert.*;
  */
 public class PlaylistTest {
     private HibernateDB db;
-
+    private EntityTransaction t;
     private User u1, u2;
 
     @Before
     public void before(){
         db=new HibernateDB();
-        EntityTransaction t =db.getEnityManager().getTransaction();
+        t =db.getEnityManager().getTransaction();
         t.begin();
         u1 = new User();
         u1.setUsername("falO");
@@ -124,5 +124,15 @@ public class PlaylistTest {
         Medium a = s.get(0);
         assertTrue(a.getTitel().equals("Just Hatify"));
         assertTrue(a.getOwner().equals(u2));
+    }
+
+    @Test
+    public void testRemovePlaylist(){
+        List<Playlist> list =db.getPlaylistFromListener(u2);
+        assertTrue(list.size()==1);
+        Playlist l = list.get(0);
+        db.removePlaylist(l,t);
+        list =db.getPlaylistFromListener(u2);
+        assertTrue(list.size()==0);
     }
 }
