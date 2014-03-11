@@ -61,6 +61,7 @@ public class PlaylistView extends JPanel {
     	this.setLayout(new BorderLayout());
     	this.actionRef = a;
     	this.mouseRef = m;
+    	this.setPreferredSize(new Dimension(825, 545));
     	lab_name = new JLabel();
     	lab_name.setBounds(10, 10, 80, 50);
     	lab_name.setForeground(Color.white);
