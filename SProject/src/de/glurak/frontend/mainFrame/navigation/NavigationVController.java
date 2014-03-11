@@ -74,6 +74,7 @@ public class NavigationVController extends Observable {
         addController(new FollowerVController(),"Follower", null);
         addController(new MessageVController(),"Nachrichten",Rights.DO_MESSAGE);
         addController(new UploadVController(),"Upload",Rights.MANAGE_OWN_MEDIEN);
+        addController(new UploadVController(),"Upload",Rights.MANAGE_OTHER_MEDIEN);
         addController(new AdminLockViewController(),"Medium sperren",Rights.LOCK_OTHER_MEDIEN);
 	}
 
