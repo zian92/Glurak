@@ -8,19 +8,18 @@ import java.awt.GridLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-
 import de.glurak.Query;
 import de.glurak.data.Playqueue;
 import de.glurak.feature.IconLoader;
 
 /**
  * Gui-Panel für die gerade zu spielende Playlist
- * 
+ * Anzeigen der Medien
+ * Markieren des aktuellen Mediums
  * @author MMÜhlenjost
  *
  */
+@SuppressWarnings("serial")
 public class QueuePanel extends JPanel{
 	
 	private	JPanel[] 		mediumPanelArray;
@@ -30,10 +29,12 @@ public class QueuePanel extends JPanel{
 	private ImageIcon			standardIcon;
 	
 	/**
-	 * @param playlist die abzuspielende Playqueue
+	 * Konstrukter des QueuePanel
+	 * @param playqueue die abzuspielende Playqueue
 	 */
 	public QueuePanel (Playqueue playqueue){
 		super();
+		//Laden der Icons
 		currentIcon = new IconLoader(60,60,Query.FOLDER_PICTURE_ICONS+"playQueueIconCurrent.jpg").getIcon();
 		standardIcon= new IconLoader(60,60,Query.FOLDER_PICTURE_ICONS+"playQueueIcon.jpg").getIcon();
 		this.setPreferredSize(new Dimension(this.getMaximumSize().width,this.getMaximumSize().height));
@@ -42,23 +43,8 @@ public class QueuePanel extends JPanel{
 		
 	}
 	
-	public JPanel[] getMediumPanelArray() {
-		return mediumPanelArray;
-	}
-
-	public void setMediumPanelArray(JPanel[] mediumArray) {
-		this.mediumPanelArray = mediumArray;
-	}
-
-	public Playqueue getPlayqueue() {
-		return playqueue;
-	}
-
-	public void setPlayqueue(Playqueue playqueue) {
-		this.playqueue = playqueue;
-	}
 	/**
-	 * initialisiert View f�r die angegebene Playqueue
+	 * initialisiert View für die angegebene Playqueue
 	 */
 	public void initComponents(Playqueue playqueue){
 		this.removeAll();
@@ -129,6 +115,20 @@ public class QueuePanel extends JPanel{
 	public void setStandardIcon(ImageIcon standardIcon) {
 		this.standardIcon = standardIcon;
 	}
-
 	
+	public JPanel[] getMediumPanelArray() {
+		return mediumPanelArray;
+	}
+
+	public void setMediumPanelArray(JPanel[] mediumArray) {
+		this.mediumPanelArray = mediumArray;
+	}
+
+	public Playqueue getPlayqueue() {
+		return playqueue;
+	}
+
+	public void setPlayqueue(Playqueue playqueue) {
+		this.playqueue = playqueue;
+	}
 }

@@ -2,11 +2,13 @@ package de.glurak.frontend.mainFrame.content.search.Searches;
 
 import de.glurak.data.Genre;
 import de.glurak.data.Playlist;
+import de.glurak.data.Playqueue;
 import de.glurak.data.User.User;
 import de.glurak.database.DBSearch;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.content.search.Searchable;
+import de.glurak.frontend.mainFrame.playQueue.PlayQueueViewController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,6 +50,6 @@ public class PlaylistSearch implements Searchable<Playlist> {
     }
 
     public void otherDoubleClickAction(Playlist value) {
-
+        PlayQueueViewController.getInstance().refresh(new Playqueue(value));
     }
 }

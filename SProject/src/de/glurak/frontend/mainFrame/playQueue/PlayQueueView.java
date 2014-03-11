@@ -2,16 +2,11 @@ package de.glurak.frontend.mainFrame.playQueue;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.ScrollPane;
-
 import javax.swing.JButton;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.ScrollPaneLayout;
-
-import de.glurak.data.Medium;
 import de.glurak.data.Playqueue;
 
 /**
@@ -31,14 +26,16 @@ public class PlayQueueView extends JPanel{
 	private JScrollPane scrollbar;
 	private boolean 	positionChange;
 	
+	/**
+	 * Konstrukter 
+	 */
 	public PlayQueueView (){
 		this(null);
-		
-		
+			
 	}
 	/**
 	 * @param Playqueue die abzuspielende Playqueue
-	 * @param current  das gerade abgespielte Medium
+	 * initialisiert Komponenten
 	 */
 	public PlayQueueView (Playqueue playqueue){
 		super();
@@ -82,44 +79,33 @@ public class PlayQueueView extends JPanel{
 	 */
 	public void initQueueView(Playqueue playqueue){
 		if(getQueuePanel()==null){
-		setQueuePanel(new QueuePanel(playqueue));
-		this.add(getQueuePanel(),BorderLayout.CENTER);}
+			setQueuePanel(new QueuePanel(playqueue));
+			this.add(getQueuePanel(),BorderLayout.CENTER);}
 		else {
 			getQueuePanel().initComponents(playqueue);
 		}
-		scrollbar = new JScrollPane(getQueuePanel().getFirstPanel(),JScrollPane.VERTICAL_SCROLLBAR_NEVER,   
+			scrollbar = new JScrollPane(getQueuePanel().getFirstPanel(),JScrollPane.VERTICAL_SCROLLBAR_NEVER,   
 	        	JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollbar.setLayout(new ScrollPaneLayout());
-		getQueuePanel().add(scrollbar);
-		this.validate();
+			scrollbar.setLayout(new ScrollPaneLayout());
+			getQueuePanel().add(scrollbar);
+			this.validate();
 	}
 		
-	public JButton getPlayButton() {
-		return playButton;
-	}
-
-	public void setPlayButton(JButton playButton) {
-		this.playButton = playButton;
-	}
-
-	public JButton getNextButton() {
-		return nextButton;
-	}
-
-	public void setNextButton(JButton nextButton) {
-		this.nextButton = nextButton;
-	}
-
+	
+	/**Setzt Value des JSlider
+	 * Postionchange vorm Verarabeiten auf true, damit der Controller nicht auf diese Änderungen reagiert
+	 * @param newValue
+	 */
 	public void changePositionBar(int newValue){
 		positionChange = true;
 		this.positionBar.setValue(newValue);
 		positionChange = false;
 	}
 
-	public JSlider getPositionBar() {
-		return positionBar;
-	}
-
+	/**Setzt Maximum und Value des JSlider
+	 * Postionchange vorm Verarabeiten auf true, damit der Controller nicht auf diese Änderungen reagiert
+	 * @param positionBar 
+	 */
 	public void setPositionBar(JSlider positionBar) {
 		positionChange = true;
 		this.positionBar.setMaximum(positionBar.getMaximum());
@@ -174,6 +160,25 @@ public class PlayQueueView extends JPanel{
 	public void setSaveButton(JButton saveButton) {
 		this.saveButton = saveButton;
 	}
-	
+	public JButton getPlayButton() {
+		return playButton;
+	}
+
+	public void setPlayButton(JButton playButton) {
+		this.playButton = playButton;
+	}
+
+	public JButton getNextButton() {
+		return nextButton;
+	}
+
+	public void setNextButton(JButton nextButton) {
+		this.nextButton = nextButton;
+	}
+
+	public JSlider getPositionBar() {
+		return positionBar;
+	}
+
 	
 }
