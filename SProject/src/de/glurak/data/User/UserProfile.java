@@ -99,6 +99,13 @@ public abstract class UserProfile extends Profile implements Serializable {
         return myUser;
     }
 
+    @Override
+    public void setBelongsTo(Reachable r) {
+        if (r!=null && !(r instanceof User)) return;
+        User u = (User) r;
+        setUser(u);
+    }
+
     public void setUser(User u) {
         if (u == myUser) return;
         if (myUser != null) {

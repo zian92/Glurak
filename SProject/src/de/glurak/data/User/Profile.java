@@ -42,6 +42,12 @@ public abstract class Profile implements Serializable {
     abstract public Reachable belongTo();
 
     /**
+     * Setzt den zurück, zu dem man gehört.
+     * @param r der neue Reachable, null fall kein
+     */
+    abstract public void setBelongsTo(Reachable r);
+
+    /**
      * Gibt den Rollennamen des Profils zurück
      * Z.B. beim Artist "Artist" und bei Listener "Listener2
      * @return den Rollennamen

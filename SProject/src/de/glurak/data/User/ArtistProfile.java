@@ -18,6 +18,18 @@ public class ArtistProfile extends ListenerProfile implements Serializable, Comp
         myLabel_profile =null;
     }
 
+    public ArtistProfile(ListenerProfile otherprof){
+        this.setLastname(otherprof.getLastname());
+        this.setBirthdate(otherprof.getBirthdate());
+        this.setFirstname(otherprof.getFirstname());
+        this.setAddress(otherprof.getAddress());
+        this.setEmail(otherprof.getEmail());
+        this.setCountry(otherprof.getCountry());
+        this.setFemale(otherprof.isFemale());
+        this.setHomecountry(otherprof.getHomecountry());
+        this.setPictureFileName(otherprof.getPictureFileName());
+    }
+
     public LabelProfile getMyLabel() {
         return myLabel_profile;
     }

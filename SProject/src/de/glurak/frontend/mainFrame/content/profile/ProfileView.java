@@ -137,7 +137,8 @@ public class ProfileView extends JPanel{
 		
 		l_userPic = new JLabel(new IconLoader(200, 200, user.getProfile().getPictureFileNameOrDefaultPictureName()).getIcon());
 		pan_picture.add(l_userPic);
-	
+
+        b_promote = new JButton("Befördern");
 	    // Initialisieren der Buttons b_message, b_follow, b_edit
 		
 		if (user== session.getSessionUser()){  // Falls das eigene Profil angezeigt werden soll, nur b_edit anzeigen
@@ -181,13 +182,12 @@ public class ProfileView extends JPanel{
 				    this.setFollowButtonToUnfollow();
 				}
 		    }
-		    
+
 		    if (session.getSessionUser().getProfile().roleName().equals("Admin") && this.user.getProfile().roleName().equals("Listener")) {
 				d.gridx = 0;
 				d.gridy = 2;
 				d.gridwidth = 1;
 				d.gridheight = 1;
-				b_promote = new JButton("Befördern");
 				pan_profilepic.add(b_promote, d);
 				
 		    }
