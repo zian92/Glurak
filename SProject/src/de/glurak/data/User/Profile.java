@@ -25,6 +25,9 @@ public abstract class Profile implements Serializable {
     @OneToMany(mappedBy = "belongsTo")
     protected List<Announcement> announcements;
 
+    /**
+     * Konstruktor
+     */
     public Profile(){
         announcements =new ArrayList<Announcement>();
     }

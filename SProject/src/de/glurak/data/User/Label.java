@@ -26,6 +26,10 @@ public class Label extends Reachable implements Serializable {
         manager= new ArrayList<LabelManagerProfile>();
     }
 
+    /**
+     * Gibt das Labelprofil zurück
+     * @return das Labelprofile
+     */
     public LabelProfile getProfile() {
         return profile_label;
     }
