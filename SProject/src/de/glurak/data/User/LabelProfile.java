@@ -16,13 +16,14 @@ import java.util.List;
 @Entity
 public class LabelProfile extends Profile implements Serializable{
 
-    @OneToMany(mappedBy = "myLabel")
+    @OneToMany(mappedBy = "myLabel_profile")
     private List<ArtistProfile> myartists;
     //Noch mehr Attribute ?
 
     @OneToOne(mappedBy = "profile_label")
     private Label myLabel;
     private String labelImageFilename;
+    private String name;
 
     public String getName() {
         return name;
@@ -60,8 +61,6 @@ public class LabelProfile extends Profile implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
-
-    private String name;
 
     @Override
     public Reachable belongTo() {

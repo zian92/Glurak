@@ -266,7 +266,7 @@ public class HibernateDB {
      */
     public List<Playlist> getPlaylistFromListener(User u){
         TypedQuery<Playlist> q1 = em.createQuery(
-                "SELECT k FROM Playlist k WHERE k.owner.id = :n", Playlist.class);
+                "SELECT k FROM Playlist k WHERE k.owner_of_playlist.id = :n", Playlist.class);
         q1.setParameter("n", u.getId());
         return q1.getResultList();
     }

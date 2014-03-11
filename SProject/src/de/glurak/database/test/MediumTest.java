@@ -11,11 +11,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.persistence.EntityTransaction;
-
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 /**
  * @author Entscheider
  * @author dadomadi
@@ -32,10 +30,13 @@ public class MediumTest {
         registrateGenre(tr);
         dUser = new User();
         dUser.setUsername("Peter");
+        db.registrateUser(dUser,tr);
         ArtistProfile p = new ArtistProfile();
+        p.setFirstname("Peter");
+        p.setLastname("Lustig");
         db.registrateProfile(p,tr);
         dUser.setProfile(p);
-        db.registrateUser(dUser,tr);
+
         Medium m = new Medium();
         m.setTitel("Rocktitle");
         m.setLocked(false);

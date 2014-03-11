@@ -11,15 +11,15 @@ import java.io.Serializable;
 public class ArtistProfile extends ListenerProfile implements Serializable, Comparable<ArtistProfile> {
 
     @ManyToOne
-    private LabelProfile myLabel;
+    private LabelProfile myLabel_profile;
 
     public ArtistProfile(){
         super();
-        myLabel=null;
+        myLabel_profile =null;
     }
 
     public LabelProfile getMyLabel() {
-        return myLabel;
+        return myLabel_profile;
     }
 
     /**
@@ -27,9 +27,9 @@ public class ArtistProfile extends ListenerProfile implements Serializable, Comp
      * @param myLabel das Label, oder null falls kein Label
      */
     public void setMyLabel(LabelProfile myLabel) {
-        if (myLabel==this.myLabel) return;
-        LabelProfile oldLabel = this.myLabel;
-        this.myLabel = myLabel;
+        if (myLabel==this.myLabel_profile) return;
+        LabelProfile oldLabel = this.myLabel_profile;
+        this.myLabel_profile = myLabel;
         if (oldLabel!=null){
             oldLabel.removeArtist(this);
         }
