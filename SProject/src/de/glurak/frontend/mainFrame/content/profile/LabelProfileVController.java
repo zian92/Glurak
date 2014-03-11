@@ -52,12 +52,10 @@ public class LabelProfileVController extends Observable implements ContentContro
     public void actionPerformed(ActionEvent e){
         Object obj = e.getSource();
 
-        if (obj == view.b_follow){
-
-//        } else if (obj == view.b_moreplaylists){
-            //		setContentController(new PlaylistVController());
-//        } else if (obj == view.b_edit){
-            // 		setContentController(new ProfileEditVController());
+        if (obj == view.b_edit){
+        	nextContent = new LabelProfileVController(this.label);
+			setChanged();
+			notifyObservers();
 //        } else if (obj == view.b_apply){
             //  	setContentController(new ApplicationVController());
         } else {
@@ -77,8 +75,6 @@ public class LabelProfileVController extends Observable implements ContentContro
 				}
 			}
         }
-        
-
     }
     
     
