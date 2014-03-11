@@ -6,6 +6,7 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     
     <!-- Die Klassen "Entities" die in der Datenbank gehalten werden sollen -->
+    <class>de.glurak.data.EntryObject</class>
     <class>de.glurak.data.Playlist</class>
 	<class>de.glurak.data.Genre</class>
 	<class>de.glurak.data.Medium</class>
@@ -20,7 +21,6 @@
     <class>de.glurak.data.User.Label</class>
     <class>de.glurak.data.Announcement</class>
     <class>de.glurak.data.Album</class>
-    <class>de.glurak.data.EntryObject</class>
     <class>de.glurak.data.NewsEntry</class>
     <class>de.glurak.data.User.Reachable</class>
     <class>de.glurak.data.User.UserProfile</class>

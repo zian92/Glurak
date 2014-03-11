@@ -125,9 +125,9 @@ public class Glurak {
         Label l = new Label();
         db.registrateReachable(l, null);
         LabelProfile lp = new LabelProfile();
+        lp.setName("Label from Hell");
         db.registrateProfile(lp, null);
         lp.setLabel(l);
         lp.addArtist(profileB);
-        lp.setName("Label from Hell");
     }
 }
