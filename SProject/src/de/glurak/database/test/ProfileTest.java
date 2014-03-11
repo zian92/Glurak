@@ -1,15 +1,15 @@
 package de.glurak.database.test;
 
-import static org.junit.Assert.assertTrue;
-
-import javax.persistence.EntityTransaction;
-
 import de.glurak.data.User.*;
+import de.glurak.database.HibernateDB;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.glurak.database.HibernateDB;
+import javax.persistence.EntityTransaction;
+
+import static org.junit.Assert.assertTrue;
 /**
  * @author Entscheider
  * @author dadomadi
@@ -39,8 +39,8 @@ public class ProfileTest {
         pr.setLastname("Mann");
         db.registrateProfile(lb,tr);
         l.setProfile(lb);
-        db.registrateProfile(pr, tr);
 
+        db.registrateProfile(pr, tr);
         user1.setProfile(pr);
 
         artist = new User();

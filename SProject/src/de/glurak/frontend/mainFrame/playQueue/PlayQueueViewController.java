@@ -44,7 +44,7 @@ public class PlayQueueViewController extends Observable{
     private ActionListener		a;
     private MouseListener		m;
     private boolean				propertiesBoolean;
-	private ContentController contentController;
+	private ContentController 	contentController;
 	private MainFrameVController mainController;
     private static PlayQueueViewController instance= null;
 	
@@ -73,12 +73,13 @@ public class PlayQueueViewController extends Observable{
 				Object src = e.getSource();
 				
 				if (src == view.getPlayButton()) {
+				
 					if (player.isPaused()){
 						player.resume();
 						view.playButton.setText("Pause");}
 					else if (player.isPlaying()) {
 								player.pause();
-								view.playButton.setText("Play    ");}
+								view.playButton.setText("Play");}
 					else {
 						playNew(0);
 					}
@@ -101,6 +102,7 @@ public class PlayQueueViewController extends Observable{
 				else if (src == view.getClearButton()) {
 					setPlayqueue(null);
 					view.getPositionBar().setValue(0);
+					player.pause();
 					player.stop();
 					refresh();
 		
@@ -326,7 +328,7 @@ public class PlayQueueViewController extends Observable{
 	public void setView(PlayQueueView view) {
 		this.view = view;
 	}
-
+	
 
 	/**
 	 * Startet Wiedergabe und führt nötige Erneuerungen durch
@@ -335,54 +337,75 @@ public class PlayQueueViewController extends Observable{
 	public void playNew(int time){
 		stop();
 		if(getPlayqueue()!=null){
-			view.playButton.setText("Pause");
-		player.play(getPlayqueue().getCurrent().getFileName(),time);
-		
-		File file = new File(getPlayqueue().getCurrent().getFileName());
-		MP3Properties properties = null;
-		propertiesBoolean=true;
-		try {
-			properties 	= new MP3Properties(file);
-			duration	= properties.getLength();
-			BigDecimal bigOne = new BigDecimal(128);
-			BigDecimal bigBitrate = new BigDecimal(properties.getBitrate());
-			bitrate		=(bigOne.divide(bigBitrate)).floatValue();
-			System.out.println(bitrate);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		} catch (NoMP3FrameException e1) {
-			e1.printStackTrace();
-		}
-		 catch(ArithmeticException e2){
-			propertiesBoolean=false;
-			System.out.println("Eigenschaften nicht lesbar");
-		 }
-		if(bitrate==0){propertiesBoolean=false;}
-		if(propertiesBoolean) {
-			float maximum;
-			if (bitrate >= 1) {
-				maximum=(duration*1000/26)/(bitrate);
-			} else {
-				maximum=(duration*1000/26);
-				
+			
+			if(getPlayqueue().getCurrent().isLocked()) {// gesperrte Medium aus der Playlist löschen
+				if(getPlayqueue().size()==1){			// Liste wird leer
+					setPlayqueue(null);
+					view.getPositionBar().setValue(0);
+					player.pause();
+					player.stop();
+				}
+				else{	//aktuelles Medium wird aus der Playqueue gelöscht
+					if (player.isPaused()||player.isPlaying()){
+						player.stop();}	
+					getPlayqueue().removeMedium(getPlayqueue().getCurrent());
+					playNew(0);
+				}
+				refresh();
 			}
-			
-			view.setPositionBar(new JSlider(0,(int)(maximum),time));
-			view.getPositionBar().validate();
-		}
-		else{
-			view.setPositionBar(new JSlider(0,0,0));
-			view.getPositionBar().validate();
-		}
-		addPlayerListener();
-			
+				
 		
+			else{	// Medium wird abgespielt
+				view.playButton.setText("Pause");
+				player.play(getPlayqueue().getCurrent().getFileName(),time);
+				// Auslesen der Headerdaten
+				File file = new File(getPlayqueue().getCurrent().getFileName());
+				MP3Properties properties = null;
+				propertiesBoolean=true;
+				try {
+					properties 	= new MP3Properties(file);
+					duration	= properties.getLength();
+					BigDecimal bigOne = new BigDecimal(128);
+					BigDecimal bigBitrate = new BigDecimal(properties.getBitrate());
+					bitrate		=(bigOne.divide(bigBitrate)).floatValue();
+			
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (NoMP3FrameException e1) {
+					e1.printStackTrace();
+				}
+				 catch(ArithmeticException e2){
+					propertiesBoolean=false;
+					System.out.println("Eigenschaften nicht lesbar");
+				 }
+				if(bitrate==0){propertiesBoolean=false;}
+				if(propertiesBoolean) {
+					
+					float maximum;
+					if (bitrate >= 1) {
+						maximum=(duration*1000/26)/(bitrate);
+					} else {
+						maximum=(duration*1000/26);
+						
+					}
+					//Anpassen des Sliders an das aktuelle Medium
+					view.setPositionBar(new JSlider(0,(int)(maximum),time));
+				}
+				else{
+					view.setPositionBar(new JSlider(0,0,0));
+					
+				}
+				view.getPositionBar().validate();
+				addPlayerListener();
+					
+		
+			}
 		}
 	}
 	public void stop(){
 		if(player==null){
 			
-		}else{ System.out.println("swag50");
+		}else{
 				if(player.isPaused()||player.isPlaying()){
 					player.stop();}
 		}

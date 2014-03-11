@@ -1,12 +1,9 @@
 package de.glurak.frontend.mainFrame;
 
-import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
 
 import de.glurak.Query;
-import de.glurak.data.Medium;
-import de.glurak.data.Playlist;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.login.LoginVController;
 import de.glurak.frontend.mainFrame.content.news.PromotionVController;
@@ -71,6 +68,7 @@ public class MainFrameVController implements Observer{
             SearchVController tmp = new SearchVController();
             contentController = tmp;
             tmp.getView().setAllText(headerController.getSearchKey());
+            tmp.searchAll();
             
             // Logout-Button geklickt?
             if (headerController.getLogout()) {
@@ -94,6 +92,7 @@ public class MainFrameVController implements Observer{
             }
             else if (contentController instanceof NextContent) {
             	if (contentController instanceof ProfileEditVController) {
+            		// Profilbild auch in der Navigation ändern
             		if (((ProfileEditVController) contentController).isPicChanged()) {
             			view.getNavigation().removeAll();
             			view.getNavigation().repaint();
@@ -120,6 +119,11 @@ public class MainFrameVController implements Observer{
         if (contentController instanceof Observable) {
             ((Observable) contentController).addObserver(this);
         }
+<<<<<<< HEAD
+=======
+       // System.out.println(contentController.getView().getName());
+>>>>>>> 7880a8bbaa80b6defd9c31a21e32fc894dc315ab
+        
         view.getContent().add(contentController.getView());
         view.getContent().repaint();
         view.getContent().revalidate();

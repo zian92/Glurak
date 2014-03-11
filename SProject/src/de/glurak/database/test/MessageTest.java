@@ -77,7 +77,7 @@ public class MessageTest {
     }
 
     @Test
-    public void olafMessages(){
+    public void receiverMessages(){
         List<Message> m=db.messageByReceiver(rec);
         assertTrue(m.size()== 2);
         Message a=m.get(0);
@@ -92,7 +92,7 @@ public class MessageTest {
     }
 
     @Test
-    public void olmMessages(){
+    public void senderMessages(){
         List<Message> m=db.messageByReceiver(sender);
         List<Message> m2=db.getUnreadMessageFromReceiver(sender);
         assertTrue(m.equals(m2));

@@ -12,9 +12,11 @@ import de.glurak.data.Medium;
 import de.glurak.data.User.AdminProfile;
 import de.glurak.data.User.ArtistProfile;
 import de.glurak.data.User.Label;
+import de.glurak.data.User.LabelManagerProfile;
 import de.glurak.data.User.LabelProfile;
 import de.glurak.data.User.ListenerProfile;
 import de.glurak.data.User.User;
+import de.glurak.data.User.UserProfile;
 import de.glurak.database.HibernateDB;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.login.LoginVController;
@@ -33,7 +35,7 @@ public class Glurak {
     }
 
     public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException, NoSuchAlgorithmException {
-    	UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 splash = new SplashScreen();
@@ -71,10 +73,10 @@ public class Glurak {
         userA.setPassword("olaf");
         db.registrateUser(userA, null);
         AdminProfile profileA = new AdminProfile();
-        db.registrateProfile(profileA, null);
         profileA.setFemale(false);
         profileA.setFirstname("Olaf");
         profileA.setLastname("Koehler");
+        db.registrateProfile(profileA, null);
         userA.setProfile(profileA);
 
         // UserB
@@ -83,11 +85,23 @@ public class Glurak {
         userB.setUsername("Creator");
         db.registrateUser(userB, null);
         ArtistProfile profileB = new ArtistProfile();
-        db.registrateProfile(profileB, null);
         profileB.setFemale(true);
         profileB.setFirstname("Emma");
         profileB.setLastname("Statibo");
+        db.registrateProfile(profileB, null);
         profileB.setUser(userB);
+
+        // labelmanager
+        User lblManager = new User();
+        lblManager.setPassword("manager");
+        lblManager.setUsername("Manager");
+        db.registrateUser(lblManager, null);
+        LabelManagerProfile lblProfile = new LabelManagerProfile();
+        lblProfile.setFemale(true);
+        lblProfile.setFirstname("Peter");
+        lblProfile.setLastname("Lustig");
+        db.registrateProfile(lblProfile, null);
+        lblProfile.setUser(lblManager);
 
         // musik
         Album a = new Album();
@@ -125,9 +139,11 @@ public class Glurak {
         Label l = new Label();
         db.registrateReachable(l, null);
         LabelProfile lp = new LabelProfile();
+        lp.setName("Label from Hell");
         db.registrateProfile(lp, null);
         lp.setLabel(l);
         lp.addArtist(profileB);
-        lp.setName("Label from Hell");
+        // lbl Manager
+        lblProfile.setMyLabel(l);
     }
 }
