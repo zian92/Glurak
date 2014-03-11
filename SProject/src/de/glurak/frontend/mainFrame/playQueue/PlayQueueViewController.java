@@ -250,8 +250,11 @@ public class PlayQueueViewController extends Observable{
 	 * @param PlayQueue
 	 */
 	public void refresh(Playqueue playqueue){
-			setPlayqueue(playqueue);
-			refresh();
+		if(player.isPlaying()||player.isPaused()){
+			player.stop();
+		}
+		setPlayqueue(playqueue);
+		refresh();
 	}
 	
 	/**Fügt einzelnes Medium der aktuellenPlayqueue hinzu
@@ -269,6 +272,7 @@ public class PlayQueueViewController extends Observable{
 			if(!getPlayqueue().getPlaylist().getMediumList().contains(medium)){
 			getPlayqueue().add(medium);	}
 		}
+		
 		refresh();
 	}
 	
@@ -284,7 +288,8 @@ public class PlayQueueViewController extends Observable{
 			for(int i = 0;i<getPlayqueue().getPlaylist().getMediumList().size();i++){
 				view.getQueuePanel().getMediumPanelArray()[i].addMouseListener(m);
 			}
-		}	
+		}
+		playNew(0);
 	}
 
 

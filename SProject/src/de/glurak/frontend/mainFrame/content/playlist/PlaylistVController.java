@@ -90,6 +90,39 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 			p.setName("Pokemon");
 			p.addMedium(m1);
 			p.addMedium(m2);
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+			p.addMedium(new Medium( "PokeTheme", "", u1));
+			p.addMedium(new Medium( "PokeTheme", "", u1));
+			p.addMedium(new Medium( "PokeTheme", "", u1));
+			p.addMedium(new Medium( "PokeTheme", "", u1));
+			p.addMedium(new Medium( "PokeTheme", "", u1));
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+			p.addMedium(new Medium( "PokeTheme", "", u1));
+			p.addMedium(new Medium( "PokeTheme", "", u1));
+			p.addMedium(new Medium( "PokeTheme", "", u1));
+			p.addMedium(new Medium( "PokeTheme", "", u1));
+			p.addMedium(new Medium( "PokeTheme", "", u1));
+			p.addMedium(new Medium( "PokeTheme", "", u1));
+			p.addMedium(new Medium( "PokeTheme", "", u1));
+			p.addMedium(new Medium( "PokeTheme", "", u1));
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+			p.addMedium(new Medium( "Pokemon Endingtheme","", u1));
+		
 			break;
 		case 2:
 			User u2 = new User();
@@ -156,20 +189,16 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 	
 	public void mouseClicked(MouseEvent e) {
 		PlaylistView.PlaylistLabel  l = (PlaylistView.PlaylistLabel) e.getSource();
-		if (e.getClickCount() > 1){
+
 			nextContent = new PlaylistEditVController(l.getPlaylist(), this);
 			setChanged();
 			notifyObservers();
+			
 			/*
 			l.setBorder(BorderFactory.createRaisedBevelBorder());
 			view.getTextLabel().setText(l.getText() );
 			*/
-		}else {
-			
 			//view.getTextLabel().setText("" + l.getPlaylistID());
-		}
-		
-		
 	}
 
 	public void mouseEntered(MouseEvent arg0) {
