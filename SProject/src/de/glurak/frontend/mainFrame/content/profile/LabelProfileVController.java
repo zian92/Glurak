@@ -74,7 +74,7 @@ public class LabelProfileVController extends Observable implements ContentContro
 			notifyObservers();
         } else if (obj == view.b_application){
             setChanged();
-            notifyObservers(new ApplicationVController(this.label));
+            notifyObservers(new ApplicationVController(this.label,this));
             
         } else if (obj == view.b_upload){
 			Uploader u = Uploader.getInstance();

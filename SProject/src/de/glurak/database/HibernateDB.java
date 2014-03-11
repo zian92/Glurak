@@ -313,9 +313,15 @@ public class HibernateDB {
         return q1.getResultList();
     }
 
+    /**
+     * Löscht eine Playlist aus den DB
+     * @param l die Playlist
+     * @param tr die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht.
+     */
     public void removePlaylist(Playlist l, EntityTransaction tr){
         if (tr==null)
             em.getTransaction().begin();
+        l.setOwner(null);
         em.remove(l);
         if (tr == null)
             em.getTransaction().commit();

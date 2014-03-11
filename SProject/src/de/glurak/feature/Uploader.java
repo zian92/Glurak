@@ -132,6 +132,24 @@ public class Uploader {
     }
 
     /**
+     * Speichert LabelProfileName
+     * 
+     * @param picture
+     * @param labelName
+     * @return
+     * @throws IOException
+     */
+    public File saveLabelProfilePicture(File picture, String labelName) throws IOException {
+        String path = Query.FOLDER_PICTURE_PROFILE + labelName + "/";
+        this.createFolders(new String[] { path, });
+        File newPath = new File(path + "profile" + (picture.getName().substring(picture.getName().lastIndexOf("."))));
+        Files.copy(Paths.get(picture.getPath()), Paths.get(newPath.getPath()), StandardCopyOption.REPLACE_EXISTING);
+        session.getSessionUser().getProfile().setPictureFileName(newPath.getPath());
+        session.getDatabase().save();
+        return newPath;
+    }
+
+    /**
      * Speichert das uebergebene Bild im Sliderordner
      * 
      * @param pic
@@ -244,6 +262,10 @@ public class Uploader {
      */
     private File getFileFromMedium(Medium med) {
         return new File(med.getFileName());
+    }
+
+    public HibernateDB getDb() {
+        return db;
     }
 
 }

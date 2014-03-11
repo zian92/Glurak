@@ -37,7 +37,7 @@ public class LabelProfile extends Profile implements Serializable{
     }
 
     @Override
-    String viewName() {
+    public String viewName() {
         return getName();
     }
 

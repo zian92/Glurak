@@ -26,7 +26,7 @@ public abstract class UserProfile extends Profile implements Serializable {
     }
 
     @Override
-    String viewName() {
+    public String viewName() {
         return firstname+ " "+lastname;
     }
 
