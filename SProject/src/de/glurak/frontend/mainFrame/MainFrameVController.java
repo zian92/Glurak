@@ -1,12 +1,9 @@
 package de.glurak.frontend.mainFrame;
 
-import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
 
 import de.glurak.Query;
-import de.glurak.data.Medium;
-import de.glurak.data.Playlist;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.login.LoginVController;
 import de.glurak.frontend.mainFrame.content.news.PromotionVController;
@@ -122,7 +119,6 @@ public class MainFrameVController implements Observer{
         if (contentController instanceof Observable) {
             ((Observable) contentController).addObserver(this);
         }
-        System.out.println(contentController.getView().getName());
         
         view.getContent().add(contentController.getView());
         view.getContent().repaint();

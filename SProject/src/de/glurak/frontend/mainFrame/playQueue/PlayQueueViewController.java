@@ -73,12 +73,13 @@ public class PlayQueueViewController extends Observable{
 				Object src = e.getSource();
 				
 				if (src == view.getPlayButton()) {
+				
 					if (player.isPaused()){
 						player.resume();
 						view.playButton.setText("Pause");}
 					else if (player.isPlaying()) {
 								player.pause();
-								view.playButton.setText("Play    ");}
+								view.playButton.setText("Play");}
 					else {
 						playNew(0);
 					}
@@ -327,10 +328,7 @@ public class PlayQueueViewController extends Observable{
 	public void setView(PlayQueueView view) {
 		this.view = view;
 	}
-	public void playQueueLeeren(){
-		
-		
-	}
+	
 
 	/**
 	 * Startet Wiedergabe und führt nötige Erneuerungen durch
@@ -346,7 +344,6 @@ public class PlayQueueViewController extends Observable{
 					view.getPositionBar().setValue(0);
 					player.pause();
 					player.stop();
-					refresh();
 				}
 				else{	//aktuelles Medium wird aus der Playqueue gelöscht
 					if (player.isPaused()||player.isPlaying()){

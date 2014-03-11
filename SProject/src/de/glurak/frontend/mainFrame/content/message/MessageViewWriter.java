@@ -39,7 +39,7 @@ public class MessageViewWriter extends JPanel {
             b_cancel.addActionListener(eventCallback);
 
         // Initialisierung der Labels
-        JLabel l_receiver = new JLabel("Empf�nger: ");
+        JLabel l_receiver = new JLabel("Empfänger: ");
         JLabel l_message = new JLabel("Nachricht: ");
 
         // Initialisierung der Panels

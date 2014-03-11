@@ -25,6 +25,7 @@ public class LabelProfileView extends JPanel{
 	private JPanel pan_topplaylists;
 	private JPanel pan_likes;
 	private JPanel pan_artists;
+	private JPanel pan_labeldescription;
 	
 	// Buttons
 	protected JButton b_message;
@@ -41,6 +42,7 @@ public class LabelProfileView extends JPanel{
 	protected JTextField t_email;
 	protected JTextField t_homecountry;
 	protected JTextField t_birthdate;
+	protected JTextArea t_labeldescription;
 	
 	// Labels profile_data
 	private JLabel l_labelPic;
@@ -62,7 +64,7 @@ public class LabelProfileView extends JPanel{
 	 * @param own Wird das eigene Profil angezeigt oder ein anderes?
 	 * @param anzPlaylists <= 5, falls ein User mehr Playlisten hat, sind diese über den "More"-Button verfügbar.
 	 */
-	public LabelProfileView(de.glurak.data.User.Label label, List<Playlist> top5Albums, List<ArtistProfile> top5Artists){
+	public LabelProfileView(de.glurak.data.User.Label label, List<Playlist> top5Albums, List<ArtistProfile> top5Artists, boolean edit){
 		if (user==null) {
 			this.user = SessionThing.getInstance().getSessionUser();
 		}
@@ -88,6 +90,31 @@ public class LabelProfileView extends JPanel{
 		pan_profilepic.setPreferredSize(new Dimension(350, 300));
 		pan_profilepic.setBackground(FrontendColors.DARK_GREY);
 		
+		
+		// Label beschreibeung hinzufügen
+		GridBagConstraints h = new GridBagConstraints();
+		h.fill = GridBagConstraints.HORIZONTAL;
+		h.insets = new Insets(2,2,2,2);	
+	
+		h.gridx = 0;
+		h.gridy = 0;
+		h.gridwidth = 1;
+		h.gridheight = 1;
+		
+		String labelDescription = "Hier Labelbeschreibung einfügen!";
+		if (label.getProfile().getAddress() != null || label.getProfile().getAddress() != "") {
+			labelDescription = label.getProfile().getAddress();
+		}
+	    t_labeldescription = new JTextArea(labelDescription, 10, 50);
+	    t_labeldescription.setMaximumSize(new Dimension(350,200));
+	    t_labeldescription.setMinimumSize(new Dimension(350,200));
+	    t_labeldescription.setBackground(FrontendColors.DARK_GREY);
+	    t_labeldescription.setForeground(Color.white);
+		t_labeldescription.setEditable(edit);
+	    pan_likes.add(t_labeldescription, h);
+		
+		
+		
 		// Layout-Restriktionen festlegen.
 		GridBagConstraints d = new GridBagConstraints();
 		d.fill = GridBagConstraints.HORIZONTAL;
@@ -112,6 +139,13 @@ public class LabelProfileView extends JPanel{
 		d.gridheight = 1;
 	    b_application = new JButton("Bewerbung");
 	    pan_profilepic.add(b_application, d);
+	    
+	    b_edit = new JButton("Save");
+	    d.gridx = 1;
+		d.gridy = 1;
+		d.gridwidth = 1;
+		d.gridheight = 1;
+		pan_profilepic.add(b_edit, d);
 	
 	
 		// Initialisieren Panel pan_topplaylists
@@ -232,5 +266,15 @@ public class LabelProfileView extends JPanel{
 	public void setB_playlistArray(JButton[] b_playlistArray) {
 		this.b_playlistArray = b_playlistArray;
 	}
+
+	public JTextArea getT_labeldescription() {
+		return t_labeldescription;
+	}
+
+	public void setT_labeldescription(JTextArea t_labeldescription) {
+		this.t_labeldescription = t_labeldescription;
+	}
+	
+	
 
 }

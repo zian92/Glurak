@@ -74,6 +74,9 @@ public class ApplicationView extends JPanel {
         add(pan_receiver, BorderLayout.NORTH);
         add(pan_message, BorderLayout.CENTER);
         add(pan_buttons, BorderLayout.SOUTH);
+        
+        // disable empfaenger
+        this.t_receiver.setEnabled(false);
     }
 
     /**
@@ -98,13 +101,4 @@ public class ApplicationView extends JPanel {
         f_application.pack();
         f_application.setVisible(true);
     }
-
-    public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowView();
-            }
-        });
-    }
-
 }
