@@ -32,6 +32,11 @@ public class ProfileVController extends Observable implements ActionListener, Co
 	private User user;
 	private boolean own;
 	private SessionThing session;
+	
+	/**
+	 * erstellt einen Controller für die ProfileView und setzt die angezeigten Buttons anhand der Rechte des Benutzers
+	 * @param user
+	 */
 	public ProfileVController (User user) {
 		session=SessionThing.getInstance();
 		// parameter überprüfen
