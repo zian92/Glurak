@@ -98,35 +98,26 @@ public class MessageVController implements ActionListener, ContentController, Mo
     }
 
 	public void reload() {
-		// TODO Auto-generated method stub
-		
+        messview.reload();
 	}
 
 	public void mouseClicked(MouseEvent e) {
 		if(e.getClickCount() == 2){
 			String receiver = messview.getList().getSelectedValue().getSender().getUsername();
-			messview.getWriter().t_receiver.setText(receiver);
+			messview.getWriter().setMessage(receiver,"");
 		}
 	}
 
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

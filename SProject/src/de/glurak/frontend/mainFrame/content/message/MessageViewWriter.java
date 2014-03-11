@@ -13,8 +13,8 @@ import java.awt.event.ActionListener;
  */
 public class MessageViewWriter extends JPanel {
 
-    protected JTextField t_receiver = new JTextField();
-    protected JTextArea t_message = new JTextArea(4,50);
+    private JTextField t_receiver = new JTextField();
+    private JTextArea t_message = new JTextArea(4,50);
     // Scrolltabelle fuer das Nachrichtenfeld
     private JScrollPane s_message = new JScrollPane(t_message);
     // Buttons
@@ -39,7 +39,7 @@ public class MessageViewWriter extends JPanel {
             b_cancel.addActionListener(eventCallback);
 
         // Initialisierung der Labels
-        JLabel l_receiver = new JLabel("Empf�nger: ");
+        JLabel l_receiver = new JLabel("Empfänger: ");
         JLabel l_message = new JLabel("Nachricht: ");
 
         // Initialisierung der Panels
@@ -107,6 +107,11 @@ public class MessageViewWriter extends JPanel {
         t_message.setText(t_message.getText());
     }
 
+    /**
+     * Setzt die eingegebene Naricht
+     * @param receiver der Empfänger
+     * @param message  die Naricht
+     */
     public void setMessage(String receiver, String message){
         t_receiver.setText(receiver);
         t_message.setText(message);

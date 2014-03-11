@@ -56,6 +56,14 @@ public class DBSearch {
         return q1.getResultList();
     }
 
+
+    public List<Medium> searchForMusicByGenre(String genreTitle){
+        TypedQuery<Medium> q1 = em.createQuery(
+                "SELECT k FROM Medium k WHERE UPPER(k.myGenre.title) Like UPPER('%"+genreTitle+"%')", Medium.class);
+        //q1.setParameter("n",g);
+        return q1.getResultList();
+    }
+
     /**
      * Sucht die Musik nach den Interpreter, derjenige der sie hochgeladen hat
      * @param name der Name (username oder echte Name)

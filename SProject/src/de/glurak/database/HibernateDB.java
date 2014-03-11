@@ -313,6 +313,14 @@ public class HibernateDB {
         return q1.getResultList();
     }
 
+    public void removePlaylist(Playlist l, EntityTransaction tr){
+        if (tr==null)
+            em.getTransaction().begin();
+        em.remove(l);
+        if (tr == null)
+            em.getTransaction().commit();
+    }
+
     /**
      * Speichert und schließt die Datenbank
      * Unbedingt aufrufen, falls beendet wird!!!

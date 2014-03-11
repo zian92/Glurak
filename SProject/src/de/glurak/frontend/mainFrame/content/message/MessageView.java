@@ -61,6 +61,11 @@ public class MessageView extends JPanel {
 
     private void initModel(){
         model = new DefaultListModel<Message>();
+        reload();
+    }
+
+    public void reload(){
+        model.clear();
         HibernateDB db = SessionThing.getInstance().getDatabase();
         List<Message> myMessage = db.messageByReceiver(SessionThing.getInstance().getSessionUser());
         for (Message m: myMessage){
