@@ -13,6 +13,6 @@ public class MusicInterpretSearch extends MusicSearch {
     @Override
     public List<Medium> searchFor(String s) {
         DBSearch db = new DBSearch(SessionThing.getInstance().getDatabase());
-        return db.searchForMusicByInterpret(s);
+        return filterUnlocked(db.searchForMusicByInterpret(s));
     }
 }

@@ -71,6 +71,7 @@ public class MainFrameVController implements Observer{
             SearchVController tmp = new SearchVController();
             contentController = tmp;
             tmp.getView().setAllText(headerController.getSearchKey());
+            tmp.searchAll();
             
             // Logout-Button geklickt?
             if (headerController.getLogout()) {
@@ -94,6 +95,7 @@ public class MainFrameVController implements Observer{
             }
             else if (contentController instanceof NextContent) {
             	if (contentController instanceof ProfileEditVController) {
+            		// Profilbild auch in der Navigation ändern
             		if (((ProfileEditVController) contentController).isPicChanged()) {
             			view.getNavigation().removeAll();
             			view.getNavigation().repaint();
@@ -120,6 +122,8 @@ public class MainFrameVController implements Observer{
         if (contentController instanceof Observable) {
             ((Observable) contentController).addObserver(this);
         }
+        System.out.println(contentController.getView().getName());
+        
         view.getContent().add(contentController.getView());
         view.getContent().repaint();
         view.getContent().revalidate();

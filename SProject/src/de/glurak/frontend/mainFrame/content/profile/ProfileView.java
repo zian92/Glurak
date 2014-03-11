@@ -179,14 +179,13 @@ public class ProfileView extends JPanel{
                 this.setFollowButtonToUnfollow();
             }
         }
-		    
+        b_block = new JButton("Sperren");
 		    if (session.getSessionUser().getProfile().hasRight(Rights.LOCK_OTHER_USER)) {
 	
 		    	d.gridx = 3;
 			    d.gridy = 1;
 			    d.gridwidth = 1;
 			    d.gridheight = 1;
-			    b_block = new JButton("Sperren");
 			    if(this.user.isLocked()){
 			        this.setBlockButtonToUnblock();
 			    }
