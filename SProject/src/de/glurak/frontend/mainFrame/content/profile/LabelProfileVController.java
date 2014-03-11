@@ -79,11 +79,13 @@ public class LabelProfileVController extends Observable implements ContentContro
         } else if (obj == view.b_upload){
 			Uploader u = Uploader.getInstance();
 			File file = u.selectSinglePicture(this.view);
-//			try {
-//                // TODO uploader save methode für label
-//            } catch (IOException e1) {
-//                JOptionPane.showMessageDialog(this.view, "Bitte versuch es mit einer anderen Datei.", "Fehler", JOptionPane.ERROR_MESSAGE);
-//            }
+			try {
+                u.saveLabelProfilePicture(file, this.label.getProfile().getName(), this.label);
+            } catch (IOException e1) {
+                JOptionPane.showMessageDialog(this.view, "Bitte versuch es mit einer anderen Datei.", "Fehler", JOptionPane.ERROR_MESSAGE);
+            }
+			System.out.println(this.label.getProfile().getName());
+			System.out.println(file.getAbsolutePath());
 			
 			this.view.repaint();
 			this.view.revalidate();

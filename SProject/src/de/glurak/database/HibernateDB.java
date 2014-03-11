@@ -80,23 +80,27 @@ public class HibernateDB {
         q1.setParameter("n",name);
         return q1.getResultList().size()>0;
     }
-
+/**
+ * Registriert einen neuen Benutzer in der Datenbank
+ * @param newUser der neue Benutzer
+ * @param ac ac die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht
+ */
     public void registrateUser(User newUser, EntityTransaction ac){
         registrateReachable(newUser,ac);
     }
 
     /**
      * Registiert ein neuen Reachable, also Label oder Benutzer
-     * @param newUser der neue Reachable
+     * @param newReachable der neue Reachable
      * @param ac die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht
      */
-    public void registrateReachable(Reachable newUser, EntityTransaction ac){
+    public void registrateReachable(Reachable newReachable, EntityTransaction ac){
         if (ac==null)
             em.getTransaction().begin();
-        if (newUser.getProfile() != null){
-           registrateProfile(newUser.getProfile(),ac==null?em.getTransaction():ac);
+        if (newReachable.getProfile() != null){
+           registrateProfile(newReachable.getProfile(),ac==null?em.getTransaction():ac);
         }
-        em.persist(newUser);
+        em.persist(newReachable);
         if (ac==null)
             em.getTransaction().commit();
     }
