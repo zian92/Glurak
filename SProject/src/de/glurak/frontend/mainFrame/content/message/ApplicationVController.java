@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import de.glurak.data.User.Label;
+import de.glurak.data.User.Reachable;
 import de.glurak.database.HibernateDB;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
@@ -24,18 +25,19 @@ public class ApplicationVController extends Observable implements ActionListener
     private String errorMsgBoxName = "Fehlermeldung";
     private SessionThing session = SessionThing.getInstance();
     private HibernateDB db = session.getDatabase();
-    private Label label;
+    private Reachable appliTo;
+    private ContentController nextContent;
 
     /**
      * Konstruktor
      */
-    public ApplicationVController(Label label) {
+    public ApplicationVController(Reachable appliTo, ContentController nextContent) {
         appliview = new ApplicationView();
         appliview.b_send.addActionListener(this);
         appliview.b_cancel.addActionListener(this);
-        this.label = label;
-
-        appliview.t_receiver.setText(label.getProfile().getName());
+        this.appliTo = appliTo;
+        this.nextContent = nextContent;
+        appliview.t_receiver.setText(appliTo.getProfile().viewName());
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -45,13 +47,13 @@ public class ApplicationVController extends Observable implements ActionListener
             if (appliview.t_application.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Sie haben keine Nachricht eingegeben. Bitte schreiben sie zuerst ihre Nachricht!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
             } else {
-                db.createMessage(session.getSessionUser(), label, appliview.t_application.getText(), true, null);
+                db.createMessage(session.getSessionUser(), appliTo, appliview.t_application.getText(), true, null);
                 JOptionPane.showMessageDialog(null, "Deine Nachricht wurde überstellt!", "Erfolg", JOptionPane.WARNING_MESSAGE);
-                this.backToLabel();
+                this.backToPrev();
             }
         } else {
             if (e.getSource() == appliview.b_cancel) {
-                this.backToLabel();
+                this.backToPrev();
             }
         }
     }
@@ -68,8 +70,8 @@ public class ApplicationVController extends Observable implements ActionListener
 
     }
 
-    private void backToLabel() {
+    private void backToPrev() {
         setChanged();
-        notifyObservers(new LabelProfileVController(this.label));
+        notifyObservers(nextContent);
     }
 }

@@ -29,8 +29,23 @@ public abstract class Profile implements Serializable {
         announcements =new ArrayList<Announcement>();
     }
 
+    /**
+     * Ein Name der später angezeigt wird.
+     * @return ein anzeigename
+     */
+    public abstract String viewName();
+
+    /**
+     * Gibt den zurück, zu dem das Profil gehört
+     * @return den Besitzer des Profils
+     */
     abstract public Reachable belongTo();
 
+    /**
+     * Gibt den Rollennamen des Profils zurück
+     * Z.B. beim Artist "Artist" und bei Listener "Listener2
+     * @return den Rollennamen
+     */
     public abstract String roleName();
 
     public String getAddress() {
