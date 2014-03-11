@@ -106,8 +106,13 @@ public class Playlist extends EntryObject implements Serializable, Hateable, Com
         if (owner instanceof User)
             NotEnoughRightException.throwIfNot((User)owner, Rights.MANAGE_PLAYLIST);
         if (this.owner_of_playlist==owner) return;
+        Reachable tmp = this.owner_of_playlist;
         this.owner_of_playlist = owner;
-        owner.addPlaylist(this);
+        if (tmp!=null){
+            tmp.removePlaylist(this);
+        }
+        if (owner !=null)
+            owner.addPlaylist(this);
     }
 
     public void addMedium(Medium m){
