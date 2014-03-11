@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
+import de.glurak.FrontendColors;
 import de.glurak.data.User.User;
 import de.glurak.feature.IconLoader;
 
@@ -39,7 +40,7 @@ public class NavigationView extends JPanel{
         this.user = user;
 		
 		buttonPanel = new JPanel();
-		
+		buttonPanel.setBackground(FrontendColors.DARK_GREY);
 		profilePicture = new JPanel();
 		profilePicture.setPreferredSize(new Dimension(200,200));
 		profilePicture.setBackground(Color.BLACK);
