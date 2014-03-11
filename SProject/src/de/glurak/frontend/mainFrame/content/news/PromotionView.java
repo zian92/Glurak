@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import de.glurak.FrontendColors;
 import de.glurak.feature.SliderPanel;
 
 public class PromotionView extends JPanel {
@@ -41,10 +42,11 @@ public class PromotionView extends JPanel {
 		int rowCount = getMaxRowCount();
 		int colCount = getMaxColCount();
 		this.sliderCount = (rowCount * colCount);
-		setBackground(Color.GREEN);
+		setBackground(Color.BLACK);
 		// create and position the sliders 
 		for (int i = 0; i < sliderCount; i++){
 			SliderPanel sp = new SliderPanel();
+			sp.setBackground(FrontendColors.DARK_GREY);
 			sp.setPreferredSize(sliderDim);
 			sliderPanArray.add(sp);
 		}
@@ -59,24 +61,6 @@ public class PromotionView extends JPanel {
 				sliderPos++;
 			}
 		}	
-		
-		/* BUttons for testing 
-		c.fill = GridBagConstraints.HORIZONTAL;
-	  	c.gridx = 0;
-		c.gridy = 2;
-		c.gridwidth = 2;
-		
-		bt_start = new JButton("Start");
-		add(bt_start, c);
-		
-		c.fill = GridBagConstraints.HORIZONTAL;
-	  	c.gridx = 0;
-		c.gridy = 2;
-		c.gridwidth = 2;
-		
-		bt_add = new JButton("add Bieber");
-		add(bt_add, c); 
-		*/
 		setVisible(true);
 		
 	}

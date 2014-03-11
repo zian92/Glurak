@@ -89,10 +89,11 @@ public class FollowerView extends JPanel {
 		JButton bt_like = icon.getLikeBt();
 		bt_like.setActionCommand("likeFavo");
 		bt_like.addActionListener(aRef);
+		bt_like.setIcon(new IconLoader(30,30,Query.ICON_LIKE).getIcon());
 		JButton bt_hate = icon.getHateBt();
 		bt_hate.setActionCommand("hateFavo");
 		bt_hate.addActionListener(aRef);
-		
+		bt_hate.setIcon(new IconLoader(30,30,Query.ICON_HATE).getIcon());
 	    bt_like.setBounds(iconSize - 35*2, iconSize - 45, 30, 30);
 	    bt_hate.setBounds(iconSize - 35, iconSize - 45, 30, 30);
 	        

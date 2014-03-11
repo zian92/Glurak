@@ -30,7 +30,9 @@ import de.glurak.frontend.mainFrame.content.profile.ProfileVController;
 
 /**
  * Erzeugt das PromotionPanel, welches mit Slidern
- * versehen wird. Kümmert sich um das Slidingverhalten der einzelnen Slider.
+ * versehen wird. Slider werden mit aktuellen Inhalten Versehen
+ * Kümmert sich um das Slidingverhalten der einzelnen Slider.
+ * 
  * @author MxB
  *
  */
@@ -126,6 +128,8 @@ public class PromotionVController extends Observable implements ContentControlle
 			          
         bt_like.setBounds(width - 2 * 35, height - 35, 30, 30);
         bt_hate.setBounds(width - 35, height - 35, 30, 30);
+        bt_like.setIcon(new IconLoader(30,30,Query.ICON_LIKE).getIcon());
+        bt_hate.setIcon(new IconLoader(30,30,Query.ICON_HATE).getIcon());
         
         lab_pic.setBounds(0, 0, width, height);
         pan_content.setBounds(0, 0, width, height);
@@ -141,8 +145,7 @@ public class PromotionVController extends Observable implements ContentControlle
 	}
 	
 	/**
-	 * TestTimerTask for testing the sliding behaviour
-	 * Will be reworked in the final version
+	 * TimerTask, der dass Slidingverhalten schedulet
 	 */
 	private void startTimer(){
 		
@@ -186,7 +189,8 @@ public class PromotionVController extends Observable implements ContentControlle
 	}
 	
 	/**
-	 * aktuallisiert die contentSlider 
+	 * Aktuallisiert die contentSlider
+	 * 
 	 */
 	public void reload() {
 		cleanSliders();
@@ -218,6 +222,8 @@ public class PromotionVController extends Observable implements ContentControlle
 		}
 
 		public void mouseClicked(MouseEvent e) {
+		
+			
 			if (news.getSource() instanceof Medium){
 				
 			}else if(news.getSource() instanceof Album){

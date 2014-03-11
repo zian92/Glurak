@@ -57,9 +57,12 @@ public class FollowerVController  extends Observable implements MouseListener, A
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("likeFavo")){
 			JButton bt = (JButton) e.getSource();
+			( (FavoriteLabel) bt.getParent()).getFavorite().like(SessionThing.getInstance().getSessionUser());
+			
 			// Die wohl mit Abstand schla..., eh, "unsauberste" Stelle im gesamten Programm
 		}else if(e.getActionCommand().equals("hateFavo")){
 			JButton bt = (JButton) e.getSource();
+			( (FavoriteLabel) bt.getParent()).getFavorite().hate(SessionThing.getInstance().getSessionUser());
 			// Die wohl mit Abstand schla..., eh, "unsauberste" Stelle im gesamten Programm
 		}else{
 			
