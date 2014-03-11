@@ -12,12 +12,15 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import de.glurak.FrontendColors;
+
 public class SliderPanel extends JPanel {
 	JPanel pan_main = new JPanel(new SliderCardLayout());
 	private int itemCount;
 	
 	public SliderPanel(){
 		setLayout(new BorderLayout());
+		pan_main.setBackground(FrontendColors.DARK_GREY);
 		add(pan_main, BorderLayout.CENTER);
 		this.itemCount = -1;
 	}

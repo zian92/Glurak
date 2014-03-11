@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.ScrollPaneLayout;
 
+import de.glurak.FrontendColors;
 import de.glurak.data.Playqueue;
 
 /**
@@ -44,7 +45,7 @@ public class PlayQueueView extends JPanel{
 		super();
 		positionChange = false;
 		initComponents(playqueue);
-	
+		this.setBackground(FrontendColors.DARK_GREY);
 	}
 	/**
 	 * initialisiert View für die angegebene Playqueue

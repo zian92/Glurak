@@ -16,6 +16,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
+import de.glurak.FrontendColors;
 import de.glurak.Query;
 import de.glurak.data.Album;
 import de.glurak.data.Medium;
@@ -139,6 +140,7 @@ public class PromotionVController extends Observable implements ContentControlle
         pan_content.add(lab_text, JLayeredPane.PALETTE_LAYER, 0);
         pan_content.add(bt_like, JLayeredPane.PALETTE_LAYER, 0);
         pan_content.add(bt_hate, JLayeredPane.PALETTE_LAYER, 0);
+        pan_content.setBackground(FrontendColors.DARK_GREY);
         pan_content.setVisible(true);
 	    
 		return pan_content;

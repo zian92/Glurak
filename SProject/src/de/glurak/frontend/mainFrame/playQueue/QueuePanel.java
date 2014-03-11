@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import de.glurak.FrontendColors;
 import de.glurak.Query;
 import de.glurak.data.Playqueue;
 import de.glurak.feature.IconLoader;
@@ -36,6 +37,7 @@ public class QueuePanel extends JPanel {
      */
     public QueuePanel(Playqueue playqueue) {
         super();
+       
         // Laden der Icons
         currentIcon = new IconLoader(60, 60, Query.FOLDER_PICTURE_ICONS + "playQueueIconCurrent.jpg").getIcon();
         standardIcon = new IconLoader(60, 60, Query.FOLDER_PICTURE_ICONS + "playQueueIcon.jpg").getIcon();
@@ -57,11 +59,11 @@ public class QueuePanel extends JPanel {
             mediumPanelArray = new JPanel[getPlayqueue().getPlaylist().getMediumList().size()];
 
             this.setLayout(new BorderLayout());
-            this.setBackground(Color.GRAY);
+           // this.setBackground(FrontendColors.DARK_GREY);
 
             for (int i = 0; i < getPlayqueue().getPlaylist().getMediumList().size(); i++) {
                 mediumPanelArray[i] = new JPanel(new BorderLayout());
-                mediumPanelArray[i].setBackground(Color.WHITE);
+                mediumPanelArray[i].setBackground(FrontendColors.DARK_GREY);
                 firstPanel.add(mediumPanelArray[i]);
                 this.add(firstPanel, BorderLayout.NORTH);
             }

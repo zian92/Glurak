@@ -42,7 +42,7 @@ public class PromotionView extends JPanel {
 		int rowCount = getMaxRowCount();
 		int colCount = getMaxColCount();
 		this.sliderCount = (rowCount * colCount);
-		setBackground(Color.BLACK);
+		this.setBackground(FrontendColors.DARK_GREY);
 		// create and position the sliders 
 		for (int i = 0; i < sliderCount; i++){
 			SliderPanel sp = new SliderPanel();

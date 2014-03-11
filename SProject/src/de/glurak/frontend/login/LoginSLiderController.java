@@ -24,7 +24,7 @@ public class LoginSLiderController{
 	private List<JLabel> imageLabelList = new ArrayList<JLabel>();
 	private LoginPromoPanel promoPanel;
 	private Dimension slidePaneDim = new Dimension(240, 240);
-	private int loginSLiderSides = 3;
+	private int loginSLiderSides = 5;
 	
 	public LoginSLiderController(){
 		promoPanel = new LoginPromoPanel(new Dimension(480,500), slidePaneDim);
@@ -57,7 +57,7 @@ public class LoginSLiderController{
 	}
 	
 	public void slide(){
-		if( (Math.random() * 100) < 50) {
+		if( (Math.random() * 100) < 60) {
 			for (int j = 0; j < promoPanel.getSliderCount(); j++){
 				promoPanel.getSLiderAtPos(j).next();
 			}

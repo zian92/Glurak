@@ -58,7 +58,7 @@ public class MusicSearch implements Searchable<Medium> {
     public ContentController getChangeController(Medium field) {
         return null;
     }
-
+    
     public void otherDoubleClickAction(Medium value) {
         PlayQueueViewController.getInstance().addMedium(value);
     }

@@ -2,6 +2,8 @@ package de.glurak.frontend.mainFrame.header;
 
 import javax.swing.*;
 
+import de.glurak.FrontendColors;
+
 import java.awt.*;
 
 /**
@@ -55,6 +57,8 @@ public class HeaderView extends JPanel{
 		// HinzufÃ¼gen des Panels zur ContentPane
 		add(pan_logout);
 		add(pan_header);
+		pan_header.setBackground(FrontendColors.DARK_GREY);
+		pan_logout.setBackground(FrontendColors.DARK_GREY);
 		setVisible(true);
 		
 	}
