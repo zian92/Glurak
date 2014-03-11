@@ -140,11 +140,9 @@ public class LoginView extends JFrame{
 		
         
 		content.add(pan_content, BorderLayout.CENTER);
-		//this.setIconImage(new IconLoader(15,15,Query.ICON_LOGO).getpureImage());	
-		//System.out.println("LV - 144 - Iconimagepath =" + this.getIconImage().toString());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
-		Image icon = new ImageIcon(Query.FOLDER_PICTURE_ICONS+"hate.png").getImage();
+		Image icon = new ImageIcon(Query.ICON_LOGOICON).getImage();
 		this.setIconImage(icon);
 		setVisible(true);
 
