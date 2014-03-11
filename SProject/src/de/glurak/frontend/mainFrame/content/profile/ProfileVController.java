@@ -58,13 +58,13 @@ public class ProfileVController extends Observable implements ActionListener, Co
 				profileview.b_follow.addActionListener(this);
 			}
 			profileview.b_message.addActionListener(this);
+			
+			if (session.getSessionUser().getProfile().hasRight(Rights.LOCK_OTHER_USER)) {
+			    profileview.b_block.addActionListener(this);
+			    profileview.b_block.setVisible(true);
+			}
 		}
-		if (own || !session.getSessionUser().getProfile().hasRight(Rights.LOCK_OTHER_USER)) {
-		    profileview.b_block.setVisible(false);
-		} else {
-		    profileview.b_block.addActionListener(this);
-		    profileview.b_block.setVisible(true);
-		}
+		
 		
 		if (session.getSessionUser().getProfile().roleName().equals("Admin") && this.user.getProfile().roleName().equals("Listener")) {
 			profileview.b_promote.addActionListener(this);
@@ -120,7 +120,7 @@ public class ProfileVController extends Observable implements ActionListener, Co
             setChanged();
             notifyObservers();
         } else if(obj == profileview.b_promote) {
-        	//TODO promote button 
+        	//TODO promote button e	e
         } else
             if (obj == profileview.b_block) {
                 if (user.isLocked()) {
