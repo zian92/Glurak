@@ -12,7 +12,7 @@ import java.io.Serializable;
 abstract public class EntryObject implements Hateable{
     @Id
     @GeneratedValue
-    protected long id;
+    private long id;
 
     /**
      * Gibt das Bild zurück, dass beim NewsEntry angezgeit wird.

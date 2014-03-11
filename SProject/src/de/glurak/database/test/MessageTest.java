@@ -65,7 +65,7 @@ public class MessageTest {
     }
 
     @Test
-    public void olafUnreadMessages(){
+    public void recUnreadMessages(){
         List<Message> m=db.getUnreadMessageFromReceiver(rec);
         assertTrue(m.size()== 1);
         Message a=m.get(0);

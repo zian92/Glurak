@@ -22,7 +22,7 @@ public class Message implements Serializable{
     @GeneratedValue
 	private long id;
 
-    boolean isApplication;
+    private boolean isApplication;
 
     /**
      * Gibt den Gelesen-Zustand aus

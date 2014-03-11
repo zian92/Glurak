@@ -10,9 +10,9 @@ import java.io.Serializable;
 @Entity
 public class ListenerProfile extends UserProfile implements Serializable{
 
-    protected String birthdate;
-    protected String homecountry;
-    protected String gender;
+    private String birthdate;
+    private String homecountry;
+    private String gender;
 
     @Override
     public String[] myRights() {

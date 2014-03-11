@@ -102,11 +102,11 @@ public class LabelProfile extends Profile implements Serializable{
 
     @Override
     public String getPictureFileNameOrDefaultPictureName(){
-        if (pictureFileName.isEmpty()){
+        if (getPictureFileName().isEmpty()){
             return (Query.FOLDER_PICTURE_ICONS + "userf.jpg");
 
         }
-        return pictureFileName;
+        return getPictureFileName();
     }
 
     public List<ArtistProfile> getMyartists() {

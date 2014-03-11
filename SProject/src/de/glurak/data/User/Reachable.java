@@ -32,7 +32,7 @@ abstract public class Reachable extends EntryObject implements Serializable, Hat
 
 
     @OneToMany(mappedBy = "owner_of_playlist")
-    protected List<Playlist> myPlaylists;
+    private List<Playlist> myPlaylists;
 
 
     /**

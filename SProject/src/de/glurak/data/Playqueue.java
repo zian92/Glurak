@@ -1,9 +1,9 @@
 package de.glurak.data;
 
 public class Playqueue {
-	Playlist 	playlist;
-	Medium 		current;
-	int 		index;
+	private Playlist 	playlist;
+	private Medium 		current;
+	private int 		index;
 	
 	public Playqueue(Playlist playlist,int index){
 		this.setPlaylist(playlist);
