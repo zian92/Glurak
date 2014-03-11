@@ -22,8 +22,8 @@ public class ArtistProfile extends ListenerProfile implements Serializable, Comp
     }
 
     /**
-     * Artistprofile wird angelegt
-     * @param otherprof Listenerprofile, dass zum Artist werden soll
+     * Artistprofile wird aus einen Listenerprofile angelegt.
+     * @param otherprof Listenerprofile, der zum Artist werden soll
      */
     public ArtistProfile(ListenerProfile otherprof){
         this.setLastname(otherprof.getLastname());
