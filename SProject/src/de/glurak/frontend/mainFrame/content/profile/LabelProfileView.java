@@ -25,7 +25,6 @@ public class LabelProfileView extends JPanel{
 	private JPanel pan_topplaylists;
 	private JPanel pan_likes;
 	private JPanel pan_artists;
-	private JPanel pan_labeldescription;
 	
 	// Buttons
 	protected JButton b_message;
