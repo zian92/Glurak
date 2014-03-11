@@ -2,6 +2,7 @@ package de.glurak.frontend.mainFrame.content.message;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -10,6 +11,7 @@ import de.glurak.data.User.Label;
 import de.glurak.database.HibernateDB;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
+import de.glurak.frontend.mainFrame.content.profile.LabelProfileVController;
 
 /**
  * Der Kontroller fuer die Applicationview.
@@ -17,8 +19,7 @@ import de.glurak.frontend.mainFrame.ContentController;
  * @author Simon
  * 
  */
-public class ApplicationVController implements ActionListener, ContentController {
-
+public class ApplicationVController extends Observable implements ActionListener, ContentController {
     private ApplicationView appliview;
     private String errorMsgBoxName = "Fehlermeldung";
     private SessionThing session = SessionThing.getInstance();
@@ -40,24 +41,17 @@ public class ApplicationVController implements ActionListener, ContentController
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == appliview.b_send) {
             // Abfrage, ob ein Empfaenger eingegeben wurde
-            if (appliview.t_receiver.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Sie haben noch keinen Empfänger eingegeben. Bitte fügen sie einen Empfänger hinzu!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
+            // Abfrage, ob die Nachricht leer ist
+            if (appliview.t_application.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Sie haben keine Nachricht eingegeben. Bitte schreiben sie zuerst ihre Nachricht!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
             } else {
-                // Abfrage, ob der Empfaenger existiert
-                if (!db.hasUser(appliview.t_receiver.getText())) {
-                    JOptionPane.showMessageDialog(null, "Dieser Empfänger existiert nicht. Bitte geben sie einen existierenden Empfänger an!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    // Abfrage, ob die Nachricht leer ist
-                    if (appliview.t_application.getText().equals("")) {
-                        JOptionPane.showMessageDialog(null, "Sie haben keine Nachricht eingegeben. Bitte schreiben sie zuerst ihre Nachricht!", errorMsgBoxName, JOptionPane.ERROR_MESSAGE);
-                    } else {
-                        db.createMessage(session.getSessionUser(), db.getUserByUsername(appliview.t_receiver.getText()), appliview.t_application.getText(), false, null);
-                    }
-                }
+                db.createMessage(session.getSessionUser(), label, appliview.t_application.getText(), true, null);
+                JOptionPane.showMessageDialog(null, "Deine Nachricht wurde überstellt!", errorMsgBoxName, JOptionPane.WARNING_MESSAGE);
+                this.backToLabel();
             }
         } else {
             if (e.getSource() == appliview.b_cancel) {
-                appliview.t_application.setText("");
+                this.backToLabel();
             }
         }
     }
@@ -74,4 +68,8 @@ public class ApplicationVController implements ActionListener, ContentController
 
     }
 
+    private void backToLabel() {
+        setChanged();
+        notifyObservers(new LabelProfileVController(this.label));
+    }
 }
