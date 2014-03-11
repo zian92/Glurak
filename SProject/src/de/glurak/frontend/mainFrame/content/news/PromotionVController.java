@@ -60,28 +60,6 @@ public class PromotionVController extends Observable implements ContentControlle
 	}
 	
 	public JComponent getView(){ return promPan; }
-	/*	
-	public void addContentTo(int sliderPos, String filename){
-		
-		//test if filename == ""
-		try {
-			
-			BufferedImage BGImage = ImageIO.read(new File(Query.FOLDER_PICTURE_SLIDER + filename));
-			Image img =  BGImage.getScaledInstance(slidePaneDim.width, slidePaneDim.height, Image.SCALE_SMOOTH);
-			JLabel picLabel = new JLabel(new ImageIcon(img));
-			picLabel.setPreferredSize(slidePaneDim);
-			imageLabelList.add(picLabel);				
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
-		promPan.getSLiderAtPos(sliderPos).addSliderComponent(imageLabelList.get(imageLabelList.size()-1));
-		promPan.getSLiderAtPos(sliderPos).refresh();
-
-	}
-	*/
 	
 	/**
 	 * Initialisiert die PanelSliderElemente mit Inhalten aus
@@ -189,15 +167,16 @@ public class PromotionVController extends Observable implements ContentControlle
 	private void cleanSliders(){
 		int sMax = promPan.getSliderCount();
 		int q = newsList.size()/sMax;
+		
 		if (sMax*q<newsList.size()){
 			q=q+1;
-		}
+		} 
 		for (int pos = 0; pos < sMax; pos++){
 				for (int j = 0; j < q; j++){
 					if (newsList.size() <= (pos+(j*sMax))) break;
 					promPan.getSLiderAtPos(pos).removeSliderCompinent((newsList.get(pos+(j*sMax))));
 			}
-		} 
+		}
 		for (int j = 0; j< newsList.size(); j++){
 			newsList.remove(j);
 		}

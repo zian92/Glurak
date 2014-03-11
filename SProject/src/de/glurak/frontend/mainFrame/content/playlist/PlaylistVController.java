@@ -163,7 +163,6 @@ public class PlaylistVController extends Observable implements MouseListener, Ac
 	    }
 	
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 		PlaylistView.PlaylistLabel  l = (PlaylistView.PlaylistLabel) e.getSource();
 		if (e.getClickCount() > 1){
 			nextContent = new PlaylistEditVController(l.getPlaylist(), this);
