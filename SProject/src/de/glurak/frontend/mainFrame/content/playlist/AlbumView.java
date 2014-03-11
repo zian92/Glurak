@@ -25,7 +25,6 @@ import de.glurak.FrontendColors;
 import de.glurak.Query;
 import de.glurak.data.Album;
 import de.glurak.data.User.User;
-import de.glurak.frontend.mainFrame.content.profile.ProfileEditView;
 
 /**
  * Diese Klasse stellt die AlbumView zur Verfügung.
