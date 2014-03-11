@@ -29,6 +29,8 @@ public abstract class Profile implements Serializable {
         announcements =new ArrayList<Announcement>();
     }
 
+    abstract String viewName();
+
     abstract public Reachable belongTo();
 
     public abstract String roleName();
