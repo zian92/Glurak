@@ -49,6 +49,9 @@ public class PlayQueueViewController extends Observable{
     private static PlayQueueViewController instance= null;
 	
 	
+    /** Singleton
+     * @return Instanz des Player
+     */
     public static PlayQueueViewController getInstance(){
 		if(instance==null){
 			instance = new PlayQueueViewController();
@@ -68,7 +71,7 @@ public class PlayQueueViewController extends Observable{
 		a = new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-		if(getPlayqueue()!=null){		
+		if(getPlayqueue()!=null&&player!=null){		
 			if(!view.getPositionBar().getValueIsAdjusting()){
 				Object src = e.getSource();
 				
@@ -86,15 +89,15 @@ public class PlayQueueViewController extends Observable{
 					
 				} else if (src == view.getNextButton()) {
 					getPlayqueue().getNext();
-					player.pause();
-					player.stop();
+					if(player.isPlaying()||player.isPaused()){
+						player.stop();}
 					playNew(0);
 					view.getQueuePanel().resetButton();
 					
 				} else if (src == view.getPreviousButton()) {
 					getPlayqueue().getPrevious();
-					player.pause();
-					player.stop();
+					if(player.isPlaying()||player.isPaused()){
+						player.stop();}
 					playNew(0);
 					view.getQueuePanel().resetButton();
 		
@@ -102,8 +105,8 @@ public class PlayQueueViewController extends Observable{
 				else if (src == view.getClearButton()) {
 					setPlayqueue(null);
 					view.getPositionBar().setValue(0);
-					player.pause();
-					player.stop();
+					if(player.isPlaying()||player.isPaused()){
+						player.stop();}
 					refresh();
 		
 				}
@@ -210,27 +213,10 @@ public class PlayQueueViewController extends Observable{
 		}
 	}
 	
-	public ContentController getContentController(){
-		
-		return contentController;
-	}
-	
-	public void setContentController (ContentController contentController){
-		
-		this.contentController = contentController;
-		setChanged();
-		notifyObservers(contentController);
-	}
-	
-	public void setMainController(MainFrameVController mainController){
-		this.mainController =mainController;
-	}
-	
 	/**
 	 * Fügt Listener für Veränderungen beim PausablePlayer hinzu
 	 */
 	private void addPlayerListener() {
-		//player.getPlayer().removePropertyChangeListener(this);
 		player.getPlayer().addPropertyChangeListener(
 					
 		new PropertyChangeListener() {
@@ -259,8 +245,8 @@ public class PlayQueueViewController extends Observable{
      });
 	}
 	
-	/**reagiert auf neue Playlist
-	 * und aktualisiert View+ Listener
+	/** Reagiert auf neue Playqueue
+	 *  und aktualisiert View+ Listener
 	 * @param PlayQueue
 	 */
 	public void refresh(Playqueue playqueue){
@@ -268,8 +254,9 @@ public class PlayQueueViewController extends Observable{
 			refresh();
 	}
 	
-	/**fügt einzelnes Medium der aktuellenPlayqueue hinzu
-	 * 
+	/**Fügt einzelnes Medium der aktuellenPlayqueue hinzu
+	 * Bei leerer Playqueue wird neue erzeugt
+	 * Sonst Überprüft , ob Playqueue Medium bereits enthält
 	 * @param medium
 	 */
 	public void addMedium(Medium medium){
@@ -286,7 +273,9 @@ public class PlayQueueViewController extends Observable{
 	}
 	
 	/**
-	 * reagiert intern au Änderungen der Playlist
+	 * Reagiert intern auf Änderungen der Playlist
+	 * View wird aktualisiert
+	 * MousListener neu angehängt
 	 */
 	private void refresh() {
 		view.initQueueView(getPlayqueue());
@@ -298,37 +287,6 @@ public class PlayQueueViewController extends Observable{
 		}	
 	}
 
-
-
-	public PlayerController getPlayer() {
-		return player;
-	}
-
-
-	public void setPlayer(PlayerController player) {
-		this.player = player;
-	}
-
-
-	public Playqueue getPlayqueue() {
-		return playqueue;
-	}
-
-
-	public void setPlayqueue(Playqueue playqueue) {
-		this.playqueue = playqueue;
-	}
-
-
-	public PlayQueueView getView() {
-		return view;
-	}
-
-
-	public void setView(PlayQueueView view) {
-		this.view = view;
-	}
-	
 
 	/**
 	 * Startet Wiedergabe und führt nötige Erneuerungen durch
@@ -402,6 +360,10 @@ public class PlayQueueViewController extends Observable{
 			}
 		}
 	}
+	
+	/**
+	 * Stoppt den PausablePlayer, falls er existiert
+	 */
 	public void stop(){
 		if(player==null){
 			
@@ -411,5 +373,54 @@ public class PlayQueueViewController extends Observable{
 		}
 			
 	}
+	/** Content des Mainframes wird aktualisiert
+	 * @param contentController
+	 */
+	public void setContentController (ContentController contentController){
+		
+		this.contentController = contentController;
+		setChanged();
+		notifyObservers(contentController);
+	}
+	
+
+	public ContentController getContentController(){
+		
+		return contentController;
+	}
+	
+	public void setMainController(MainFrameVController mainController){
+		this.mainController =mainController;
+	}
+
+	public PlayerController getPlayer() {
+		return player;
+	}
+
+
+	public void setPlayer(PlayerController player) {
+		this.player = player;
+	}
+
+
+	public Playqueue getPlayqueue() {
+		return playqueue;
+	}
+
+
+	public void setPlayqueue(Playqueue playqueue) {
+		this.playqueue = playqueue;
+	}
+
+
+	public PlayQueueView getView() {
+		return view;
+	}
+
+
+	public void setView(PlayQueueView view) {
+		this.view = view;
+	}
+	
 
 }
