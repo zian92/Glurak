@@ -127,13 +127,4 @@ public class UploadView extends JPanel {
 		upload.pack();
 		upload.setVisible(true);
 	}
-	
-	public static void main(String[] args){
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowView();
-            }
-        });
-	}
-	
 }

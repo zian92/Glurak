@@ -9,7 +9,9 @@ import javax.swing.JPanel;
 
 import de.glurak.Query;
 
-
+/**
+ * die MainframeView, das Hauptfenster
+ */
 public class MainFrameView extends JFrame {
 	
 	private JPanel header;
@@ -17,7 +19,9 @@ public class MainFrameView extends JFrame {
 	private JPanel player;
 	private JPanel content;
 	
-	
+	/**
+	 * erstellt eine neue MainframeView
+	 */
 	public MainFrameView(){
 		setTitle(Query.APPLICATION_NAME);
 		header = new JPanel(new BorderLayout());
