@@ -8,7 +8,13 @@ import javax.swing.JComponent;
  */
 public interface ContentController {
 
+	/**
+	 * @return Gibt die View zurueck
+	 */
 	public JComponent getView();
 	
+	/**
+	 * Laedt die View neu
+	 */
 	public void reload();
 }

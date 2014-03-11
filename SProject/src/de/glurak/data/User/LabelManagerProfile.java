@@ -13,6 +13,9 @@ public class LabelManagerProfile extends ListenerProfile implements Serializable
     @ManyToOne
     private Label myLabel;
 
+    /**
+     * Konstruktor
+     */
     public LabelManagerProfile(){
         super();
         myLabel=null;

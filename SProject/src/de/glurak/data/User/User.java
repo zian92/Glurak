@@ -32,6 +32,9 @@ public class User extends Reachable implements Serializable, Comparable<User>{
             inverseJoinColumns={@JoinColumn(name="FOLLOWS_ID")})
     private List<User> following;
 
+    /**
+     * Konstruktor
+     */
     public User(){
         super();
         profile=null;
@@ -51,6 +54,12 @@ public class User extends Reachable implements Serializable, Comparable<User>{
         this.passwordHash=hashString(password);
     }
 
+    /**
+     * Hasht das Passwort
+     * @param password Das zu hashende Passwort
+     * @return Das gehashte Passwort
+     * @throws NoSuchAlgorithmException 
+     */
     private String hashString(String password) throws NoSuchAlgorithmException {
         String res;
         MessageDigest md = MessageDigest.getInstance("SHA");
@@ -59,6 +68,12 @@ public class User extends Reachable implements Serializable, Comparable<User>{
         return res ;
     }
 
+    /**
+     * Ueberprueft das Passwort
+     * @param p Das Passwort, dass ueberprueft werden soll
+     * @return True falls das eingegebene Passwort, mit dem Passwort uebereinstimmt
+     * @throws NoSuchAlgorithmException
+     */
     public boolean checkPassword(String p) throws NoSuchAlgorithmException {
         return this.passwordHash.equals(hashString(p));
     }
@@ -117,6 +132,10 @@ public class User extends Reachable implements Serializable, Comparable<User>{
         this.following = following;
     }
 
+    /**
+     * Einen User folgen
+     * @param who Der User, dem gefolgt werden soll
+     */
     public void follow(User who){
         NotEnoughRightException.throwIfNot(this,Rights.FOLLOW_USER);
         this.following.add(who);

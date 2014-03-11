@@ -21,6 +21,9 @@ public abstract class UserProfile extends Profile implements Serializable {
     protected boolean isFemale;
     protected String country;
 
+    /**
+     * Konstruktor
+     */
     public UserProfile(){
         super();
     }

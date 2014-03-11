@@ -35,6 +35,9 @@ abstract public class Reachable extends EntryObject implements Serializable, Hat
     protected List<Playlist> myPlaylists;
 
 
+    /**
+     * Konstruktor
+     */
     public Reachable(){
         hater=new ArrayList<User>();
         liker=new ArrayList<User>();
@@ -47,6 +50,10 @@ abstract public class Reachable extends EntryObject implements Serializable, Hat
         return myPlaylists;
     }
 
+    /**
+     * Loescht eine Playlist
+     * @param p Die Playlist, die geloescht werden soll
+     */
     public void removePlaylist(Playlist p){
         if (myPlaylists.contains(p)){
     	    myPlaylists.remove(p);
@@ -59,6 +66,10 @@ abstract public class Reachable extends EntryObject implements Serializable, Hat
         this.myPlaylists = myPlaylists;
     }
 
+    /**
+     * Fuegt eine Playlist hinzu
+     * @param pl Die Playlist die hinzugefuegt werden soll
+     */
     public void addPlaylist(Playlist pl){
         if (myPlaylists.contains(pl)) return;
         myPlaylists.add(pl);
