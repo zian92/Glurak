@@ -42,7 +42,6 @@ public class PlayQueueView extends JPanel{
 	 */
 	public PlayQueueView (Playqueue playqueue){
 		super();
-		this.setBackground(Color.BLUE);
 		positionChange = false;
 		initComponents(playqueue);
 	
