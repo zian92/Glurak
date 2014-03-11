@@ -88,7 +88,7 @@ public class LoginView extends JFrame{
 				
 		//create Backgroundimage
 		try {
-			BufferedImage loginBGImage = ImageIO.read(new File(Query.FOLDER_PICTURE_COVER + "loginscreen.jpg"));
+			BufferedImage loginBGImage = ImageIO.read(new File(Query.FOLDER_PICTURE_ICONS + "logo2.png"));
 			Image img =  loginBGImage.getScaledInstance(1024, 700, Image.SCALE_SMOOTH);
 			JLabel picLabel = new JLabel(new ImageIcon(img));
 			pan_bg.add(picLabel);
