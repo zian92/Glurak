@@ -10,18 +10,23 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 import de.glurak.data.Playlist;
+import de.glurak.data.Playqueue;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.NextContent;
+import de.glurak.frontend.mainFrame.playQueue.PlayQueueView;
+import de.glurak.frontend.mainFrame.playQueue.PlayQueueViewController;
 
 public class PlaylistEditVController extends Observable implements ActionListener, ContentController, NextContent, FocusListener{
 
 	private PlaylistEditView playeditview;
 	private ContentController nextContent;
+	private Playlist myPlaylist;
 	/**
 	 * Konstruktor
 	 */
 	public PlaylistEditVController(Playlist p, ContentController c){
+		
 		playeditview = new PlaylistEditView(this);
 		playeditview.setPlaylist(p);
 		playeditview.field_name.addFocusListener(this);
@@ -51,12 +56,11 @@ public class PlaylistEditVController extends Observable implements ActionListene
 				JOptionPane.showMessageDialog(playeditview,"Ihr Playlistname ist unangemessen.","Fehlerhafte Eingabe",JOptionPane.ERROR_MESSAGE);
 				playeditview.refreshName();
 			}else{
-				// Save playlist
-				if ( playeditview.getPlaylist() == null) {
-					Playlist npl = new Playlist();
-					npl.setName(playeditview.getPlaylistName());
+	
+					Playlist npl = new Playlist(playeditview.getPlaylistName() , playeditview.getPlaylist() );
 					npl.setOwner(SessionThing.getInstance().getSessionUser());
 					SessionThing.getInstance().getDatabase().addPlaylist(npl, null);
+					//SessionThing.getInstance().getDatabase().save();
 					/*
 					if (nextContent instanceof PlaylistVController){
 						((PlaylistVController) nextContent).refreshView();
@@ -64,14 +68,20 @@ public class PlaylistEditVController extends Observable implements ActionListene
 					nextContent = new PlaylistVController();
 					setChanged();
 					notifyObservers();
-				}
+				
 				
 			}
 		}else if(e.getActionCommand().equals("delete")){
-			SessionThing.getInstance().getDatabase().removePlaylist(playeditview.getPlaylist(), null);
+		
+			SessionThing.getInstance().getSessionUser().removePlaylist(playeditview.getPlaylist());
+			SessionThing.getInstance().getDatabase().save();
+		
 			nextContent = new PlaylistVController();
 			setChanged();
 			notifyObservers();
+		}else if(e.getActionCommand().equals("play")){
+			if (playeditview.getPlaylist() != null)
+			 PlayQueueViewController.getInstance().refresh(new Playqueue(playeditview.getPlaylist()));
 		}
 	}
 
