@@ -71,7 +71,7 @@ public class MainFrameVController implements Observer{
             SearchVController tmp = new SearchVController();
             contentController = tmp;
             tmp.getView().setAllText(headerController.getSearchKey());
-            //tmp.searchAll();
+            tmp.searchAll();
             
             // Logout-Button geklickt?
             if (headerController.getLogout()) {
