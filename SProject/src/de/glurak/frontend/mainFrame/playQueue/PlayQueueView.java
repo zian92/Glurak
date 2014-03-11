@@ -27,7 +27,7 @@ public class PlayQueueView extends JPanel{
 	private boolean 	positionChange;
 	
 	/**
-	 * Konstrukter 
+	 * Konstruktor 
 	 */
 	public PlayQueueView (){
 		this(null);
@@ -44,7 +44,7 @@ public class PlayQueueView extends JPanel{
 	
 	}
 	/**
-	 * initialisiert View f�r die angegebene Playqueue
+	 * initialisiert View für die angegebene Playqueue
 	 */
 	public void initComponents(Playqueue playqueue){
 		

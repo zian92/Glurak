@@ -12,7 +12,12 @@ import javax.swing.JSlider;
  */
 public class EJSlider extends JSlider {
 
-	   public EJSlider(int min,int max,int value) {
+	   /** Konstrukter 
+	 * @param min Minimum des JSlider
+	 * @param max Maxmimum des JSlider
+	 * @param value aktuelle Value des JSlider
+	 */
+	public EJSlider(int min,int max,int value) {
 	      super(min,max,value);
 	      addMouseListener(new MouseAdapter() {
 	         @Override

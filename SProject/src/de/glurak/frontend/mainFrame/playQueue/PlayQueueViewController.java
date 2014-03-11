@@ -122,7 +122,8 @@ public class PlayQueueViewController extends Observable{
 		ChangeListener c = /**
 		 * @author MMÜhlenjost
 		 *Reagiert auf Veränderungen der Scrollbar
-		 *
+		 *Draggen der Scrollbar, Player wird gestoppt
+		 *Droppen ders Scrollbar, aktuelles Mdium wird neu an Stelle Value gespielt
 		 */
 		new ChangeListener(){
 
@@ -143,7 +144,13 @@ public class PlayQueueViewController extends Observable{
 			}
 		};
 		
-		m= new MouseAdapter(){
+		m= /**
+		 * @author MMÜhlenjost
+		 * Reagiert auf Mausklicken, auf die IconSymbole
+		 * Rechtklick Löschen
+		 * Linksdoppelklick abspielen
+		 */
+		new MouseAdapter(){
 			public void mouseReleased(MouseEvent e){
 				if(getPlayqueue()!=null){
 					//LinksDoppelKlick
@@ -219,6 +226,12 @@ public class PlayQueueViewController extends Observable{
 	private void addPlayerListener() {
 		player.getPlayer().addPropertyChangeListener(
 					
+		/**
+		 * @author MMÜhlenjost
+		 * reagiert auf Änderungen beim PLayer
+		 * actualframe -> Positionbar Anpassen
+		 * playerStatus-> Lied endet, nächstes wird abgesielt
+		 */
 		new PropertyChangeListener() {
 			
 			public void propertyChange(PropertyChangeEvent evt) {
@@ -339,7 +352,7 @@ public class PlayQueueViewController extends Observable{
 				}
 				 catch(ArithmeticException e2){
 					propertiesBoolean=false;
-					System.out.println("Eigenschaften nicht lesbar");
+					//System.out.println("Eigenschaften nicht lesbar");
 				 }
 				if(bitrate==0){propertiesBoolean=false;}
 				if(propertiesBoolean) {
