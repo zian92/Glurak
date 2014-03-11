@@ -7,6 +7,7 @@ import java.util.Observer;
 import de.glurak.Query;
 import de.glurak.data.Medium;
 import de.glurak.data.Playlist;
+import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.login.LoginVController;
 import de.glurak.frontend.mainFrame.content.news.PromotionVController;
 import de.glurak.frontend.mainFrame.content.profile.ProfileEditVController;
@@ -76,6 +77,7 @@ public class MainFrameVController implements Observer{
 //           	this.playerController.stop();
 //            	this.playerController.getView().;
             	this.view.dispose();
+            	SessionThing.getInstance().setSessionUser(null);
     			LoginVController logControll = new LoginVController(Query.APPLICATION_NAME);
     			
             }
