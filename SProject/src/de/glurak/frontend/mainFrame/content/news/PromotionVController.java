@@ -163,7 +163,9 @@ public class PromotionVController extends Observable implements ContentControlle
 		time_slider.schedule(timTask_slide, 1000, 2000);
 		bool_timerstart = true;
 	}
-	
+	/**
+	 * löscht alle Sliderinhalte
+	 */
 	private void cleanSliders(){
 		int sMax = promPan.getSliderCount();
 		int q = newsList.size()/sMax;
@@ -183,8 +185,10 @@ public class PromotionVController extends Observable implements ContentControlle
 		
 	}
 	
+	/**
+	 * aktuallisiert die contentSlider 
+	 */
 	public void reload() {
-		// TODO Auto-generated method stub
 		cleanSliders();
 		initNewsEntries();
 	}
@@ -194,10 +198,13 @@ public class PromotionVController extends Observable implements ContentControlle
 //==============================================================================================================
 //									ACTION HANDLING
 //==============================================================================================================
-
+/**
+ * Action- und MouseListener für die PromotionControl
+ */
 	private class NewsAction implements ActionListener, MouseListener{
 		
 		private NewsEntry news;
+		
 		public NewsAction(NewsEntry n){
 			this.news = n;
 		}

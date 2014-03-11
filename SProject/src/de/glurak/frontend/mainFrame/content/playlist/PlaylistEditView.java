@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -32,6 +33,10 @@ public class PlaylistEditView extends JPanel{
 	private String 				tableEntries[][];
 	
 	private JButton bt_cancle, bt_delete,bt_import, bt_save;
+	private JPanel	pan_bground;
+	private JScrollPane pan_tab;
+	
+	private boolean bool_searchOp = false;
 	
 	private Playlist 		plRef = null;
 	private ActionListener 	lisRef;
@@ -57,21 +62,24 @@ public class PlaylistEditView extends JPanel{
 		JPanel pan_header = new JPanel(new BorderLayout());
 		JPanel pan_buttons = new JPanel(new GridLayout(0,1));
 		JPanel pan_texts = new JPanel(new GridLayout(0,1));
-		//GridBagConstraints constr = new GridBagConstraints();
-		//constr.
-		pan_header.setBackground(Color.GREEN);
-		pan_header.setPreferredSize(new Dimension(600, 100));
+		pan_header.setBackground(FrontendColors.DARK_GREY);
+		pan_header.setPreferredSize(new Dimension(600, 80));
 		
 	  	field_name = new JTextField("\"Name eingeben\" ", 15);
 	  	//field_name.set
+	  	field_name.setHorizontalAlignment(JTextField.RIGHT);
 	  	field_name.setBackground(FrontendColors.DARK_GREY);
 	  	field_name.setForeground(Color.WHITE);
 	  	field_name.setBorder(null);
-    	field_name.setFont(Query.VERDANA.deriveFont(28f));;
+    	field_name.setFont(Query.VERDANA.deriveFont(28f));
 		    	
-    	lab_itemCount = new JLabel("Anzahl Songs: 0");
+    	lab_itemCount = new JLabel("Anzahl Songs: 0		");
     	lab_itemCount.setForeground(Color.WHITE);
+    	lab_itemCount.setBackground(FrontendColors.DARK_GREY);
+    	lab_itemCount.setOpaque(true);
     	lab_itemCount.setFont(Query.VERDANA.deriveFont(12f));
+    	lab_itemCount.setHorizontalAlignment(JTextField.RIGHT);
+    	
     	pan_texts.add(field_name);
     	pan_texts.add(lab_itemCount);
     	pan_texts.setVisible(true);
@@ -84,8 +92,8 @@ public class PlaylistEditView extends JPanel{
     	bt_delete.setActionCommand("delete");
     	bt_delete.addActionListener(lisRef);
     	pan_buttons.add(bt_delete);	
-    	bt_import = new JButton(" Importieren");
-    	bt_import.setActionCommand("import");
+    	bt_import = new JButton(" Play ");
+    	bt_import.setActionCommand("play");
     	bt_import.addActionListener(lisRef);
     	pan_buttons.add(bt_import);	
     	bt_cancle = new JButton(" Abbrechen ");
@@ -94,32 +102,13 @@ public class PlaylistEditView extends JPanel{
     	pan_buttons.add(bt_cancle);	
     	
     	pan_buttons.setVisible(true);
-    	//pan_header.add(bt_cancle, BorderLayout.WEST);
-    	/*
-    	constr.gridx = 0;
-    	constr.gridy = 0;
-    	pan_header.add(bt_save, constr);
-    	constr.gridx = 0;
-    	constr.gridy = 1;
-    	pan_header.add(bt_delete, constr);
-    	constr.gridx = 0;
-    	constr.gridy = 2;
-    	pan_header.add(bt_cancle, constr);
-    	constr.gridx = 1;
-    	constr.gridy = 0;
-    	constr.gridheight = 2;
-    	pan_header.add(field_name, constr);
-    	constr.gridx = 1;
-    	constr.gridy = 2;
-    	pan_header.add(lab_itemCount, constr);
-    	*/
     	pan_header.add(pan_buttons, BorderLayout.WEST);
     	pan_header.add(pan_texts, BorderLayout.EAST);
     	
        	pan_header.setVisible(true);
-		
-		JScrollPane pan_tab = new JScrollPane(tab_media);
-       	
+		       	
+       	pan_tab = new JScrollPane(tab_media);
+   
 		this.add(pan_tab, BorderLayout.CENTER);
     	this.add(pan_header, BorderLayout.NORTH);
 
@@ -128,7 +117,8 @@ public class PlaylistEditView extends JPanel{
 	
 	public void setPlaylist(Playlist p){
 		if (p != null){
-			plRef = p;
+			//plRef = new Playlist(p.getName(), p);
+			plRef =  p;
 			fillView();
 		}
 	}
@@ -141,7 +131,7 @@ public class PlaylistEditView extends JPanel{
 	private void fillView(){
 		field_name.setText(plRef.getName());
 		//field_name.setEditable(false);
-		lab_itemCount.setText("Anzahl Songs: " + plRef.getMediumList().size());
+		lab_itemCount.setText("Anzahl Songs: " + plRef.getMediumList().size() + " 	");
 		if (plRef.getMediumList().size() > 0){
 			
 			for (int i = 0; i <plRef.getMediumList().size(); i++){
@@ -166,6 +156,15 @@ public class PlaylistEditView extends JPanel{
 	
 	public void refreshName(){
 		field_name.setText(" \"Name eingeben\" ");
+	}
+	
+	public void XshowSearchView(){
+
+	}
+	
+	public void closeSearchView(){
+		//pan_tab.setSize((pan_tab.getWidth()+10)*2, pan_tab.getHeight());
+		bool_searchOp = !bool_searchOp;
 	}
 	
 	/**

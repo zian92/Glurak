@@ -14,9 +14,7 @@ import de.glurak.data.User.ArtistProfile;
 import de.glurak.data.User.Label;
 import de.glurak.data.User.LabelManagerProfile;
 import de.glurak.data.User.LabelProfile;
-import de.glurak.data.User.ListenerProfile;
 import de.glurak.data.User.User;
-import de.glurak.data.User.UserProfile;
 import de.glurak.database.HibernateDB;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.login.LoginVController;
@@ -107,6 +105,7 @@ public class Glurak {
         Album a = new Album();
         a.setName("Unicorn Rainbow");
         a.setOwner(userB);
+        a.setFilename(Query.FOLDER_PICTURE_ICONS + "splash.png");
         a.setYearOfPublication("1999");
 
         Medium m = new Medium();

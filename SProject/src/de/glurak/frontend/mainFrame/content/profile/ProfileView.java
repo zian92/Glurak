@@ -194,8 +194,8 @@ public class ProfileView extends JPanel{
 		    }
 
 		    if (session.getSessionUser().getProfile().roleName().equals("Admin") && this.user.getProfile().roleName().equals("Listener")) {
-				d.gridx = 0;
-				d.gridy = 2;
+				d.gridx = 1;
+				d.gridy = 1;
 				d.gridwidth = 1;
 				d.gridheight = 1;
 				pan_profilepic.add(b_promote, d);
@@ -203,7 +203,7 @@ public class ProfileView extends JPanel{
 		    }
 		    
 		    if (session.getSessionUser().getProfile().hasRight(Rights.LOCK_OTHER_USER)) {
-		    	d.gridx = 3;
+		    	d.gridx = 2;
 			    d.gridy = 1;
 			    d.gridwidth = 1;
 			    d.gridheight = 1;
