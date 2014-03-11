@@ -153,9 +153,17 @@ public class PlaylistView extends JPanel {
     	}
     }
     
+    private void cleanView(){
+    	int pages = pageArray.size();
+		for (int i = 0; i < pages; i++){
+			pageArray.get(i).removeItems();
+		}
+			
+    }
+    
     public void refreshView(List<Playlist> list){
-    	if (list.size() != 0)
-    		addPlaylist(list.get(list.size()-1));
+    	cleanView();
+    	fillView(list);
     }
     
     public void removeEmptyPage(){
@@ -298,6 +306,11 @@ public class PlaylistView extends JPanel {
     	public void addItem(JComponent comp, Object constrain){
     		add(comp, constrain);
     		itemCount++;
+    	}
+    	
+    	public void removeItems(){
+    		removeAll();
+    		itemCount = 0;
     	}
     	
     	public int getItemCount(){ return itemCount; }

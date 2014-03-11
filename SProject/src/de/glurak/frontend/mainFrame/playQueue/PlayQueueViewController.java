@@ -217,7 +217,7 @@ public class PlayQueueViewController extends Observable{
 		
 		this.contentController = contentController;
 		setChanged();
-		notifyObservers();
+		notifyObservers(contentController);
 	}
 	
 	public void setMainController(MainFrameVController mainController){

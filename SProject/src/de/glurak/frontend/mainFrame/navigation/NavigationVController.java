@@ -2,14 +2,10 @@ package de.glurak.frontend.mainFrame.navigation;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 
-import de.glurak.Query;
 import de.glurak.data.User.Rights;
 import de.glurak.data.User.User;
 import de.glurak.frontend.SessionThing;
@@ -21,9 +17,6 @@ import de.glurak.frontend.mainFrame.content.news.PromotionVController;
 import de.glurak.frontend.mainFrame.content.playlist.PlaylistVController;
 import de.glurak.frontend.mainFrame.content.profile.ProfileVController;
 import de.glurak.frontend.mainFrame.content.upload.UploadVController;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
 
 public class NavigationVController extends Observable {
 
@@ -40,6 +33,7 @@ public class NavigationVController extends Observable {
 		this.user=SessionThing.getInstance().getSessionUser();
         map = new HashMap<String, ContentController>();
 		promotionVController = (PromotionVController) promoVContr;
+		
 		
 		ActionListener a = new ActionListener() {
 			
@@ -65,8 +59,7 @@ public class NavigationVController extends Observable {
         String imgFilename, username;
         imgFilename = u.getProfile().getPictureFileNameOrDefaultPictureName();
         username=u.getUsername();
-        
-
+             
         view = new NavigationView(a,username,u);
         addController(new ProfileVController(SessionThing.getInstance().getSessionUser()), "Profil",null);
         addController(new PlaylistVController(),"Playlist", Rights.MANAGE_PLAYLIST);

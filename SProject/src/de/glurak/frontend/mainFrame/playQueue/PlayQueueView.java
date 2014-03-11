@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.ScrollPane;
 
 import javax.swing.JButton;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
@@ -67,10 +68,8 @@ public class PlayQueueView extends JPanel{
 		getControllPanel().add(getPreviousButton(),BorderLayout.WEST);
 		getControllPanel().add(getClearButton(),BorderLayout.SOUTH);
 		getControllPanel().add(getSaveButton(),BorderLayout.NORTH);
-		
-		
-		
-		this.add(getControllPanel(),BorderLayout.WEST);
+			
+		this.add(getControllPanel(), BorderLayout.WEST);
 		this.add(getPositionBar(),BorderLayout.NORTH);
 		
 	}
