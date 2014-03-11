@@ -6,8 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import de.glurak.data.User.Label;
 import de.glurak.database.HibernateDB;
 import de.glurak.frontend.SessionThing;
+import de.glurak.frontend.mainFrame.ContentController;
 
 /**
  * Der Kontroller fuer die Applicationview.
@@ -15,20 +17,24 @@ import de.glurak.frontend.SessionThing;
  * @author Simon
  * 
  */
-public class ApplicationVController implements ActionListener {
+public class ApplicationVController implements ActionListener, ContentController {
 
     private ApplicationView appliview;
     private String errorMsgBoxName = "Fehlermeldung";
     private SessionThing session = SessionThing.getInstance();
     private HibernateDB db = session.getDatabase();
+    private Label label;
 
     /**
      * Konstruktor
      */
-    public ApplicationVController() {
+    public ApplicationVController(Label label) {
         appliview = new ApplicationView();
         appliview.b_send.addActionListener(this);
         appliview.b_cancel.addActionListener(this);
+        this.label = label;
+
+        appliview.t_receiver.setText(label.getProfile().getName());
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -61,6 +67,11 @@ public class ApplicationVController implements ActionListener {
      */
     public JPanel getView() {
         return appliview;
+    }
+
+    public void reload() {
+        // TODO Auto-generated method stub
+
     }
 
 }

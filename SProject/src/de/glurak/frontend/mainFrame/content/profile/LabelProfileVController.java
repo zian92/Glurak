@@ -42,7 +42,7 @@ public class LabelProfileVController extends Observable implements ContentContro
     	this.label = label;
     	
         view = new LabelProfileView(label, getTop5Albums(), getTop5Artists());
-
+        view.b_application.addActionListener(this);
         
         for (int i=0;i<view.getB_artistArray().length; i++) {
         	view.getB_artistArray()[i].addActionListener(this);
@@ -56,6 +56,11 @@ public class LabelProfileVController extends Observable implements ContentContro
         	nextContent = new LabelProfileVController(this.label);
 			setChanged();
 			notifyObservers();
+        } else if (obj == view.b_application){
+            // TODO nur ausführen, wenn artist
+            setChanged();
+            notifyObservers(new ApplicationVController(this.label));
+            
 //        } else if (obj == view.b_apply){
             //  	setContentController(new ApplicationVController());
         } else {
