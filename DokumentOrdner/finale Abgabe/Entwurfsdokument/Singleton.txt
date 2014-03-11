@@ -1,0 +1,16 @@
+1. Im oben zu sehenden UML-Klassendiagramm wurde das Singleton
+Entwurfsmuster verwendet. Das Singleton-Muster wird für
+den Upload-Vorgang genutzt. Wir benutzen das Singleton-Muster,
+weil es dafür sorgt, dass von einer Klasse nur genau ein Objekt existiert.
+Dies ist besonders im Upload wichtig, da große Dateien wie Bilder und
+Musikstücke auch nur einmal gespeichert werden sollen.
+Der PLayqueueViewController benutzt ebenfalls das Singleton-Pattern,
+da dieser aus verschiedensten ControllerKlassen aus angesprochen
+werden können muss, ohne einen neuen MediaPlayer zu initialisieren,
+und den aktuellen PlayqueueViewController als Objekt zu kennen.
+So kann dem aktuellen MediaPlayer von überall aus neue Playlisten oder Medien 
+hinzugefügt werden.
+Da die Datenbank und Sessionthing global verfügbar für jede Klasse seien müssen 
+arbeiten auch diese als Singleton.
+
+
