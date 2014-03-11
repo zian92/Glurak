@@ -128,7 +128,7 @@ public class LabelProfileVController extends Observable implements ContentContro
 		
 		List<Playlist> returnList = new ArrayList<Playlist>();
 		
-		for (int i=0; i<myAlbums.size(); i++) {
+		for (int i=0; i<myAlbums.size()&&i<5; i++) {
 			if (myAlbums.get(i)!= null) {
 				returnList.add(myAlbums.get(i));
 			}
@@ -148,7 +148,7 @@ public class LabelProfileVController extends Observable implements ContentContro
 		
 		List<ArtistProfile> returnList = new ArrayList<ArtistProfile>();
 		
-		for (int i=0; i<myArtists.size(); i++) {
+		for (int i=0; i<myArtists.size()&&i<5; i++) {
 			if (myArtists.get(i)!= null) {
 				returnList.add(myArtists.get(i));
 			}
