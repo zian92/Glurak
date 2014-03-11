@@ -77,11 +77,12 @@ public class UploadView extends JPanel {
 		if(session.getSessionUser().getProfile().roleName().equals("LabelManager")){
 			LabelManagerProfile labelmanager = new LabelManagerProfile();
 			labelmanager = (LabelManagerProfile) session.getSessionUser().getProfile();
-			String[] artistlist = new  String[labelmanager.getMyLabel().getProfile().getMyartists().size()];
-			for(int i = 0; i < labelmanager.getMyLabel().getProfile().getMyartists().size(); i++){
-				artistlist[i] = labelmanager.getMyLabel().getProfile().getMyartists().get(i).belongTo().getUsername();
-				d_artist = new JComboBox(artistlist);
+			String[] artistlist = new  String[labelmanager.getMyLabel().getProfile().getMyartists().size()+1];
+			artistlist[0] = "";
+			for(int i = 1; i < artistlist.length ; i++){
+				artistlist[i] = labelmanager.getMyLabel().getProfile().getMyartists().get(i-1).belongTo().getUsername();
 			}
+			d_artist = new JComboBox(artistlist);
         }else{
         	String[] artistlist = new String[]{session.getSessionUser().getUsername()};
         	d_artist = new JComboBox(artistlist);
