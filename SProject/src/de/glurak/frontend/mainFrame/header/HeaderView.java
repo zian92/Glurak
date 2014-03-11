@@ -59,50 +59,28 @@ public class HeaderView extends JPanel{
 		
 	}
 	
+	/**
+	 * Getter für SearchField
+	 * @return JTextField t_search
+	 */
 	public JTextField getSearchField() {
 		return t_search;
 	}
 	
+	/**
+	 * Getter für SearchButton
+	 * @return JButton b_search
+	 */
 	public JButton getSearchButton() {
 		return b_search;
 	}
 	
+	/**
+	 * Getter für logoutButton
+	 * @return JButton b_logout
+	 */
 	public JButton getLogoutButton() {
 		return b_logout;
 	}
 	
-
-	/**
-	 * Erzeugt die ProfileView und zeigt sie an.
-	 */
-	private static void createAndShowView(){
-		//Erzeugen des Frames
-		JFrame header = new JFrame("Header");
-		header.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		//Registrationview in das Frame laden
-		JComponent newContentPane = new HeaderView();
-        newContentPane.setOpaque(true);
-        header.setContentPane(newContentPane);
-        
-        //Groesse des Frames festlegen
-        header.setPreferredSize(new Dimension(1000, 500));
-        //Groesse des Frames soll nicht veraenderbar sein
-        header.setResizable(false);
-        //Registrationview wird in der Mitte des Bildschirms geladen
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        header.setLocation(dim.width/2-header.getSize().width/2-300, dim.height/2-header.getSize().height/2-150);
-		
-		//Frame anpassen und sichtbar machen
-		header.pack();
-		header.setVisible(true);
-	} 
-	
-	public static void main(String[] args){
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowView();
-            }
-        });
-	} 
 }

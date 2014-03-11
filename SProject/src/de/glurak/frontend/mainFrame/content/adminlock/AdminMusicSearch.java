@@ -11,6 +11,8 @@ import java.awt.List;
 import java.util.*;
 
 /**
+ * Klasse die Suche nach alle Musik (ob gesperrt oder nicht) ermöglicht
+ * und sie dementsprechend darstellen kann
  * @author Entscheider
  */
 public class AdminMusicSearch extends MusicSearch {
