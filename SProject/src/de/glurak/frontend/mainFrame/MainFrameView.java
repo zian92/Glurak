@@ -27,7 +27,7 @@ public class MainFrameView extends JFrame {
 		navigation.setPreferredSize(new Dimension(220, 545));
 		navigation.setBackground(Color.GRAY);
 		player = new JPanel(new BorderLayout());
-		player.setPreferredSize(new Dimension(1024, 120));
+		player.setPreferredSize(new Dimension(1024, 150));
 		player.setBackground(Color.BLACK);
 		content = new JPanel(new BorderLayout());
 		content.setPreferredSize(new Dimension(724, 545));
@@ -38,7 +38,7 @@ public class MainFrameView extends JFrame {
 		add(player, BorderLayout.SOUTH);
 		add(content, BorderLayout.CENTER);
 		
-		setMinimumSize(new Dimension(1060,740));
+		setMinimumSize(new Dimension(1060,770));
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
