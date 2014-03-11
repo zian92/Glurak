@@ -68,10 +68,11 @@ public class QueuePanel extends JPanel {
             resetButton();
 
         } else {
-            for (int i = 0; i < mediumPanelArray.length; i++) {
-                mediumPanelArray[i].removeAll();
-                mediumPanelArray[i].validate();
-            }
+            if (mediumPanelArray!=null)
+                for (int i = 0; i < mediumPanelArray.length; i++) {
+                    mediumPanelArray[i].removeAll();
+                    mediumPanelArray[i].validate();
+                }
         }
     }
 
