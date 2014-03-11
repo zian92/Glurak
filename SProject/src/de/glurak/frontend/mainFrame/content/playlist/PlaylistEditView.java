@@ -62,20 +62,21 @@ public class PlaylistEditView extends JPanel{
 		JPanel pan_header = new JPanel(new BorderLayout());
 		JPanel pan_buttons = new JPanel(new GridLayout(0,1));
 		JPanel pan_texts = new JPanel(new GridLayout(0,1));
-		pan_header.setBackground(Color.BLACK);
+		pan_header.setBackground(FrontendColors.DARK_GREY);
 		pan_header.setPreferredSize(new Dimension(600, 80));
 		
 	  	field_name = new JTextField("\"Name eingeben\" ", 15);
 	  	//field_name.set
 	  	field_name.setHorizontalAlignment(JTextField.RIGHT);
-	  	field_name.setBackground(Color.BLACK);
+	  	field_name.setBackground(FrontendColors.DARK_GREY);
 	  	field_name.setForeground(Color.WHITE);
 	  	field_name.setBorder(null);
     	field_name.setFont(Query.VERDANA.deriveFont(28f));
 		    	
     	lab_itemCount = new JLabel("Anzahl Songs: 0		");
     	lab_itemCount.setForeground(Color.WHITE);
-    	//lab_itemCount.setOpaque(true);
+    	lab_itemCount.setBackground(FrontendColors.DARK_GREY);
+    	lab_itemCount.setOpaque(true);
     	lab_itemCount.setFont(Query.VERDANA.deriveFont(12f));
     	lab_itemCount.setHorizontalAlignment(JTextField.RIGHT);
     	
@@ -91,8 +92,8 @@ public class PlaylistEditView extends JPanel{
     	bt_delete.setActionCommand("delete");
     	bt_delete.addActionListener(lisRef);
     	pan_buttons.add(bt_delete);	
-    	bt_import = new JButton(" Importieren");
-    	bt_import.setActionCommand("import");
+    	bt_import = new JButton(" Play ");
+    	bt_import.setActionCommand("play");
     	bt_import.addActionListener(lisRef);
     	pan_buttons.add(bt_import);	
     	bt_cancle = new JButton(" Abbrechen ");

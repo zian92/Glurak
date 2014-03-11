@@ -10,9 +10,12 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 import de.glurak.data.Playlist;
+import de.glurak.data.Playqueue;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.NextContent;
+import de.glurak.frontend.mainFrame.playQueue.PlayQueueView;
+import de.glurak.frontend.mainFrame.playQueue.PlayQueueViewController;
 
 public class PlaylistEditVController extends Observable implements ActionListener, ContentController, NextContent, FocusListener{
 
@@ -76,8 +79,9 @@ public class PlaylistEditVController extends Observable implements ActionListene
 			nextContent = new PlaylistVController();
 			setChanged();
 			notifyObservers();
-		}else if(e.getActionCommand().equals("import")){
-			 //playeditview.showSearchView();
+		}else if(e.getActionCommand().equals("play")){
+			if (playeditview.getPlaylist() != null)
+			 PlayQueueViewController.getInstance().refresh(new Playqueue(playeditview.getPlaylist()));
 		}
 	}
 
