@@ -1,6 +1,7 @@
 package de.glurak.frontend.mainFrame.playQueue;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.ScrollPane;
 
 import javax.swing.JButton;
@@ -51,7 +52,8 @@ public class PlayQueueView extends JPanel{
 		
 		this.setLayout(new BorderLayout());
 		
-		setPlayButton(new JButton("Play    "));
+		setPlayButton(new JButton("Play"));
+		getPlayButton().setPreferredSize(new Dimension(65,51));
 		setNextButton(new JButton("=>"));
 		setPreviousButton(new JButton("<="));
 		setClearButton(new JButton("Clear"));
