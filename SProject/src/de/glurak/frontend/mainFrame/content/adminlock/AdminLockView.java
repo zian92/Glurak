@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
 /**
+ * Das View um Medium zu sperren
  * @author Entscheider
  */
 public class AdminLockView extends JPanel {
@@ -36,10 +37,17 @@ public class AdminLockView extends JPanel {
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * Sucht in musicSearchTab nach alle Musik
+     */
     public void search(){
         musicSearchTab.search();
     }
 
+    /**
+     * Gibt das ausgewählte Medium in musicSearchTab zurück
+     * @return  das ausgewählte Medium
+     */
     public Medium getSelectedMedium(){
         return musicSearchTab.getSelectedItem();
     }
