@@ -29,13 +29,13 @@ public class HeaderView extends JPanel{
 		setLayout(new GridLayout());
 		
 		// Initialisierung des Panels
-		pan_header = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		pan_header = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		// pan_header.setSize(1024,50);
 		
 		// Initialisierung des Textfeldes
 		t_search = new JTextField();
 		t_search.setText(" Sucheingabe ");
-		t_search.setPreferredSize(new Dimension(85,20));
+		t_search.setPreferredSize(new Dimension(200,20));
 		// t_search.setBackground(Color.LIGHT_GRAY);
 		// t_search.setForeground(Color.blue);
 		
@@ -49,12 +49,12 @@ public class HeaderView extends JPanel{
 		
 		pan_header.add(b_search);
 		
-		pan_logout = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		pan_logout = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		pan_logout.add(b_logout);
 		
 		// HinzufÃ¼gen des Panels zur ContentPane
-		add(pan_header);
 		add(pan_logout);
+		add(pan_header);
 		setVisible(true);
 		
 	}
