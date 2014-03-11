@@ -54,7 +54,7 @@ public class PlayQueueView extends JPanel{
 		this.setLayout(new BorderLayout());
 		
 		setPlayButton(new JButton("Play"));
-		getPlayButton().setPreferredSize(new Dimension(65,51));
+		getPlayButton().setPreferredSize(new Dimension(80,70));
 		setNextButton(new JButton("=>"));
 		setPreviousButton(new JButton("<="));
 		setClearButton(new JButton("Clear"));
