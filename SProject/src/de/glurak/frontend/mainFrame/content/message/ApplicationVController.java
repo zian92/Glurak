@@ -26,18 +26,18 @@ public class ApplicationVController extends Observable implements ActionListener
     private SessionThing session = SessionThing.getInstance();
     private HibernateDB db = session.getDatabase();
     private Reachable appliTo;
+    private ContentController nextContent;
 
     /**
      * Konstruktor
      */
-    public ApplicationVController(Reachable appliTo) {
+    public ApplicationVController(Reachable appliTo, ContentController nextContent) {
         appliview = new ApplicationView();
         appliview.b_send.addActionListener(this);
         appliview.b_cancel.addActionListener(this);
         this.appliTo = appliTo;
-        String name = "";
-
-        appliview.t_receiver.setText(name);
+        this.nextContent = nextContent;
+        appliview.t_receiver.setText(appliTo.getProfile().viewName());
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -49,11 +49,11 @@ public class ApplicationVController extends Observable implements ActionListener
             } else {
                 db.createMessage(session.getSessionUser(), appliTo, appliview.t_application.getText(), true, null);
                 JOptionPane.showMessageDialog(null, "Deine Nachricht wurde überstellt!", "Erfolg", JOptionPane.WARNING_MESSAGE);
-                this.backToLabel();
+                this.backToPrev();
             }
         } else {
             if (e.getSource() == appliview.b_cancel) {
-                this.backToLabel();
+                this.backToPrev();
             }
         }
     }
@@ -70,8 +70,8 @@ public class ApplicationVController extends Observable implements ActionListener
 
     }
 
-    private void backToLabel() {
+    private void backToPrev() {
         setChanged();
-        notifyObservers(new LabelProfileVController(this.appliTo));
+        notifyObservers(nextContent);
     }
 }

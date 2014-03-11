@@ -29,7 +29,7 @@ public abstract class Profile implements Serializable {
         announcements =new ArrayList<Announcement>();
     }
 
-    abstract String viewName();
+    public abstract String viewName();
 
     abstract public Reachable belongTo();
 
