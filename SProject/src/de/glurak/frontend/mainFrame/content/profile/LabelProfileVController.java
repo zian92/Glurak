@@ -45,7 +45,6 @@ public class LabelProfileVController extends Observable implements ContentContro
     	
     	// Überprüfen ob aktueller user LabelManager des Labels ist
     	for (LabelManagerProfile m: label.getManager()) {
-    		System.out.println(m.getFirstname());
     		if (SessionThing.getInstance().getSessionUser().equals(m.belongTo())) {
     			edit = true;
     		}
@@ -63,6 +62,8 @@ public class LabelProfileVController extends Observable implements ContentContro
         Object obj = e.getSource();
 
         if (obj == view.b_edit){
+        	this.label.getProfile().setAddress(view.getT_labeldescription().getText());
+        	
         	nextContent = new LabelProfileVController(this.label);
 			setChanged();
 			notifyObservers();
