@@ -29,6 +29,7 @@ public class RegistrationVController implements ActionListener, FocusListener{
 		regview = new RegistrationView(this, this);
 	}
 	
+
 	public void actionPerformed(ActionEvent e){
 		if (e.getActionCommand().equals("registrate")){
 			try {
@@ -74,11 +75,12 @@ public class RegistrationVController implements ActionListener, FocusListener{
 		return regview;
 	}
 
+
 	public void focusGained(FocusEvent e) {
         regview.selectAll();
 	}
 
-	public void focusLost(FocusEvent e) {
+	public void focusLost(FocusEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
