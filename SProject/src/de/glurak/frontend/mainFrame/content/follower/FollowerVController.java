@@ -20,17 +20,26 @@ import de.glurak.frontend.mainFrame.content.playlist.PlaylistEditVController;
 import de.glurak.frontend.mainFrame.content.playlist.PlaylistView;
 import de.glurak.frontend.mainFrame.content.profile.ProfileVController;
 
+/**
+ * Diese Klasse stellt der FollowerView die Funktionalität zur Verfügung.
+ */
 public class FollowerVController  extends Observable implements MouseListener, ActionListener, ContentController, NextContent {
 
 	private FollowerView view;
 	private ContentController nextContent;
 	 
+	/**
+	 * Konstruktor initialisiert view  
+	 */
 	public FollowerVController(){
 		this.view = new FollowerView(this, this);
 		view.setVisible(true);
 	    initfillView();
 	}
 	
+	/**
+	 * besorgt daten für die view
+	 */
 	public void initfillView(){
 		List<User> list = SessionThing.getInstance().getSessionUser().getFollowing();
 		view.fillView(list);
@@ -49,11 +58,9 @@ public class FollowerVController  extends Observable implements MouseListener, A
 		if (e.getActionCommand().equals("likeFavo")){
 			JButton bt = (JButton) e.getSource();
 			// Die wohl mit Abstand schla..., eh, "unsauberste" Stelle im gesamten Programm
-			System.out.println("FVC - 53 - I Like the User: " + ((FavoriteLabel) bt.getParent()).getFavorite().getUsername());
 		}else if(e.getActionCommand().equals("hateFavo")){
 			JButton bt = (JButton) e.getSource();
 			// Die wohl mit Abstand schla..., eh, "unsauberste" Stelle im gesamten Programm
-			System.out.println("FVC - 53 - I hate the User: " + ((FavoriteLabel) bt.getParent()).getFavorite().getUsername());
 		}else{
 			
 		}

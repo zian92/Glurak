@@ -18,9 +18,9 @@ public abstract class Profile implements Serializable {
 
     @Id
     @GeneratedValue
-    protected long id;
-    protected String address		 = "";
-    protected String pictureFileName = "";
+    private long id;
+    private String address		 = "";
+    private String pictureFileName = "";
 
     @OneToMany(mappedBy = "belongsTo")
     protected List<Announcement> announcements;

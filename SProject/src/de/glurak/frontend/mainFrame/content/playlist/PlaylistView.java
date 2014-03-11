@@ -44,7 +44,7 @@ public class PlaylistView extends JPanel {
 	private JPanel 		pan_header, pan_lowButtons;
 	private SliderPanel pan_content;
 	private ImageIcon 	ico_playList;
-	private JButton 	bt_new, bt_edit, bt_next, bt_prev;
+	private JButton 	bt_new,  bt_next, bt_prev;
 
 	private List<SmartPage> pageArray = new ArrayList<SmartPage>();	
 	private List<PlaylistLabel> IconArray = new ArrayList<PlaylistLabel>();	
@@ -66,7 +66,7 @@ public class PlaylistView extends JPanel {
     	lab_name.setForeground(Color.white);
     	
      	// Buttonpanel for the main functions of this view
-    	pan_header = new JPanel(new FlowLayout());
+    	pan_header = new JPanel(new BorderLayout());
     	//pan_buttons.setPreferredSize(new Dimension(600, 80));
     	pan_header.setBounds(0, 10, 600, 80);
     	pan_header.setBackground(Color.BLACK);
@@ -80,12 +80,21 @@ public class PlaylistView extends JPanel {
     	bt_new = new JButton("Neue Playlist erstellen");
     	bt_new.setActionCommand("newList");
     	bt_new.addActionListener(actionRef);
-    	bt_edit = new JButton("Playlist bearbeiten");
-    	bt_edit.setActionCommand("editList");
-    	bt_edit.addActionListener(actionRef);
+    //	bt_edit = new JButton("Playlist bearbeiten");
+    //	bt_edit.setActionCommand("editList");
+   // 	bt_edit.addActionListener(actionRef);
     	
-    	pan_header.add(bt_new);
-    	pan_header.add(bt_edit);
+    	JLabel lab_text = new JLabel(" Deine Playlists");
+	  	//field_name.set
+    	lab_text.setBackground(FrontendColors.DARK_GREY);
+    	lab_text.setHorizontalAlignment(JTextField.RIGHT);
+    	lab_text.setForeground(Color.WHITE);
+    	lab_text.setFont(Query.VERDANA.deriveFont(28f));
+    	
+    	
+    	pan_header.add(bt_new, BorderLayout.WEST);
+    	pan_header.add(lab_text, BorderLayout.CENTER);
+  //  	pan_header.add(bt_edit);
     	
     	// Navigation Buttons
     	bt_next = new JButton("next");

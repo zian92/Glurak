@@ -131,7 +131,7 @@ public abstract class UserProfile extends Profile implements Serializable {
 
     @Override
     public String getPictureFileNameOrDefaultPictureName() {
-        if (pictureFileName.isEmpty()) {
+        if (getPictureFileName().isEmpty()) {
             if (isFemale) {
                 return (Query.FOLDER_PICTURE_ICONS + "userf.jpg");
             } else {
@@ -139,7 +139,7 @@ public abstract class UserProfile extends Profile implements Serializable {
             }
 
         }
-        return pictureFileName;
+        return getPictureFileName();
     }
 
     @Override
