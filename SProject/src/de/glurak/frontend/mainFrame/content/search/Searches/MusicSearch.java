@@ -23,7 +23,17 @@ public class MusicSearch implements Searchable<Medium> {
     public List<Medium> searchFor(String s) {
         DBSearch db = new DBSearch(SessionThing.getInstance().getDatabase());
         List<Medium> g =db.searchForMusicByTitle(s);
-        return g;
+
+        return filterUnlocked(g);
+    }
+
+    protected List<Medium> filterUnlocked(List<Medium> allMedien){
+        List<Medium> unlockedMedium=new ArrayList<Medium>();
+        for (Medium m: allMedien){
+            if (!m.isLocked())
+                unlockedMedium.add(m);
+        }
+        return unlockedMedium;
     }
 
     public ListCellRenderer<Medium> getRenderer() {

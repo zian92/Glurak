@@ -1,16 +1,26 @@
 package de.glurak.frontend.mainFrame.content.adminlock;
 
 import de.glurak.data.Medium;
+import de.glurak.database.DBSearch;
+import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.content.search.Searches.MusicSearch;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.List;
+import java.util.*;
 
 /**
  * @author Entscheider
  */
 public class AdminMusicSearch extends MusicSearch {
 
+   @Override
+    public java.util.List<Medium> searchFor(String s) {
+        DBSearch db = new DBSearch(SessionThing.getInstance().getDatabase());
+        java.util.List<Medium> g =db.searchForMusicByTitle(s);
+        return g;
+    }
     @Override
     public ListCellRenderer<Medium> getRenderer() {
         return new ListCellRenderer<Medium>() {
