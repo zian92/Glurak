@@ -20,6 +20,9 @@ public class UploadVController implements ActionListener, ContentController {
     private File music_file;
     private SessionThing session;
 
+    /**
+     * Konstruktor
+     */
     public UploadVController() {
         upview = new UploadView();
         upview.b_choosefile.addActionListener(this);
@@ -40,7 +43,7 @@ public class UploadVController implements ActionListener, ContentController {
             }
         } else
             if (ae.getSource() == upview.b_upload) {
-                if ((upview.t_title.getText().isEmpty()) || upview.d_artist.getSelectedIndex() == 0 || (upview.t_album.getText().isEmpty())) {
+                if ((upview.t_title.getText().isEmpty()) || (session.getSessionUser().getProfile().equals("LabelManager") && upview.d_artist.getSelectedIndex() == 0) || (upview.t_album.getText().isEmpty())) {
                     JOptionPane.showMessageDialog(upview, "Bitte füllen sie alle Felder aus, um das Medium hochzuladen!", "Fehlermeldung", JOptionPane.ERROR_MESSAGE);
                 } else
                     if ((music_file == null)) {

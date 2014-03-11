@@ -103,7 +103,10 @@ public class NavigationVController extends Observable {
 		return contentController;
 	}
 
-
+/**
+ * Setzt einen neuen Contentcontroller und informiert den Observer darüber.
+ * @param contentController
+ */
 	public void setContentController(ContentController contentController) {
 		this.contentController = contentController;
 		setChanged();
