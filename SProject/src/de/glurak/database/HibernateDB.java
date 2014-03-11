@@ -14,6 +14,10 @@ public class HibernateDB {
             .createEntityManagerFactory("GlurakPersistanceUnit");
     private EntityManager em = emf.createEntityManager();
 
+    /**
+     * Gibt den EnityManager von JPA zurück
+     * @return den EnityManager
+     */
     public EntityManager getEnityManager(){
         return em;
     }
@@ -182,6 +186,11 @@ public class HibernateDB {
         return q1.getResultList();
     }
 
+    /**
+     * Gibt alle Ungelesene Narichten von rec zuürck
+     * @param rec das Reachable Objekt
+     * @return Liste aller ungelesenen Narichten
+     */
     public List<Message> getUnreadMessageFromReceiver(Reachable rec){
         TypedQuery<Message> q1 = em.createQuery(
                 "SELECT k FROM Message k WHERE k.receiver.id = :n AND k.isAlreadyRead = 0", Message.class);
@@ -299,6 +308,11 @@ public class HibernateDB {
             em.getTransaction().commit();
     }
 
+    /**
+     * Fügt ein NewsEntry hinzu
+     * @param entry die neue NewsEntry
+     * @param tr die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht.
+     */
     public void addNewsEntry(NewsEntry entry, EntityTransaction tr){
         if (tr==null)
             em.getTransaction().begin();
@@ -307,6 +321,10 @@ public class HibernateDB {
             em.getTransaction().commit();
     }
 
+    /**
+     * Gibt alle NewsEntry aus der Datenbank zurück
+     * @return Liste aller NewsEntries
+     */
     public List<NewsEntry> getAllEntries(){
         TypedQuery<NewsEntry> q1 = em.createQuery(
                 "SELECT k FROM NewsEntry k", NewsEntry.class);
