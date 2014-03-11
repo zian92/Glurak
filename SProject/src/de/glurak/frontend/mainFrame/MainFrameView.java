@@ -3,7 +3,9 @@ package de.glurak.frontend.mainFrame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -46,6 +48,8 @@ public class MainFrameView extends JFrame {
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
+		Image icon = new ImageIcon(Query.ICON_LOGOICON).getImage();
+		this.setIconImage(icon);
 		setVisible(true);
 	}
 
