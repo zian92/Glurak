@@ -53,8 +53,8 @@ public class SearchView extends JPanel{
         //Alle Tabs für das Suchen
         addEntry(new SearchTab(new MusicSearch(), "Musik"));
         addEntry(new SearchTab(new MusicInterpretSearch(), "Musik von Interpreten"));
-        addEntry(new SearchTab(new MusicGenreSearch(), "Music bei Genre"));
-        addEntry(new SearchTab(new UserSearch(), "User"));
+        addEntry(new SearchTab(new MusicGenreSearch(), "Musik nach Genre"));
+        addEntry(new SearchTab(new UserSearch(), "Benutzer"));
         addEntry(new SearchTab(new PlaylistSearch(), "Playlist"));
         addEntry(new SearchTab(new LabelSearch(), "Label"));
 		
