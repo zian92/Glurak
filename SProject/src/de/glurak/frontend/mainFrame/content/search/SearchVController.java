@@ -11,7 +11,7 @@ import de.glurak.frontend.mainFrame.NextContent;
 
 /**
  * Diese Klasse stellt dem SearchView ihre Funktionalität zur Verfügung.
- * @author Christopher Distelkämper
+ * @author Christopher Distelkämper, Entscheider
  * Date: 06.03.2014
  */
 public class SearchVController extends Observable implements  ContentController , NewControllerArrivedListener{
@@ -30,6 +30,9 @@ public class SearchVController extends Observable implements  ContentController 
 		return searchview;
 	}
 
+    /**
+     * Gibt alle Suchtabs zu verstehen zu suchen
+     */
     public void searchAll(){
         searchview.searchAll();
     }
@@ -40,7 +43,6 @@ public class SearchVController extends Observable implements  ContentController 
     }
 
 	public void reload() {
-		// TODO Auto-generated method stub
-		
+		searchview.searchAll();
 	}
 }

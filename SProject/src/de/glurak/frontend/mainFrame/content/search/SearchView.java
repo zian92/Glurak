@@ -15,7 +15,7 @@ import javax.swing.JTabbedPane;
 /**
  * Die SearchView ermöglicht die Erweiterte-Suche und die Ergebnisse von 
  * einer Suche werden hier angezeigt.
- * @author Simon, Christopher Distelkämper
+ * @author Entscheider
  *
  */
 public class SearchView extends JPanel{
@@ -32,6 +32,10 @@ public class SearchView extends JPanel{
         new_controller_listener.remove(ar);
     }
 
+    /**
+     * Benarichtigt alle NotifyArrivedListener den Content zu ändern
+     * @param nController
+     */
     protected void notifyNewControllerArrivedListener(ContentController nController){
        for (NewControllerArrivedListener a: new_controller_listener){
            a.gotNewController(nController);
@@ -46,7 +50,7 @@ public class SearchView extends JPanel{
         pane = new JTabbedPane();
         add(pane, BorderLayout.CENTER);
 
-
+        //Alle Tabs für das Suchen
         addEntry(new SearchTab(new MusicSearch(), "Musik"));
         addEntry(new SearchTab(new MusicInterpretSearch(), "Musik von Interpreten"));
         addEntry(new SearchTab(new MusicGenreSearch(), "Music bei Genre"));
@@ -56,6 +60,10 @@ public class SearchView extends JPanel{
 		
 	}
 
+    /**
+     * Klasse für den doppeltklick auf die Liste in einer Suche
+     * @param <T> die Suchklasse (z.B. Genre, Medium, User, Profile ,...)
+     */
     private class TabMouseAdapter<T> extends MouseAdapter{
         private SearchTab<T> myTab;
         public TabMouseAdapter(SearchTab<T> tab){
@@ -77,12 +85,20 @@ public class SearchView extends JPanel{
 
     }
 
+    /**
+     * Gibt alle Tabs zu verstehen zu suchen
+     */
     public void searchAll(){
         for (SearchTab s : tabs){
             s.search();
         }
     }
 
+    /**
+     * Fügt einen Tab und setzt alle Listener für SearchTab
+     * @param s der SearchTab
+     * @param <T> die Suchklasse
+     */
     public <T> void addEntry(SearchTab<T> s){
        tabs.add(s);
        pane.add(s);

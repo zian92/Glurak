@@ -2,12 +2,15 @@ package de.glurak.feature.sound;
 import java.io.InputStream;
 
 import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.AudioDevice;
 import javazoom.jl.player.advanced.AdvancedPlayer;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 
+/**Pausable Player 
+ * @author MMÜhlenjost
+ *
+ */
 public class PausablePlayer {
 
     private final static int NOTSTARTED = 0;
@@ -15,28 +18,31 @@ public class PausablePlayer {
     private final static int PAUSED = 2;
     private final static int FINISHED = 3;
     private final static int FINISHED_BY_END = 4;
-    private static PausablePlayer instance=null;
     private int actualFrame;
     
 
-    // the player actually doing all the work
+    // Advanced Player aus der Javazoom Library
     private final AdvancedPlayer player;
         
     private PropertyChangeSupport changes = new PropertyChangeSupport( this );
     
-    // locking object used to communicate with player thread
+    // Lock-Objekt zur Komumnikation mit dem Thrad 
     private final Object playerLock = new Object();
 
-    // status variable what player thread is doing/supposed to do
+    // status Variable , zeigt was der PLayer gerade tut
     private int playerStatus = NOTSTARTED;
 
+    /**
+     * @param inputStream inputstream des abzuspielenden Mediums
+     * @throws JavaLayerException
+     */
     public PausablePlayer(final InputStream inputStream) throws JavaLayerException {
         this.player = new AdvancedPlayer(inputStream);
       
     }
    
     /**
-     * Starts playback (resumes if paused)
+     * Startet (resume , wenn Pause)
      */
     public void play(final int time) throws JavaLayerException {
         synchronized (playerLock) {
@@ -63,7 +69,7 @@ public class PausablePlayer {
     }
 
     /**
-     * Pauses playback. Returns true if new state is PAUSED.
+     * Pausiert.Gibt true zurück wenn playerstatus pausiert.
      */
     public boolean pause() {
         synchronized (playerLock) {
@@ -75,7 +81,7 @@ public class PausablePlayer {
     }
 
     /**
-     * Resumes playback. Returns true if the new state is PLAYING.
+     * Resume. Gibt true zurück, wenn playerstatus = playing
      */
     public boolean resume() {
         synchronized (playerLock) {
@@ -88,7 +94,7 @@ public class PausablePlayer {
     }
 
     /**
-     * Stops playback. If not playing, does nothing
+     * Stoppt. Wenn nichts gespielt wird,passiert nichts
      */
     public void stop() {
         synchronized (playerLock) {
@@ -97,32 +103,45 @@ public class PausablePlayer {
         }
     }
     
+    /**Player status wird verändert
+     * und PropertyChange ausgelöst
+     * @param playerStatus der neue Status des PLayers
+     */
     public void setPlayerStatus(int playerStatus){
     	 int oldPlayerStatus = this.playerStatus;
     	 this.playerStatus = playerStatus;
     	 changes.firePropertyChange( "playerStatus", oldPlayerStatus, playerStatus );
   	
     }
+    
+    /**Frame wird verändert
+     * @param frame der aktuell abgespielte Frame
+     */
     public void setActualFrame(int frame){
     	int oldFrame= this.actualFrame;
     	this.actualFrame = frame;
     	changes.firePropertyChange("actualFrame", oldFrame, actualFrame);
     	
     }
-    /**Setzt den Player zum Stratframe
-     * @param time framezahl
+    
+    /**Setzt den Player zum Startframe
+     * @param time framezahl, an der gestartet wird
      */
     public void setTime(int time){
     	try {
 			player.play(time,time);
 			setActualFrame(time);
 		} catch (JavaLayerException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
     	
     }
     
+    /**Spielt nächsten frame
+     * oder pausiert, abhängig vom playerstatus
+     * @param time
+     */
     private void playInternal(int time) {
     	setTime(time);
     	 while (playerStatus != FINISHED) {
@@ -151,7 +170,7 @@ public class PausablePlayer {
     }
 
     /**
-     * Closes the player, regardless of current state.
+     * Player wird geschlossen
      */
     public void close() {
         synchronized (playerLock) {
@@ -160,7 +179,7 @@ public class PausablePlayer {
         try {
             player.close();
         } catch (final Exception e) {
-            // ignore, we are terminating anyway
+        
         }
     }
     
@@ -171,11 +190,19 @@ public class PausablePlayer {
     public int getActualFrame(){
     	return this.actualFrame;
     }
+    
+    /**
+     * PropertyChangeListener hinzufügen
+     * @param l
+     */
     public void addPropertyChangeListener( PropertyChangeListener l )
     {
       changes.addPropertyChangeListener( l );
     }
 
+    /**PropertyChangeListener löschen
+     * @param l
+     */
     public void removePropertyChangeListener( PropertyChangeListener l )
     {
       changes.removePropertyChangeListener( l );

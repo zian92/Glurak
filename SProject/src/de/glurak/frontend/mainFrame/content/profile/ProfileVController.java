@@ -22,7 +22,7 @@ import de.glurak.frontend.mainFrame.content.playlist.PlaylistEditVController;
 
 /**
  * Diese Klasse stellt dem ProfileView die Funktionalität zur Verfügung.
- * @author Christopher Distelkämper
+ * @author Christopher Distelkämper, Daniel Papoutzis
  * Date: 28.02.2014
  */
 public class ProfileVController extends Observable implements ActionListener, ContentController, NextContent {
@@ -158,6 +158,10 @@ public class ProfileVController extends Observable implements ActionListener, Co
 		return nextContent;
 	}
 
+	/**
+	 * Setter für nextContent
+	 * @param nextContent
+	 */
 	public void setNextContent(ContentController nextContent) {
 		this.nextContent = nextContent;
 	}

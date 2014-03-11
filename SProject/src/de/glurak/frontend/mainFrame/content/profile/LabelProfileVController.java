@@ -24,10 +24,9 @@ import de.glurak.frontend.mainFrame.content.playlist.AlbumVController;
 
 /**
  * Diese Klasse stellt dem LabelProfileView die Funktionalität zur Verfügung.
- * @author Christopher Distelkämper
+ * @author Christopher Distelkämper, Daniel Papoutzis
  * Date: 28.02.2014
  */
-//TODO ÜBERARBEITEN
 public class LabelProfileVController extends Observable implements ContentController, ActionListener, NextContent{
 
     private LabelProfileView view;
@@ -35,8 +34,8 @@ public class LabelProfileVController extends Observable implements ContentContro
     private ContentController nextContent;
 
     /**
-     *
-     * @param l
+     * Konstruktor 
+     * @param label das Label des anzuzeigenden Profils
      */
     public LabelProfileVController(Label label){
     	this.label = label;
@@ -62,6 +61,10 @@ public class LabelProfileVController extends Observable implements ContentContro
         for (int i=0;i<view.getB_artistArray().length; i++) {
         	view.getB_artistArray()[i].addActionListener(this);
 		}
+        
+        for (int i=0;i<view.getB_playlistArray().length; i++) {
+        	view.getB_playlistArray()[i].addActionListener(this);
+		}
     }
 
     public void actionPerformed(ActionEvent e){
@@ -84,8 +87,6 @@ public class LabelProfileVController extends Observable implements ContentContro
             } catch (IOException e1) {
                 JOptionPane.showMessageDialog(this.view, "Bitte versuch es mit einer anderen Datei.", "Fehler", JOptionPane.ERROR_MESSAGE);
             }
-			System.out.println(this.label.getProfile().getName());
-			System.out.println(file.getAbsolutePath());
 			
 			this.view.repaint();
 			this.view.revalidate();
@@ -99,7 +100,6 @@ public class LabelProfileVController extends Observable implements ContentContro
 					notifyObservers();
 				}
 			}
-        	
         	for (int i=0;i<view.getB_playlistArray().length; i++) {
 				if (obj == view.getB_playlistArray()[i]) {
 					nextContent = new AlbumVController((Album) getTop5Albums().get(i),this);
@@ -111,8 +111,18 @@ public class LabelProfileVController extends Observable implements ContentContro
     }
     
     
+    /**
+     * Gibt die top 5 hated Playlist/Alben der Artists des Labels zurück
+     * @return top 5 hated Playlist
+     */
     public List<Playlist> getTop5Albums() {
-		List<Playlist> myAlbums = this.label.getMyPlaylists();
+		List<Playlist> myAlbums = new ArrayList<Playlist>();
+		
+		for (ArtistProfile a: this.label.getProfile().getMyartists()) {
+			for (Playlist p: a.belongTo().getMyPlaylists()) {
+				myAlbums.add(p);
+			}
+		}
 		
 		Collections.sort(myAlbums);
 		
@@ -127,6 +137,10 @@ public class LabelProfileVController extends Observable implements ContentContro
 		return returnList;
     }
     
+    /**
+     * Gibt die top 5 hated Artists eines Labels zurück
+     * @return liste mit den 5 top hated Artists
+     */
     public List<ArtistProfile> getTop5Artists() {
 		List<ArtistProfile> myArtists = this.label.getProfile().getMyartists();
 		
@@ -148,11 +162,9 @@ public class LabelProfileVController extends Observable implements ContentContro
 
 	public ContentController getNextContent() {
 		return nextContent;
-		
 	}
 	
 	public void reload() {
 		// TODO Auto-generated method stub
-		
 	}
 }
