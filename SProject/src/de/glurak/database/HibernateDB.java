@@ -14,6 +14,10 @@ public class HibernateDB {
             .createEntityManagerFactory("GlurakPersistanceUnit");
     private EntityManager em = emf.createEntityManager();
 
+    /**
+     * Gibt den EnityManager von JPA zurück
+     * @return den EnityManager
+     */
     public EntityManager getEnityManager(){
         return em;
     }
@@ -43,7 +47,7 @@ public class HibernateDB {
     public void registrateProfile(Profile p,EntityTransaction ac){
         if (ac==null)
             em.getTransaction().begin();
-         em.persist(p);
+        em.persist(p);
         if (ac==null)
             em.getTransaction().commit();
     }
@@ -56,7 +60,7 @@ public class HibernateDB {
     public LabelProfile labelProfileByName(String name){
         TypedQuery<LabelProfile> q1 = em.createQuery(
                 "SELECT k FROM LabelProfile k WHERE k.name = :n", LabelProfile.class);
-        q1.setParameter("n",name);
+        q1.setParameter("n", name);
         try{
             LabelProfile res = q1.getSingleResult();
             return res;
@@ -73,7 +77,7 @@ public class HibernateDB {
     public boolean hasLabelProfileWithName(String name){
         TypedQuery<LabelProfile> q1 = em.createQuery(
                 "SELECT k FROM LabelProfile k WHERE k.name = :n", LabelProfile.class);
-        q1.setParameter("n",name);
+        q1.setParameter("n", name);
         return q1.getResultList().size()>0;
     }
 
@@ -90,7 +94,7 @@ public class HibernateDB {
         if (ac==null)
             em.getTransaction().begin();
         if (newUser.getProfile() != null){
-           registrateProfile(newUser.getProfile(),ac==null?em.getTransaction():ac);
+            registrateProfile(newUser.getProfile(),ac==null?em.getTransaction():ac);
         }
         em.persist(newUser);
         if (ac==null)
@@ -182,6 +186,11 @@ public class HibernateDB {
         return q1.getResultList();
     }
 
+    /**
+     * Gibt alle Ungelesene Narichten von rec zuürck
+     * @param rec das Reachable Objekt
+     * @return Liste aller ungelesenen Narichten
+     */
     public List<Message> getUnreadMessageFromReceiver(Reachable rec){
         TypedQuery<Message> q1 = em.createQuery(
                 "SELECT k FROM Message k WHERE k.receiver.id = :n AND k.isAlreadyRead = 0", Message.class);
@@ -291,14 +300,19 @@ public class HibernateDB {
      * @param tr die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht.
      */
     public void addAnnouncement(Announcement an, Profile p, EntityTransaction tr){
-       if (tr==null)
-           em.getTransaction().begin();
+        if (tr==null)
+            em.getTransaction().begin();
         em.persist(an);
         p.addAnnouncement(an);
         if (tr==null)
             em.getTransaction().commit();
     }
 
+    /**
+     * Fügt ein NewsEntry hinzu
+     * @param entry die neue NewsEntry
+     * @param tr die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht.
+     */
     public void addNewsEntry(NewsEntry entry, EntityTransaction tr){
         if (tr==null)
             em.getTransaction().begin();
@@ -307,16 +321,41 @@ public class HibernateDB {
             em.getTransaction().commit();
     }
 
+    /**
+     * Gibt alle NewsEntry aus der Datenbank zurück
+     * @return Liste aller NewsEntries
+     */
     public List<NewsEntry> getAllEntries(){
         TypedQuery<NewsEntry> q1 = em.createQuery(
                 "SELECT k FROM NewsEntry k", NewsEntry.class);
         return q1.getResultList();
     }
 
+    /**
+     * Löscht eine Playlist aus den DB
+     * @param l die Playlist
+     * @param tr die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht.
+     */
     public void removePlaylist(Playlist l, EntityTransaction tr){
         if (tr==null)
             em.getTransaction().begin();
+        l.setOwner(null);
         em.remove(l);
+        if (tr == null)
+            em.getTransaction().commit();
+    }
+
+    /**
+     * Entfernt ein Profil aus der Datenbank
+     * @param f  das Profile
+     * @param tr die Transaktion die benutzt wird. Bei null wird automatisch eine neue aufgemacht.
+     */
+    public void removeProfile(Profile f, EntityTransaction tr){
+        if (tr==null)
+            em.getTransaction().begin();
+        if (f.belongTo()!=null)
+            f.setBelongsTo(null);
+        em.remove(f);
         if (tr == null)
             em.getTransaction().commit();
     }

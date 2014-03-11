@@ -45,7 +45,7 @@ public class DBSearch {
     }
 
     /**
-     * Suche ein Medium nach sein Titel
+     * Suche ein Medium nach seinem Titel
      * @param title der Titel des zu suchenden Mediums
      * @return die gefundenden Medien
      */
@@ -56,7 +56,11 @@ public class DBSearch {
         return q1.getResultList();
     }
 
-
+/**
+ * Sucht nach einem Medium über dessen Genre
+ * @param genreTitle Genre nach dem gesucht wird
+ * @return
+ */
     public List<Medium> searchForMusicByGenre(String genreTitle){
         TypedQuery<Medium> q1 = em.createQuery(
                 "SELECT k FROM Medium k WHERE UPPER(k.myGenre.title) Like UPPER('%"+genreTitle+"%')", Medium.class);

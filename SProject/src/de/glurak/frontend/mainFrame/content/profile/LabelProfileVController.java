@@ -1,6 +1,8 @@
 package de.glurak.frontend.mainFrame.content.profile;
 
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,15 +15,12 @@ import de.glurak.data.Playlist;
 import de.glurak.data.User.ArtistProfile;
 import de.glurak.data.User.Label;
 import de.glurak.data.User.LabelManagerProfile;
-import de.glurak.data.User.User;
+import de.glurak.feature.Uploader;
 import de.glurak.frontend.SessionThing;
 import de.glurak.frontend.mainFrame.ContentController;
 import de.glurak.frontend.mainFrame.NextContent;
 import de.glurak.frontend.mainFrame.content.message.ApplicationVController;
 import de.glurak.frontend.mainFrame.content.playlist.AlbumVController;
-import de.glurak.frontend.mainFrame.content.playlist.PlaylistEditVController;
-import de.glurak.frontend.mainFrame.content.playlist.PlaylistVController;
-import de.glurak.frontend.mainFrame.content.profile.ProfileEditVController;
 
 /**
  * Diese Klasse stellt dem LabelProfileView die Funktionalität zur Verfügung.
@@ -51,7 +50,14 @@ public class LabelProfileVController extends Observable implements ContentContro
     	}
     	
         view = new LabelProfileView(label, getTop5Albums(), getTop5Artists(), edit);
-        view.b_application.addActionListener(this);
+        
+        if (edit) {
+        	view.b_edit.addActionListener(this);
+        	view.b_upload.addActionListener(this);
+        } else {
+        	view.b_application.addActionListener(this);
+        }
+      
         
         for (int i=0;i<view.getB_artistArray().length; i++) {
         	view.getB_artistArray()[i].addActionListener(this);
@@ -60,7 +66,6 @@ public class LabelProfileVController extends Observable implements ContentContro
 
     public void actionPerformed(ActionEvent e){
         Object obj = e.getSource();
-
         if (obj == view.b_edit){
         	this.label.getProfile().setAddress(view.getT_labeldescription().getText());
         	
@@ -68,13 +73,25 @@ public class LabelProfileVController extends Observable implements ContentContro
 			setChanged();
 			notifyObservers();
         } else if (obj == view.b_application){
-            // TODO nur ausführen, wenn artist
             setChanged();
-            notifyObservers(new ApplicationVController(this.label));
+            notifyObservers(new ApplicationVController(this.label,this));
             
-//        } else if (obj == view.b_apply){
-            //  	setContentController(new ApplicationVController());
-        } else {
+        } else if (obj == view.b_upload){
+			Uploader u = Uploader.getInstance();
+			File file = u.selectSinglePicture(this.view);
+			try {
+                u.saveLabelProfilePicture(file, this.label.getProfile().getName(), this.label);
+            } catch (IOException e1) {
+                JOptionPane.showMessageDialog(this.view, "Bitte versuch es mit einer anderen Datei.", "Fehler", JOptionPane.ERROR_MESSAGE);
+            }
+			System.out.println(this.label.getProfile().getName());
+			System.out.println(file.getAbsolutePath());
+			
+			this.view.repaint();
+			this.view.revalidate();
+			setChanged();
+			notifyObservers(new LabelProfileVController(this.label));
+		} else {
         	for (int i=0;i<view.getB_artistArray().length; i++) {
 				if (obj == view.getB_artistArray()[i]) {
 					nextContent = new ProfileVController(getTop5Artists().get(i).belongTo());
@@ -90,7 +107,7 @@ public class LabelProfileVController extends Observable implements ContentContro
 					notifyObservers();
 				}
 			}
-        }
+		}
     }
     
     

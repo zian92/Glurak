@@ -37,7 +37,7 @@ public class LabelProfile extends Profile implements Serializable{
     }
 
     @Override
-    String viewName() {
+    public String viewName() {
         return getName();
     }
 
@@ -72,6 +72,14 @@ public class LabelProfile extends Profile implements Serializable{
     public Reachable belongTo() {
         return myLabel;
     }
+
+    @Override
+    public void setBelongsTo(Reachable r) {
+        if (r!=null && !(r instanceof Label)) return;
+        Label label = (Label) r;
+        setLabel(label);
+    }
+
 
     public void setLabel(Label l){
         if (l==myLabel) return;

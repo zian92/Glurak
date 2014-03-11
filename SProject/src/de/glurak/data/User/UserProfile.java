@@ -26,7 +26,7 @@ public abstract class UserProfile extends Profile implements Serializable {
     }
 
     @Override
-    String viewName() {
+    public String viewName() {
         return firstname+ " "+lastname;
     }
 
@@ -97,6 +97,13 @@ public abstract class UserProfile extends Profile implements Serializable {
     @Override
     public User belongTo() {
         return myUser;
+    }
+
+    @Override
+    public void setBelongsTo(Reachable r) {
+        if (r!=null && !(r instanceof User)) return;
+        User u = (User) r;
+        setUser(u);
     }
 
     public void setUser(User u) {

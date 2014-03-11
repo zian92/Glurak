@@ -43,6 +43,7 @@ public class ProfileView extends JPanel{
 	protected JButton b_edit;
 	protected JButton b_upload;
 	protected JButton b_block;
+	protected JButton b_promote;
 	
 	// TextFields profile_data
 	protected JPasswordField t_password;
@@ -101,7 +102,7 @@ public class ProfileView extends JPanel{
 		
 		// Initialisieren Panel pan_profileviewW
 		pan_profileview = new JPanel(new GridBagLayout());
-		pan_profileview.setPreferredSize(new Dimension(724, 545));
+//		pan_profileview.setPreferredSize(new Dimension(724, 545));
 		pan_profileview.setBackground(FrontendColors.DARK_GREY);
 		
 		// Layout-Restraiktionen festlegen.
@@ -136,7 +137,8 @@ public class ProfileView extends JPanel{
 		
 		l_userPic = new JLabel(new IconLoader(200, 200, user.getProfile().getPictureFileNameOrDefaultPictureName()).getIcon());
 		pan_picture.add(l_userPic);
-	
+
+        b_promote = new JButton("Befördern");
 	    // Initialisieren der Buttons b_message, b_follow, b_edit
 		
 		if (user== session.getSessionUser()){  // Falls das eigene Profil angezeigt werden soll, nur b_edit anzeigen
@@ -169,28 +171,41 @@ public class ProfileView extends JPanel{
 		    b_message = new JButton("Nachricht");
 		    pan_profilepic.add(b_message, d);
 		    
-		    d.gridx = 2;
-		    d.gridy = 1;
-		    d.gridwidth = 1;
-		    d.gridheight = 1;
-            b_follow = new JButton(follow);
-            pan_profilepic.add(b_follow, d);
-            if (session.getSessionUser().getFollowing().contains(user)) {
-                this.setFollowButtonToUnfollow();
-            }
-        }
-        b_block = new JButton("Sperren");
+		    if (session.getSessionUser().getProfile().hasRight(Rights.FOLLOW_USER)) {
+				d.gridx = 2;
+				d.gridy = 1;
+				d.gridwidth = 1;
+				d.gridheight = 1;
+				b_follow = new JButton(follow);
+				pan_profilepic.add(b_follow, d);
+				if (session.getSessionUser().getFollowing().contains(user)) {
+				    this.setFollowButtonToUnfollow();
+				}
+		    }
+
+		    if (session.getSessionUser().getProfile().roleName().equals("Admin") && this.user.getProfile().roleName().equals("Listener")) {
+				d.gridx = 0;
+				d.gridy = 2;
+				d.gridwidth = 1;
+				d.gridheight = 1;
+				pan_profilepic.add(b_promote, d);
+				
+		    }
+		    
 		    if (session.getSessionUser().getProfile().hasRight(Rights.LOCK_OTHER_USER)) {
-	
 		    	d.gridx = 3;
 			    d.gridy = 1;
 			    d.gridwidth = 1;
 			    d.gridheight = 1;
+			    b_block = new JButton("Sperren");
 			    if(this.user.isLocked()){
 			        this.setBlockButtonToUnblock();
 			    }
 			    pan_profilepic.add(b_block, d);
 		    }
+		   
+        }
+    	
 		
 		
 	
