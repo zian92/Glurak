@@ -86,10 +86,18 @@ public abstract class UserProfile extends Profile implements Serializable {
         this.country = country;
     }
 
+    /**
+     * Gibt zurück ob der User weiblich ist
+     * @return  true falls weblich, false falls männlich
+     */
     public boolean isFemale() {
         return isFemale;
     }
 
+    /**
+     * Setzt das Geschlecht
+     * @param isFemale  true fall weiblich, false falls männlich
+     */
     public void setFemale(boolean isFemale) {
         this.isFemale = isFemale;
     }
@@ -106,6 +114,10 @@ public abstract class UserProfile extends Profile implements Serializable {
         setUser(u);
     }
 
+    /**
+     * Setzt den Benutzer zu diesem Profil
+     * @param u der Nutzer, null falls keinen
+     */
     public void setUser(User u) {
         if (u == myUser) return;
         if (myUser != null) {

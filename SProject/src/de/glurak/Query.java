@@ -21,7 +21,7 @@ public class Query {
     public static final String[] FOLDERS = { DATAPATH, FOLDER_MUSIC, FOLDER_PICTURE, FOLDER_PICTURE_PROFILE, FOLDER_PICTURE_COVER, FOLDER_PICTURE_SLIDER, FOLDER_MISC, FOLDER_FONT };
     // specil files
     public static final String SPLASHSCREEN_IMAGE = FOLDER_PICTURE_ICONS + "splash.gif";
-    public static final String LOGIN_BACKGROUND = FOLDER_PICTURE_ICONS + "logo2.png";
+    public static final String LOGIN_BACKGROUND = FOLDER_PICTURE_ICONS + "loginscreen.jpg";
     public static final String SPLASHSCREEN_FONT = FOLDER_FONT + "PAPYRUS.TTF";
     // Genres
     public static final String[] INITIALE_GENRE = { "Metal", "Rock", "Pop", "Punk", "Weltmusik", "Elektro", "Hip-Hop", "RnB", };

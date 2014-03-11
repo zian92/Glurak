@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ * Klasse für das Suchen innerhalb der  Datenbanks
  * @author Entscheider
  */
 public class DBSearch {
@@ -24,7 +25,7 @@ public class DBSearch {
     private EntityManager em;
 
     /**
-     * Konstukor
+     * Konstruktor
      * @param db die HibernateDB die die Verbindung hält
      */
     public DBSearch(HibernateDB db){

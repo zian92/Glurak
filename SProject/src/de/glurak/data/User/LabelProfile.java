@@ -31,6 +31,9 @@ public class LabelProfile extends Profile implements Serializable{
 
 
 
+    /**
+     * Konstruktor
+     */
     public LabelProfile(){
         super();
         myartists=new ArrayList<ArtistProfile>();

@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * Diese Klasse implementiert den User.
- * @author Christopher Distelk�mper
+ * @author Christopher Distelk�mper, Entscheider
  * Date: 25.01.2014
  */
 @Entity
@@ -41,9 +41,9 @@ public class User extends Reachable implements Serializable, Comparable<User>{
 
 
 
-	public void setUsername(String username){
-		this.username = username;
-	}
+    public void setUsername(String username){
+        this.username = username;
+    }
 
     public String getUsername(){return username;}
 
@@ -51,6 +51,12 @@ public class User extends Reachable implements Serializable, Comparable<User>{
         this.passwordHash=hashString(password);
     }
 
+    /**
+     * Methode um ein Password in ein Hash zu verwandeln
+     * @param password das Password
+     * @return das gehashte Password
+     * @throws NoSuchAlgorithmException
+     */
     private String hashString(String password) throws NoSuchAlgorithmException {
         String res;
         MessageDigest md = MessageDigest.getInstance("SHA");
@@ -59,6 +65,12 @@ public class User extends Reachable implements Serializable, Comparable<User>{
         return res ;
     }
 
+    /**
+     * Prüft das Password mit den gehashten
+     * @param p das Password in klartext
+     * @return true falls die hashes übereinstimmen, false sonst.
+     * @throws NoSuchAlgorithmException
+     */
     public boolean checkPassword(String p) throws NoSuchAlgorithmException {
         return this.passwordHash.equals(hashString(p));
     }
@@ -117,6 +129,10 @@ public class User extends Reachable implements Serializable, Comparable<User>{
         this.following = following;
     }
 
+    /**
+     * Fügt den User who in die Follow liste dieses User hinzu.
+     * @param who den Nutzer den dieser hier followed
+     */
     public void follow(User who){
         NotEnoughRightException.throwIfNot(this,Rights.FOLLOW_USER);
         this.following.add(who);
@@ -131,12 +147,12 @@ public class User extends Reachable implements Serializable, Comparable<User>{
 
 
 
-	public int compareTo(User u) {
-		Integer myHates = this.hateCount();
-		Integer hates = u.hateCount();
-		
-		return myHates.compareTo(hates);
-	}
+    public int compareTo(User u) {
+        Integer myHates = this.hateCount();
+        Integer hates = u.hateCount();
+
+        return myHates.compareTo(hates);
+    }
 
 
 }
