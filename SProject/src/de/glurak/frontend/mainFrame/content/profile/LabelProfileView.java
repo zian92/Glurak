@@ -28,7 +28,7 @@ public class LabelProfileView extends JPanel{
 	
 	// Buttons
 	protected JButton b_message;
-	protected JButton b_follow;
+	protected JButton b_application;
 	protected JButton b_edit;
 	protected JButton b_upload;
 	protected JButton b_block;
@@ -105,6 +105,13 @@ public class LabelProfileView extends JPanel{
 		
 		l_labelPic = new JLabel(new IconLoader(200, 200, label.getProfile().getPictureFileNameOrDefaultPictureName()).getIcon());
 		pan_picture.add(l_labelPic);
+		
+		d.gridx = 0;
+		d.gridy = 1;
+		d.gridwidth = 1;
+		d.gridheight = 1;
+	    b_application = new JButton("Bewerbung");
+	    pan_profilepic.add(b_application, d);
 	
 	
 		// Initialisieren Panel pan_topplaylists
