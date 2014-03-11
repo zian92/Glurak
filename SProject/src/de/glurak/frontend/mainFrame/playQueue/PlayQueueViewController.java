@@ -391,6 +391,17 @@ public class PlayQueueViewController extends Observable{
 		}
 			
 	}
+	
+	/**
+	 * Schließt den Player und aktualisiet anzeigen
+	 */
+	public void close(){
+		refresh(null);
+    	getView().getPlayButton().setText("Play");
+    	getView().getPositionBar().setValue(0);
+    	stop();
+	}
+	
 	/** Content des Mainframes wird aktualisiert
 	 * @param contentController
 	 */

@@ -8,6 +8,8 @@ import java.util.Observable;
 
 import javax.swing.JComponent;
 
+import de.glurak.frontend.mainFrame.playQueue.PlayQueueViewController;
+
 /**
  * Repräsentiert einen HeaderVController, der dafür zuständig ist die Funktionalität für den Header bereit zu stellen
  * 
@@ -41,6 +43,9 @@ public class HeaderVController extends Observable implements ActionListener, Mou
 
         // Logout-Button betätigt?
         if (e.getSource() == headview.getLogoutButton()) {
+        	//PLayer schließen
+        	PlayQueueViewController.getInstance().close();
+        	
             setChanged();
             logout = true;
             notifyObservers();
