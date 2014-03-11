@@ -61,6 +61,10 @@ public class LabelProfileVController extends Observable implements ContentContro
         for (int i=0;i<view.getB_artistArray().length; i++) {
         	view.getB_artistArray()[i].addActionListener(this);
 		}
+        
+        for (int i=0;i<view.getB_playlistArray().length; i++) {
+        	view.getB_playlistArray()[i].addActionListener(this);
+		}
     }
 
     public void actionPerformed(ActionEvent e){
