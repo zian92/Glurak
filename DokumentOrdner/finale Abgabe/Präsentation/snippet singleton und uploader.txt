@@ -8,22 +8,22 @@ Singleton
 			return instance;
 		}
 	]
-
 	-Vorteile
 		-Einzelinstanz muss nur erzeugt werden, wenn benötigt.
 		-Zugriffskontrolle kann realisiert werden.
 	
 Singelton in unserer Anwendung
 	-Uploader
-		-öffnet Datei-Auswahl-Dialog & speichert Dateien in Ordnerstruktur.
+		-öffnet Datei-Auswahl-Dialog 
+		-speichert Dateien in Ordnerstruktur.
 		
 		-Vorteile durch Singleton:
-			-als Singleton macht die Arbeit einfacher
+			-Singleton macht die Arbeit einfacher
 			-es kann nicht passieren, dass die gleiche Datei von mehreren Uploader-Instanzen gleichzeitig hochgeladen wird. -> Vermeidet Dopplungen.
 
 	-SessionThing
-		-Speicherung des aktuellen Nutzers und einer Datenbank-Instanz.
+		-Verwaltung des aktuellen Nutzers und einer Datenbank-Instanz.
 		
 		-Vorteile durch Singleton:
-			-alle veränderungen am User werden am selben Objekt getätitg (Hybernate speichert dies dann automatisch)
-			-unbedingt Nötig, da sonst Fehler auftreten.	
+			-alle veränderungen am User werden am selben Objekt getätitg (Hybernate speichert Veränderung automatisch)
+			-unbedingt Nötig, da sonst Fehler auftreten und persistenz innerhalb der Anwendung nicht eingehalten werden kann.
