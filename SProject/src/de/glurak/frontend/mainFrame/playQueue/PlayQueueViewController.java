@@ -267,6 +267,7 @@ public class PlayQueueViewController extends Observable{
 		if(player.isPlaying()||player.isPaused()){
 			player.stop();
 		}
+		view.changePositionBar(0);
 		setPlayqueue(playqueue);
 		refresh();
 	}
@@ -296,6 +297,7 @@ public class PlayQueueViewController extends Observable{
 	 * MousListener neu angehängt
 	 */
 	private void refresh() {
+		playNew(view.getPositionBar().getValue());
 		view.initQueueView(getPlayqueue());
 		if(getPlayqueue()!=null){
 			
@@ -303,7 +305,6 @@ public class PlayQueueViewController extends Observable{
 				view.getQueuePanel().getMediumPanelArray()[i].addMouseListener(m);
 			}
 		}
-		playNew(0);
 	}
 
 
