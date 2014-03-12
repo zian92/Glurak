@@ -1,11 +1,29 @@
 Singleton
--allgm. Struktur -> wiki grafik
+	-allgm. Struktur -> wiki grafik: http://en.wikipedia.org/wiki/File:Singleton.png
+	[
+	public static Uploader getInstance() {
+			if (instance == null) {
+				instance = new Uploader();
+			}
+			return instance;
+		}
+	]
+
+	-Vorteile
+		-Einzelinstanz muss nur erzeugt werden, wenn benötigt.
+		-Zugriffskontrolle kann realisiert werden.
+	
+Singelton in unserer Anwendung
 	-Uploader
-		-öffnet fileselection-Dialog & speichert Dateien in Ordnerstruktur.
-		-macht die Arbeit einfacher
-		-es kann nicht passieren, dass die gleiche Datei von mehreren Uploader-Instanzen gleichzeitig hochgeladen wird. Vermeidet Dopplungen.
+		-öffnet Datei-Auswahl-Dialog & speichert Dateien in Ordnerstruktur.
+		
+		-Vorteile durch Singleton:
+			-als Singleton macht die Arbeit einfacher
+			-es kann nicht passieren, dass die gleiche Datei von mehreren Uploader-Instanzen gleichzeitig hochgeladen wird. -> Vermeidet Dopplungen.
 
 	-SessionThing
 		-Speicherung des aktuellen Nutzers und einer Datenbank-Instanz.
-		-alle veränderungen am User werden am selben Objekt getätitg (Hybernate speichert dies dann automatisch)
-		-unbedingt Nötig, da sonst Fehler auftreten.	
+		
+		-Vorteile durch Singleton:
+			-alle veränderungen am User werden am selben Objekt getätitg (Hybernate speichert dies dann automatisch)
+			-unbedingt Nötig, da sonst Fehler auftreten.	
