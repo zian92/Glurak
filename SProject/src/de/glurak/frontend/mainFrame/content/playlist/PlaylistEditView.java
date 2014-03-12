@@ -113,6 +113,7 @@ public class PlaylistEditView extends JPanel{
     	this.add(pan_header, BorderLayout.NORTH);
 
     	this.setVisible(true);
+    	System.out.println("pev view build");
 	}
 	
 	public void setPlaylist(Playlist p){
@@ -129,7 +130,8 @@ public class PlaylistEditView extends JPanel{
 	 * @inv Wird nur aufgeruffen, wenn eine Playlist gesetzt ist.
 	 */
 	private void fillView(){
-		field_name.setText(plRef.getName());
+		if (plRef.getName() != null)
+			field_name.setText(plRef.getName());
 		//field_name.setEditable(false);
 		lab_itemCount.setText("Anzahl Songs: " + plRef.getMediumList().size() + " 	");
 		if (plRef.getMediumList().size() > 0){

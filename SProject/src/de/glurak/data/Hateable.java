@@ -14,7 +14,7 @@ import javax.persistence.Entity;
  *
  */
 
-//@Entity
+
 public interface Hateable extends Serializable {
 	
 	/**

@@ -29,6 +29,7 @@ public class PlaylistEditVController extends Observable implements ActionListene
 		
 		playeditview = new PlaylistEditView(this);
 		playeditview.setPlaylist(p);
+		System.out.println(p.getName());
 		playeditview.field_name.addFocusListener(this);
 		//nextContent = c;
 	}
@@ -74,6 +75,7 @@ public class PlaylistEditVController extends Observable implements ActionListene
 		}else if(e.getActionCommand().equals("delete")){
 		
 			SessionThing.getInstance().getSessionUser().removePlaylist(playeditview.getPlaylist());
+			SessionThing.getInstance().getDatabase().removePlaylist(playeditview.getPlaylist(), null);
 			SessionThing.getInstance().getDatabase().save();
 		
 			nextContent = new PlaylistVController();
