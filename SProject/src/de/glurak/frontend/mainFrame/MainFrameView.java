@@ -44,7 +44,7 @@ public class MainFrameView extends JFrame {
 		add(player, BorderLayout.SOUTH);
 		add(content, BorderLayout.CENTER);
 		
-		setMinimumSize(new Dimension(1060,770));
+		setMinimumSize(new Dimension(1100,830));
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();

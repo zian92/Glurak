@@ -74,7 +74,7 @@ public class LabelProfileView extends JPanel{
 		
 		// Initialisieren Panel pan_profileviewW
 		pan_profileview = new JPanel(new GridBagLayout());
-		pan_profileview.setPreferredSize(new Dimension(825, 545));
+		pan_profileview.setPreferredSize(new Dimension(825, 600));
 		pan_profileview.setBackground(FrontendColors.DARK_GREY);
 		
 		// Layout-Restraiktionen festlegen.
@@ -84,12 +84,12 @@ public class LabelProfileView extends JPanel{
 		
 		// Initialisieren Panel pan_likes
 		pan_likes = new JPanel(new GridBagLayout());
-		pan_likes.setPreferredSize(new Dimension(350,200));
+		pan_likes.setPreferredSize(new Dimension(412,300));
 		pan_likes.setBackground(FrontendColors.DARK_GREY);
 		
 		// Initialisieren Panel pan_profilepic
 		pan_profilepic = new JPanel(new GridBagLayout());
-		pan_profilepic.setPreferredSize(new Dimension(350, 300));
+		pan_profilepic.setPreferredSize(new Dimension(412, 300));
 		pan_profilepic.setBackground(FrontendColors.DARK_GREY);
 		
 		
@@ -109,8 +109,8 @@ public class LabelProfileView extends JPanel{
 		}
 		
 	    t_labeldescription = new JTextArea(labelDescription, 10, 20);
-	    t_labeldescription.setMaximumSize(new Dimension(350,200));
-	    t_labeldescription.setMinimumSize(new Dimension(350,200));
+	    t_labeldescription.setMaximumSize(new Dimension(412,300));
+	    t_labeldescription.setMinimumSize(new Dimension(412,300));
 	    t_labeldescription.setBackground(FrontendColors.DARK_GREY);
 	    t_labeldescription.setForeground(Color.white);
 		t_labeldescription.setEditable(edit);
@@ -127,7 +127,7 @@ public class LabelProfileView extends JPanel{
 		d.gridwidth = 3;
 		d.gridheight = 1;
 		pan_picture = new JPanel();
-		pan_picture.setPreferredSize(new Dimension(200,200));
+		pan_picture.setPreferredSize(new Dimension(412,300));
 		pan_picture.setBackground(FrontendColors.DARK_GREY);
 		pan_profilepic.add(pan_picture, d);
 		
@@ -160,7 +160,7 @@ public class LabelProfileView extends JPanel{
 		
 		// Initialisieren Panel pan_topplaylists
 		pan_topplaylists = new JPanel(new GridBagLayout());	
-		pan_topplaylists.setPreferredSize(new Dimension(200, 200));
+		pan_topplaylists.setPreferredSize(new Dimension(412, 300));
 		pan_topplaylists.setBackground(FrontendColors.DARK_GREY);
 				
 		// Layout-Restriktionen festlegen.
