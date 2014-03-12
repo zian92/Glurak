@@ -84,6 +84,7 @@ public class MainFrameVController implements Observer{
             contentController = navigationController.getContentController();
 
         } else if (o.equals(PlayQueueViewController.getInstance())){
+        	System.out.println("MFVC - 87 - pqc contentC set");
             contentController = PlayQueueViewController.getInstance().getContentController();
 
         } else if (o.equals(contentController)) {

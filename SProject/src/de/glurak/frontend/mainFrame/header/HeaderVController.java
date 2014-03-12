@@ -45,7 +45,7 @@ public class HeaderVController extends Observable implements ActionListener, Mou
         if (e.getSource() == headview.getLogoutButton()) {
         	//PLayer schließen
         	PlayQueueViewController.getInstance().close();
-        	
+        	PlayQueueViewController.getInstance().deleteObservers();
             setChanged();
             logout = true;
             notifyObservers();

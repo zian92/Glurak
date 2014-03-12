@@ -30,6 +30,7 @@ public class PlaylistEditVController extends Observable implements ActionListene
 		playeditview = new PlaylistEditView(this);
 		playeditview.setPlaylist(p);
 		playeditview.field_name.addFocusListener(this);
+		playeditview.setVisible(true);
 		//nextContent = c;
 	}
 	
