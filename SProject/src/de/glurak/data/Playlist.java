@@ -54,7 +54,11 @@ public class Playlist extends EntryObject implements Serializable, Hateable, Com
 		this.setName(name);
 		this.index = 0;
 		if (playlist != null) {
-			this.setMediumList(playlist.getMediumList());
+			List<Medium> nList=new ArrayList<Medium>();
+			for (Medium m: playlist.getMediumList()){
+				nList.add(m);
+			}
+			this.setMediumList(nList);
 		}
 	}
 
