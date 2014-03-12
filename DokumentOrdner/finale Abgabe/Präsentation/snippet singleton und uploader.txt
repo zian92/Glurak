@@ -1,0 +1,11 @@
+Singleton
+-allgm. Struktur -> wiki grafik
+	-Uploader
+		-öffnet fileselection-Dialog & speichert Dateien in Ordnerstruktur.
+		-macht die Arbeit einfacher
+		-es kann nicht passieren, dass die gleiche Datei von mehreren Uploader-Instanzen gleichzeitig hochgeladen wird. Vermeidet Dopplungen.
+
+	-SessionThing
+		-Speicherung des aktuellen Nutzers und einer Datenbank-Instanz.
+		-alle veränderungen am User werden am selben Objekt getätitg (Hybernate speichert dies dann automatisch)
+		-unbedingt Nötig, da sonst Fehler auftreten.	

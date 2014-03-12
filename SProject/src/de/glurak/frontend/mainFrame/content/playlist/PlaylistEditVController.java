@@ -75,6 +75,7 @@ public class PlaylistEditVController extends Observable implements ActionListene
 		}else if(e.getActionCommand().equals("delete")){
 		
 			SessionThing.getInstance().getSessionUser().removePlaylist(playeditview.getPlaylist());
+			SessionThing.getInstance().getDatabase().removePlaylist(playeditview.getPlaylist(), null);
 			SessionThing.getInstance().getDatabase().save();
 		
 			nextContent = new PlaylistVController();
