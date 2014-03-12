@@ -111,7 +111,8 @@ public class PlayQueueViewController extends Observable{
 		
 				}
 				else if (src== view.getSaveButton()) {
-					setContentController(new PlaylistEditVController(getPlayqueue().getPlaylist(), mainController.getContentController()));
+					Playlist p = new Playlist("Name eingeben", getPlayqueue().getPlaylist());
+					setContentController(new PlaylistEditVController(p, null));
 				}
 			
 			}
@@ -397,6 +398,7 @@ public class PlayQueueViewController extends Observable{
 	 */
 	public void close(){
 		refresh(null);
+		
     	getView().getPlayButton().setText("Play");
     	getView().getPositionBar().setValue(0);
     	stop();
