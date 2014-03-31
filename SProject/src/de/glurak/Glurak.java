@@ -109,25 +109,25 @@ public class Glurak {
         a.setYearOfPublication("1999");
 
         Medium m = new Medium();
-        m.setFileName(Query.FOLDER_MUSIC + "Pink Fluffy Unicorns.mp3");
+        m.setFileName(Query.FOLDER_MUSIC + "Kookooo_Kitchen_-_13_-_Rats_Blossom_Into_Boys.mp3");
         m.setMyGenre(db.genreByTitle(Query.INITIALE_GENRE[2]));
-        m.setTitel("Pink Fluffy Unicorns");
+        m.setTitel("Rats Blossom Into Boys");
         db.registrateMedium(m, null);
         a.getMediumList().add(m);
         m.setOwner(userB);
 
         m = new Medium();
-        m.setFileName(Query.FOLDER_MUSIC + "Go Far Kid.mp3");
+        m.setFileName(Query.FOLDER_MUSIC + "Aint_No_Love_-_01_-_Gone_Already.mp3");
         m.setMyGenre(db.genreByTitle(Query.INITIALE_GENRE[2]));
-        m.setTitel("Go Far Kid");
+        m.setTitel("Gone Already");
         db.registrateMedium(m, null);
         a.getMediumList().add(m);
         m.setOwner(userB);
 
         m = new Medium();
-        m.setFileName(Query.FOLDER_MUSIC + "Pokemon Theme.mp3");
+        m.setFileName(Query.FOLDER_MUSIC + "Baffin_Island_-_11_-_Darling_Please_Come_Home.mp3");
         m.setMyGenre(db.genreByTitle(Query.INITIALE_GENRE[2]));
-        m.setTitel("Pokemon Theme");
+        m.setTitel("Darling Please Come Home");
         db.registrateMedium(m, null);
         a.getMediumList().add(m);
         m.setOwner(userB);
