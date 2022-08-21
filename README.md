@@ -1,3 +1,3 @@
 ﻿SoPra
 =====
-Olaf ist krank
+Olaf ist der Beste!
